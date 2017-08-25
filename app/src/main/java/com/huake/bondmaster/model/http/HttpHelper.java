@@ -2,7 +2,7 @@ package com.huake.bondmaster.model.http;
 
 
 import com.huake.bondmaster.model.bean.VersionBean;
-import com.huake.bondmaster.model.http.response.MyHttpResponse;
+import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 
 import io.reactivex.Flowable;
 
@@ -15,7 +15,7 @@ import io.reactivex.Flowable;
 public interface HttpHelper {
 
 
-    Flowable<MyHttpResponse<VersionBean>> fetchVersionInfo();
+    Flowable<BondMasterHttpResponse<VersionBean>> fetchVersionInfo();
 
 
 }

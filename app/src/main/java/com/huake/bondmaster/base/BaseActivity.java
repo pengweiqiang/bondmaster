@@ -1,13 +1,12 @@
 package com.huake.bondmaster.base;
 
 import android.support.v7.app.AppCompatDelegate;
-import android.view.ViewGroup;
 
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.di.component.ActivityComponent;
 import com.huake.bondmaster.di.component.DaggerActivityComponent;
 import com.huake.bondmaster.di.module.ActivityModule;
-import com.huake.bondmaster.util.SnackbarUtil;
+import com.huake.bondmaster.util.ToastUtil;
 
 import javax.inject.Inject;
 
@@ -48,7 +47,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
 
     @Override
     public void showErrorMsg(String msg) {
-        SnackbarUtil.show(((ViewGroup) findViewById(android.R.id.content)).getChildAt(0), msg);
+        ToastUtil.shortShow(msg);
+//        SnackbarUtil.show(((ViewGroup) findViewById(android.R.id.content)).getChildAt(0), msg);
     }
 
     @Override

@@ -9,6 +9,10 @@ import java.io.File;
  */
 public class Constants extends com.huake.bondmaster.Constants{
 
+
+    //================= RESULT ====================
+    public static final int CODE_SUCCESS = 1;
+
     //================= TYPE ====================
 
     public static final int TYPE_ZHIHU = 101;

@@ -4,6 +4,10 @@ import android.app.Activity;
 
 import com.huake.bondmaster.di.module.FragmentModule;
 import com.huake.bondmaster.di.scope.FragmentScope;
+import com.huake.bondmaster.ui.main.fragment.HomeFragment;
+import com.huake.bondmaster.ui.main.fragment.MarketFragment;
+import com.huake.bondmaster.ui.main.fragment.MyFragment;
+import com.huake.bondmaster.ui.main.fragment.SceneFragment;
 
 import dagger.Component;
 
@@ -17,13 +21,13 @@ public interface FragmentComponent {
 
     Activity getActivity();
 
-//    void inject(DailyFragment dailyFragment);
-//
-//    void inject(ThemeFragment themeFragment);
-//
-//    void inject(SectionFragment sectionFragment);
-//
-//    void inject(HotFragment hotFragment);
+    void inject(MyFragment myFragment);
+
+    void inject(SceneFragment sceneFragment);
+
+    void inject(HomeFragment homeFragment);
+
+    void inject(MarketFragment marketFragment);
 //
 //    void inject(CommentFragment longCommentFragment);
 //

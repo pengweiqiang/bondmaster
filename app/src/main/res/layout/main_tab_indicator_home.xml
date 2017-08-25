@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tabInfoButton"
+    style="@style/MainTabButton"
+    android:drawableTop="@drawable/selector_tab_index"
+    android:checked="true"
+    android:drawablePadding="2dp"
+    android:text="@string/tab_bond_master" >
+
+</RadioButton>

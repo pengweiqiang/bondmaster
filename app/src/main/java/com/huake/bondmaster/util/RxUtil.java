@@ -1,7 +1,8 @@
 package com.huake.bondmaster.util;
 
+import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.model.http.exception.ApiException;
-import com.huake.bondmaster.model.http.response.MyHttpResponse;
+import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -39,14 +40,14 @@ public class RxUtil {
      * @param <T>
      * @return
      */
-    public static <T> FlowableTransformer<MyHttpResponse<T>, T> handleMyResult() {   //compose判断结果
-        return new FlowableTransformer<MyHttpResponse<T>, T>() {
+    public static <T> FlowableTransformer<BondMasterHttpResponse<T>, T> handleMyResult() {   //compose判断结果
+        return new FlowableTransformer<BondMasterHttpResponse<T>, T>() {
             @Override
-            public Flowable<T> apply(Flowable<MyHttpResponse<T>> httpResponseFlowable) {
-                return httpResponseFlowable.flatMap(new Function<MyHttpResponse<T>, Flowable<T>>() {
+            public Flowable<T> apply(Flowable<BondMasterHttpResponse<T>> httpResponseFlowable) {
+                return httpResponseFlowable.flatMap(new Function<BondMasterHttpResponse<T>, Flowable<T>>() {
                     @Override
-                    public Flowable<T> apply(MyHttpResponse<T> tMyHttpResponse) {
-                        if(tMyHttpResponse.getCode() == 200) {
+                    public Flowable<T> apply(BondMasterHttpResponse<T> tMyHttpResponse) {
+                        if(tMyHttpResponse.getStat() == Constants.CODE_SUCCESS) {
                             return createData(tMyHttpResponse.getData());
                         } else {
                             return Flowable.error(new ApiException("服务器返回error"));

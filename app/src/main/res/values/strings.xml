@@ -1,5 +1,17 @@
 <resources>
-    <string name="app_name">Bondmaster</string>
+    <string name="app_name">债懂</string>
+
+    
+    <string name="tab_my">我的</string>
+    <string name="tab_bond_master">债懂</string>
+    <string name="tab_scene">场景</string>
+    <string name="tab_market">市场</string>
+
+    <string name="new_message_notify">新消息提醒</string>
+    <string name="feed_back">意见反馈</string>
+    <string name="share_app">分享app</string>
+    <string name="about_us">关于我们</string>
+    <string name="custom_service">客服热线</string>
 
     <string name="error_tips">糟糕！加载失败了ヽ(≧Д≦)ノ\n 偷偷告诉你一些可能的原因：\n1.惨不忍睹的网络环境\n 2.服务器君的不定期抽风\n</string>
 </resources>

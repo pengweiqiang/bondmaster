@@ -3,8 +3,8 @@ package com.huake.bondmaster.di.module;
 
 import com.huake.bondmaster.BuildConfig;
 import com.huake.bondmaster.app.Constants;
-import com.huake.bondmaster.di.qualifier.MyUrl;
-import com.huake.bondmaster.model.http.api.MyApis;
+import com.huake.bondmaster.di.qualifier.BondMasterUrl;
+import com.huake.bondmaster.model.http.api.BondMasterApis;
 import com.huake.bondmaster.util.SystemUtil;
 
 import java.io.File;
@@ -50,9 +50,9 @@ public class HttpModule {
 
     @Singleton
     @Provides
-    @MyUrl
+    @BondMasterUrl
     Retrofit provideMyRetrofit(Retrofit.Builder builder, OkHttpClient client) {
-        return createRetrofit(builder, client, MyApis.HOST);
+        return createRetrofit(builder, client, com.huake.bondmaster.Constants.HOST_URL);
     }
 
     @Singleton
@@ -124,8 +124,8 @@ public class HttpModule {
 
     @Singleton
     @Provides
-    MyApis provideMyService(@MyUrl Retrofit retrofit) {
-        return retrofit.create(MyApis.class);
+    BondMasterApis provideMyService(@BondMasterUrl Retrofit retrofit) {
+        return retrofit.create(BondMasterApis.class);
     }
 
     private Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {

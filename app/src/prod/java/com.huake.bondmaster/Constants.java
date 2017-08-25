@@ -14,7 +14,7 @@ public class Constants {
 
     //CONFIG
 
-    public static final String HOST_URL = "http://172.16.103.147:8088/androidpos/";
+    public static final String HOST_URL = "https://zhaidong.18link.com/";
 
 
 

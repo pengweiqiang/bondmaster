@@ -4,7 +4,7 @@ package com.huake.bondmaster.model;
 import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.db.DBHelper;
 import com.huake.bondmaster.model.http.HttpHelper;
-import com.huake.bondmaster.model.http.response.MyHttpResponse;
+import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 import com.huake.bondmaster.model.prefs.PreferencesHelper;
 
 import io.reactivex.Flowable;
@@ -100,7 +100,7 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
 
 
     @Override
-    public Flowable<MyHttpResponse<VersionBean>> fetchVersionInfo() {
+    public Flowable<BondMasterHttpResponse<VersionBean>> fetchVersionInfo() {
         return mHttpHelper.fetchVersionInfo();
     }
 

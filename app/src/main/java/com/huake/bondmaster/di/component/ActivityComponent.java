@@ -2,9 +2,10 @@ package com.huake.bondmaster.di.component;
 
 import android.app.Activity;
 
-import com.huake.bondmaster.MainActivity;
 import com.huake.bondmaster.di.module.ActivityModule;
 import com.huake.bondmaster.di.scope.ActivityScope;
+import com.huake.bondmaster.ui.main.activity.MainActivity;
+import com.huake.bondmaster.ui.main.activity.WelcomeActivity;
 
 import dagger.Component;
 
@@ -18,7 +19,7 @@ public interface ActivityComponent {
 
     Activity getActivity();
 
-//    void inject(WelcomeActivity welcomeActivity);
+    void inject(WelcomeActivity welcomeActivity);
 
     void inject(MainActivity mainActivity);
 
