@@ -84,7 +84,7 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
         mHomeAdapter.setOnItemClickListener(new HomeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
-                if(position>0&& position<hotNewsBeanList.size()) {
+                if(position>-1 && position<hotNewsBeanList.size()) {
                     HotNewsBean hotNewsBean = hotNewsBeanList.get(position);
                     showErrorMsg(hotNewsBean.getTitle());
                 }

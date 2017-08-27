@@ -17,13 +17,15 @@ public interface SceneContract {
     interface View extends BaseView{
 
 
-        void showContent(List<SceneBean> sceneBeanList);
+        void showContent(long records,List<SceneBean> sceneBeanList);
 
         void initListener();
+
+        void showCompanyCount(String count);
     }
 
     interface  Presenter extends BasePresenter<View>{
-        void getSceneList();
+        void getSceneList(String userId, long pageNum, String sInfoCustname, String secIndCode, String bAgencyGuarantornature, String bInfoCreditrating);
     }
 
 }

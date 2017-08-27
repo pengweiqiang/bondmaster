@@ -22,6 +22,8 @@ public interface HomeContract {
 
     interface  Presenter extends BasePresenter<View>{
         void getHomePage();
+
+        void search(String searchText);
     }
 
 }

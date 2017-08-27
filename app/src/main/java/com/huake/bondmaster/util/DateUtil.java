@@ -16,7 +16,7 @@ import static java.lang.System.currentTimeMillis;
 
 public class DateUtil {
     public static final String FORMAT_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
-    public static final String FORMAT_YYYY_MM_DD = "yyyy-MM-dd"
+    public static final String FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
     /**
      * 获取当前日期
      * @return

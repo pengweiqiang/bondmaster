@@ -48,6 +48,8 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
 
     private List<SceneBean> mList = new ArrayList<>();
 
+    private long pageNum = 1;
+
 
     @Override
     protected void initInject() {
@@ -59,17 +61,27 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
         super.initEventAndData();
         mTvTitle.setText(getResources().getString(R.string.tab_scene));
 
+        showCompanyCount("0");
 
         mAdapter = new SceneAdapter(mContext,mList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setAdapter(mAdapter);
         CommonItemDecoration mDecoration = new CommonItemDecoration(10, CommonItemDecoration.UNIT_DP);
         mRecyclerView.addItemDecoration(mDecoration);
-
         initListener();
 
+        mRefreshLayout.autoRefresh();
+    }
 
-        mPresenter.getSceneList();
+
+    private void loadData(){
+        mPresenter.getSceneList("123",pageNum,"","","","");
+    }
+
+    @Override
+    public void stateMain() {
+        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishLoadmore();
     }
 
     @Override
@@ -85,15 +97,23 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                refreshlayout.finishRefresh(2000);
+                pageNum = 1;
+                loadData();
             }
         });
         mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                refreshlayout.finishLoadmore(2000);
+                pageNum++;
+                loadData();
             }
         });
+    }
+
+    @Override
+    public void showCompanyCount(String companyCount) {
+        String evaluatedCompany = "已评测企业列表（ "+companyCount+" ）";
+        mTvEvaluatedCompany.setText(TextViewUtils.getSpannableStringColor(evaluatedCompany,9,9+companyCount.length(),"#ff0000"));
     }
 
     @Override
@@ -101,13 +121,20 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
         return R.layout.fragment_scene;
     }
 
-    @Override
-    public void showContent(List<SceneBean> sceneBeanList) {
-        mList.addAll(sceneBeanList);
-        mAdapter.notifyDataSetChanged();
 
-        String companyCount = String.valueOf(mList.size());
-        String evaluatedCompany = "已评测企业列表（ "+companyCount+" ）";
-        mTvEvaluatedCompany.setText(TextViewUtils.getSpannableStringColor(evaluatedCompany,9,9+companyCount.length(),"#ff0000"));
+    @Override
+    public void showContent(long records,List<SceneBean> sceneBeanList) {
+        stateMain();
+        if(pageNum == 1) {
+            mList.clear();
+        }
+        mList.addAll(sceneBeanList);
+        if(mList.isEmpty() && isAdded() && getUserVisibleHint()){
+            showErrorMsg("查询结果为空");
+        }
+        mAdapter.notifyDataSetChanged();
+        showCompanyCount(records+"");
     }
+
+
 }

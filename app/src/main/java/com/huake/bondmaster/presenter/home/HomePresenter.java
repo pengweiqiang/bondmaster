@@ -42,4 +42,9 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
                 })
         );
     }
+
+    @Override
+    public void search(String searchText) {
+
+    }
 }

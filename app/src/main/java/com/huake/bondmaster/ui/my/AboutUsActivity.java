@@ -7,6 +7,8 @@ import com.huake.bondmaster.R;
 import com.huake.bondmaster.base.SimpleActivity;
 import com.huake.bondmaster.widget.ActionBar;
 
+import butterknife.BindView;
+
 /**
  * @author will on 2017/8/27 11:06
  * @email pengweiqiang64@163.com
