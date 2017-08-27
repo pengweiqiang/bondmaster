@@ -81,7 +81,7 @@ dependencies {
     compile rootProject.ext.dependencies["multidex"]
     compile rootProject.ext.dependencies["logger"]
     compile rootProject.ext.dependencies["fragmentation"]
-    compile rootProject.ext.dependencies["crashreport"]
+    compile rootProject.ext.dependencies["crashreport-upgrade"]
     //canary
     debugCompile rootProject.ext.dependencies["blockcanary-android"]
     releaseCompile rootProject.ext.dependencies["blockcanary-no-op"]

@@ -32,7 +32,7 @@ import butterknife.BindView;
 
 public class HomeFragment extends RootFragment<HomePresenter> implements HomeContract.View {
 
-    @BindView(R.id.refreshLayout)
+    @BindView(R.id.view_main)
     SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
@@ -57,6 +57,7 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setAdapter(mHomeAdapter);
         CommonItemDecoration mDecoration = new CommonItemDecoration(1, 0,0,CommonItemDecoration.UNIT_DP);
+        mDecoration.setIsShowHeader(false);
         mRecyclerView.addItemDecoration(mDecoration);
 
         initListener();
@@ -83,7 +84,10 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
         mHomeAdapter.setOnItemClickListener(new HomeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
-                //TODO 跳入详情
+                if(position>0&& position<hotNewsBeanList.size()) {
+                    HotNewsBean hotNewsBean = hotNewsBeanList.get(position);
+                    showErrorMsg(hotNewsBean.getTitle());
+                }
             }
         });
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener(){

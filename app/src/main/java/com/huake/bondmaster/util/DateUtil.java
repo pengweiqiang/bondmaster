@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import static java.lang.System.currentTimeMillis;
 
@@ -14,7 +15,8 @@ import static java.lang.System.currentTimeMillis;
  */
 
 public class DateUtil {
-
+    public static final String FORMAT_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+    public static final String FORMAT_YYYY_MM_DD = "yyyy-MM-dd"
     /**
      * 获取当前日期
      * @return
@@ -177,4 +179,63 @@ public class DateUtil {
             }
         }
     }
+
+    /**
+     * 格式化时间字符串
+     *
+     * @param dateStr
+     * @param oldPattern
+     *            日期对象
+     * @param pattern
+     *            日期格式
+     * @return 日期字符串
+     * @throws Exception
+     */
+    public static String getDateString(String dateStr, String oldPattern,
+                                       String pattern) {
+        if (null == dateStr || "".equals(dateStr))
+            return "";
+        Date tempDate;
+        try {
+            tempDate = getDate(dateStr, oldPattern);
+            return getDateString(tempDate, pattern);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    /**
+     * 获得日期对象
+     *
+     * @param dateStr
+     *            日期字符串，例如：2012-12-22 00:00:00
+     * @param pattern
+     *            日期格式
+     * @return dateStr所代表的Date对象
+     * @throws ParseException
+     * @throws Exception
+     */
+    public static Date getDate(String dateStr, String pattern)
+            throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat(pattern, Locale.getDefault());
+        return df.parse(dateStr);
+    }
+
+    /**
+     * 获得日期的格式化字符串
+     *
+     * @param date
+     *            日期对象
+     * @param pattern
+     *            日期格式
+     * @return 日期字符串
+     * @throws Exception
+     */
+    public static String getDateString(Date date, String pattern) {
+        SimpleDateFormat df = new SimpleDateFormat(pattern, Locale.getDefault());
+        return df.format(date);
+    }
+
 }

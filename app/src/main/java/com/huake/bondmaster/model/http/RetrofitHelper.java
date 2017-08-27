@@ -35,8 +35,8 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<BondMasterHttpResponse<HomePageBean>> homePage() {
-        return mMyApiService.homePage();
+    public Flowable<BondMasterHttpResponse<HomePageBean>> homePage(String scale) {
+        return mMyApiService.homePage(scale);
     }
 
     @Override

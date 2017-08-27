@@ -13,6 +13,7 @@ import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.component.ImageLoader;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.HotNewsBean;
+import com.huake.bondmaster.util.DateUtil;
 import com.huake.bondmaster.util.LogUtil;
 
 import java.util.List;
@@ -57,28 +58,41 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(viewType == ITEM_TYPE.ITEM_HEADER.ordinal()){
+            return new HeaderViewHolder(inflater.inflate(R.layout.header_home, parent, false));
+        }else {
+            return new ContentViewHolder(inflater.inflate(R.layout.item_home_message, parent, false));
+        }
+    }
 
-        return new ContentViewHolder(inflater.inflate(R.layout.item_home_message,parent,false));
+    @Override
+    public int getItemViewType(int position) {
+        if(position == 0){
+            return ITEM_TYPE.ITEM_HEADER.ordinal();
+        }else{
+            return ITEM_TYPE.ITEM_CONTENT.ordinal();
+        }
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if(holder instanceof ContentViewHolder){
-            String imageUrl = Constants.HOST_URL+mList.get(position).getImage();
+            final int realPosition = position -1;
+            String imageUrl = Constants.HOST_URL+mList.get(realPosition).getImage();
             LogUtil.i(imageUrl);
             ImageLoader.loadByCache(mContext,imageUrl,((ContentViewHolder)holder).mIvCompanyLogo);
 
             ContentViewHolder contentViewHolder = (ContentViewHolder)holder;
-            HotNewsBean hotNewsBean = mList.get(position);
+            HotNewsBean hotNewsBean = mList.get(realPosition);
 
             contentViewHolder.mTvMessageInfo.setText(hotNewsBean.getTitle());
-            contentViewHolder.mTvMessageDate.setText(hotNewsBean.getCreateDate());
+            contentViewHolder.mTvMessageDate.setText(DateUtil.getDateString(hotNewsBean.getCreateDate(),DateUtil.FORMAT_YYYY_MM_DD_HH_MM_SS,DateUtil.FORMAT_YYYY_MM_DD));
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(onItemClickListener != null) {
-                        onItemClickListener.onItemClick(position,holder.itemView);
+                        onItemClickListener.onItemClick(realPosition,holder.itemView);
                     }
                 }
             });
@@ -90,9 +104,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     @Override
     public int getItemCount() {
         if(mList == null){
-            return 0;
+            return 1;
         }
-        return mList.size();
+        return mList.size()+1;
     }
 
     public static class ContentViewHolder extends RecyclerView.ViewHolder{
@@ -105,6 +119,17 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
         public ContentViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+    }
+
+    public static class HeaderViewHolder extends RecyclerView.ViewHolder{
+        @BindView(R.id.tv_search)
+        TextView mTvSearchTextView;
+
+
+        public HeaderViewHolder(View itemView){
             super(itemView);
             ButterKnife.bind(this,itemView);
         }

@@ -7,14 +7,14 @@ import android.content.Intent;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
+import com.huake.bondmaster.util.LogUtil;
 import com.huake.bondmaster.util.SystemUtil;
 import com.huake.bondmaster.widget.AppBlockCanaryContext;
 import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.bugly.Bugly;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
-
-import static com.huake.bondmaster.util.LogUtil.isDebug;
 
 
 /**
@@ -75,9 +75,13 @@ public class InitializeService extends IntentService {
     private void initBugly() {
         Context context = getApplicationContext();
         String packageName = context.getPackageName();
+        //获取当前进程名
         String processName = SystemUtil.getProcessName(android.os.Process.myPid());
+        //设置是否为上报进程
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
-        CrashReport.initCrashReport(context, Constants.BUGLY_ID, isDebug, strategy);
+        //初始化Bugly
+//        CrashReport.initCrashReport(context, Constants.BUGLY_ID, isDebug, strategy);
+        Bugly.init(context, Constants.BUGLY_ID, LogUtil.isDebug,strategy);
     }
 }

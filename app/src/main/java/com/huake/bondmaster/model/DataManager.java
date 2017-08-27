@@ -108,8 +108,8 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
-    public Flowable<BondMasterHttpResponse<HomePageBean>> homePage() {
-        return mHttpHelper.homePage();
+    public Flowable<BondMasterHttpResponse<HomePageBean>> homePage(String scale) {
+        return mHttpHelper.homePage(scale);
     }
 
     @Override

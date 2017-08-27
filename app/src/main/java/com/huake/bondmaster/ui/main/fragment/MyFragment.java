@@ -8,6 +8,8 @@ import com.huake.bondmaster.R;
 import com.huake.bondmaster.base.RootFragment;
 import com.huake.bondmaster.base.contract.main.MyContract;
 import com.huake.bondmaster.presenter.main.MyPresenter;
+import com.huake.bondmaster.ui.my.AboutUsActivity;
+import com.huake.bondmaster.ui.my.FeedBackActivity;
 import com.huake.bondmaster.widget.ToggleButton;
 
 import butterknife.BindView;
@@ -50,13 +52,13 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
     public void onClickOptionItem(View view){
         switch (view.getId()){
             case R.id.rl_feed_back:
-
+                FeedBackActivity.open(mContext);
                 break;
             case R.id.rl_share_app:
 
                 break;
             case R.id.rl_about_us:
-
+                AboutUsActivity.open(mContext);
                 break;
         }
     }

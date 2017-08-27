@@ -5,13 +5,15 @@ import android.os.Environment;
 import java.io.File;
 
 /**
- * Created by codeest on 2016/8/3.
+ * Created by pengweiqiang on 2016/8/3.
  */
 public class Constants extends com.huake.bondmaster.Constants{
 
 
     //================= RESULT ====================
     public static final int CODE_SUCCESS = 1;
+    public static final int CODE_FAIL = 0;//失败
+    public static final int CODE_QUIT = 2;//废弃
 
     //================= TYPE ====================
 
@@ -43,14 +45,7 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     //================= KEY ====================
 
-//    public static final String KEY_API = "f95283476506aa756559dd28a56f0c0b"; //需要APIKEY请去 http://apistore.baidu.com/ 申请,复用会减少访问可用次数
-    public static final String KEY_API = "52b7ec3471ac3bec6846577e79f20e4c"; //需要APIKEY请去 http://www.tianapi.com/#wxnew 申请,复用会减少访问可用次数
 
-    public static final String KEY_ALIPAY = "aex07566wvayrgxicnaraae";
-
-    public static final String LEANCLOUD_ID = "mhke0kuv33myn4t4ghuid4oq2hjj12li374hvcif202y5bm6";
-
-    public static final String LEANCLOUD_SIGN = "badc5461a25a46291054b902887a68eb,1480438132702";
 
     public static final String BUGLY_ID = "65cffac64b";
 

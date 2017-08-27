@@ -30,17 +30,28 @@ public interface BondMasterApis {
 
     /**
      * 首页接口
+     * @param scale 2：2倍图 3：3倍图
+     * @return
      */
-
     @GET("hk-soft-app/cmsApp/homePage")
-    Flowable<BondMasterHttpResponse<HomePageBean>> homePage();
+    Flowable<BondMasterHttpResponse<HomePageBean>> homePage(@Query("scale") String scale);
 
     /**
-     * 搜索
+     * 首页搜索
+     * @param pageNum 当前页，默认1
+     * @param pageSize 每页显示条数 默认10
+     * @param sInfoCustname 筛选条件
+     * @return
+     */
+    @GET("hk-soft-app/scene/hkPartyTrialCustInfoList")
+    Flowable<BondMasterHttpResponse<PageBean<SearchBean>>> homeSearch(long pageNum,long pageSize,String sInfoCustname);
+
+    /**
+     * 开始评测
      * @param userId
-     * @param sInfoCustname
-     * @param sInfoCountry
-     * @param sInfoProvince
+     * @param sInfoCustname 公司名称
+     * @param sInfoCountry 国籍
+     * @param sInfoProvince 省份
      * @param sInfoComptype
      * @param bAgencyGuarantornature
      * @param secIndCode1
@@ -62,7 +73,7 @@ public interface BondMasterApis {
      * @param accRecv
      * @return
      */
-    @GET("hk-soft-app/evaluate/startEvaluate")
+    @POST("hk-soft-app/evaluate/startEvaluate")
     Flowable<BondMasterHttpResponse<SearchBean>>  search(@Query("userId")String userId, @Query("sInfoCustname")String sInfoCustname,
                                                          @Query("sInfoCountry")String sInfoCountry, @Query("sInfoProvince")String sInfoProvince,
                                                          @Query("sInfoComptype")String sInfoComptype, @Query("bAgencyGuarantornature")String bAgencyGuarantornature,
@@ -93,6 +104,16 @@ public interface BondMasterApis {
                                                                          @Query("pageSize")long pageSize,@Query("sInfoCustname")String sInfoCustname,
                                                                          @Query("secIndCode")String secIndCode,@Query("bAgencyGuarantornature")String bAgencyGuarantornature,
                                                                          @Query("bInfoCreditrating")String bInfoCreditrating);
+
+    /**
+     * 评测结果
+     * @param userId
+     * @param trialCustId
+     * @param dataDate
+     * @return
+     */
+    @GET("hk-soft-app/evaluate/viewIssuanceEvaluationResult")
+    Flowable<BondMasterHttpResponse> getViewIssuanceEvaluationResult(@Query("userId")String userId,@Query("trialCustId")String trialCustId,@Query("dataDate")String dataDate);
 
 
     /**

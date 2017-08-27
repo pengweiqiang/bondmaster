@@ -23,7 +23,7 @@ public interface HttpHelper {
 
 
     //首页接口
-    Flowable<BondMasterHttpResponse<HomePageBean>> homePage();
+    Flowable<BondMasterHttpResponse<HomePageBean>> homePage(String scale);
 
 
     //搜索

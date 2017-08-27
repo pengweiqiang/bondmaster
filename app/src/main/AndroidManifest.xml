@@ -24,6 +24,7 @@
 
         <activity
             android:name=".ui.main.activity.WelcomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,10 +36,16 @@
 
         <activity
             android:name=".ui.main.activity.MainActivity"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
+            >
 
         </activity>
-        <activity android:name=".ui.scene.SceneDetailActivity"/>
+        <activity android:name=".ui.scene.SceneDetailActivity" android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.my.AboutUsActivity" android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.my.FeedBackActivity" android:screenOrientation="portrait"/>
 
         <service android:name=".component.InitializeService" />
 
