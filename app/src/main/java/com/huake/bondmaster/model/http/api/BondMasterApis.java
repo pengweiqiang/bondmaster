@@ -36,7 +36,7 @@ public interface BondMasterApis {
     Flowable<BondMasterHttpResponse<HomePageBean>> homePage();
 
     /**
-     *
+     * 搜索
      * @param userId
      * @param sInfoCustname
      * @param sInfoCountry
@@ -88,7 +88,7 @@ public interface BondMasterApis {
      * @param bInfoCreditrating 信用等级 多个使用分号“;”隔开
      * @return
      */
-    @GET("hk-soft-app/")
+    @GET("hk-soft-app/scene/findPageHkPartyTrialCustInfoListByUserId")
     Flowable<BondMasterHttpResponse<PageBean<SceneBean>>>  getScenceList(@Query("userId")String userId,@Query("pageNum")long pageNum,
                                                                          @Query("pageSize")long pageSize,@Query("sInfoCustname")String sInfoCustname,
                                                                          @Query("secIndCode")String secIndCode,@Query("bAgencyGuarantornature")String bAgencyGuarantornature,
@@ -109,7 +109,7 @@ public interface BondMasterApis {
 
 
     /**
-     *
+     * 登陆
      * @param mobile 手机号
      * @param password 密码 6-8位
      * @param imgCode 调用接口获取

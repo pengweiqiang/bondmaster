@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@color/colorWhite"
+    android:paddingRight="6dp"
+    android:paddingLeft="6dp"
+    android:paddingBottom="6dp"
+    >
+
+    <ImageView
+        android:id="@+id/iv_company_logo"
+        android:layout_width="70dp"
+        android:layout_height="55dp"
+        android:scaleType="centerCrop"
+        android:layout_centerVertical="true"
+        android:src="@color/colorBackground" />
+    
+    <TextView
+        android:id="@+id/tv_message_info"
+        android:layout_toRightOf="@+id/iv_company_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="6dp"
+        android:textColor="#666666"
+        android:textSize="13sp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:text="8月8号，全国首单旅游类负全国首单旅游类负少的我玩任务少的我玩任务全国首单旅游类负少的我玩任务全国首单旅游类负少的我玩任务全国首单旅游类负少的我玩任务"
+        />
+
+    <TextView
+        android:id="@+id/tv_message_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#b2b2b2"
+        android:text="2017-08-25"
+        android:textSize="12sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        />
+
+
+</RelativeLayout>

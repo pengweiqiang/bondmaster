@@ -13,5 +13,16 @@
     <string name="about_us">关于我们</string>
     <string name="custom_service">客服热线</string>
 
-    <string name="error_tips">糟糕！加载失败了ヽ(≧Д≦)ノ\n 偷偷告诉你一些可能的原因：\n1.惨不忍睹的网络环境\n 2.服务器君的不定期抽风\n</string>
+    <string name="my_evaluate">我的评测</string>
+    <string name="my_bond_altas">债券图谱</string>
+    <string name="my_finacing_plan">融资方案</string>
+    <string name="my_subscribe">订阅管理</string>
+
+    <string name="capacity_evaluate">智能评测</string>
+    <string name="customized_service">定制服务</string>
+    <string name="bond_message">债券资讯</string>
+    <string name="hierarchy_calculate">分层测算</string>
+
+
+    <string name="error_tips">糟糕！加载失败了ヽ(≧Д≦)ノ</string>
 </resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_capacity_evaluate"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/capacity_evaluate"
+        android:textSize="13sp"
+        android:gravity="center_horizontal"
+        android:drawablePadding="7dp"
+        android:textColor="#666666"
+        android:drawableTop="@mipmap/ic_capacity_evaluating"
+        />
+
+    <TextView
+        android:id="@+id/tv_customized_service"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/customized_service"
+        android:textSize="13sp"
+        android:gravity="center_horizontal"
+        android:drawablePadding="7dp"
+        android:textColor="#666666"
+        android:drawableTop="@mipmap/ic_home_customized_service"
+        />
+
+    <TextView
+        android:id="@+id/tv_bond_message"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/bond_message"
+        android:textSize="13sp"
+        android:gravity="center_horizontal"
+        android:drawablePadding="7dp"
+        android:textColor="#666666"
+        android:drawableTop="@mipmap/ic_home_message"
+        />
+
+    <TextView
+        android:id="@+id/tv_hierarchy_calculate"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/hierarchy_calculate"
+        android:textSize="13sp"
+        android:gravity="center_horizontal"
+        android:textColor="#666666"
+        android:drawablePadding="7dp"
+        android:drawableTop="@mipmap/ic_home_calculate"
+        />
+
+
+
+
+
+</LinearLayout>

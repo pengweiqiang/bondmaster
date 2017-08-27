@@ -6,6 +6,7 @@ import com.huake.bondmaster.di.module.ActivityModule;
 import com.huake.bondmaster.di.scope.ActivityScope;
 import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.ui.main.activity.WelcomeActivity;
+import com.huake.bondmaster.ui.scene.SceneDetailActivity;
 
 import dagger.Component;
 
@@ -22,5 +23,7 @@ public interface ActivityComponent {
     void inject(WelcomeActivity welcomeActivity);
 
     void inject(MainActivity mainActivity);
+
+    void inject(SceneDetailActivity sceneDetailActivity);
 
 }

@@ -9,11 +9,22 @@
         <item name="actionMenuTextColor">#ffffff</item>
 
         //沉浸状态栏
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
 
         //ActionBarDrawerToggle设置颜色
         <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <style name="activityAnimation" parent="@android:style/Animation">
+
+        <item name="android:activityOpenEnterAnimation">@animator/activity_right_in</item>
+        <item name="android:activityOpenExitAnimation">@animator/activity_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@animator/activity_left_in</item>
+        <item name="android:activityCloseExitAnimation">@animator/activity_right_out</item>
+
     </style>
 
     <style name="TextAppearance.ExpandedTitle"

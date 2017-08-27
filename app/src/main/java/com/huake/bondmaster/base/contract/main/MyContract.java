@@ -12,6 +12,8 @@ import com.huake.bondmaster.base.BaseView;
 
 public interface MyContract {
     interface View extends BaseView{
+
+
         void showContent();
     }
 

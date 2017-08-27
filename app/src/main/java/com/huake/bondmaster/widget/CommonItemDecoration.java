@@ -14,6 +14,8 @@ import com.huake.bondmaster.util.SystemUtil;
 public class CommonItemDecoration extends RecyclerView.ItemDecoration{
 
     private int distance;
+    private int left;
+    private int right;
     private int unit;
 
     public static final int UNIT_DP = 0;
@@ -23,6 +25,12 @@ public class CommonItemDecoration extends RecyclerView.ItemDecoration{
         this.distance = distance;
         this.unit = unit;
     }
+    public CommonItemDecoration(int distance,int left,int right,int unit){
+        this.distance = distance;
+        this.unit = unit;
+        this.left = left;
+        this.right = right;
+    }
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
@@ -30,9 +38,9 @@ public class CommonItemDecoration extends RecyclerView.ItemDecoration{
         int position = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewLayoutPosition();
         if (position > -1) {
             if (unit == UNIT_DP) {
-                outRect.set(0, SystemUtil.dp2px(distance), 0, 0);
+                outRect.set(SystemUtil.dp2px(left), SystemUtil.dp2px(distance), SystemUtil.dp2px(right), 0);
             } else {
-                outRect.set(0, distance, 0, 0);
+                outRect.set(left, distance, right, 0);
             }
         }
     }

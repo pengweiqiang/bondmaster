@@ -115,7 +115,7 @@
                 android:textSize="@dimen/my_common_text_size" />
 
             <com.huake.bondmaster.widget.ToggleButton
-                android:id="@+id/toggle_add_friend_check"
+                android:id="@+id/toggle_message_notify"
                 android:layout_width="50dp"
                 toggle:onColor="#54d769"
                 toggle:offColor="#c9c8c8"
@@ -136,6 +136,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/rl_feed_back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -176,6 +177,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/rl_share_app"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -216,6 +218,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/rl_about_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"

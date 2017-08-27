@@ -1,5 +1,7 @@
 package com.huake.bondmaster.model.bean;
 
+import java.io.Serializable;
+
 /**
  * @author will on 2017/8/24 12:45
  * @email pengweiqiang64@163.com
@@ -7,7 +9,7 @@ package com.huake.bondmaster.model.bean;
  * @Version
  */
 
-public class SceneBean {
+public class SceneBean implements Serializable{
 
     private long id;
     private String dataDate;

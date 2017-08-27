@@ -2,8 +2,8 @@ package com.huake.bondmaster.ui.main.fragment;
 
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.base.RootFragment;
-import com.huake.bondmaster.base.contract.main.MyContract;
-import com.huake.bondmaster.presenter.main.MyPresenter;
+import com.huake.bondmaster.base.contract.main.MarketContract;
+import com.huake.bondmaster.presenter.main.MarketPresenter;
 
 /**
  * @author will on 2017/8/24 13:42
@@ -12,7 +12,7 @@ import com.huake.bondmaster.presenter.main.MyPresenter;
  * @Version
  */
 
-public class MarketFragment extends RootFragment<MyPresenter> implements MyContract.View {
+public class MarketFragment extends RootFragment<MarketPresenter> implements MarketContract.View {
 
     @Override
     protected void initInject() {

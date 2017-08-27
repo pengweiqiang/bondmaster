@@ -3,13 +3,12 @@ package com.huake.bondmaster.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.di.component.DaggerFragmentComponent;
 import com.huake.bondmaster.di.component.FragmentComponent;
 import com.huake.bondmaster.di.module.FragmentModule;
-import com.huake.bondmaster.util.SnackbarUtil;
+import com.huake.bondmaster.util.ToastUtil;
 
 import javax.inject.Inject;
 
@@ -48,7 +47,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
 
     @Override
     public void showErrorMsg(String msg) {
-        SnackbarUtil.show(((ViewGroup) getActivity().findViewById(android.R.id.content)).getChildAt(0), msg);
+        ToastUtil.shortShow(msg);
+//        SnackbarUtil.show(((ViewGroup) getActivity().findViewById(android.R.id.content)).getChildAt(0), msg);
     }
 
     @Override

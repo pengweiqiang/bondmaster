@@ -3,92 +3,99 @@
     android:id="@+id/actionBarLayout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/action_bar_height"
-    android:background="@color/action_bar_bg_color" >
+    android:background="@color/action_bar_bg_color">
 
     <TextView
         android:id="@+id/leftActionButton"
         style="@style/ActionBarIconButton"
         android:layout_alignParentLeft="true"
-        android:drawableLeft="@mipmap/ic_left_back"
-        android:gravity="center_vertical"
         android:layout_centerVertical="true"
-        android:paddingLeft="10dip"
-        android:paddingRight="12dip"
-        android:text="返回"
-        android:textSize="@dimen/action_bar_left_size"
+        android:drawableLeft="@mipmap/ic_left_back"
         android:drawablePadding="5dp"
-        android:textColor="@color/colorWhite" />
+        android:gravity="center_vertical"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:text="返回"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/action_bar_left_size" />
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
 
         <TextView
             android:id="@+id/actionBarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="120dp"
             android:ellipsize="marquee"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:freezesText="true"
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
             android:maxLines="1"
+            android:scrollHorizontally="true"
             android:text="@string/app_name"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/action_bar_title_size" >
-        </TextView>
+            android:textSize="@dimen/action_bar_title_size"></TextView>
 
+    </RelativeLayout>
 
 
     <!--<TextView-->
-        <!--android:id="@+id/rightActionButton"-->
-        <!--style="@style/ActionBarIconButton"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:text="注册"-->
-        <!--android:paddingLeft="18dip"-->
-        <!--android:textSize="15sp"-->
-        <!--android:paddingRight="12dip"-->
-        <!--android:visibility="gone"-->
-        <!--android:textColor="@color/white" />-->
+    <!--android:id="@+id/rightActionButton"-->
+    <!--style="@style/ActionBarIconButton"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:text="注册"-->
+    <!--android:paddingLeft="18dip"-->
+    <!--android:textSize="15sp"-->
+    <!--android:paddingRight="12dip"-->
+    <!--android:visibility="gone"-->
+    <!--android:textColor="@color/white" />-->
     <!--<TextView-->
-        <!--android:id="@+id/rightActionButton_2"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:text="换卡"-->
-        <!--android:paddingLeft="8dip"-->
-        <!--android:textSize="14sp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:paddingTop="3dp"-->
-        <!--android:paddingBottom="3dp"-->
-        <!--android:paddingRight="8dip"-->
-        <!--android:background="@drawable/border_right_white"-->
-        <!--android:visibility="gone"-->
-        <!--android:textColor="@color/white" />-->
+    <!--android:id="@+id/rightActionButton_2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:text="换卡"-->
+    <!--android:paddingLeft="8dip"-->
+    <!--android:textSize="14sp"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:paddingTop="3dp"-->
+    <!--android:paddingBottom="3dp"-->
+    <!--android:paddingRight="8dip"-->
+    <!--android:background="@drawable/border_right_white"-->
+    <!--android:visibility="gone"-->
+    <!--android:textColor="@color/white" />-->
     <!--<ImageView-->
-        <!--android:id="@+id/rightActionImageView"-->
-        <!--android:layout_width="30dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:src="@drawable/action_right_more"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:paddingLeft="5dp"-->
-        <!--android:paddingRight="5dp"-->
-        <!--android:visibility="gone"-->
-        <!--/>-->
+    <!--android:id="@+id/rightActionImageView"-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:src="@drawable/action_right_more"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:paddingLeft="5dp"-->
+    <!--android:paddingRight="5dp"-->
+    <!--android:visibility="gone"-->
+    <!--/>-->
 
 
     <!--<View-->
-        <!--android:id="@+id/actionBarBottomLine"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:visibility="gone"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:background="#cccccc" />-->
+    <!--android:id="@+id/actionBarBottomLine"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:visibility="gone"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:background="#cccccc" />-->
 
 </RelativeLayout>

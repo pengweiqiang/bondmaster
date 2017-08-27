@@ -2,8 +2,8 @@
 <resources>
 
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryDark">#074584</color>
+    <color name="colorAccent">#0090ff</color>
     <color name="colorBackground">#f2f2f2</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorText">#2C2C2C</color>
@@ -33,5 +33,7 @@
     <color name="gold_title">#3F51B5</color>
     <color name="node_bg">#f2f3f5</color>
     <color name="topic_text">#afafaf</color>
+
+    <color name="image_loading_color">#dddddd</color>
 
 </resources>

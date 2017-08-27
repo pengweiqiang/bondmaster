@@ -39,6 +39,8 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final int TYPE_ABOUT = 112;
 
+    public static final int PAGE_SIZE = 10;
+
     //================= KEY ====================
 
 //    public static final String KEY_API = "f95283476506aa756559dd28a56f0c0b"; //需要APIKEY请去 http://apistore.baidu.com/ 申请,复用会减少访问可用次数
@@ -77,31 +79,7 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final String SP_MANAGER_POINT = "manager_point";
 
     //================= INTENT ====================
-    public static final String IT_GANK_TYPE = "type";
+    public static final String SCENE_BEAN = "sceneBean";
 
-    public static final String IT_GANK_TYPE_CODE = "type_code";
 
-    public static final String IT_DETAIL_TITLE = "title";
-
-    public static final String IT_DETAIL_URL = "url";
-
-    public static final String IT_DETAIL_IMG_URL = "img_url";
-
-    public static final String IT_DETAIL_ID = "id";
-
-    public static final String IT_DETAIL_TYPE = "type";
-
-    public static final String IT_GOLD_TYPE = "type";
-
-    public static final String IT_GOLD_TYPE_STR = "type_str";
-
-    public static final String IT_GOLD_MANAGER = "manager";
-
-    public static final String IT_VTEX_TYPE = "type";
-
-    public static final String IT_VTEX_TOPIC_ID = "id";
-
-    public static final String IT_VTEX_REPLIES_TOP = "top_info";
-
-    public static final String IT_VTEX_NODE_NAME = "node_name";
 }
