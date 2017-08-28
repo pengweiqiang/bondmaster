@@ -133,12 +133,12 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
-    public Flowable<BondMasterHttpResponse> registerUser(String mobile, String password, String code) {
+    public Flowable<BondMasterHttpResponse<Object>> registerUser(String mobile, String password, String code) {
         return mHttpHelper.registerUser(mobile, password, code);
     }
 
     @Override
-    public Flowable<BondMasterHttpResponse> sendVerificationCode(String mobile) {
+    public Flowable<BondMasterHttpResponse<Object>> sendVerificationCode(String mobile) {
         return mHttpHelper.sendVerificationCode(mobile);
     }
 

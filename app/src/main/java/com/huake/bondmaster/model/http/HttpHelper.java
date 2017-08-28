@@ -54,14 +54,14 @@ public interface HttpHelper {
      * @param code
      * @return
      */
-    Flowable<BondMasterHttpResponse> registerUser(String mobile, String password, String code);
+    Flowable<BondMasterHttpResponse<Object>> registerUser(String mobile, String password, String code);
 
     /**
      * 手机短信验证码
      * @param mobile
      * @return
      */
-    Flowable<BondMasterHttpResponse> sendVerificationCode(String mobile);
+    Flowable<BondMasterHttpResponse<Object>> sendVerificationCode(String mobile);
 
 
     /**

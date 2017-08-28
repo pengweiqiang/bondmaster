@@ -126,7 +126,7 @@ public interface BondMasterApis {
      * @return
      */
     @POST("hk-soft-app/user/register/registerDo")
-    Flowable<BondMasterHttpResponse> registerUser(@Query("mobile")String mobile, @Query("password")String password,
+    Flowable<BondMasterHttpResponse<Object>> registerUser(@Query("mobile")String mobile, @Query("password")String password,
                                                               @Query("code")String code);
 
     /**
@@ -135,7 +135,7 @@ public interface BondMasterApis {
      * @return
      */
     @POST("hk-soft-app/user/register/sendVerificationCode")
-    Flowable<BondMasterHttpResponse> sendVerificationCode(@Query("mobile")String mobile);
+    Flowable<BondMasterHttpResponse<Object>> sendVerificationCode(@Query("mobile")String mobile);
 
 
     /**

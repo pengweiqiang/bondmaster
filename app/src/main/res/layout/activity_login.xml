@@ -34,6 +34,7 @@
                 android:paddingBottom="15dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:inputType="phone"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:singleLine="true"
