@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
 
+import org.jsoup.helper.StringUtil;
+
 /**
  * 标题栏, 可设置标题和左右图标
  * 
@@ -21,6 +23,7 @@ public class ActionBar extends FrameLayout {
 
 	private TextView mTitleView;
 	private TextView mLeftActionButton;
+	private TextView mRightActionButton;
 	private TextView mActionBarTitle;
 
 	private View mActionBar;
@@ -49,6 +52,7 @@ public class ActionBar extends FrameLayout {
 				this);
 		mTitleView = (TextView) findViewById(R.id.actionBarTitle);
 		mLeftActionButton = (TextView) findViewById(R.id.leftActionButton);
+		mRightActionButton = (TextView)findViewById(R.id.rightActionButton);
 		mActionBarTitle = (TextView)findViewById(R.id.actionBarTitle);
 		mActionBar = findViewById(R.id.actionBarLayout);
 
@@ -74,6 +78,14 @@ public class ActionBar extends FrameLayout {
 		mLeftActionButton.setText(text);
 		mLeftActionButton.setCompoundDrawables(null,null,null,null);
 		mLeftActionButton.setOnClickListener(listener);
+	}
+
+	public void setRightActionButton(String text,OnClickListener onClickListener){
+		if(!StringUtil.isBlank(text)) {
+			mRightActionButton.setText(text);
+			mRightActionButton.setVisibility(VISIBLE);
+			mRightActionButton.setOnClickListener(onClickListener);
+		}
 	}
 
 	public void setLeftActionButton(){

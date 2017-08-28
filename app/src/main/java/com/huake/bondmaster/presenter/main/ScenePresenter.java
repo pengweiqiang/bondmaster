@@ -9,6 +9,9 @@ import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 import com.huake.bondmaster.util.RxUtil;
 import com.huake.bondmaster.widget.CommonSubscriber;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 /**
@@ -35,6 +38,9 @@ public class ScenePresenter extends RxPresenter<SceneContract.View> implements S
                     @Override
                     public void dataHandler(PageBean<SceneBean> pageBean) {
                         if(pageBean!=null) {
+                            if(pageBean.getRows().isEmpty()){
+                                getHomePageData(pageBean);
+                            }
                             mView.showContent(pageBean.getRecords(),pageBean.getRows());
                         }else{
                             mView.showErrorMsg("获取结果为空");
@@ -43,20 +49,23 @@ public class ScenePresenter extends RxPresenter<SceneContract.View> implements S
 
                 })
         );
+    }
 
-//        List<SceneBean> mList = new ArrayList<>();
-//        SceneBean sceneBean = new SceneBean();
-//        sceneBean.setbInfoCreditrating("123");
-//        sceneBean.setsInfoCustname("北京水电费");
-//        sceneBean.setSuccessProbability("312");
-//
-//        SceneBean sceneBean2 = new SceneBean();
-//        sceneBean2.setbInfoCreditrating("A+~A++");
-//        sceneBean2.setsInfoCustname("北京水水电费水电费水电费电费");
-//        sceneBean2.setSuccessProbability("100%");
-//
-//        mList.add(sceneBean);
-//        mList.add(sceneBean2);
-//        mView.showContent(2,mList);
+    private void getHomePageData(PageBean<SceneBean> homePageBean){
+        List<SceneBean> mList = new ArrayList<>();
+        SceneBean sceneBean = new SceneBean();
+        sceneBean.setbInfoCreditrating("123");
+        sceneBean.setsInfoCustname("北京水电费");
+        sceneBean.setSuccessProbability("312");
+
+        SceneBean sceneBean2 = new SceneBean();
+        sceneBean2.setbInfoCreditrating("A+~A++");
+        sceneBean2.setsInfoCustname("北京水水电费水电费水电费电费");
+        sceneBean2.setSuccessProbability("100%");
+
+        mList.add(sceneBean);
+        mList.add(sceneBean2);
+        homePageBean.setRecords(2);
+        homePageBean.setRows(mList);
     }
 }

@@ -71,5 +71,15 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
 
     }
 
+    @Override
+    public void showLoading(String msg) {
+
+    }
+
+    @Override
+    public void cancelDialogLoading() {
+
+    }
+
     protected abstract void initInject();
 }

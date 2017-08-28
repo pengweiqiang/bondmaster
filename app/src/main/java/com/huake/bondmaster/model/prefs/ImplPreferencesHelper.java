@@ -3,8 +3,10 @@ package com.huake.bondmaster.model.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
+import com.huake.bondmaster.model.bean.UserBean;
 
 import javax.inject.Inject;
 
@@ -104,4 +106,24 @@ public class ImplPreferencesHelper implements PreferencesHelper {
     public void setManagerPoint(boolean isFirst) {
         mSPrefs.edit().putBoolean(Constants.SP_MANAGER_POINT, isFirst).apply();
     }
+
+    @Override
+    public void setUserInstance(UserBean userBean) {
+        if (userBean != null) {
+            mSPrefs.edit().putString(Constants.SP_USER_INSTANCE_STR, new Gson().toJson(userBean)).apply();
+        } else {
+            mSPrefs.edit().putString(Constants.SP_USER_INSTANCE_STR, "").apply();
+        }
+    }
+
+    @Override
+    public UserBean getUserInstance() {
+        UserBean userBean = null;
+        String userBeanStr = mSPrefs.getString(Constants.SP_USER_INSTANCE_STR, null);
+        if (userBeanStr != null) {
+            userBean = new Gson().fromJson(userBeanStr, UserBean.class);
+        }
+        return userBean;
+    }
+
 }

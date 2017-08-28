@@ -16,4 +16,8 @@ public interface BaseView {
     void stateLoading();
 
     void stateMain();
+
+    void showLoading(String msg);
+
+    void cancelDialogLoading();
 }

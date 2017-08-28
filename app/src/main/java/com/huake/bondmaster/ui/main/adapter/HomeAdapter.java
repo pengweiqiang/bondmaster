@@ -5,16 +5,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.component.ImageLoader;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.HotNewsBean;
 import com.huake.bondmaster.util.DateUtil;
-import com.huake.bondmaster.util.LogUtil;
+import com.zhouwei.mzbanner.MZBannerView;
+import com.zhouwei.mzbanner.holder.MZHolderCreator;
+import com.zhouwei.mzbanner.holder.MZViewHolder;
 
 import java.util.List;
 
@@ -38,16 +42,21 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private LayoutInflater inflater;
 
     private OnItemClickListener onItemClickListener;
+    int width;
+    int bannerHeight ;
 
     public HomeAdapter(Context mContext, HomePageBean homePageBean){
         this.mContext = mContext;
         inflater = LayoutInflater.from(mContext);
+        width = App.SCREEN_WIDTH;
+        bannerHeight = (int) (width * 1.0 / 375 * 100);
     }
 
     public void setData(HomePageBean homePageBean){
         this.homePageBean = homePageBean;
         this.imgsBeanList = homePageBean.getImgs();
         this.mList = homePageBean.getHotNews();
+
         notifyDataSetChanged();
     }
 
@@ -79,7 +88,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         if(holder instanceof ContentViewHolder){
             final int realPosition = position -1;
             String imageUrl = Constants.HOST_URL+mList.get(realPosition).getImage();
-            LogUtil.i(imageUrl);
             ImageLoader.loadByCache(mContext,imageUrl,((ContentViewHolder)holder).mIvCompanyLogo);
 
             ContentViewHolder contentViewHolder = (ContentViewHolder)holder;
@@ -96,9 +104,71 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     }
                 }
             });
+        }else if(holder instanceof HeaderViewHolder){
+            showBannerView((HeaderViewHolder) holder,position);
         }
 
 
+    }
+
+    private void showBannerView(HeaderViewHolder itemBannerViewHolder,final int position){
+//        if(position == 0) {
+//            ViewGroup.LayoutParams bannerViewParams = itemBannerViewHolder.mBannerView.getLayoutParams();
+//            bannerViewParams.width = width;
+//            bannerViewParams.height = bannerHeight;
+//            itemBannerViewHolder.mBannerView.setLayoutParams(bannerViewParams);
+//
+//            BannerPagerAdapter pagerAdapter = new BannerPagerAdapter(mContext, bannerHeight);
+//            pagerAdapter.setDataList(imgsBeanList);
+//            itemBannerViewHolder.infiniteViewPager.setAdapter(pagerAdapter);
+//            itemBannerViewHolder.infiniteViewPager.setAutoScrollTime(5000);
+//            itemBannerViewHolder.infiniteViewPager.startAutoScroll();
+//            itemBannerViewHolder.circlePageIndicator.setViewPager(itemBannerViewHolder.infiniteViewPager);
+//            //平滑滑动
+//            ViewPagerScroller scroller = new ViewPagerScroller(mContext);
+//            scroller.setmScrollDuration(800);
+//            scroller.initViewPagerScroll(itemBannerViewHolder.infiniteViewPager);
+//        }
+
+        ViewGroup.LayoutParams bannerViewParams = itemBannerViewHolder.mzBannerView.getLayoutParams();
+        bannerViewParams.width = width;
+        bannerViewParams.height = bannerHeight;
+        itemBannerViewHolder.mzBannerView.setLayoutParams(bannerViewParams);
+
+
+        // 设置数据
+        itemBannerViewHolder.mzBannerView.setPages(imgsBeanList, new MZHolderCreator<BannerViewHolder>() {
+            @Override
+            public BannerViewHolder createViewHolder() {
+                return new BannerViewHolder();
+            }
+        });
+
+//        itemBannerViewHolder.mzBannerView.setDuration(3000);
+        itemBannerViewHolder.mzBannerView.setIndicatorVisible(false);
+        itemBannerViewHolder.mzBannerView.setDelayedTime(6000);
+
+        itemBannerViewHolder.mzBannerView.start();
+
+
+
+    }
+
+    public static class BannerViewHolder implements MZViewHolder<HomePageBean.ImgsBean> {
+        private ImageView mImageView;
+        @Override
+        public View createView(Context context) {
+            // 返回页面布局
+            View view = LayoutInflater.from(context).inflate(R.layout.banner_item_viewpager,null);
+            mImageView = (ImageView) view.findViewById(R.id.item_image);
+            return view;
+        }
+
+        @Override
+        public void onBind(Context context, int position, HomePageBean.ImgsBean data) {
+            // 数据绑定
+            ImageLoader.loadByAllCache(context,data.getImgUrl(),mImageView,R.mipmap.home_banner2);
+        }
     }
 
     @Override
@@ -124,16 +194,47 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
     }
 
-    public static class HeaderViewHolder extends RecyclerView.ViewHolder{
+//    InfiniteViewPager mParentViewPager;
+    MZBannerView mzParentBannerView;
+    public class HeaderViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.tv_search)
-        TextView mTvSearchTextView;
+        EditText mEtSearchView;
+//        @BindView(R.id.banner)
+//        View mBannerView;
+//        @BindView(R.id.viewpager)
+//        InfiniteViewPager infiniteViewPager;
+//        @BindView(R.id.indicator)
+//        CirclePageIndicator circlePageIndicator;
+        @BindView(R.id.banner)
+        MZBannerView mzBannerView;
 
 
         public HeaderViewHolder(View itemView){
             super(itemView);
             ButterKnife.bind(this,itemView);
+//            mParentViewPager = infiniteViewPager;
+            mzParentBannerView = mzBannerView;
         }
     }
+
+    public void onStop(){
+        if(mzParentBannerView!=null){
+            mzParentBannerView.pause();
+        }
+    }
+
+    public void onStart(){
+        if(mzParentBannerView!=null){
+            mzParentBannerView.start();
+        }
+    }
+
+//    public void setCurrentViewPager(int position){
+//        if(mParentViewPager!=null){
+//            mParentViewPager.setCurrentItem(position,false);
+//        }
+//    }
+
 
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {

@@ -5,6 +5,7 @@ import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.PageBean;
 import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.http.api.BondMasterApis;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
@@ -47,6 +48,31 @@ public class RetrofitHelper implements HttpHelper {
     @Override
     public Flowable<BondMasterHttpResponse<PageBean<SceneBean>>> getScenceList(String userId, long pageNum, long pageSize, String sInfoCustname, String secIndCode, String bAgencyGuarantornature, String bInfoCreditrating) {
         return mMyApiService.getScenceList(userId, pageNum, pageSize, sInfoCustname, secIndCode, bAgencyGuarantornature, bInfoCreditrating);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse> registerUser(String mobile, String password, String code) {
+        return mMyApiService.registerUser(mobile, password, code);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse> sendVerificationCode(String mobile) {
+        return mMyApiService.sendVerificationCode(mobile);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<UserBean>> login(String mobile, String password) {
+        return mMyApiService.login(mobile, password);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<UserBean>> loginByCode(String mobile, String code) {
+        return mMyApiService.loginByCode(mobile, code);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse> forgetPassword(String mobile, String code, String password) {
+        return mMyApiService.forgetPassword(mobile, code, password);
     }
 
 }

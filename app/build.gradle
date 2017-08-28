@@ -57,6 +57,7 @@ dependencies {
     compile rootProject.ext.dependencies["PhotoView"]
     compile rootProject.ext.dependencies["glide-transformations"]
     compile rootProject.ext.dependencies["html-textview"]
+    compile rootProject.ext.dependencies["banner"]
     //rx
     compile rootProject.ext.dependencies["rxjava"]
     compile rootProject.ext.dependencies["rxandroid"]
@@ -89,4 +90,6 @@ dependencies {
     releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
     compile files('libs/tbs_sdk_thirdapp_v2.2.0.1096_36549_sharewithdownload_withoutGame_obfs_20160830_211645.jar')
     compile files('libs/togglebuttonlib.jar')
+
+
 }

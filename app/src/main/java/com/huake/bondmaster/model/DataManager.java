@@ -5,6 +5,7 @@ import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.PageBean;
 import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.db.DBHelper;
 import com.huake.bondmaster.model.http.HttpHelper;
@@ -100,6 +101,15 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
         mPreferencesHelper.setManagerPoint(isFirst);
     }
 
+    @Override
+    public void setUserInstance(UserBean userBean) {
+        mPreferencesHelper.setUserInstance(userBean);
+    }
+
+    @Override
+    public UserBean getUserInstance() {
+        return mPreferencesHelper.getUserInstance();
+    }
 
 
     @Override
@@ -120,6 +130,31 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     @Override
     public Flowable<BondMasterHttpResponse<PageBean<SceneBean>>> getScenceList(String userId, long pageNum, long pageSize, String sInfoCustname, String secIndCode, String bAgencyGuarantornature, String bInfoCreditrating) {
         return mHttpHelper.getScenceList(userId, pageNum, pageSize, sInfoCustname, secIndCode, bAgencyGuarantornature, bInfoCreditrating);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse> registerUser(String mobile, String password, String code) {
+        return mHttpHelper.registerUser(mobile, password, code);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse> sendVerificationCode(String mobile) {
+        return mHttpHelper.sendVerificationCode(mobile);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<UserBean>> login(String mobile, String password) {
+        return mHttpHelper.login(mobile, password);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<UserBean>> loginByCode(String mobile, String code) {
+        return mHttpHelper.loginByCode(mobile, code);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse> forgetPassword(String mobile, String code, String password) {
+        return mHttpHelper.forgetPassword(mobile, code, password);
     }
 
 }

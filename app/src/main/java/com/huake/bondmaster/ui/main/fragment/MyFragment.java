@@ -5,12 +5,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.base.RootFragment;
 import com.huake.bondmaster.base.contract.main.MyContract;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.main.MyPresenter;
 import com.huake.bondmaster.ui.my.AboutUsActivity;
 import com.huake.bondmaster.ui.my.FeedBackActivity;
+import com.huake.bondmaster.ui.my.LoginActivity;
 import com.huake.bondmaster.widget.ToggleButton;
+import com.tencent.bugly.beta.Beta;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -32,6 +36,13 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
     TextView mTvUserMobile;
     @BindView(R.id.iv_user_head)
     ImageView mIvUserHead;
+    @BindView(R.id.rl_logined)
+    View mViewLogined;
+    @BindView(R.id.tv_go_login)
+    View mViewUnLogin;
+
+
+    UserBean userBean;
 
     @Override
     protected void initInject() {
@@ -44,11 +55,34 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
     }
 
     @Override
+    protected void initEventAndData() {
+        super.initEventAndData();
+        userBean = App.getInstance().getUserBeanInstance();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkLogin();
+    }
+
+    private void checkLogin(){
+        if(userBean==null){
+            mViewLogined.setVisibility(View.GONE);
+            mViewUnLogin.setVisibility(View.VISIBLE);
+        }else{
+            mViewLogined.setVisibility(View.VISIBLE);
+            mViewUnLogin.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     public void showContent() {
 
     }
 
-    @OnClick({R.id.rl_feed_back,R.id.rl_share_app,R.id.rl_about_us})
+    @OnClick({R.id.rl_feed_back,R.id.rl_share_app,R.id.rl_about_us,R.id.rl_check_upgrade,R.id.rl_user_info})
     public void onClickOptionItem(View view){
         switch (view.getId()){
             case R.id.rl_feed_back:
@@ -59,6 +93,14 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
                 break;
             case R.id.rl_about_us:
                 AboutUsActivity.open(mContext);
+                break;
+            case R.id.rl_check_upgrade:
+                Beta.checkUpgrade(true,false);
+                break;
+            case R.id.rl_user_info:
+                if(App.getInstance().getUserBeanInstance()==null) {
+                    LoginActivity.open(mContext, "");
+                }
                 break;
         }
     }

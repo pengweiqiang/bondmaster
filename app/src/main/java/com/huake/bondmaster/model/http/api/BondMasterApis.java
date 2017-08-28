@@ -1,15 +1,17 @@
 package com.huake.bondmaster.model.http.api;
 
 
+import com.huake.bondmaster.model.bean.EvaluationResultBean;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.PageBean;
-import com.huake.bondmaster.model.bean.ResultBean;
 import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 
 import io.reactivex.Flowable;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -107,39 +109,63 @@ public interface BondMasterApis {
 
     /**
      * 评测结果
-     * @param userId
-     * @param trialCustId
-     * @param dataDate
+     * @param userId 用户Id
+     * @param trialCustId 评测主体id
+     * @param dataDate 数据日期
      * @return
      */
     @GET("hk-soft-app/evaluate/viewIssuanceEvaluationResult")
-    Flowable<BondMasterHttpResponse> getViewIssuanceEvaluationResult(@Query("userId")String userId,@Query("trialCustId")String trialCustId,@Query("dataDate")String dataDate);
+    Flowable<BondMasterHttpResponse<EvaluationResultBean>> getViewIssuanceEvaluationResult(@Query("userId")String userId, @Query("trialCustId")String trialCustId, @Query("dataDate")String dataDate);
 
 
     /**
      * 注册用户
      * @param mobile 手机号
      * @param password 密码
-     * @param imgCode 图片验证码
      * @param code 短信验证码
      * @return
      */
-    @POST("hk-soft-app/")
-    Flowable<BondMasterHttpResponse<ResultBean>> registerUser(@Query("mobile")String mobile, @Query("password")String password,
-                                                              @Query("imgCode")String imgCode, @Query("code")String code);
+    @POST("hk-soft-app/user/register/registerDo")
+    Flowable<BondMasterHttpResponse> registerUser(@Query("mobile")String mobile, @Query("password")String password,
+                                                              @Query("code")String code);
+
+    /**
+     * 手机短信验证码
+     * @param mobile
+     * @return
+     */
+    @POST("hk-soft-app/user/register/sendVerificationCode")
+    Flowable<BondMasterHttpResponse> sendVerificationCode(@Query("mobile")String mobile);
 
 
     /**
-     * 登陆
+     * 用户名密码登陆
      * @param mobile 手机号
      * @param password 密码 6-8位
-     * @param imgCode 调用接口获取
      * @return
      */
-    @POST("hk-soft-app/")
-    Flowable<BondMasterHttpResponse<ResultBean>> login(@Query("mobile")String mobile,@Query("password")String password,@Query("imgCode")String imgCode);
+    @POST("hk-soft-app/login")
+    Flowable<BondMasterHttpResponse<UserBean>> login(@Query("mobile")String mobile, @Query("password")String password);
 
 
+    /**
+     * 手机验证码登陆
+     * @param mobile
+     * @param code
+     * @return
+     */
+    @POST("hk-soft-app/mobileAndValidateCodeLogin")
+    Flowable<BondMasterHttpResponse<UserBean>> loginByCode(@Field("mobile")String mobile,@Field("code")String code);
 
+
+    /**
+     * 密码找回
+     * @param mobile
+     * @param code
+     * @param password
+     * @return
+     */
+    @POST("hk-soft-app/userForgetpwdModify")
+    Flowable<BondMasterHttpResponse> forgetPassword(@Field("mobile")String mobile,@Field("code")String code,@Field("password")String password);
 
 }

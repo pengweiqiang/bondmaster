@@ -21,6 +21,12 @@ public class ImageLoader {
         }
     }
 
+    public static void loadByAllCache(Context context, String url, ImageView iv,int drawableId) {    //使用Glide加载圆形ImageView(如头像)时，不要使用占位图
+        Glide.with(context).load(url).crossFade().placeholder(context.getResources().getDrawable(drawableId))
+                .error((context.getResources().getDrawable(drawableId)))
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv);
+    }
+
     public static void loadByCache(Context mContext,String url,ImageView iv){
         Glide.with(mContext).load(url).placeholder(new ColorDrawable(mContext.getResources().getColor(R.color.image_loading_color))).//加载中显示的图片
                 error(new ColorDrawable(mContext.getResources().getColor(R.color.image_loading_color)))//加载失败时显示的图片

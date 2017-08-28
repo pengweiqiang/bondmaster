@@ -135,6 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+                    android:background="@drawable/set_up_style"
                     android:padding="@dimen/my_function_margin_left">
 
                     <ImageView
@@ -175,6 +176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+                    android:background="@drawable/set_up_style"
                     android:padding="@dimen/my_function_margin_left">
 
                     <ImageView
@@ -215,6 +217,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+                    android:background="@drawable/set_up_style"
                     android:padding="@dimen/my_function_margin_left">
 
                     <ImageView
@@ -255,6 +258,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+                    android:background="@drawable/set_up_style"
                     android:padding="@dimen/my_function_margin_left">
 
                     <ImageView

@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
 
 
+
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -38,6 +39,7 @@
             android:name=".ui.main.activity.MainActivity"
             android:windowSoftInputMode="adjustNothing"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             >
 
         </activity>
@@ -47,7 +49,30 @@
 
         <activity android:name=".ui.my.FeedBackActivity" android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.my.LoginActivity" android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.my.RegisterActivity" android:screenOrientation="portrait" />
+
+
         <service android:name=".component.InitializeService" />
+
+        <!--Bugly升级 start-->
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
+        <!--Bugly升级 end-->
 
         <meta-data
             android:name="com.huake.bondmaster.model.http.okhttp.SimpleGlideModule"

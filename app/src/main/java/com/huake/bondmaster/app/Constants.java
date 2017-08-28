@@ -73,8 +73,13 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final String SP_MANAGER_POINT = "manager_point";
 
+    public static final String SP_USER_INSTANCE_STR = "userLoginInfo";
+
     //================= INTENT ====================
     public static final String SCENE_BEAN = "sceneBean";
+
+    public static final String MOBILE = "mobile";
+
 
 
 }

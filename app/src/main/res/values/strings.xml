@@ -12,6 +12,7 @@
     <string name="share_app">分享app</string>
     <string name="about_us">关于我们</string>
     <string name="custom_service">客服热线</string>
+    <string name="check_upgrade">检查更新</string>
 
     <string name="my_evaluate">我的评测</string>
     <string name="my_bond_altas">债券图谱</string>
@@ -22,6 +23,12 @@
     <string name="customized_service">定制服务</string>
     <string name="bond_message">债券资讯</string>
     <string name="hierarchy_calculate">分层测算</string>
+    <string name="loading">加载中...</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="weixin">微信</string>
+    <string name="qq">QQ</string>
+    <string name="sina">微博</string>
 
 
     <string name="error_tips">糟糕！加载失败了ヽ(≧Д≦)ノ</string>

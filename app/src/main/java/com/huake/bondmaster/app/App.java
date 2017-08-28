@@ -15,6 +15,7 @@ import com.huake.bondmaster.di.component.AppComponent;
 import com.huake.bondmaster.di.component.DaggerAppComponent;
 import com.huake.bondmaster.di.module.AppModule;
 import com.huake.bondmaster.di.module.HttpModule;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreater;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater;
@@ -40,6 +41,8 @@ public class App extends Application{
     public static AppComponent appComponent;
     private Set<Activity> allActivities;
 
+    private UserBean userBean;
+
     public static int SCREEN_WIDTH = -1;
     public static int SCREEN_HEIGHT = -1;
     public static float DIMEN_RATE = -1.0F;
@@ -47,6 +50,17 @@ public class App extends Application{
 
     public static synchronized App getInstance() {
         return instance;
+    }
+
+    public void setUserInstance(UserBean userBean) {
+        this.userBean = userBean;
+    }
+
+    public UserBean getUserBeanInstance() {
+        if (userBean == null) {
+            userBean = App.getAppComponent().preferencesHelper().getUserInstance();
+        }
+        return userBean;
     }
 
     //static 代码段可以防止内存泄露

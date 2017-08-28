@@ -75,8 +75,8 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
     public void showContent(HomePageBean homePageBean) {
         this.homePageBean = homePageBean;
         hotNewsBeanList = homePageBean.getHotNews();
-        mHomeAdapter.setData(homePageBean);
         mSmartRefreshLayout.finishRefresh(800);
+        mHomeAdapter.setData(homePageBean);
     }
 
     @Override
@@ -111,6 +111,18 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
 //        super.stateError();
         mSmartRefreshLayout.finishRefresh();
         mSmartRefreshLayout.finishLoadmore();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mHomeAdapter.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        mHomeAdapter.onStop();
+        super.onStop();
     }
 
 }

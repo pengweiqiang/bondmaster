@@ -6,6 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.widget.LoadingDialog;
 import com.huake.bondmaster.widget.ProgressImageView;
 
 
@@ -26,6 +27,8 @@ public abstract class RootActivity<T extends BasePresenter> extends BaseActivity
     private FrameLayout viewLoading;
     private ViewGroup viewMain;
     private int currentState = STATE_MAIN;
+
+    LoadingDialog loadingDialog;
 
     @Override
     protected void initEventAndData() {
@@ -77,6 +80,7 @@ public abstract class RootActivity<T extends BasePresenter> extends BaseActivity
         viewMain.setVisibility(View.VISIBLE);
     }
 
+
     private void hideCurrentView() {
         switch (currentState) {
             case STATE_MAIN:
@@ -89,6 +93,23 @@ public abstract class RootActivity<T extends BasePresenter> extends BaseActivity
             case STATE_ERROR:
                 viewError.setVisibility(View.GONE);
                 break;
+        }
+    }
+
+    @Override
+    public void showLoading(String msg) {
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog(this, R.style.LoadingDialog);
+        }
+        loadingDialog.show();
+        loadingDialog.setTitle(msg);
+
+    }
+
+    @Override
+    public void cancelDialogLoading() {
+        if(loadingDialog!=null && loadingDialog.isShowing()){
+            loadingDialog.cancel();
         }
     }
 }

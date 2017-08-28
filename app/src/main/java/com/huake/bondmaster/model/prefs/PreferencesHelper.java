@@ -1,5 +1,7 @@
 package com.huake.bondmaster.model.prefs;
 
+import com.huake.bondmaster.model.bean.UserBean;
+
 /**
  * @author: Est <codeest.dev@gmail.com>
  * @date: 2017/4/21
@@ -35,5 +37,9 @@ public interface PreferencesHelper {
     boolean getManagerPoint();
 
     void setManagerPoint(boolean isFirst);
+
+    void setUserInstance(UserBean userBean);
+
+    UserBean getUserInstance();
 
 }

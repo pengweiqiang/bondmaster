@@ -2,11 +2,13 @@ package com.huake.bondmaster.base;
 
 import android.support.v7.app.AppCompatDelegate;
 
+import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.di.component.ActivityComponent;
 import com.huake.bondmaster.di.component.DaggerActivityComponent;
 import com.huake.bondmaster.di.module.ActivityModule;
 import com.huake.bondmaster.util.ToastUtil;
+import com.huake.bondmaster.widget.LoadingDialog;
 
 import javax.inject.Inject;
 
@@ -18,6 +20,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
 
     @Inject
     protected T mPresenter;
+
+    LoadingDialog loadingDialog;
 
     protected ActivityComponent getActivityComponent(){
         return  DaggerActivityComponent.builder()
@@ -73,6 +77,22 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
 
     @Override
     public void stateMain() {
+    }
+
+    @Override
+    public void showLoading(String msg) {
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog(this, R.style.LoadingDialog);
+        }
+        loadingDialog.show();
+        loadingDialog.setTitle(msg);
+    }
+
+    @Override
+    public void cancelDialogLoading() {
+        if(loadingDialog!=null && loadingDialog.isShowing()){
+            loadingDialog.cancel();
+        }
     }
 
     protected abstract void initInject();
