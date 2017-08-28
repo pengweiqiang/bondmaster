@@ -102,6 +102,16 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
+    public void setHomePageCache(String homePageCache) {
+        mPreferencesHelper.setHomePageCache(homePageCache);
+    }
+
+    @Override
+    public HomePageBean getHomePageCache() {
+        return mPreferencesHelper.getHomePageCache();
+    }
+
+    @Override
     public void setUserInstance(UserBean userBean) {
         mPreferencesHelper.setUserInstance(userBean);
     }

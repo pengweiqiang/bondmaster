@@ -7,7 +7,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
-import com.huake.bondmaster.util.LogUtil;
 
 import org.jsoup.helper.StringUtil;
 
@@ -55,7 +54,6 @@ public class LoadingDialog extends ProgressDialog
     public void setTitle(String title){
         if(!StringUtil.isBlank(title)) {
             TextView txTitle = (TextView) findViewById(R.id.tv_load_dialog);
-            LogUtil.i("LoadingDialog "+txTitle);
             if(txTitle!=null) {
                 txTitle.setText(title);
             }

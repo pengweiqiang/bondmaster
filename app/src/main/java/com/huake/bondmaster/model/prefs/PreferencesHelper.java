@@ -1,5 +1,6 @@
 package com.huake.bondmaster.model.prefs;
 
+import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.UserBean;
 
 /**
@@ -37,6 +38,10 @@ public interface PreferencesHelper {
     boolean getManagerPoint();
 
     void setManagerPoint(boolean isFirst);
+
+    void setHomePageCache(String homePageCache);
+
+    HomePageBean getHomePageCache();
 
     void setUserInstance(UserBean userBean);
 

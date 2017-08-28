@@ -2,6 +2,7 @@ package com.huake.bondmaster.ui.my;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -15,9 +16,13 @@ import com.huake.bondmaster.R;
 import com.huake.bondmaster.base.RootActivity;
 import com.huake.bondmaster.base.contract.user.RegisterContract;
 import com.huake.bondmaster.presenter.my.RegisterPresenter;
+import com.huake.bondmaster.util.CheckInputUtil;
 import com.huake.bondmaster.widget.ActionBar;
 
 import org.jsoup.helper.StringUtil;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,6 +48,8 @@ public class RegisterActivity extends RootActivity<RegisterPresenter> implements
     AppCompatCheckBox mAppCompatCheckBox;
     @BindView(R.id.btn_register)
     Button mBtnRegister;
+    @BindView(R.id.btn_get_code)
+    Button mBtnGetCode;
 
 
     TextWatcher textWatcher;
@@ -172,8 +179,10 @@ public class RegisterActivity extends RootActivity<RegisterPresenter> implements
             showErrorMsg("请输入手机号");
             return;
         }
-        showLoading("发送验证码...");
-        mPresenter.sendVerificationCode(mobile);
+        if(CheckInputUtil.checkPhone(mobile,mContext)) {
+            showLoading("发送验证码...");
+            mPresenter.sendVerificationCode(mobile);
+        }
     }
 
 
@@ -190,7 +199,8 @@ public class RegisterActivity extends RootActivity<RegisterPresenter> implements
 
     @Override
     public void sendVerificationCodeSuccess() {
-
+        mBtnGetCode.setEnabled(false);
+        regainCode();
     }
 
     public static void open(Context context){
@@ -199,4 +209,46 @@ public class RegisterActivity extends RootActivity<RegisterPresenter> implements
     }
 
 
+    private Timer timer;// 计时器
+    private int time = 60;//倒计时120秒
+
+    private void regainCode() {
+        time = 60;
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                if(handler!=null) {
+                    handler.sendEmptyMessage(time--);
+                }
+            }
+        }, 0, 1000);
+    }
+
+    private Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            if (msg.what == 0) {
+                mBtnGetCode.setEnabled(true);
+                mBtnGetCode.setText("获取验证码");
+                timer.cancel();
+            } else {
+                mBtnGetCode.setText(msg.what + "秒后重发");
+            }
+
+        };
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(timer!=null){
+            timer.cancel();
+            timer = null;
+        }
+        if(handler!=null){
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
+        }
+    }
 }

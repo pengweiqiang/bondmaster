@@ -57,4 +57,12 @@ public class HomePageBean {
             this.sort = sort;
         }
     }
+
+    @Override
+    public String toString() {
+        return "HomePageBean{" +
+                "imgs=" + imgs +
+                ", hotNews=" + hotNews +
+                '}';
+    }
 }

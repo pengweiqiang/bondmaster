@@ -31,6 +31,13 @@
     <string name="qq">QQ</string>
     <string name="sina">微博</string>
 
+    <string name="error_phone">手机号码格式错误</string>
+    <string name="error_pwd">密码长度须是6~20字符</string>
+    <string name="error_pwd_again">两次密码输入不一致</string>
+    <string name="input_correct_code">请输入正确的验证码</string>
+    <string name="input_phone">请输入手机号</string>
+    <string name="input_pwd">请输入密码</string>
+
 
     <string name="error_tips">糟糕！加载失败了ヽ(≧Д≦)ノ</string>
     <string name="about_us_content">华科金控（深圳）有限公司（以下简称华科金控）是一家专注解决企业融资难题的金融咨询服务机构，咨询业务覆盖债券融资、非标融资、财务顾问、跨境金融服务等。 华科金控创新打造一站式债券融资咨询服务模式，为企业量身定制境内外债券融资方案，整合债券融资产业链资源，提供全流程优质服务，提高企业融资成功率。</string>

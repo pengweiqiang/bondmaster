@@ -43,6 +43,8 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final int PAGE_SIZE = 10;
 
+    public static final String PARAM_SCALE = "2";//2 2倍图 3 3倍图
+
     //================= KEY ====================
 
 
@@ -74,6 +76,8 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final String SP_MANAGER_POINT = "manager_point";
 
     public static final String SP_USER_INSTANCE_STR = "userLoginInfo";
+
+    public static final String SP_HOME_DATA_CACHE = "homePageData";//首页缓存数据
 
     //================= INTENT ====================
     public static final String SCENE_BEAN = "sceneBean";

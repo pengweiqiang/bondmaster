@@ -2,10 +2,12 @@ package com.huake.bondmaster.model.prefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
+import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.UserBean;
 
 import javax.inject.Inject;
@@ -105,6 +107,21 @@ public class ImplPreferencesHelper implements PreferencesHelper {
     @Override
     public void setManagerPoint(boolean isFirst) {
         mSPrefs.edit().putBoolean(Constants.SP_MANAGER_POINT, isFirst).apply();
+    }
+
+    @Override
+    public void setHomePageCache(String homePageCache) {
+        mSPrefs.edit().putString(Constants.SP_HOME_DATA_CACHE, homePageCache).apply();
+    }
+
+    @Override
+    public HomePageBean getHomePageCache() {
+        String homePageStr =  mSPrefs.getString(Constants.SP_HOME_DATA_CACHE,"");
+        HomePageBean homePageBean = null;
+        if (!TextUtils.isEmpty(homePageStr)) {
+            homePageBean = new Gson().fromJson(homePageStr, HomePageBean.class);
+        }
+        return homePageBean;
     }
 
     @Override

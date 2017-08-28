@@ -1,5 +1,6 @@
 package com.huake.bondmaster.presenter.my;
 
+import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.RxPresenter;
 import com.huake.bondmaster.base.contract.user.RegisterContract;
 import com.huake.bondmaster.model.DataManager;
@@ -34,17 +35,15 @@ public class RegisterPresenter extends RxPresenter<RegisterContract.View> implem
                     @Override
                     public void dataHandler(Object object) {
                         mView.stateMain();
-//                        if(object!=null) {
-//                            if (String.valueOf(Constants.CODE_SUCCESS).equals(resultBean.getSuccess())) {
-//                                mView.registerSuccess();
-//                            } else {
-//                                mView.showErrorMsg("注册失败" + resultBean.getMessage());
-//                            }
-//                        }else{
-//                            mView.showErrorMsg("注册失败");
-//                        }
                     }
 
+                    @Override
+                    public void onNext(BondMasterHttpResponse<Object> objectBondMasterHttpResponse) {
+                        super.onNext(objectBondMasterHttpResponse);
+                        if(objectBondMasterHttpResponse != null && objectBondMasterHttpResponse.getStat() == Constants.CODE_SUCCESS){
+                            mView.showErrorMsg(objectBondMasterHttpResponse.getDesc());
+                        }
+                    }
                 })
         );
     }
@@ -57,8 +56,16 @@ public class RegisterPresenter extends RxPresenter<RegisterContract.View> implem
                     @Override
                     public void dataHandler(Object object) {
                         mView.stateMain();
+                        mView.sendVerificationCodeSuccess();
                     }
 
+                    @Override
+                    public void onNext(BondMasterHttpResponse<Object> objectBondMasterHttpResponse) {
+                        super.onNext(objectBondMasterHttpResponse);
+                        if(objectBondMasterHttpResponse != null && objectBondMasterHttpResponse.getStat() == Constants.CODE_SUCCESS){
+                            mView.showErrorMsg(objectBondMasterHttpResponse.getDesc());
+                        }
+                    }
                 })
         );
     }

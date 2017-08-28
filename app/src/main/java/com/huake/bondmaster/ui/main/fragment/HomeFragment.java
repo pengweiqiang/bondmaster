@@ -62,6 +62,9 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
 
         initListener();
         mSmartRefreshLayout.setEnableLoadmore(false);
+
+        mPresenter.getHomePageCache();
+
         mSmartRefreshLayout.autoRefresh();
     }
 

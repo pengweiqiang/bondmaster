@@ -14,7 +14,6 @@ import com.huake.bondmaster.model.bean.HomePageBean;
 public interface HomeContract {
     interface View extends BaseView{
 
-
         void showContent(HomePageBean homePageBean);
 
         void initListener();
@@ -24,6 +23,8 @@ public interface HomeContract {
         void getHomePage();
 
         void search(String searchText);
+
+        void getHomePageCache();
     }
 
 }
