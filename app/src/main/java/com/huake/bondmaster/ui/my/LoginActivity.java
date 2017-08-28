@@ -15,6 +15,7 @@ import com.huake.bondmaster.base.RootActivity;
 import com.huake.bondmaster.base.contract.user.LoginContract;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.my.LoginPresenter;
+import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.widget.ActionBar;
 
 import org.jsoup.helper.StringUtil;
@@ -136,6 +137,8 @@ public class LoginActivity extends RootActivity<LoginPresenter> implements Login
     @Override
     public void loginSuccess(UserBean userBean) {
         cancelDialogLoading();
+        MainActivity.open(mContext);
+        finish();
     }
 
     @Override

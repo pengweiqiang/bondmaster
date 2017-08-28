@@ -57,8 +57,6 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        userBean = App.getInstance().getUserBeanInstance();
-
     }
 
     @Override
@@ -68,6 +66,7 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
     }
 
     private void checkLogin(){
+        userBean = App.getInstance().getUserBeanInstance();
         if(userBean==null){
             mViewLogined.setVisibility(View.GONE);
             mViewUnLogin.setVisibility(View.VISIBLE);

@@ -34,8 +34,8 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
                     @Override
                     public void dataHandler(UserBean userBean) {
                         if(userBean!=null) {
-                            mView.loginSuccess(userBean);
                             dataManager.setUserInstance(userBean);
+                            mView.loginSuccess(userBean);
                         }else{
                             mView.showErrorMsg("登陆失败");
                         }
