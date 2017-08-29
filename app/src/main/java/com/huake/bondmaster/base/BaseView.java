@@ -1,5 +1,7 @@
 package com.huake.bondmaster.base;
 
+import com.huake.bondmaster.model.bean.UserBean;
+
 /**
  * Created by pengweiqiang on 2016/8/2.
  * View基类
@@ -22,4 +24,6 @@ public interface BaseView {
     void cancelDialogLoading();
 
     void startLoginActivity();
+
+    UserBean checkIsLogin();
 }

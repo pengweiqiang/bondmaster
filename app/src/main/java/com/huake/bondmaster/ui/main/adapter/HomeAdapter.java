@@ -15,6 +15,7 @@ import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.component.ImageLoader;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.HotNewsBean;
+import com.huake.bondmaster.ui.main.activity.SearchTrialCustInfoActivity;
 import com.huake.bondmaster.util.DateUtil;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
@@ -105,6 +106,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 }
             });
         }else if(holder instanceof HeaderViewHolder){
+            ((HeaderViewHolder) holder).mEtSearchView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SearchTrialCustInfoActivity.open(mContext,"");
+                }
+            });
             showBannerView((HeaderViewHolder) holder,position);
         }
 

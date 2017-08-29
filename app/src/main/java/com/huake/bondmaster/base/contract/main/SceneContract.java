@@ -2,7 +2,7 @@ package com.huake.bondmaster.base.contract.main;
 
 import com.huake.bondmaster.base.BasePresenter;
 import com.huake.bondmaster.base.BaseView;
-import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.model.bean.SceneBean;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public interface SceneContract {
     interface View extends BaseView{
 
 
-        void showContent(long records,long pageNum,long total,List<SearchBean> sceneBeanList);
+        void showContent(long records,long pageNum,long total,List<SceneBean> sceneBeanList);
 
         void initListener();
 
@@ -25,7 +25,7 @@ public interface SceneContract {
     }
 
     interface  Presenter extends BasePresenter<View>{
-        void getSceneList(long pageNum, String sInfoCustname);
+        void getSceneList(String userId,long pageNum,String sInfoCustname,String secIndCode,String bAgencyGuarantornature,String bInfoCreditrating);
     }
 
 }

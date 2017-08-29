@@ -17,12 +17,14 @@ import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.main.MainContract;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.main.MainPresenter;
 import com.huake.bondmaster.ui.main.adapter.MainFragmentAdapter;
 import com.huake.bondmaster.ui.main.fragment.HomeFragment;
 import com.huake.bondmaster.ui.main.fragment.MarketFragment;
 import com.huake.bondmaster.ui.main.fragment.MyFragment;
 import com.huake.bondmaster.ui.main.fragment.SceneFragment;
+import com.huake.bondmaster.ui.my.LoginActivity;
 import com.umeng.socialize.UMShareAPI;
 
 import java.util.ArrayList;
@@ -103,10 +105,18 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mTabIndicators.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(!group.findViewById(checkedId).isPressed()){//防止不是人为点击，不用触发该事件
+                    return;
+                }
+                UserBean userBean = App.getInstance().getUserBeanInstance();
                 int index = 0;
                 if(checkedId==tabIds[0]){
                     index = 0;
                 }else if(checkedId==tabIds[1]){
+                    if(userBean == null){
+                        LoginActivity.open(mContext,"");
+                        return;
+                    }
                     index = 1;
                 }else if(checkedId == tabIds[2]){
                     index = 2;
@@ -119,6 +129,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mTabIndicators.check(tabIds[showIndex]);
+    }
 
     private boolean isExit = false;
     // 退出操作

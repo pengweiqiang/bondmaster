@@ -19,6 +19,8 @@ public interface MyContract {
 
     interface  Presenter extends BasePresenter<View>{
         void getUserInfo();
+
+        void logout();
     }
 
 }

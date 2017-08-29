@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
-import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.util.BigDecimalUtil;
 
 import java.util.List;
@@ -25,13 +25,13 @@ import butterknife.ButterKnife;
  */
 
 public class SceneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private List<SearchBean> mList;
+    private List<SceneBean> mList;
     private Context mContext;
     private LayoutInflater inflater;
 
     private OnItemClickListener onItemClickListener;
 
-    public SceneAdapter(Context mContext,List<SearchBean> mList){
+    public SceneAdapter(Context mContext,List<SceneBean> mList){
         this.mContext = mContext;
         this.mList = mList;
         inflater = LayoutInflater.from(mContext);
@@ -56,7 +56,7 @@ public class SceneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 //        ImageLoader.load(mContext,mList.get(position).getbAgencyGuarantornatureName().get(0),((ContentViewHolder)holder).image);
         ContentViewHolder contentViewHolder = (ContentViewHolder)holder;
-        SearchBean sceneBean = mList.get(position);
+        SceneBean sceneBean = mList.get(position);
 
         contentViewHolder.mTvBInfoCreditrating.setText(sceneBean.getbInfoCreditrating());
         contentViewHolder.mTvCompanyName.setText(sceneBean.getsInfoCustname());

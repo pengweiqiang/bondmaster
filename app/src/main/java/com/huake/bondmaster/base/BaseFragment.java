@@ -104,5 +104,10 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
         LoginActivity.open(mContext, mobile);
     }
 
+    @Override
+    public UserBean checkIsLogin() {
+        return App.getInstance().getUserBeanInstance();
+    }
+
     protected abstract void initInject();
 }

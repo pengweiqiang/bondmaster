@@ -24,6 +24,7 @@ import com.umeng.socialize.media.UMWeb;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 
 /**
  * @author will on 2017/8/24 13:42
@@ -110,6 +111,14 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
                 }
                 break;
         }
+    }
+
+    @OnLongClick(R.id.rl_user_info)
+    public boolean onLongClickOptionItem(){
+        mPresenter.logout();
+        showErrorMsg("退出登录");
+        checkLogin();
+        return false;
     }
 
     private void shareApp(){

@@ -93,6 +93,8 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final String TITLE = "title";
 
+    public static final String SEARCH_KEY = "searchKey";
+
 
 
 }

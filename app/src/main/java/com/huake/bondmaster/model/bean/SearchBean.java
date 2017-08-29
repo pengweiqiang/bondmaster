@@ -38,7 +38,7 @@ public class SearchBean implements Serializable{
      * cpCouponrate : 7
      */
 
-    private int id;
+    private long id;
     private String sInfoListcompornot;
     private String bInfoCreditratingHigh;
     private String bInfoCreditratingLow;
@@ -135,11 +135,11 @@ public class SearchBean implements Serializable{
         this.bAgencyGuarantornatureName = bAgencyGuarantornatureName;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

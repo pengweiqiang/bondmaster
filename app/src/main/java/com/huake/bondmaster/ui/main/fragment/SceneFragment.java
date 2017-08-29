@@ -9,9 +9,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.base.RootFragment;
 import com.huake.bondmaster.base.contract.main.SceneContract;
+import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.main.ScenePresenter;
 import com.huake.bondmaster.ui.main.adapter.SceneAdapter;
 import com.huake.bondmaster.ui.scene.SceneDetailActivity;
@@ -51,7 +54,7 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
 
     SceneAdapter mAdapter;
 
-    private List<SearchBean> mList = new ArrayList<>();
+    private List<SceneBean> mList = new ArrayList<>();
 
     private long pageNum = 1;
     private long total = 0;
@@ -80,13 +83,13 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
 
 
     private void loadData(){
-//        UserBean userBean = App.getInstance().getUserBeanInstance();
-//        String userId = "";
-//        if(userBean!=null){
-//            userId = userBean.getId();
-//        }
+        UserBean userBean = App.getInstance().getUserBeanInstance();
+        String userId = "";
+        if(userBean!=null){
+            userId = userBean.getId();
+        }
         String searchKey = mEtSearch.getText().toString().trim();
-        mPresenter.getSceneList(pageNum,searchKey);
+        mPresenter.getSceneList(userId,pageNum,searchKey,"","","");
     }
 
     @Override
@@ -101,7 +104,15 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
         mAdapter.setOnItemClickListener(new SceneAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
-                SceneDetailActivity.open(mContext,mList.get(position));
+                SceneBean sceneBean = mList.get(position);
+                SearchBean searchBean = new SearchBean();
+                searchBean.setId(sceneBean.getId());
+                searchBean.setUserId(sceneBean.getUserId());
+                searchBean.setbInfoCreditrating(sceneBean.getbInfoCreditrating());
+                searchBean.setSuccessProbability(sceneBean.getSuccessProbability());
+                searchBean.setDataDate(sceneBean.getDataDate());
+
+                SceneDetailActivity.open(mContext,searchBean);
             }
         });
 
@@ -150,7 +161,7 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
 
 
     @Override
-    public void showContent(long records,long pageNum,long total,List<SearchBean> sceneBeanList) {
+    public void showContent(long records,long pageNum,long total,List<SceneBean> sceneBeanList) {
         stateMain();
         this.total = total;
         this.pageNum = pageNum;

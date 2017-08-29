@@ -109,5 +109,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
         LoginActivity.open(mContext, mobile);
     }
 
+    @Override
+    public UserBean checkIsLogin() {
+        return App.getInstance().getUserBeanInstance();
+    }
+
     protected abstract void initInject();
 }
