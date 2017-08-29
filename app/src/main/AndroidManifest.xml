@@ -61,6 +61,8 @@
 
         <activity android:name=".ui.web.WebActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustResize"/>
 
+        <activity android:name=".ui.evaluation.EvaluationActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustResize"/>
+
 
         <service android:name=".component.InitializeService" />
 

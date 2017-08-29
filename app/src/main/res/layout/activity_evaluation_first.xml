@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical">
+
+    <com.huake.bondmaster.widget.ActionBar
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_height" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorWhite"
+        android:layout_marginTop="10dp"
+        android:paddingTop="20dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="16dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/tab_home_text_selectd_color" />
+
+            <TextView
+                android:id="@+id/tv_base_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="基本信息"
+                android:textColor="#999999"
+                android:textSize="@dimen/my_common_text_size" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackground"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="8dp"
+            >
+            <TextView
+                android:id="@+id/tv_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:text="公司名称:"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/my_user_name_size"
+                />
+
+            <EditText
+                android:id="@+id/et_company_name"
+                android:layout_toRightOf="@+id/tv_company_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="必填"
+                android:gravity="right"
+                android:imeOptions="actionNext"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:background="@null"
+                android:textSize="@dimen/my_common_text_size"
+                android:textColorHint="#dddddd"
+                android:drawablePadding="4dp"
+                android:layout_alignParentRight="true"
+                android:drawableRight="@mipmap/ic_my_function_right_in"
+                />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="23dp"
+            android:background="@color/colorBackground"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="8dp"
+            >
+            <TextView
+                android:id="@+id/tv_industry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:text="所属行业:"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/my_user_name_size"
+                />
+
+            <EditText
+                android:id="@+id/et_industry"
+                android:layout_toRightOf="@+id/tv_industry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="必填"
+                android:imeOptions="actionNext"
+                android:gravity="right"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:textColorHint="#dddddd"
+                android:background="@null"
+                android:textSize="@dimen/my_common_text_size"
+                android:drawablePadding="4dp"
+                android:layout_alignParentRight="true"
+                android:drawableRight="@mipmap/ic_my_function_right_in"
+                />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="23dp"
+            android:background="@color/colorBackground"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="8dp"
+            >
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:text="所属地区:"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/my_user_name_size"
+                />
+
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_toRightOf="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="必填"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:textSize="@dimen/my_common_text_size"
+                android:imeOptions="actionNext"
+                android:gravity="right"
+                android:textColorHint="#dddddd"
+                android:background="@null"
+                android:drawablePadding="4dp"
+                android:layout_alignParentRight="true"
+                android:drawableRight="@mipmap/ic_my_function_right_in"
+                />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="23dp"
+            android:background="@color/colorBackground"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="8dp"
+            >
+            <TextView
+                android:id="@+id/tv_company_nature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:text="企业性质:"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/my_user_name_size"
+                />
+
+            <EditText
+                android:id="@+id/et_company_nature"
+                android:layout_toRightOf="@+id/tv_company_nature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="必填"
+                android:gravity="right"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:imeOptions="actionNext"
+                android:textSize="@dimen/my_common_text_size"
+                android:textColorHint="#dddddd"
+                android:drawablePadding="4dp"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:drawableRight="@mipmap/ic_my_function_right_in"
+                />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="23dp"
+            android:background="@color/colorBackground"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="8dp"
+            >
+            <TextView
+                android:id="@+id/tv_company_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:text="企业类型:"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/my_user_name_size"
+                />
+
+            <EditText
+                android:id="@+id/et_company_type"
+                android:layout_toRightOf="@+id/tv_company_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="必填"
+                android:gravity="right"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:imeOptions="actionDone"
+                android:textColorHint="#dddddd"
+                android:textSize="@dimen/my_common_text_size"
+                android:drawablePadding="4dp"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:drawableRight="@mipmap/ic_my_function_right_in"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:text="下一步"
+        android:textColor="@color/colorWhite"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/selector_btn"
+        />
+
+</LinearLayout>

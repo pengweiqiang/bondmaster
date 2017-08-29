@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.huake.bondmaster.di.module.ActivityModule;
 import com.huake.bondmaster.di.scope.ActivityScope;
+import com.huake.bondmaster.ui.evaluation.EvaluationActivity;
 import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.ui.main.activity.SearchTrialCustInfoActivity;
 import com.huake.bondmaster.ui.main.activity.WelcomeActivity;
@@ -37,5 +38,7 @@ public interface ActivityComponent {
     void inject(RegisterActivity registerActivity);
 
     void inject(WebActivity webActivity);
+
+    void inject(EvaluationActivity evaluationActivity);
 
 }

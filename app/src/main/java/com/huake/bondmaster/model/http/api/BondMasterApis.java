@@ -104,7 +104,7 @@ public interface BondMasterApis {
      * @return
      */
     @GET("hk-soft-app/scene/findPageHkPartyTrialCustInfoListByUserId")
-    Flowable<BondMasterHttpResponse<PageBean<SceneBean>>>  getScenceList(@Query("id")String userId,@Query("pageNum")long pageNum,
+    Flowable<BondMasterHttpResponse<PageBean<SceneBean>>>  getScenceList(@Query("userId")String userId,@Query("pageNum")long pageNum,
                                                                          @Query("pageSize")long pageSize,@Query("sInfoCustname")String sInfoCustname,
                                                                          @Query("secIndCode")String secIndCode,@Query("bAgencyGuarantornature")String bAgencyGuarantornature,
                                                                          @Query("bInfoCreditrating")String bInfoCreditrating);

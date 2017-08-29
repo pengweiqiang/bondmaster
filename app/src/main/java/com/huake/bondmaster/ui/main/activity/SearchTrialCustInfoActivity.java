@@ -17,6 +17,7 @@ import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.main.SearchTrialCustInfoContract;
 import com.huake.bondmaster.model.bean.SearchBean;
 import com.huake.bondmaster.presenter.home.SearchTrialCustInfoPresenter;
+import com.huake.bondmaster.ui.evaluation.EvaluationActivity;
 import com.huake.bondmaster.ui.main.adapter.SearchAdapter;
 import com.huake.bondmaster.ui.scene.SceneDetailActivity;
 import com.huake.bondmaster.widget.ActionBar;
@@ -87,7 +88,7 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
 
     @OnClick(R.id.btn_start_evaluate)
     public void onClick(View view){
-
+        EvaluationActivity.open(mContext);
     }
 
     private void loadData(){

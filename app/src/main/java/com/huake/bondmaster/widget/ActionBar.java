@@ -2,6 +2,7 @@ package com.huake.bondmaster.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,6 +79,18 @@ public class ActionBar extends FrameLayout {
 		mLeftActionButton.setText(text);
 		mLeftActionButton.setCompoundDrawables(null,null,null,null);
 		mLeftActionButton.setOnClickListener(listener);
+	}
+
+	public void setLeftActionButton(int icon,String text, OnClickListener listener) {
+		if(icon!=0){
+			Drawable drawable= getResources().getDrawable(icon);
+			/// 这一步必须要做,否则不会显示.
+			drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+			mLeftActionButton.setCompoundDrawables(drawable,null,null,null);
+		}
+		mLeftActionButton.setText(text);
+		mLeftActionButton.setOnClickListener(listener);
+//		mLeftActionButton.setVisibility(View.VISIBLE);
 	}
 
 	public void setRightActionButton(String text,OnClickListener onClickListener){

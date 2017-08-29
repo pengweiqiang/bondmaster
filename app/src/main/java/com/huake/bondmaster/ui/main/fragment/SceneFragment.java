@@ -24,6 +24,8 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,6 +109,7 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
                 SceneBean sceneBean = mList.get(position);
                 SearchBean searchBean = new SearchBean();
                 searchBean.setId(sceneBean.getId());
+                searchBean.setTrialCustId(String.valueOf(sceneBean.getTrialCustId()));
                 searchBean.setUserId(sceneBean.getUserId());
                 searchBean.setbInfoCreditrating(sceneBean.getbInfoCreditrating());
                 searchBean.setSuccessProbability(sceneBean.getSuccessProbability());
