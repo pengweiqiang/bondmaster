@@ -14,6 +14,7 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final int CODE_SUCCESS = 1;
     public static final int CODE_FAIL = 0;//失败
     public static final int CODE_QUIT = 2;//废弃
+    public static final int CODE_INVALID_TOKEN = 4;//未登录或者token失效
 
     public static final String ARTICLE_URL= "/hk-soft-app/cmsApp/getArticle";//专栏内容
 

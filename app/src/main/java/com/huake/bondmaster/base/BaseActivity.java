@@ -7,6 +7,8 @@ import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.di.component.ActivityComponent;
 import com.huake.bondmaster.di.component.DaggerActivityComponent;
 import com.huake.bondmaster.di.module.ActivityModule;
+import com.huake.bondmaster.model.bean.UserBean;
+import com.huake.bondmaster.ui.my.LoginActivity;
 import com.huake.bondmaster.util.ToastUtil;
 import com.huake.bondmaster.widget.LoadingDialog;
 
@@ -95,6 +97,16 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
         if(loadingDialog!=null && loadingDialog.isShowing()){
             loadingDialog.cancel();
         }
+    }
+
+    @Override
+    public void startLoginActivity() {
+        UserBean userBean = App.getInstance().getUserBeanInstance();
+        String mobile = "";
+        if(userBean!=null) {
+            mobile = userBean.getMobile();
+        }
+        LoginActivity.open(mContext, mobile);
     }
 
     protected abstract void initInject();

@@ -20,4 +20,6 @@ public interface BaseView {
     void showLoading(String msg);
 
     void cancelDialogLoading();
+
+    void startLoginActivity();
 }

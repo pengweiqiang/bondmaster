@@ -83,6 +83,7 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
 //                super.onReceivedSslError(webView, sslErrorHandler, sslError);
                 sslErrorHandler.proceed();//接受信任所有网站的证书
             }
+
         });
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -102,8 +103,9 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                setTitle(title);
+//                setTitle(title);
             }
+
         });
 
 

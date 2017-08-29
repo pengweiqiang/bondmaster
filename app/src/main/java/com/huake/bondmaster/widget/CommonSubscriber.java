@@ -54,12 +54,13 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<BondMasterH
             mView.stateMain();
         } else if (Constants.CODE_QUIT == code) {
             mView.stateMain();
+        }else if (Constants.CODE_INVALID_TOKEN == code) {
+            mView.showErrorMsg(mErrorMsg);
+            //提示重新登陆
+            mView.startLoginActivity();
         }
-// else if (Constants.CODE_INVALID_TOKEN.equals(code)) {
-//            mView.showErrorMsgToast(mErrorMsg);
-//            //提示重新登陆
-//            mView.startLoginActivity();
-//        } else if (Constants.CODE_EMPTY_DATA.equals(code)) {
+
+// else if (Constants.CODE_EMPTY_DATA.equals(code)) {
 //            onEmptyList();
 //        }
         if (isShowErrorState) {

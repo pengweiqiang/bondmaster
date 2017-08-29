@@ -9,6 +9,8 @@ import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.di.component.DaggerFragmentComponent;
 import com.huake.bondmaster.di.component.FragmentComponent;
 import com.huake.bondmaster.di.module.FragmentModule;
+import com.huake.bondmaster.model.bean.UserBean;
+import com.huake.bondmaster.ui.my.LoginActivity;
 import com.huake.bondmaster.util.ToastUtil;
 import com.huake.bondmaster.widget.LoadingDialog;
 
@@ -90,6 +92,16 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
         if(loadingDialog!=null && loadingDialog.isShowing()){
             loadingDialog.cancel();
         }
+    }
+
+    @Override
+    public void startLoginActivity() {
+        UserBean userBean = App.getInstance().getUserBeanInstance();
+        String mobile = "";
+        if(userBean!=null) {
+            mobile = userBean.getMobile();
+        }
+        LoginActivity.open(mContext, mobile);
     }
 
     protected abstract void initInject();
