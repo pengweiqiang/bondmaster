@@ -2,13 +2,16 @@ package com.huake.bondmaster.ui.main.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.base.RootFragment;
 import com.huake.bondmaster.base.contract.main.SceneContract;
-import com.huake.bondmaster.model.bean.SceneBean;
+import com.huake.bondmaster.model.bean.SearchBean;
 import com.huake.bondmaster.presenter.main.ScenePresenter;
 import com.huake.bondmaster.ui.main.adapter.SceneAdapter;
 import com.huake.bondmaster.ui.scene.SceneDetailActivity;
@@ -38,18 +41,20 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
     TextView mTvTitle;
     @BindView(refreshLayout)
     RefreshLayout mRefreshLayout;
-    @BindView(R.id.recyclerview)
+    @BindView(R.id.view_main)
     RecyclerView mRecyclerView;
     @BindView(R.id.tv_evaluated_company)
     TextView mTvEvaluatedCompany;
+    @BindView(R.id.et_search)
+    EditText mEtSearch;
 
 
     SceneAdapter mAdapter;
 
-    private List<SceneBean> mList = new ArrayList<>();
+    private List<SearchBean> mList = new ArrayList<>();
 
     private long pageNum = 1;
-
+    private long total = 0;
 
     @Override
     protected void initInject() {
@@ -75,7 +80,13 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
 
 
     private void loadData(){
-        mPresenter.getSceneList("123",pageNum,"","","","");
+//        UserBean userBean = App.getInstance().getUserBeanInstance();
+//        String userId = "";
+//        if(userBean!=null){
+//            userId = userBean.getId();
+//        }
+        String searchKey = mEtSearch.getText().toString().trim();
+        mPresenter.getSceneList(pageNum,searchKey);
     }
 
     @Override
@@ -97,8 +108,7 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                pageNum = 1;
-                loadData();
+            loadData();
             }
         });
         mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
@@ -108,6 +118,23 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
                 loadData();
             }
         });
+
+        mEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {//EditorInfo.IME_ACTION_SEARCH、EditorInfo.IME_ACTION_SEND等分别对应EditText的imeOptions属性
+                    if(v.getText().toString().length() != 0) {
+                        loadDataFirst();
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
+    private void loadDataFirst(){
+        pageNum = 1;
+        loadData();
     }
 
     @Override
@@ -123,11 +150,14 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
 
 
     @Override
-    public void showContent(long records,List<SceneBean> sceneBeanList) {
+    public void showContent(long records,long pageNum,long total,List<SearchBean> sceneBeanList) {
         stateMain();
-        if(pageNum == 1) {
+        this.total = total;
+        this.pageNum = pageNum;
+        if(pageNum <= 1) {
             mList.clear();
         }
+        mRefreshLayout.setLoadmoreFinished(pageNum>=total);
         mList.addAll(sceneBeanList);
         if(mList.isEmpty() && isAdded() && getUserVisibleHint()){
             showErrorMsg("查询结果为空");

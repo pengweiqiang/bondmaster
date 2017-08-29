@@ -7,7 +7,6 @@ import com.huake.bondmaster.base.contract.main.HomeContract;
 import com.huake.bondmaster.model.DataManager;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
-import com.huake.bondmaster.util.LogUtil;
 import com.huake.bondmaster.util.RxUtil;
 import com.huake.bondmaster.widget.CommonSubscriber;
 
@@ -58,7 +57,6 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
     public void getHomePageCache() {
         HomePageBean homePageBean = dataManager.getHomePageCache();
         if(homePageBean!=null){
-            LogUtil.i("from cache "+homePageBean.toString());
             mView.showContent(homePageBean);
         }
     }

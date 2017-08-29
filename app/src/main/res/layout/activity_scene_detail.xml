@@ -61,6 +61,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="6dp"
+                            android:gravity="center_vertical"
                             android:text="发债成功概率：70%"
                             android:textColor="@color/colorWhite"
                             android:textSize="15sp" />
@@ -71,6 +72,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_success_probability"
                             android:text="评测次数：5"
+                            android:gravity="center_vertical"
                             android:textColor="@color/colorWhite"
                             android:textSize="12sp" />
 

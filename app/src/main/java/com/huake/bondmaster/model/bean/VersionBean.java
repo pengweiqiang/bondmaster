@@ -1,7 +1,7 @@
 package com.huake.bondmaster.model.bean;
 
 /**
- * Created by codeest on 16/10/10.
+ * Created by pengweiqiang on 16/10/10.
  */
 
 public class VersionBean {

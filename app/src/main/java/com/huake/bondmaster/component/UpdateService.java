@@ -18,7 +18,7 @@ import com.huake.bondmaster.util.ToastUtil;
 import java.io.File;
 
 /**
- * Created by codeest on 16/10/10.
+ * Created by pengweiqiang on 16/10/10.
  */
 
 public class UpdateService extends Service {

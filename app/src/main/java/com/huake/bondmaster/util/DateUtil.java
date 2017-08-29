@@ -11,7 +11,7 @@ import java.util.Locale;
 import static java.lang.System.currentTimeMillis;
 
 /**
- * Created by codeest on 16/8/13.
+ * Created by pengweiqiang on 16/8/13.
  */
 
 public class DateUtil {

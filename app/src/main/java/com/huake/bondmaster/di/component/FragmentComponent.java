@@ -12,7 +12,7 @@ import com.huake.bondmaster.ui.main.fragment.SceneFragment;
 import dagger.Component;
 
 /**
- * Created by codeest on 16/8/7.
+ * Created by pengweiqiang on 16/8/7.
  */
 
 @FragmentScope

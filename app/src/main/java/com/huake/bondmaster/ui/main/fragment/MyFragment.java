@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
+import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.RootFragment;
 import com.huake.bondmaster.base.contract.main.MyContract;
 import com.huake.bondmaster.model.bean.UserBean;
@@ -15,6 +16,11 @@ import com.huake.bondmaster.ui.my.FeedBackActivity;
 import com.huake.bondmaster.ui.my.LoginActivity;
 import com.huake.bondmaster.widget.ToggleButton;
 import com.tencent.bugly.beta.Beta;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -71,6 +77,8 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
             mViewLogined.setVisibility(View.GONE);
             mViewUnLogin.setVisibility(View.VISIBLE);
         }else{
+            mTvUserName.setText(userBean.getUsername());
+            mTvUserMobile.setText(userBean.getMobile());
             mViewLogined.setVisibility(View.VISIBLE);
             mViewUnLogin.setVisibility(View.GONE);
         }
@@ -88,7 +96,7 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
                 FeedBackActivity.open(mContext);
                 break;
             case R.id.rl_share_app:
-
+                shareApp();
                 break;
             case R.id.rl_about_us:
                 AboutUsActivity.open(mContext);
@@ -104,4 +112,65 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
         }
     }
 
+    private void shareApp(){
+        UMWeb web = new UMWeb(Constants.SHARE_APP_URL);
+        web.setTitle("债券App");//标题
+        UMImage umImage = new UMImage(mContext,R.mipmap.ic_launcher);
+        web.setThumb(umImage);  //缩略图
+        web.setDescription("债券App");//描述
+        new ShareAction(mActivity)
+                .withMedia(web)
+//                .withText("债懂App")
+                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QQ,SHARE_MEDIA.SINA,SHARE_MEDIA.SMS)
+                .setCallback(shareListener)
+                .open();
+    }
+
+    private UMShareListener shareListener = new UMShareListener() {
+        /**
+         * @descrption 分享开始的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+            showLoading("分享中...");
+        }
+
+        /**
+         * @descrption 分享成功的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+//            showErrorMsg("分享成功");
+            cancelDialogLoading();
+        }
+
+        /**
+         * @descrption 分享失败的回调
+         * @param platform 平台类型
+         * @param t 错误原因
+         */
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            showErrorMsg("失败"+t.getMessage());
+            cancelDialogLoading();
+        }
+
+        /**
+         * @descrption 分享取消的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+//            showErrorMsg("取消分享");
+            cancelDialogLoading();
+        }
+    };
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        cancelDialogLoading();
+    }
 }

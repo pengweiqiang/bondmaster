@@ -11,7 +11,7 @@ import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
 
 /**
- * Created by codeest on 2016/8/2.
+ * Created by pengweiqiang on 2016/8/2.
  */
 public class ImageLoader {
 

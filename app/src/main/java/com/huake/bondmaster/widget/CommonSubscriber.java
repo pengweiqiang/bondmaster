@@ -8,11 +8,14 @@ import com.huake.bondmaster.model.http.exception.ApiException;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 import com.huake.bondmaster.util.LogUtil;
 
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+
 import io.reactivex.subscribers.ResourceSubscriber;
 import retrofit2.HttpException;
 
 /**
- * Created by codeest on 2017/2/23.
+ * Created by pengweiqiang on 2017/2/23.
  */
 
 public abstract class CommonSubscriber<T> extends ResourceSubscriber<BondMasterHttpResponse<T>> {
@@ -88,9 +91,13 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<BondMasterH
         } else if (e instanceof ApiException) {
             mView.showErrorMsg(e.toString());
         } else if (e instanceof HttpException) {
-            mView.showErrorMsg("数据加载失败ヽ(≧Д≦)ノ");
+            mView.showErrorMsg("数据加载失败");
+        }else if (e instanceof ConnectException) {
+            mView.showErrorMsg("请检查网络是否正常");
+        } else if (e instanceof SocketTimeoutException) {
+            mView.showErrorMsg("连接超时，检查网络是否正常");
         } else {
-            mView.showErrorMsg("未知错误ヽ(≧Д≦)ノ");
+            mView.showErrorMsg("未知错误");
             LogUtil.d(e.toString());
         }
         if (isShowErrorState) {

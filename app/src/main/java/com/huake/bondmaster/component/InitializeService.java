@@ -15,10 +15,12 @@ import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 
 
 /**
- * Created by codeest on 2017/2/12.
+ * Created by pengweiqiang on 2017/2/12.
  */
 
 public class InitializeService extends IntentService {
@@ -53,6 +55,10 @@ public class InitializeService extends IntentService {
 //        CrashHandler.init(new CrashHandler(getApplicationContext()));
         initBugly();
 
+        UMShareAPI.get(this);
+        //umeng share
+        initShareApp();
+
         //初始化内存泄漏检测
         LeakCanary.install(App.getInstance());
 
@@ -83,5 +89,11 @@ public class InitializeService extends IntentService {
         //初始化Bugly
 //        CrashReport.initCrashReport(context, Constants.BUGLY_ID, isDebug, strategy);
         Bugly.init(context, Constants.BUGLY_ID, LogUtil.isDebug,strategy);
+    }
+
+    private void initShareApp(){
+        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
+        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
     }
 }

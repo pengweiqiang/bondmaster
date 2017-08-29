@@ -8,7 +8,7 @@ import com.huake.bondmaster.util.SystemUtil;
 
 
 /**
- * Created by codeest on 16/12/24.
+ * Created by pengweiqiang on 16/12/24.
  */
 
 public class CommonItemDecoration extends RecyclerView.ItemDecoration{

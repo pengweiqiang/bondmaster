@@ -70,7 +70,7 @@ dependencies {
     compile rootProject.ext.dependencies["okhttp"]
     compile rootProject.ext.dependencies["okhttp-logging-interceptor"]
     compile rootProject.ext.dependencies["glide"]
-//    compile rootProject.ext.dependencies["glide-okhttp3-integration"]
+    //    compile rootProject.ext.dependencies["glide-okhttp3-integration"]
     compile rootProject.ext.dependencies["jsoup"]
     //di
     compile rootProject.ext.dependencies["dagger"]
@@ -88,8 +88,4 @@ dependencies {
     releaseCompile rootProject.ext.dependencies["blockcanary-no-op"]
     debugCompile rootProject.ext.dependencies["leakcanary-android"]
     releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
-    compile files('libs/tbs_sdk_thirdapp_v2.2.0.1096_36549_sharewithdownload_withoutGame_obfs_20160830_211645.jar')
-    compile files('libs/togglebuttonlib.jar')
-
-
 }

@@ -3,6 +3,10 @@ package com.huake.bondmaster.presenter.scene;
 import com.huake.bondmaster.base.RxPresenter;
 import com.huake.bondmaster.base.contract.scene.SceneDetailContract;
 import com.huake.bondmaster.model.DataManager;
+import com.huake.bondmaster.model.bean.EnterpriseInfo;
+import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
+import com.huake.bondmaster.util.RxUtil;
+import com.huake.bondmaster.widget.CommonSubscriber;
 
 import javax.inject.Inject;
 
@@ -22,7 +26,21 @@ public class SceneDetailPresenter extends RxPresenter<SceneDetailContract.View> 
     }
 
     @Override
-    public void getSceneInfo(long id) {
+    public void getEnterpriseInfo(String userId, String dataDate,String trialCustId) {
+        addSubscribe(dataManager.getEnterpriseInfo(userId, dataDate, trialCustId)
+                .compose(RxUtil.<BondMasterHttpResponse<EnterpriseInfo>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<EnterpriseInfo>(mView, true) {
+                    @Override
+                    public void dataHandler(EnterpriseInfo enterpriseInfo) {
+                        mView.stateMain();
+                        if(enterpriseInfo!=null) {
+                            mView.showContent(enterpriseInfo);
+                        }else{
+                            mView.showErrorMsg("获取结果为空");
+                        }
+                    }
 
+                })
+        );
     }
 }

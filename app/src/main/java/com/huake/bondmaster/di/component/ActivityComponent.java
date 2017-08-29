@@ -9,11 +9,12 @@ import com.huake.bondmaster.ui.main.activity.WelcomeActivity;
 import com.huake.bondmaster.ui.my.LoginActivity;
 import com.huake.bondmaster.ui.my.RegisterActivity;
 import com.huake.bondmaster.ui.scene.SceneDetailActivity;
+import com.huake.bondmaster.ui.web.WebActivity;
 
 import dagger.Component;
 
 /**
- * Created by codeest on 16/8/7.
+ * Created by pengweiqiang on 16/8/7.
  */
 
 @ActivityScope
@@ -31,5 +32,7 @@ public interface ActivityComponent {
     void inject(LoginActivity loginActivity);
 
     void inject(RegisterActivity registerActivity);
+
+    void inject(WebActivity webActivity);
 
 }

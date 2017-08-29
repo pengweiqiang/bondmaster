@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.Constants;
-import com.huake.bondmaster.base.RootActivity;
+import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.user.LoginContract;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.my.LoginPresenter;
@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * @Version
  */
 
-public class LoginActivity extends RootActivity<LoginPresenter> implements LoginContract.View {
+public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
 
     @BindView(R.id.action_bar)
     ActionBar mActionBar;
@@ -74,7 +74,15 @@ public class LoginActivity extends RootActivity<LoginPresenter> implements Login
                 RegisterActivity.open(mContext);
             }
         });
-        mEtUserName.setText(mobile);
+
+
+        if(!StringUtil.isBlank(mobile)) {
+            mEtUserName.setText(mobile);
+        }
+
+        if(!TextUtils.isEmpty(mEtUserName.getText().toString())){
+            mEditTextHaveInputCount ++;
+        }
 
         initListener();
     }
@@ -88,7 +96,7 @@ public class LoginActivity extends RootActivity<LoginPresenter> implements Login
 
                     mEditTextHaveInputCount++;
                     /** 判断个数是否到达要求*/
-                    if (mEditTextHaveInputCount == EDITTEXT_AMOUNT)
+                    if (mEditTextHaveInputCount >= EDITTEXT_AMOUNT)
                         mBtnLogin.setEnabled(true);
 
                 }

@@ -1,7 +1,7 @@
 package com.huake.bondmaster.model.event;
 
 /**
- * Created by codeest on 16/8/27.
+ * Created by pengweiqiang on 16/8/27.
  */
 
 public class NightModeEvent {

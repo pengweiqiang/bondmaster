@@ -11,9 +11,13 @@ import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.scene.SceneDetailContract;
-import com.huake.bondmaster.model.bean.SceneBean;
+import com.huake.bondmaster.model.bean.EnterpriseInfo;
+import com.huake.bondmaster.model.bean.SearchBean;
 import com.huake.bondmaster.presenter.scene.SceneDetailPresenter;
+import com.huake.bondmaster.util.BigDecimalUtil;
+import com.huake.bondmaster.util.DateUtil;
 import com.huake.bondmaster.util.TextViewUtils;
+import com.huake.bondmaster.util.ToastUtil;
 import com.huake.bondmaster.widget.ActionBar;
 
 import butterknife.BindView;
@@ -28,7 +32,7 @@ import butterknife.OnClick;
 
 public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> implements SceneDetailContract.View {
 
-    private SceneBean sceneBean;
+    private SearchBean sceneBean;
 
     @BindView(R.id.action_bar)
     ActionBar mActionBar;
@@ -55,34 +59,46 @@ public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> impl
 
     @Override
     protected void initEventAndData() {
-        sceneBean = (SceneBean) getIntent().getSerializableExtra(Constants.SCENE_BEAN);
-        initView();
+        sceneBean = (SearchBean) getIntent().getSerializableExtra(Constants.SCENE_BEAN);
+
+        if(sceneBean==null) {
+            ToastUtil.shortShow("数据为空，请返回上一页");
+            return;
+        }
+        initView(sceneBean.getsInfoCustname(),sceneBean.getbInfoCreditrating(),sceneBean.getSuccessProbability(),sceneBean.getDataDate(),"0");
+
+        showLoading("");
+        mPresenter.getEnterpriseInfo(sceneBean.getUserId(),sceneBean.getDataDate(),sceneBean.getTrialCustId());
     }
 
-    private void initView(){
-        if(sceneBean!=null){
-            mActionBar.setTitle(sceneBean.getsInfoCustname());
-            String bInfoCreditrating = sceneBean.getbInfoCreditrating();
-            String bInfoCreditratingFirst = "主体级别预估：";
-            String bInfoCreditratingStr = bInfoCreditratingFirst+bInfoCreditrating;
-            SpannableString bInfoCreditratingSpan = TextViewUtils.getSpannableStringSize(bInfoCreditratingStr,bInfoCreditratingFirst.length(),bInfoCreditratingFirst.length()+bInfoCreditrating.length(),18);
-            mTvBinfoCreditrating.setText(bInfoCreditratingSpan);
+    private void initView(String sInfoCustNameData,String bInfoCreditrating,String successProbalilityData,String dataData,String count){
+        mActionBar.setTitle(sInfoCustNameData);
+        String bInfoCreditratingFirst = "主体级别预估：";
+        String bInfoCreditratingStr = bInfoCreditratingFirst+bInfoCreditrating;
+        SpannableString bInfoCreditratingSpan = TextViewUtils.getSpannableStringSize(bInfoCreditratingStr,bInfoCreditratingFirst.length(),bInfoCreditratingFirst.length()+bInfoCreditrating.length(),18);
+        mTvBinfoCreditrating.setText(bInfoCreditratingSpan);
 
-            String successProbability = sceneBean.getSuccessProbability();
-            String successProbabilityFirst = "发债成功概率：";
-            String successProbabilityStr = successProbabilityFirst+successProbability;
-            SpannableString successProbabilitySpan = TextViewUtils.getSpannableStringSize(successProbabilityStr,successProbabilityFirst.length(),successProbabilityFirst.length()+successProbability.length(),18);
-            mTvSuccessProbability.setText(successProbabilitySpan);
+        String successProbability = BigDecimalUtil.formartDoubleStr(successProbalilityData,2)+"%";
+        String successProbabilityFirst = "发债成功概率：";
+        String successProbabilityStr = successProbabilityFirst+successProbability;
+        SpannableString successProbabilitySpan = TextViewUtils.getSpannableStringSize(successProbabilityStr,successProbabilityFirst.length(),successProbabilityFirst.length()+successProbability.length(),18);
+        mTvSuccessProbability.setText(successProbabilitySpan);
 
 
-//            String bInfoCreditrating = sceneBean.getbInfoCreditrating();
-//            String bInfoCreditratingFirst = "主体级别预估：";
-//            String bInfoCreditratingStr = bInfoCreditratingFirst+bInfoCreditrating;
-//            SpannableString bInfoCreditratingSpan = TextViewUtils.getSpannableStringSize(bInfoCreditratingStr,bInfoCreditratingFirst.length(),bInfoCreditratingFirst.length()+bInfoCreditrating.length(),17);
-//            mTvBinfoCreditrating.setText(bInfoCreditratingSpan);
+
+        String dataDate = DateUtil.getDateString(dataData,DateUtil.FORMAT_YYYY_MM_DD_HH_MM_SS,DateUtil.FORMAT_YYYY_MM_DD);
+        String dataDateFirst = "数据日期：";
+        String dataDateStr = dataDateFirst+dataDate;
+        SpannableString dataDateSpann = TextViewUtils.getSpannableStringSize(dataDateStr,dataDateFirst.length(),dataDateFirst.length()+dataDate.length(),15);
+        mTvEvaluateDate.setText(dataDateSpann);
 
 
-        }
+        String countFirst = "评测次数：";
+        String countStr = countFirst+count;
+        SpannableString countSpann = TextViewUtils.getSpannableStringSize(countStr,countFirst.length(),countFirst.length()+count.length(),15);
+        mTvEvaluateCount.setText(countSpann);
+
+
     }
 
     @OnClick({R.id.rl_bond_atlas,R.id.rl_financing_plan,R.id.rl_my_evaluate,R.id.rl_subscibe})
@@ -103,15 +119,15 @@ public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> impl
         }
     }
 
-    @Override
-    public void showContent(SceneBean sceneBean) {
-
-    }
-
-    public static void open(Context context, SceneBean sceneBean){
+    public static void open(Context context, SearchBean sceneBean){
         Intent intent = new Intent(context,SceneDetailActivity.class);
         intent.putExtra(com.huake.bondmaster.app.Constants.SCENE_BEAN,sceneBean);
         context.startActivity(intent);
     }
 
+
+    @Override
+    public void showContent(EnterpriseInfo enterpriseInfo) {
+        initView(enterpriseInfo.getSInfoCustname(),enterpriseInfo.getBInfoCreditrating(),enterpriseInfo.getSuccessProbability(),enterpriseInfo.getDataDate(),enterpriseInfo.getEvaluateCount()+"");
+    }
 }

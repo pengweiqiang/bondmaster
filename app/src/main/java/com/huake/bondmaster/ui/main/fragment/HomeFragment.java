@@ -5,16 +5,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.app.App;
+import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.RootFragment;
 import com.huake.bondmaster.base.contract.main.HomeContract;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.HotNewsBean;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.home.HomePresenter;
 import com.huake.bondmaster.ui.main.adapter.HomeAdapter;
+import com.huake.bondmaster.ui.my.LoginActivity;
+import com.huake.bondmaster.ui.web.WebActivity;
 import com.huake.bondmaster.widget.CommonItemDecoration;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
@@ -88,8 +92,16 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
             @Override
             public void onItemClick(int position, View view) {
                 if(position>-1 && position<hotNewsBeanList.size()) {
+                    UserBean userBean = App.getInstance().getUserBeanInstance();
+                    if(userBean==null){
+                        showErrorMsg("请先登录");
+                        LoginActivity.open(mContext,"");
+                        return;
+                    }
                     HotNewsBean hotNewsBean = hotNewsBeanList.get(position);
-                    showErrorMsg(hotNewsBean.getTitle());
+                    StringBuilder hotNewUrl = new StringBuilder(Constants.HOST_URL).append(Constants.ARTICLE_URL);
+                    hotNewUrl.append("?id=").append(hotNewsBean.getId()).append("&userId=").append(userBean.getId());
+                    WebActivity.open(mContext,hotNewsBean.getTitle(),hotNewUrl.toString());
                 }
             }
         });
@@ -101,12 +113,6 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
             }
         });
 
-        mSmartRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
-            @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
-
-            }
-        });
     }
 
     @Override

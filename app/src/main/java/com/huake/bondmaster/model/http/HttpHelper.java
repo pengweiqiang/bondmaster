@@ -1,6 +1,7 @@
 package com.huake.bondmaster.model.http;
 
 
+import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.PageBean;
 import com.huake.bondmaster.model.bean.SceneBean;
@@ -12,7 +13,7 @@ import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 import io.reactivex.Flowable;
 
 /**
- * @author: Est <codeest.dev@gmail.com>
+ * @author: pengweiqiang
  * @date: 2017/4/21
  * @description:
  */
@@ -25,6 +26,8 @@ public interface HttpHelper {
 
     //首页接口
     Flowable<BondMasterHttpResponse<HomePageBean>> homePage(String scale);
+
+    Flowable<BondMasterHttpResponse<PageBean<SearchBean>>> searchSceneList(long pageNum,long pageSize,String sInfoCustname);
 
 
     //搜索
@@ -46,6 +49,9 @@ public interface HttpHelper {
                                                                          long pageSize, String sInfoCustname,
                                                                          String secIndCode, String bAgencyGuarantornature,
                                                                          String bInfoCreditrating);
+
+    //企业信息
+    Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(String userId,String dataDate,String trialCustId);
 
     /**
      * 注册

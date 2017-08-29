@@ -10,27 +10,27 @@ import java.util.List;
  */
 
 public class PageBean<T> {
-    private int pageNumber;
-    private int pageSize;
+    private long pageNum;
+    private long pageSize;
     private long records;
-    private int total;
+    private long total;
 
     private List<T> rows;
 
 
-    public int getPageNumber() {
-        return pageNumber;
+    public long getPageNum() {
+        return pageNum;
     }
 
-    public void setPageNumber(int pageNumber) {
-        this.pageNumber = pageNumber;
+    public void setPageNum(long pageNum) {
+        this.pageNum = pageNum;
     }
 
-    public int getPageSize() {
+    public long getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(long pageSize) {
         this.pageSize = pageSize;
     }
 
@@ -42,11 +42,11 @@ public class PageBean<T> {
         this.records = records;
     }
 
-    public int getTotal() {
+    public long getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(long total) {
         this.total = total;
     }
 

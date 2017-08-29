@@ -4,7 +4,7 @@ import com.huake.bondmaster.BuildConfig;
 import com.orhanobut.logger.Logger;
 
 /**
- * Created by codeest on 2016/8/3.
+ * Created by pengweiqiang on 2016/8/3.
  */
 public class LogUtil {
 

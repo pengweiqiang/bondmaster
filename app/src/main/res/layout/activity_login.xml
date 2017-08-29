@@ -38,6 +38,7 @@
                 android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:text="@string/default_mobile"
                 android:paddingTop="15dp"
                 android:textSize="@dimen/my_common_text_size"
                 android:textColor="#666666"

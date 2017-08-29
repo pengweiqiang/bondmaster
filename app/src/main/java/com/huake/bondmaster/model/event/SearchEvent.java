@@ -1,7 +1,7 @@
 package com.huake.bondmaster.model.event;
 
 /**
- * Created by codeest on 16/8/31.
+ * Created by pengweiqiang on 16/8/31.
  */
 
 public class SearchEvent {

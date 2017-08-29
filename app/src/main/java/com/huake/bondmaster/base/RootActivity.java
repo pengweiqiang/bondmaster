@@ -11,7 +11,7 @@ import com.huake.bondmaster.widget.ProgressImageView;
 
 
 /**
- * @author: Est <codeest.dev@gmail.com>
+ * @author: Est <pengweiqiang.dev@gmail.com>
  * @date: 2017/4/21
  * @desciption:
  */

@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.net.Uri;
 
 /**
- * Created by codeest on 2016/8/22.
+ * Created by pengweiqiang on 2016/8/22.
  */
 public class ShareUtil {
 
-    private static final String EMAIL_ADDRESS = "codeest.dev@gmail.com";
+    private static final String EMAIL_ADDRESS = "pengweiqiang64@163.com";
 
     public static void shareText(Context context,String text,String title){
         Intent intent = new Intent(Intent.ACTION_SEND);

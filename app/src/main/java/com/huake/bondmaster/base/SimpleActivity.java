@@ -13,7 +13,7 @@ import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportActivity;
 
 /**
- * Created by codeest on 16/8/11.
+ * Created by pengweiqiang on 16/8/11.
  * 无MVP的activity基类
  */
 
@@ -25,6 +25,10 @@ public abstract class SimpleActivity extends SupportActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        if(Build.VERSION.SDK_INT>=23){
+//            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CALL_PHONE,Manifest.permission.READ_LOGS,Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.SET_DEBUG_APP,Manifest.permission.SYSTEM_ALERT_WINDOW,Manifest.permission.GET_ACCOUNTS,Manifest.permission.WRITE_APN_SETTINGS};
+//            ActivityCompat.requestPermissions(this,mPermissionList,123);
+//        }
         setContentView(getLayout());
         mUnBinder = ButterKnife.bind(this);
         mContext = this;

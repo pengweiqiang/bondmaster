@@ -1,6 +1,7 @@
 package com.huake.bondmaster.model.http.api;
 
 
+import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.EvaluationResultBean;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.PageBean;
@@ -38,6 +39,7 @@ public interface BondMasterApis {
     @GET("hk-soft-app/cmsApp/homePage")
     Flowable<BondMasterHttpResponse<HomePageBean>> homePage(@Query("scale") String scale);
 
+
     /**
      * 首页搜索
      * @param pageNum 当前页，默认1
@@ -45,8 +47,8 @@ public interface BondMasterApis {
      * @param sInfoCustname 筛选条件
      * @return
      */
-    @GET("hk-soft-app/scene/hkPartyTrialCustInfoList")
-    Flowable<BondMasterHttpResponse<PageBean<SearchBean>>> homeSearch(long pageNum,long pageSize,String sInfoCustname);
+    @GET("hk-soft-app/evaluate/hkPartyTrialCustInfoList")
+    Flowable<BondMasterHttpResponse<PageBean<SearchBean>>> homeSearch(@Query("pageNum") long pageNum,@Query("pageSize")long pageSize,@Query("sInfoCustname")String sInfoCustname);
 
     /**
      * 开始评测
@@ -106,6 +108,17 @@ public interface BondMasterApis {
                                                                          @Query("pageSize")long pageSize,@Query("sInfoCustname")String sInfoCustname,
                                                                          @Query("secIndCode")String secIndCode,@Query("bAgencyGuarantornature")String bAgencyGuarantornature,
                                                                          @Query("bInfoCreditrating")String bInfoCreditrating);
+
+
+    /**
+     * 获取企业信息
+     * @param userId
+     * @param dataDate
+     * @param trialCustId
+     * @return
+     */
+    @GET("hk-soft-app/scene/getEvaluateEnterpriseInfo")
+    Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(@Query("userId")String userId,@Query("dataDate")String dataDate,@Query("trialCustId")String trialCustId);
 
     /**
      * 评测结果

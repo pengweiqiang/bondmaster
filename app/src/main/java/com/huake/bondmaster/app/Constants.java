@@ -15,6 +15,8 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final int CODE_FAIL = 0;//失败
     public static final int CODE_QUIT = 2;//废弃
 
+    public static final String ARTICLE_URL= "/hk-soft-app/cmsApp/getArticle";//专栏内容
+
     //================= TYPE ====================
 
     public static final int TYPE_ZHIHU = 101;
@@ -53,11 +55,13 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     //================= PATH ====================
 
+    public static final String SHARE_APP_URL = "http://www.baidu.com";
+
     public static final String PATH_DATA = App.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
 
     public static final String PATH_CACHE = PATH_DATA + "/NetCache";
 
-    public static final String PATH_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "codeest" + File.separator + "GeekNews";
+    public static final String PATH_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "bondmaster" + File.separator + "Bondmaster";
 
     //================= PREFERENCE ====================
 
@@ -83,6 +87,10 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final String SCENE_BEAN = "sceneBean";
 
     public static final String MOBILE = "mobile";
+
+    public static final String WEB_URL = "webUrl";
+
+    public static final String TITLE = "title";
 
 
 

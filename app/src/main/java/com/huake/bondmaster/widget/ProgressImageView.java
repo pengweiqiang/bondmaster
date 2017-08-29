@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by codeest on 16/9/27.
+ * Created by pengweiqiang on 16/9/27.
  */
 
 public class ProgressImageView extends AppCompatImageView{

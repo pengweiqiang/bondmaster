@@ -9,7 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
-import com.huake.bondmaster.model.bean.SceneBean;
+import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.util.BigDecimalUtil;
 
 import java.util.List;
 
@@ -24,13 +25,13 @@ import butterknife.ButterKnife;
  */
 
 public class SceneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private List<SceneBean> mList;
+    private List<SearchBean> mList;
     private Context mContext;
     private LayoutInflater inflater;
 
     private OnItemClickListener onItemClickListener;
 
-    public SceneAdapter(Context mContext,List<SceneBean> mList){
+    public SceneAdapter(Context mContext,List<SearchBean> mList){
         this.mContext = mContext;
         this.mList = mList;
         inflater = LayoutInflater.from(mContext);
@@ -55,11 +56,11 @@ public class SceneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 //        ImageLoader.load(mContext,mList.get(position).getbAgencyGuarantornatureName().get(0),((ContentViewHolder)holder).image);
         ContentViewHolder contentViewHolder = (ContentViewHolder)holder;
-        SceneBean sceneBean = mList.get(position);
+        SearchBean sceneBean = mList.get(position);
 
         contentViewHolder.mTvBInfoCreditrating.setText(sceneBean.getbInfoCreditrating());
         contentViewHolder.mTvCompanyName.setText(sceneBean.getsInfoCustname());
-        contentViewHolder.mTvSuccessProbability.setText(sceneBean.getSuccessProbability());
+        contentViewHolder.mTvSuccessProbability.setText(BigDecimalUtil.formartDoubleStr(sceneBean.getSuccessProbability(),2)+"%");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

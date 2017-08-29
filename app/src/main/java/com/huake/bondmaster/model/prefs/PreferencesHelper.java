@@ -4,7 +4,7 @@ import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.UserBean;
 
 /**
- * @author: Est <codeest.dev@gmail.com>
+ * @author: pengweiqiang
  * @date: 2017/4/21
  * @description:
  */

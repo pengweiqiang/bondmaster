@@ -1,7 +1,7 @@
 package com.huake.bondmaster.util;
 
 /**
- * Created by codeest on 2016/7/25.
+ * Created by pengweiqiang on 2016/7/25.
  */
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

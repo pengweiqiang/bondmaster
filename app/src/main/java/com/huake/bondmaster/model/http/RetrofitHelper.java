@@ -1,6 +1,7 @@
 package com.huake.bondmaster.model.http;
 
 
+import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.PageBean;
 import com.huake.bondmaster.model.bean.SceneBean;
@@ -41,6 +42,11 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
+    public Flowable<BondMasterHttpResponse<PageBean<SearchBean>>> searchSceneList(long pageNum, long pageSize, String sInfoCustname) {
+        return mMyApiService.homeSearch(pageNum, pageSize, sInfoCustname);
+    }
+
+    @Override
     public Flowable<BondMasterHttpResponse<SearchBean>> search(String userId, String sInfoCustname, String sInfoCountry, String sInfoProvince, String sInfoComptype, String bAgencyGuarantornature, String secIndCode1, String secIndCode2, String totAssets, String totLiab, String netProfit, String operRev, String netCashFlowsOperAct, String sFaCurrent, String threeYearNetProfitMean, String ebitInterest, String lessIntExp, String totProfit, String roe, String yearInterest, String corporateBondYearInterest, String enterpriseBondYearInterest, String accRecv) {
         return mMyApiService.search(userId, sInfoCustname, sInfoCountry, sInfoProvince, sInfoComptype, bAgencyGuarantornature, secIndCode1, secIndCode2, totAssets, totLiab, netProfit, operRev, netCashFlowsOperAct, sFaCurrent, threeYearNetProfitMean, ebitInterest, lessIntExp, totProfit, roe, yearInterest, corporateBondYearInterest, enterpriseBondYearInterest, accRecv);
     }
@@ -48,6 +54,11 @@ public class RetrofitHelper implements HttpHelper {
     @Override
     public Flowable<BondMasterHttpResponse<PageBean<SceneBean>>> getScenceList(String userId, long pageNum, long pageSize, String sInfoCustname, String secIndCode, String bAgencyGuarantornature, String bInfoCreditrating) {
         return mMyApiService.getScenceList(userId, pageNum, pageSize, sInfoCustname, secIndCode, bAgencyGuarantornature, bInfoCreditrating);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(String userId, String dataDate, String trialCustId) {
+        return mMyApiService.getEnterpriseInfo(userId, dataDate, trialCustId);
     }
 
     @Override

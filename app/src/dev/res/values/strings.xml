@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">债懂测试</string>
 
+    <string name="default_mobile">13196384260</string>
+
 </resources>

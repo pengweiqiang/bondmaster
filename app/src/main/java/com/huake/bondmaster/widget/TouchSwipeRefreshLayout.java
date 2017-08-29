@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * Created by codeest on 2017/3/20.
+ * Created by pengweiqiang on 2017/3/20.
  *
  * deal with issue #68
  * a bug of RecyclerView

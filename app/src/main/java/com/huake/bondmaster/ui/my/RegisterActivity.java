@@ -13,7 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.huake.bondmaster.R;
-import com.huake.bondmaster.base.RootActivity;
+import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.user.RegisterContract;
 import com.huake.bondmaster.presenter.my.RegisterPresenter;
 import com.huake.bondmaster.util.CheckInputUtil;
@@ -34,7 +34,7 @@ import butterknife.OnClick;
  * @Version
  */
 
-public class RegisterActivity extends RootActivity<RegisterPresenter> implements RegisterContract.View {
+public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterContract.View {
 
     @BindView(R.id.action_bar)
     ActionBar mActionBar;
@@ -82,7 +82,7 @@ public class RegisterActivity extends RootActivity<RegisterPresenter> implements
     }
 
     private void setRegisterButtonStatus(){
-        if(mAppCompatCheckBox.isChecked() && mEditTextHaveInputCount == EDITTEXT_AMOUNT){
+        if(mAppCompatCheckBox.isChecked() && mEditTextHaveInputCount >= EDITTEXT_AMOUNT){
             mBtnRegister.setEnabled(true);
         }else{
             mBtnRegister.setEnabled(false);

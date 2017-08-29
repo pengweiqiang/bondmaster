@@ -20,7 +20,7 @@ import com.huake.bondmaster.R;
 
 
 /**
- * Created by codeest on 2016/8/4.
+ * Created by pengweiqiang on 2016/8/4.
  */
 public class CircleImageView extends ImageView {
 

@@ -133,7 +133,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         ViewGroup.LayoutParams bannerViewParams = itemBannerViewHolder.mzBannerView.getLayoutParams();
         bannerViewParams.width = width;
         bannerViewParams.height = bannerHeight;
-        itemBannerViewHolder.mzBannerView.setLayoutParams(bannerViewParams);
+//        itemBannerViewHolder.mzBannerView.setLayoutParams(bannerViewParams);
 
 
         // 设置数据

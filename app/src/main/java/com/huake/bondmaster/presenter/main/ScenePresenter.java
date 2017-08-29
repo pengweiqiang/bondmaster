@@ -4,13 +4,10 @@ import com.huake.bondmaster.base.RxPresenter;
 import com.huake.bondmaster.base.contract.main.SceneContract;
 import com.huake.bondmaster.model.DataManager;
 import com.huake.bondmaster.model.bean.PageBean;
-import com.huake.bondmaster.model.bean.SceneBean;
+import com.huake.bondmaster.model.bean.SearchBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 import com.huake.bondmaster.util.RxUtil;
 import com.huake.bondmaster.widget.CommonSubscriber;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -31,17 +28,15 @@ public class ScenePresenter extends RxPresenter<SceneContract.View> implements S
 
 
     @Override
-    public void getSceneList(String userId, long pageNum, String sInfoCustname, String secIndCode, String bAgencyGuarantornature, String bInfoCreditrating) {
-        addSubscribe(mDataManager.getScenceList(userId,pageNum, com.huake.bondmaster.app.Constants.PAGE_SIZE,sInfoCustname,secIndCode,bAgencyGuarantornature,bInfoCreditrating)
-                .compose(RxUtil.<BondMasterHttpResponse<PageBean<SceneBean>>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<PageBean<SceneBean>>(mView, true) {
+    public void getSceneList(long pageNum, String sInfoCustname) {
+
+        addSubscribe(mDataManager.searchSceneList(pageNum, com.huake.bondmaster.app.Constants.PAGE_SIZE,sInfoCustname)
+                .compose(RxUtil.<BondMasterHttpResponse<PageBean<SearchBean>>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<PageBean<SearchBean>>(mView, true) {
                     @Override
-                    public void dataHandler(PageBean<SceneBean> pageBean) {
+                    public void dataHandler(PageBean<SearchBean> pageBean) {
                         if(pageBean!=null) {
-                            if(pageBean.getRows().isEmpty()){
-                                getHomePageData(pageBean);
-                            }
-                            mView.showContent(pageBean.getRecords(),pageBean.getRows());
+                            mView.showContent(pageBean.getRecords(),pageBean.getPageNum(),pageBean.getTotal(),pageBean.getRows());
                         }else{
                             mView.showErrorMsg("获取结果为空");
                         }
@@ -49,23 +44,24 @@ public class ScenePresenter extends RxPresenter<SceneContract.View> implements S
 
                 })
         );
+
+//        addSubscribe(mDataManager.getScenceList(userId,pageNum, com.huake.bondmaster.app.Constants.PAGE_SIZE,sInfoCustname,secIndCode,bAgencyGuarantornature,bInfoCreditrating)
+//                .compose(RxUtil.<BondMasterHttpResponse<PageBean<SceneBean>>>rxSchedulerHelper())
+//                .subscribeWith(new CommonSubscriber<PageBean<SceneBean>>(mView, true) {
+//                    @Override
+//                    public void dataHandler(PageBean<SceneBean> pageBean) {
+//                        if(pageBean!=null) {
+//                            if(pageBean.getRows().isEmpty()){
+//                                getHomePageData(pageBean);
+//                            }
+//                            mView.showContent(pageBean.getRecords(),pageBean.getRows());
+//                        }else{
+//                            mView.showErrorMsg("获取结果为空");
+//                        }
+//                    }
+//
+//                })
+//        );
     }
 
-    private void getHomePageData(PageBean<SceneBean> homePageBean){
-        List<SceneBean> mList = new ArrayList<>();
-        SceneBean sceneBean = new SceneBean();
-        sceneBean.setbInfoCreditrating("123");
-        sceneBean.setsInfoCustname("北京水电费");
-        sceneBean.setSuccessProbability("312");
-
-        SceneBean sceneBean2 = new SceneBean();
-        sceneBean2.setbInfoCreditrating("A+~A++");
-        sceneBean2.setsInfoCustname("北京水水电费水电费水电费电费");
-        sceneBean2.setSuccessProbability("100%");
-
-        mList.add(sceneBean);
-        mList.add(sceneBean2);
-        homePageBean.setRecords(2);
-        homePageBean.setRows(mList);
-    }
 }

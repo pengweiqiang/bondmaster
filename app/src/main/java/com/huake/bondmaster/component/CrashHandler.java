@@ -13,7 +13,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 /**
- * Created by codeest on 2016/8/3.
+ * Created by pengweiqiang on 2016/8/3.
  */
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
 

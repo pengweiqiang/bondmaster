@@ -2,7 +2,7 @@ package com.huake.bondmaster.model.db;
 
 
 /**
- * @author: Est <codeest.dev@gmail.com>
+ * @author: pengweiqiang
  * @date: 2017/4/21
  * @description:
  */

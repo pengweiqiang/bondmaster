@@ -60,6 +60,7 @@ public class LoadingDialog extends ProgressDialog
         }
     }
 
+
     @Override
     public void show()
     {

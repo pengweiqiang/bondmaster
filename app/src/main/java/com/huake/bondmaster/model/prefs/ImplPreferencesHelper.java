@@ -13,7 +13,7 @@ import com.huake.bondmaster.model.bean.UserBean;
 import javax.inject.Inject;
 
 /**
- * @author: Est <codeest.dev@gmail.com>
+ * @author: pengweiqiang
  * @date: 2017/4/21
  * @description:
  */

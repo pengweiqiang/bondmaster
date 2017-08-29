@@ -9,7 +9,7 @@ import com.huake.bondmaster.util.SystemUtil;
 
 
 /**
- * Created by codeest on 16/11/30.
+ * Created by pengweiqiang on 16/11/30.
  */
 
 public class GoldItemDecoration extends RecyclerView.ItemDecoration{

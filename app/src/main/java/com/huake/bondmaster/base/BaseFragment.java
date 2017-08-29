@@ -4,22 +4,27 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.di.component.DaggerFragmentComponent;
 import com.huake.bondmaster.di.component.FragmentComponent;
 import com.huake.bondmaster.di.module.FragmentModule;
 import com.huake.bondmaster.util.ToastUtil;
+import com.huake.bondmaster.widget.LoadingDialog;
 
 import javax.inject.Inject;
 
 /**
- * Created by codeest on 2016/8/2.
+ * Created by pengweiqiang on 2016/8/2.
  * MVP Fragment基类
  */
 public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragment implements BaseView {
 
     @Inject
     protected T mPresenter;
+
+    LoadingDialog loadingDialog;
+
 
     protected FragmentComponent getFragmentComponent(){
         return DaggerFragmentComponent.builder()
@@ -73,12 +78,18 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
 
     @Override
     public void showLoading(String msg) {
-
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog(mContext, R.style.LoadingDialog);
+        }
+        loadingDialog.show();
+        loadingDialog.setTitle(msg);
     }
 
     @Override
     public void cancelDialogLoading() {
-
+        if(loadingDialog!=null && loadingDialog.isShowing()){
+            loadingDialog.cancel();
+        }
     }
 
     protected abstract void initInject();

@@ -23,6 +23,7 @@ import com.huake.bondmaster.ui.main.fragment.HomeFragment;
 import com.huake.bondmaster.ui.main.fragment.MarketFragment;
 import com.huake.bondmaster.ui.main.fragment.MyFragment;
 import com.huake.bondmaster.ui.main.fragment.SceneFragment;
+import com.umeng.socialize.UMShareAPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,6 +150,16 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        handler.removeCallbacksAndMessages(null);
+        if(handler!=null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+        UMShareAPI.get(this).release();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
 }

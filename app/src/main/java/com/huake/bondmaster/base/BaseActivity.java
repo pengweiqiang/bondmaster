@@ -13,7 +13,7 @@ import com.huake.bondmaster.widget.LoadingDialog;
 import javax.inject.Inject;
 
 /**
- * Created by codeest on 2016/8/2.
+ * Created by pengweiqiang on 2016/8/2.
  * MVP activity基类
  */
 public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivity implements BaseView {
@@ -69,6 +69,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
 
     @Override
     public void stateError() {
+        cancelDialogLoading();
     }
 
     @Override
@@ -77,6 +78,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
 
     @Override
     public void stateMain() {
+        cancelDialogLoading();
     }
 
     @Override
