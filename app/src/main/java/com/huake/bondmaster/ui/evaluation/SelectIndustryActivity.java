@@ -1,14 +1,19 @@
 package com.huake.bondmaster.ui.evaluation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.evaluation.IndustryContract;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.presenter.evaluation.IndustryPresenter;
+import com.huake.bondmaster.ui.evaluation.adapter.IndustryAdapter;
 import com.huake.bondmaster.widget.ActionBar;
 
 import java.util.List;
@@ -26,6 +31,15 @@ public class SelectIndustryActivity extends BaseActivity<IndustryPresenter> impl
 
     @BindView(R.id.action_bar)
     ActionBar mActionBar;
+    @BindView(R.id.left_listview)
+    ListView mLeftListView;
+    @BindView(R.id.lright_listview)
+    ListView mrightListView;
+
+    IndustryAdapter leftIndustryAdapter;
+    IndustryAdapter rightIndustryAdapter;
+
+    List<IndustryBean> industryBeanList;
 
     @Override
     protected void initInject() {
@@ -34,7 +48,7 @@ public class SelectIndustryActivity extends BaseActivity<IndustryPresenter> impl
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_evaluation_first;
+        return R.layout.activity_select_industry;
     }
 
     @Override
@@ -47,18 +61,52 @@ public class SelectIndustryActivity extends BaseActivity<IndustryPresenter> impl
             }
         });
 
+        leftIndustryAdapter = new IndustryAdapter(mContext,industryBeanList,0);
+        rightIndustryAdapter = new IndustryAdapter(mContext,null,-1);
+
+        mLeftListView.setAdapter(leftIndustryAdapter);
+        mrightListView.setAdapter(rightIndustryAdapter);
+
+        initListener();
+
         showLoading("");
         mPresenter.getIndustryList();
     }
 
+    private void initListener(){
+        mLeftListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                leftIndustryAdapter.setSelectedStatus(position);
+                rightIndustryAdapter.setData(industryBeanList.get(position),industryBeanList.get(position).getSubList());
+            }
+        });
+        mrightListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                IndustryBean parentIndustryBean = rightIndustryAdapter.getParentIndustryBean();
+                IndustryBean childIndustryBean = rightIndustryAdapter.getItem(position);
+                Intent data = new Intent();
+                data.putExtra(Constants.INDUSTRY_SELECTED,childIndustryBean);
+                data.putExtra(Constants.PARENT_INDUSTRY_SELECTED,parentIndustryBean);
+                setResult(RESULT_OK,data);
+                finish();
+            }
+        });
+    }
 
     @Override
     public void showContent(List<IndustryBean> industryBeanList) {
+        this.industryBeanList = industryBeanList;
+        leftIndustryAdapter.setData(null,industryBeanList);
 
+        if(industryBeanList!=null) {
+            rightIndustryAdapter.setData(industryBeanList.get(0),industryBeanList.get(0).getSubList());
+        }
     }
 
     public static void open(Context context){
         Intent intent = new Intent(context,SelectIndustryActivity.class);
-        context.startActivity(intent);
+        ((Activity)context).startActivityForResult(intent, Constants.SELECT_INDUSTRY_REQUEST_CODE);
     }
 }

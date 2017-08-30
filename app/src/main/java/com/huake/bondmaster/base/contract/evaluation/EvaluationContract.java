@@ -20,7 +20,7 @@ public interface EvaluationContract {
         void showContent();
 
 
-        void setAreaNatureType(AreaNatureTypeBean areaNatureType);
+        void setAreaNatureType(AreaNatureTypeBean areaNatureType,String title);
 
         void setCompanyNameList(List<PartyBean> partyBeanList);
     }
@@ -28,7 +28,7 @@ public interface EvaluationContract {
     interface Presenter extends BasePresenter<View>{
         void searchCompanyByName(String companyName);
 
-        void getAreaNatureTypeList();
+        void getAreaNatureTypeList(String title);
 
         void getCompanyNameList(String userId);
     }

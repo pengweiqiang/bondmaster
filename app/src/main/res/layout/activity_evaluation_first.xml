@@ -146,7 +146,7 @@
             android:layout_marginRight="8dp"
             >
             <TextView
-                android:id="@+id/tv_address"
+                android:id="@+id/tv_address_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#333333"
@@ -156,8 +156,8 @@
                 />
 
             <TextView
-                android:id="@+id/et_address"
-                android:layout_toRightOf="@+id/tv_address"
+                android:id="@+id/tv_address"
+                android:layout_toRightOf="@+id/tv_address_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="必填"
@@ -190,7 +190,7 @@
             android:layout_marginRight="8dp"
             >
             <TextView
-                android:id="@+id/tv_company_nature"
+                android:id="@+id/tv_company_nature_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#333333"
@@ -200,8 +200,8 @@
                 />
 
             <TextView
-                android:id="@+id/et_company_nature"
-                android:layout_toRightOf="@+id/tv_company_nature"
+                android:id="@+id/tv_company_nature"
+                android:layout_toRightOf="@+id/tv_company_nature_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="必填"
@@ -234,7 +234,7 @@
             android:layout_marginRight="8dp"
             >
             <TextView
-                android:id="@+id/tv_company_type"
+                android:id="@+id/tv_company_type_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#333333"
@@ -244,8 +244,8 @@
                 />
 
             <TextView
-                android:id="@+id/et_company_type"
-                android:layout_toRightOf="@+id/tv_company_type"
+                android:id="@+id/tv_company_type"
+                android:layout_toRightOf="@+id/tv_company_type_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="必填"

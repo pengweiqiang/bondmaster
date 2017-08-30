@@ -1,5 +1,6 @@
 package com.huake.bondmaster.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  * @Version
  */
 
-public class IndustryBean {
+public class IndustryBean implements Serializable{
 
     /**
      * subList : [{"id":"1201010000","title":"农业"},{"id":"1201020000","title":"林业"},{"id":"1201030000","title":"畜牧业"},{"id":"1201040000","title":"渔业"},{"id":"1201050000","title":"农、林、牧、渔服务业"}]

@@ -35,7 +35,7 @@ public class EvaluationPresenter extends RxPresenter<EvaluationContract.View> im
     }
 
     @Override
-    public void getAreaNatureTypeList() {
+    public void getAreaNatureTypeList(final String title) {
         addSubscribe(dataManager.getAreaNatureTypeList()
                 .compose(RxUtil.<BondMasterHttpResponse<AreaNatureTypeBean>>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<AreaNatureTypeBean>(mView, true) {
@@ -43,7 +43,7 @@ public class EvaluationPresenter extends RxPresenter<EvaluationContract.View> im
                     public void dataHandler(AreaNatureTypeBean areaNatureTypeBean) {
                         mView.stateMain();
                         if(areaNatureTypeBean!=null) {
-                            mView.setAreaNatureType(areaNatureTypeBean);
+                            mView.setAreaNatureType(areaNatureTypeBean,title);
                         }else{
                             mView.showErrorMsg("获取结果为空");
                         }

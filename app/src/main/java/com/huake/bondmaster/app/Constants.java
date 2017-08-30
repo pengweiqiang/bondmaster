@@ -10,11 +10,14 @@ import java.io.File;
 public class Constants extends com.huake.bondmaster.Constants{
 
 
-    //================= RESULT ====================
+    //HTTP
     public static final int CODE_SUCCESS = 1;
     public static final int CODE_FAIL = 0;//失败
     public static final int CODE_QUIT = 2;//废弃
     public static final int CODE_INVALID_TOKEN = 4;//未登录或者token失效
+
+    //================= RESULT ====================
+    public static final int SELECT_INDUSTRY_REQUEST_CODE = 0x0001;
 
     public static final String ARTICLE_URL= "/hk-soft-app/cmsApp/getArticle";//专栏内容
 
@@ -94,6 +97,10 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final String TITLE = "title";
 
     public static final String SEARCH_KEY = "searchKey";
+
+    public static final String INDUSTRY_SELECTED = "selectedIndustry";
+
+    public static final String PARENT_INDUSTRY_SELECTED = "parentSelectedIndustry";
 
 
 
