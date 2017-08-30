@@ -1,9 +1,12 @@
 package com.huake.bondmaster.model;
 
 
+import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.HomePageBean;
+import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.model.bean.PageBean;
+import com.huake.bondmaster.model.bean.PartyBean;
 import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
 import com.huake.bondmaster.model.bean.UserBean;
@@ -12,6 +15,8 @@ import com.huake.bondmaster.model.db.DBHelper;
 import com.huake.bondmaster.model.http.HttpHelper;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 import com.huake.bondmaster.model.prefs.PreferencesHelper;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 
@@ -141,6 +146,21 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     @Override
     public Flowable<BondMasterHttpResponse<SearchBean>> search(String userId, String sInfoCustname, String sInfoCountry, String sInfoProvince, String sInfoComptype, String bAgencyGuarantornature, String secIndCode1, String secIndCode2, String totAssets, String totLiab, String netProfit, String operRev, String netCashFlowsOperAct, String sFaCurrent, String threeYearNetProfitMean, String ebitInterest, String lessIntExp, String totProfit, String roe, String yearInterest, String corporateBondYearInterest, String enterpriseBondYearInterest, String accRecv) {
         return mHttpHelper.search(userId, sInfoCustname, sInfoCountry, sInfoProvince, sInfoComptype, bAgencyGuarantornature, secIndCode1, secIndCode2, totAssets, totLiab, netProfit, operRev, netCashFlowsOperAct, sFaCurrent, threeYearNetProfitMean, ebitInterest, lessIntExp, totProfit, roe, yearInterest, corporateBondYearInterest, enterpriseBondYearInterest, accRecv);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<List<IndustryBean>>> getIndustry() {
+        return mHttpHelper.getIndustry();
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<AreaNatureTypeBean>> getAreaNatureTypeList() {
+        return mHttpHelper.getAreaNatureTypeList();
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<List<PartyBean>>> getCompanyNameListByUserId(String userId) {
+        return mHttpHelper.getCompanyNameListByUserId(userId);
     }
 
     @Override

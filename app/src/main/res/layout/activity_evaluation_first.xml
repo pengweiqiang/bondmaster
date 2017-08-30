@@ -102,7 +102,7 @@
             android:layout_marginRight="8dp"
             >
             <TextView
-                android:id="@+id/tv_industry"
+                android:id="@+id/tv_industry_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#333333"
@@ -111,9 +111,9 @@
                 android:textSize="@dimen/my_user_name_size"
                 />
 
-            <EditText
-                android:id="@+id/et_industry"
-                android:layout_toRightOf="@+id/tv_industry"
+            <TextView
+                android:id="@+id/tv_industry"
+                android:layout_toRightOf="@+id/tv_industry_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="必填"
@@ -155,7 +155,7 @@
                 android:textSize="@dimen/my_user_name_size"
                 />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_address"
                 android:layout_toRightOf="@+id/tv_address"
                 android:layout_width="match_parent"
@@ -199,7 +199,7 @@
                 android:textSize="@dimen/my_user_name_size"
                 />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_company_nature"
                 android:layout_toRightOf="@+id/tv_company_nature"
                 android:layout_width="match_parent"
@@ -243,7 +243,7 @@
                 android:textSize="@dimen/my_user_name_size"
                 />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_company_type"
                 android:layout_toRightOf="@+id/tv_company_type"
                 android:layout_width="match_parent"

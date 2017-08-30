@@ -1,14 +1,19 @@
 package com.huake.bondmaster.model.http;
 
 
+import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.HomePageBean;
+import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.model.bean.PageBean;
+import com.huake.bondmaster.model.bean.PartyBean;
 import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 
@@ -43,6 +48,21 @@ public interface HttpHelper {
                                                          String roe, String yearInterest,
                                                          String corporateBondYearInterest,String enterpriseBondYearInterest,
                                                          String accRecv);
+
+
+    //所属行业
+    Flowable<BondMasterHttpResponse<List<IndustryBean>>> getIndustry();
+
+
+    /**
+     * 所在地区&企业性质&企业类型接口
+     * @return
+     */
+    Flowable<BondMasterHttpResponse<AreaNatureTypeBean>> getAreaNatureTypeList();
+
+
+    Flowable<BondMasterHttpResponse<List<PartyBean>>>  getCompanyNameListByUserId(String userId);
+
 
     //场景列表
     Flowable<BondMasterHttpResponse<PageBean<SceneBean>>>  getScenceList(String userId, long pageNum,

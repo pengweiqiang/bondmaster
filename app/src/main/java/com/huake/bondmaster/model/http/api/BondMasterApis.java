@@ -1,15 +1,20 @@
 package com.huake.bondmaster.model.http.api;
 
 
+import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.EvaluationResultBean;
 import com.huake.bondmaster.model.bean.HomePageBean;
+import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.model.bean.PageBean;
+import com.huake.bondmaster.model.bean.PartyBean;
 import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 import retrofit2.http.Field;
@@ -90,6 +95,29 @@ public interface BondMasterApis {
                                                          @Query("roe")String roe, @Query("yearInterest")String yearInterest,
                                                          @Query("corporateBondYearInterest")String corporateBondYearInterest, @Query("enterpriseBondYearInterest")String enterpriseBondYearInterest,
                                                          @Query("accRecv")String accRecv);
+
+    /**
+     * 获取企业所属行业
+     * @return
+     */
+    @GET("hk-soft-app/evaluate/listHkCodeSacIndustry")
+    Flowable<BondMasterHttpResponse<List<IndustryBean>>> getIndustry();
+
+
+    /**
+     * 所在地区&企业性质&企业类型接口
+     * @return
+     */
+    @GET("hk-soft-app/evaluate/listAreaNatureType")
+    Flowable<BondMasterHttpResponse<AreaNatureTypeBean>> getAreaNatureTypeList();
+
+    /**
+     * 1.1.	评测页面-指标录入-用户测评企业
+     * @param userId
+     * @return
+     */
+    @GET("hk-soft-app/evaluate/listHkPartyTrialCustInfoByUserId")
+    Flowable<BondMasterHttpResponse<List<PartyBean>>>  getCompanyNameListByUserId(@Query("userId") String userId);
 
 
     /**
