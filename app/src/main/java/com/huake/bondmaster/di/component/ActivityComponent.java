@@ -5,6 +5,8 @@ import android.app.Activity;
 import com.huake.bondmaster.di.module.ActivityModule;
 import com.huake.bondmaster.di.scope.ActivityScope;
 import com.huake.bondmaster.ui.evaluation.EvaluationActivity;
+import com.huake.bondmaster.ui.evaluation.EvaluationDebtInfoActivity;
+import com.huake.bondmaster.ui.evaluation.EvaluationInputFinanceInfoActivity;
 import com.huake.bondmaster.ui.evaluation.SelectIndustryActivity;
 import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.ui.main.activity.SearchTrialCustInfoActivity;
@@ -43,5 +45,9 @@ public interface ActivityComponent {
     void inject(EvaluationActivity evaluationActivity);
 
     void inject(SelectIndustryActivity selectIndustryActivity);
+
+    void inject(EvaluationInputFinanceInfoActivity evaluationInputFinanceInfoActivity);
+
+    void inject(EvaluationDebtInfoActivity evaluationDebtInfoActivity);
 
 }

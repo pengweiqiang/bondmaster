@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical">
+
+    <com.huake.bondmaster.widget.ActionBar
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_height" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="8dp">
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="16dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/tab_home_text_selectd_color" />
+
+            <TextView
+                android:id="@+id/tv_base_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="债务信息"
+                android:textColor="#999999"
+                android:textSize="@dimen/my_common_text_size" />
+
+            <TextView
+                android:id="@+id/tv_unit_money"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="金额单位：万元"
+                android:textColor="#999999"
+                android:textSize="@dimen/my_common_text_size" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackground" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_company_profit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="公司债一年利息:"
+                android:textColor="#333333"
+                android:textSize="@dimen/my_user_name_size" />
+
+            <EditText
+                android:id="@+id/et_company_profit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/tv_company_profit_title"
+                android:background="@null"
+                android:drawablePadding="4dp"
+                android:drawableRight="@mipmap/ic_my_function_right_in"
+                android:gravity="right"
+                android:hint="必填"
+                android:imeOptions="actionNext"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:textColorHint="#dddddd"
+                android:textSize="@dimen/my_common_text_size" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="23dp"
+            android:background="@color/colorBackground" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_enterprise_profit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="企业债一年利息:"
+                android:textColor="#333333"
+                android:textSize="@dimen/my_user_name_size" />
+
+            <EditText
+                android:id="@+id/et_enterprise_profit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/tv_enterprise_profit_title"
+                android:background="@null"
+                android:drawablePadding="4dp"
+                android:drawableRight="@mipmap/ic_my_function_right_in"
+                android:gravity="right"
+                android:hint="必填"
+                android:imeOptions="actionNext"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:textColorHint="#dddddd"
+                android:textSize="@dimen/my_common_text_size" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/selector_btn"
+        android:text="开始评测"
+        android:textColor="@color/colorWhite" />
+
+
+</LinearLayout>

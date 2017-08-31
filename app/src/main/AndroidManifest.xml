@@ -65,6 +65,9 @@
 
         <activity android:name=".ui.evaluation.SelectIndustryActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
+        <activity android:name=".ui.evaluation.EvaluationInputFinanceInfoActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+
+        <activity android:name=".ui.evaluation.EvaluationDebtInfoActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
 
         <service android:name=".component.InitializeService" />
 

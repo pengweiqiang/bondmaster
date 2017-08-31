@@ -3,7 +3,10 @@ package com.huake.bondmaster.ui.evaluation;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.common.design.MaterialDialog;
@@ -44,6 +47,10 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
     TextView mTvCompanyNature;
     @BindView(R.id.tv_company_type)
     TextView mTvComanyType;
+    @BindView(R.id.et_company_name)
+    EditText mEtCompanyName;
+    @BindView(R.id.btn_next)
+    Button mBtnNext;
 
     AreaNatureTypeBean areaNatureTypeBean;
 
@@ -74,7 +81,7 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
         getAreaNatureType("");
     }
 
-    @OnClick({R.id.tv_industry,R.id.tv_address,R.id.tv_company_nature,R.id.tv_company_type})
+    @OnClick({R.id.tv_industry,R.id.tv_address,R.id.tv_company_nature,R.id.tv_company_type,R.id.btn_next})
     public void onOptionItemClick(View view){
         switch (view.getId()){
             case R.id.tv_industry:
@@ -89,8 +96,22 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
             case R.id.tv_company_type:
                 getAreaNatureType(COMPANY_TYPE);
                 break;
+            case R.id.btn_next:
+                String companyName = mEtCompanyName.getText().toString().trim();
+                if(!StringUtil.isBlank(companyName)){
+                    showErrorMsg("请输入公司名称");
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(Constants.SELECT_COMPANY_NATURE,selectedNature);
+                bundle.putSerializable(Constants.SELECT_ADDRESS,selectedAddress);
+                bundle.putSerializable(Constants.SELECT_COMPANY_TYPE,selectedCompType);
+                bundle.putSerializable(Constants.SELECT_COMPANY_NAME,companyName);
+                mPresenter.startNext(mContext,bundle);
+                break;
         }
     }
+
 
     private void getAreaNatureType(String title){
         if(areaNatureTypeBean==null){

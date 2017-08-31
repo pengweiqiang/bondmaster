@@ -71,6 +71,8 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
         settings.setLoadWithOverviewMode(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setSupportZoom(true);
+        mWebView.addJavascriptInterface(new NativeJsInternation(mContext), "native");
+
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

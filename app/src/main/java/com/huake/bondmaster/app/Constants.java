@@ -102,6 +102,11 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final String PARENT_INDUSTRY_SELECTED = "parentSelectedIndustry";
 
+    public static final String SELECT_ADDRESS = "selectedAddress";
+    public static final String SELECT_COMPANY_NATURE = "selectedCompanyNature";
+    public static final String SELECT_COMPANY_TYPE = "selectedCompanyType";
+    public static final String SELECT_COMPANY_NAME = "companyName";
+
 
 
 }

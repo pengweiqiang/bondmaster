@@ -88,6 +88,10 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
 
     @OnClick(R.id.btn_start_evaluate)
     public void onClick(View view){
+        if(checkIsLogin()==null){
+            startLoginActivity();
+            return;
+        }
         EvaluationActivity.open(mContext);
     }
 

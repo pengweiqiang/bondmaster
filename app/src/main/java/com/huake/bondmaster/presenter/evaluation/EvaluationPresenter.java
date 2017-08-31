@@ -1,11 +1,15 @@
 package com.huake.bondmaster.presenter.evaluation;
 
+import android.content.Context;
+import android.os.Bundle;
+
 import com.huake.bondmaster.base.RxPresenter;
 import com.huake.bondmaster.base.contract.evaluation.EvaluationContract;
 import com.huake.bondmaster.model.DataManager;
 import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
 import com.huake.bondmaster.model.bean.PartyBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
+import com.huake.bondmaster.ui.evaluation.EvaluationInputFinanceInfoActivity;
 import com.huake.bondmaster.util.RxUtil;
 import com.huake.bondmaster.widget.CommonSubscriber;
 
@@ -70,5 +74,11 @@ public class EvaluationPresenter extends RxPresenter<EvaluationContract.View> im
 
                 })
         );
+    }
+
+
+    @Override
+    public void startNext(Context context, Bundle bundle) {
+        EvaluationInputFinanceInfoActivity.open(context,bundle);
     }
 }

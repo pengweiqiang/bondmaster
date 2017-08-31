@@ -1,5 +1,6 @@
 package com.huake.bondmaster.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -54,7 +55,7 @@ public class AreaNatureTypeBean {
         this.compTypes = compTypes;
     }
 
-    public static class ChinaAreasBean {
+    public static class ChinaAreasBean implements Serializable{
         private String id;
         private String title;
 
@@ -75,7 +76,7 @@ public class AreaNatureTypeBean {
         }
     }
 
-    public static class CompNaturesBean {
+    public static class CompNaturesBean implements Serializable{
         private String id;
         private String title;
 
@@ -96,7 +97,7 @@ public class AreaNatureTypeBean {
         }
     }
 
-    public static class CompTypesBean {
+    public static class CompTypesBean implements Serializable{
         private String id;
         private String title;
 
