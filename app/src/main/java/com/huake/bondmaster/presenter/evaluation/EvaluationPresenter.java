@@ -14,6 +14,8 @@ import com.huake.bondmaster.util.LogUtil;
 import com.huake.bondmaster.util.RxUtil;
 import com.huake.bondmaster.widget.CommonSubscriber;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -45,7 +47,8 @@ public class EvaluationPresenter extends RxPresenter<EvaluationContract.View> im
                         if(partyBean!=null && partyBean.getPartyList()!=null && !partyBean.getPartyList().isEmpty()) {
                             mView.setCompanyNameList(partyBean.getPartyList());
                         }else{
-                            mView.showErrorMsg("获取结果为空");
+                            List<PartyBean.PartyListBean> partyListBeanList = new ArrayList<PartyBean.PartyListBean>();
+                            mView.setCompanyNameList(partyListBeanList);
                         }
                     }
 
@@ -63,6 +66,9 @@ public class EvaluationPresenter extends RxPresenter<EvaluationContract.View> im
                         mView.stateMain();
                         if(partyBean!=null && partyBean.getPartyList()!=null && !partyBean.getPartyList().isEmpty()) {
                             mView.setCompanyNameList(partyBean.getPartyList());
+                        }else{
+                            List<PartyBean.PartyListBean> partyListBeanList = new ArrayList<PartyBean.PartyListBean>();
+                            mView.setCompanyNameList(partyListBeanList);
                         }
                     }
 

@@ -2,6 +2,8 @@ package com.huake.bondmaster.model.http;
 
 
 import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
+import com.huake.bondmaster.model.bean.ArticleBean;
+import com.huake.bondmaster.model.bean.CommentBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
 import com.huake.bondmaster.model.bean.HomePageBean;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
+import retrofit2.http.GET;
 
 /**
  * @author: pengweiqiang
@@ -81,6 +84,25 @@ public interface HttpHelper {
     //企业信息
     Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(String userId,String dataDate,String trialCustId);
 
+
+    //时讯专栏列表
+    Flowable<BondMasterHttpResponse<PageBean<ArticleBean>>> getArticleList(String userId,long pageNum, long pageSize, String categoryId);
+
+
+
+    //获取评论列表
+    Flowable<BondMasterHttpResponse<CommentBean>>  getCmsCommentList(String id,String userId,long pageNum,long pageSize);
+
+
+    //保存评论
+    Flowable<BondMasterHttpResponse<CommentBean>>  insertCmsComment(Map<String,String> params);
+
+
+
+    Flowable<BondMasterHttpResponse<String>> getRegisterRsa();
+
+
+    Flowable<BondMasterHttpResponse<String>> getLoginRsa();
     /**
      * 注册
      * @param mobile

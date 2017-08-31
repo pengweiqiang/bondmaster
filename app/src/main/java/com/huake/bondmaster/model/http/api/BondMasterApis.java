@@ -2,6 +2,8 @@ package com.huake.bondmaster.model.http.api;
 
 
 import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
+import com.huake.bondmaster.model.bean.ArticleBean;
+import com.huake.bondmaster.model.bean.CommentBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.EvaluationResultBean;
 import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
@@ -170,6 +172,33 @@ public interface BondMasterApis {
     @GET("hk-soft-app/evaluate/viewIssuanceEvaluationResult")
     Flowable<BondMasterHttpResponse<EvaluationResultBean>> getViewIssuanceEvaluationResult(@Query("userId")String userId, @Query("trialCustId")String trialCustId, @Query("dataDate")String dataDate);
 
+
+
+
+
+    //时讯专栏
+    @GET("hk-soft-app/cmsApp/queryArticleList")
+    Flowable<BondMasterHttpResponse<PageBean<ArticleBean>>> getArticleList(@Query("userId")String userId, @Query("pageNum")long pageNum, @Query("pageSize")long pageSize, @Query("categoryId")String categoryId);
+
+
+    //获取评论列表
+    @GET("hk-soft-app/cmsApp/queryCmsCommentList")
+    Flowable<BondMasterHttpResponse<CommentBean>>  getCmsCommentList(@Query("id")String id, @Query("uerId")String userId, @Query("pageNum")long pageNum, @Query("pageSize")long pageSize);
+
+
+    //保存评论
+    @FormUrlEncoded
+    @GET("hk-soft-app/cmsApp/insertCmsComment")
+    Flowable<BondMasterHttpResponse<CommentBean>>  insertCmsComment(@FieldMap Map<String,String> params);
+
+
+
+    @GET("hk-soft-app/user/register/registerRsa")
+    Flowable<BondMasterHttpResponse<String>> getRegisterRsa();
+
+
+    @GET("hk-soft-app/loginRsa")
+    Flowable<BondMasterHttpResponse<String>> getLoginRsa();
 
     /**
      * 注册用户

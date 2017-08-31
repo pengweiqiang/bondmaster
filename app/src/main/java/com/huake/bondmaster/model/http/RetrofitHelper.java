@@ -2,6 +2,8 @@ package com.huake.bondmaster.model.http;
 
 
 import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
+import com.huake.bondmaster.model.bean.ArticleBean;
+import com.huake.bondmaster.model.bean.CommentBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
 import com.huake.bondmaster.model.bean.HomePageBean;
@@ -91,6 +93,31 @@ public class RetrofitHelper implements HttpHelper {
     @Override
     public Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(String userId, String dataDate, String trialCustId) {
         return mMyApiService.getEnterpriseInfo(userId, dataDate, trialCustId);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<PageBean<ArticleBean>>> getArticleList(String userId, long pageNum, long pageSize, String categoryId) {
+        return mMyApiService.getArticleList(userId, pageNum, pageSize, categoryId);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<CommentBean>> getCmsCommentList(String id, String userId, long pageNum, long pageSize) {
+        return mMyApiService.getCmsCommentList(id, userId, pageNum, pageSize);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<CommentBean>> insertCmsComment(Map<String, String> params) {
+        return mMyApiService.insertCmsComment(params);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<String>> getRegisterRsa() {
+        return mMyApiService.getRegisterRsa();
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<String>> getLoginRsa() {
+        return mMyApiService.getLoginRsa();
     }
 
     @Override

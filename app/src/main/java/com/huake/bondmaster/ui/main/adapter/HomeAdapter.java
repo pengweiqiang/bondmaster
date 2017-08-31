@@ -15,6 +15,7 @@ import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.component.ImageLoader;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.HotNewsBean;
+import com.huake.bondmaster.ui.main.activity.ArticleListActivity;
 import com.huake.bondmaster.ui.main.activity.SearchTrialCustInfoActivity;
 import com.huake.bondmaster.util.DateUtil;
 import com.zhouwei.mzbanner.MZBannerView;
@@ -88,11 +89,15 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if(holder instanceof ContentViewHolder){
             final int realPosition = position -1;
-            String imageUrl = Constants.HOST_URL+mList.get(realPosition).getImage();
-            ImageLoader.loadByCache(mContext,imageUrl,((ContentViewHolder)holder).mIvCompanyLogo);
+
 
             ContentViewHolder contentViewHolder = (ContentViewHolder)holder;
             HotNewsBean hotNewsBean = mList.get(realPosition);
+
+            String imageUrl = Constants.HOST_URL+hotNewsBean.getImage();
+
+            ImageLoader.loadByAllCache(mContext,imageUrl,contentViewHolder.mIvCompanyLogo,R.mipmap.ic_default_item_logo);
+
 
             contentViewHolder.mTvMessageInfo.setText(hotNewsBean.getTitle());
             contentViewHolder.mTvMessageDate.setText(DateUtil.getDateString(hotNewsBean.getCreateDate(),DateUtil.FORMAT_YYYY_MM_DD_HH_MM_SS,DateUtil.FORMAT_YYYY_MM_DD));
@@ -112,6 +117,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     SearchTrialCustInfoActivity.open(mContext,"");
                 }
             });
+
+            ((HeaderViewHolder) holder).mIvMoreArticle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ArticleListActivity.open(mContext);
+                }
+            });
+
             showBannerView((HeaderViewHolder) holder,position);
         }
 
@@ -206,6 +219,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public class HeaderViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.tv_search)
         EditText mEtSearchView;
+        @BindView(R.id.iv_more_article)
+        ImageView mIvMoreArticle;
 //        @BindView(R.id.banner)
 //        View mBannerView;
 //        @BindView(R.id.viewpager)

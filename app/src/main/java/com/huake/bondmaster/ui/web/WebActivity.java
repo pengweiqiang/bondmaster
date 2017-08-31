@@ -136,11 +136,11 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
     public void onBackPressedSupport() {
         if (mWebView.canGoBack()) {
             mWebView.goBack();
-            if(mWebView.canGoBack()){
-                mActionBar.setVisibilyCloseButton(View.VISIBLE);
-            }else{
-                mActionBar.setVisibilyCloseButton(View.GONE);
-            }
+//            if(mWebView.canGoBack()){
+//                mActionBar.setVisibilyCloseButton(View.VISIBLE);
+//            }else{
+//                mActionBar.setVisibilyCloseButton(View.GONE);
+//            }
         }else{
             super.onBackPressedSupport();
         }

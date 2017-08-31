@@ -1,5 +1,7 @@
 package com.huake.bondmaster.model.bean;
 
+import android.text.TextUtils;
+
 import java.util.List;
 
 /**
@@ -103,6 +105,9 @@ public class PartyBean {
         private Object negativeAuditTwoYears;
         private Object ifStandardSteelEnterprise;
         private Object ratingFlag;
+
+
+        private String partyName;
 
         public int getId() {
             return id;
@@ -416,10 +421,17 @@ public class PartyBean {
             this.ratingFlag = ratingFlag;
         }
 
+        public String getPartyName() {
+            return partyName;
+        }
+
+        public void setPartyName(String partyName) {
+            this.partyName = partyName;
+        }
 
         @Override
         public String toString() {
-            return sInfoCustname;
+            return TextUtils.isEmpty(getSInfoCustname())?getPartyName():getSInfoCustname();
         }
     }
 }

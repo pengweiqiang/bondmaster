@@ -7,6 +7,7 @@ import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -91,20 +92,20 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
         partyBeanArrayAdapter = new ArrayAdapter<PartyBean.PartyListBean>(mContext,android.R.layout.simple_list_item_1,partyBeanList);
         mEtCompanyName.setAdapter(partyBeanArrayAdapter);
 
+
         mPresenter.getCompanyNameListByUserId(App.getInstance().getUserBeanInstance().getId());
         getAreaNatureType("");
 
-
-
     }
-
+    private PartyBean.PartyListBean partyListBean;
     private void initListener(){
-        mEtCompanyName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        mEtCompanyName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position<partyBeanList.size()-1) {
+                    partyListBean = partyBeanList.get(position);
                 }
+
             }
         });
         mEtCompanyName.addTextChangedListener(new TextWatcher() {
@@ -142,8 +143,24 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
                 break;
             case R.id.btn_next:
                 String companyName = mEtCompanyName.getText().toString().trim();
-                if(StringUtil.isBlank(companyName)){
-                    showErrorMsg("请输入公司名称");
+                if(partyListBean==null){
+                    showErrorMsg("请选择公司名称");
+                    return;
+                }
+                if(childIndustryBean==null){
+                    showErrorMsg("请选择行业");
+                    return;
+                }
+                if(selectedAddress == null){
+                    showErrorMsg("请选择地区");
+                    return;
+                }
+                if(selectedNature == null){
+                    showErrorMsg("请选择企业性质");
+                    return;
+                }
+                if(selectedCompType == null){
+                    showErrorMsg("请选择企业类型");
                     return;
                 }
                 Map<String,String> params = new HashMap<>();
@@ -243,8 +260,8 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
     @Override
     public void setCompanyNameList(List<PartyBean.PartyListBean> partyBeanList) {
         this.partyBeanList = partyBeanList;
-        partyBeanArrayAdapter = new ArrayAdapter<PartyBean.PartyListBean>(mContext,android.R.layout.simple_list_item_1,partyBeanList);
-        mEtCompanyName.setAdapter(partyBeanArrayAdapter);
+        partyBeanArrayAdapter.clear();
+        partyBeanArrayAdapter.addAll(partyBeanList);
 //        partyBeanArrayAdapter.notifyDataSetChanged();
     }
 

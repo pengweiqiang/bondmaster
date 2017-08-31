@@ -8,6 +8,7 @@ import com.huake.bondmaster.ui.evaluation.EvaluationActivity;
 import com.huake.bondmaster.ui.evaluation.EvaluationDebtInfoActivity;
 import com.huake.bondmaster.ui.evaluation.EvaluationInputFinanceInfoActivity;
 import com.huake.bondmaster.ui.evaluation.SelectIndustryActivity;
+import com.huake.bondmaster.ui.main.activity.ArticleListActivity;
 import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.ui.main.activity.SearchTrialCustInfoActivity;
 import com.huake.bondmaster.ui.main.activity.WelcomeActivity;
@@ -49,5 +50,7 @@ public interface ActivityComponent {
     void inject(EvaluationInputFinanceInfoActivity evaluationInputFinanceInfoActivity);
 
     void inject(EvaluationDebtInfoActivity evaluationDebtInfoActivity);
+
+    void inject(ArticleListActivity articleListActivity);
 
 }

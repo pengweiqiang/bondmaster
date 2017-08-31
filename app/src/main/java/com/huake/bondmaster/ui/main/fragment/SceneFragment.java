@@ -92,6 +92,11 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
         mPresenter.getSceneList(userId,pageNum,searchKey,"","","");
     }
 
+    private void loadDataFirst(){
+        pageNum = 1;
+        loadData();
+    }
+
     @Override
     public void stateMain() {
         mRefreshLayout.finishRefresh();
@@ -149,10 +154,7 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
         });
     }
 
-    private void loadDataFirst(){
-        pageNum = 1;
-        loadData();
-    }
+
 
     @Override
     public void showCompanyCount(String companyCount) {

@@ -148,7 +148,7 @@ public class ActionBar extends FrameLayout {
 	}
 
 	public void setVisibilyCloseButton(int isVisibily){
-		mRightActionButton.setVisibility(isVisibily);
+		mCloseActionButton.setVisibility(isVisibily);
 	}
 
 	
