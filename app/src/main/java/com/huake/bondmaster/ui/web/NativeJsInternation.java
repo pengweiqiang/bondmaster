@@ -3,7 +3,7 @@ package com.huake.bondmaster.ui.web;
 import android.content.Context;
 import android.webkit.JavascriptInterface;
 
-import com.huake.bondmaster.ui.my.LoginActivity;
+import com.huake.bondmaster.Constants;
 import com.huake.bondmaster.util.LogUtil;
 
 /**
@@ -23,7 +23,7 @@ public class NativeJsInternation {
 
     @JavascriptInterface
     public void calculateForJS(String i) {
-        LoginActivity.open(context,"123123123");
+        ((WebActivity)context).loadUrl(Constants.HOST_URL+i);
         LogUtil.i(i);
     }
 

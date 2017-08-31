@@ -14,8 +14,20 @@
         android:drawablePadding="5dp"
         android:gravity="center_vertical"
         android:paddingLeft="10dip"
-        android:paddingRight="10dip"
+        android:paddingRight="0dip"
         android:text="返回"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/action_bar_left_size" />
+
+    <TextView
+        android:id="@+id/closeActionButton"
+        style="@style/ActionBarIconButton"
+        android:layout_toRightOf="@+id/leftActionButton"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="4dip"
+        android:text="关闭"
+        android:visibility="gone"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/action_bar_left_size" />
 
@@ -27,8 +39,8 @@
 
         <TextView
             android:id="@+id/actionBarTitle"
-            android:layout_marginLeft="120dp"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"

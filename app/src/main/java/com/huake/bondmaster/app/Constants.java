@@ -21,6 +21,9 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final String ARTICLE_URL= "/hk-soft-app/cmsApp/getArticle";//专栏内容
 
+    //评测结果
+    public static final String EVALUATION_RESULT = "/hk-soft-app/evaluate/viewIssuanceEvaluationResult";
+
     //================= TYPE ====================
 
     public static final int TYPE_ZHIHU = 101;
@@ -106,6 +109,20 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final String SELECT_COMPANY_NATURE = "selectedCompanyNature";
     public static final String SELECT_COMPANY_TYPE = "selectedCompanyType";
     public static final String SELECT_COMPANY_NAME = "companyName";
+
+    public static final String EVALUATE_PARAMS = "evaluateParams";
+
+    public static final String TOTAL_ASSETS = "totalAssets";
+    public static final String LIABILITIES = "liabilities";
+    public static final String FLOW_RATE = "FlowRate";
+    public static final String INCOME = "income";
+    public static final String PROFIT_TOTAL = "profit_total";
+    public static final String RETAINED_PROFITS = "retained_profits";
+    public static final String THREE_AVG_PROFIT = "three_avg_profit";
+    public static final String EBIT = "ebit";
+    public static final String CASH = "cash";
+
+
 
 
 

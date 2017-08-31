@@ -3,6 +3,7 @@ package com.huake.bondmaster.model.http;
 
 import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
+import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.model.bean.PageBean;
@@ -15,6 +16,7 @@ import com.huake.bondmaster.model.http.api.BondMasterApis;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -54,6 +56,11 @@ public class RetrofitHelper implements HttpHelper {
     @Override
     public Flowable<BondMasterHttpResponse<SearchBean>> search(String userId, String sInfoCustname, String sInfoCountry, String sInfoProvince, String sInfoComptype, String bAgencyGuarantornature, String secIndCode1, String secIndCode2, String totAssets, String totLiab, String netProfit, String operRev, String netCashFlowsOperAct, String sFaCurrent, String threeYearNetProfitMean, String ebitInterest, String lessIntExp, String totProfit, String roe, String yearInterest, String corporateBondYearInterest, String enterpriseBondYearInterest, String accRecv) {
         return mMyApiService.search(userId, sInfoCustname, sInfoCountry, sInfoProvince, sInfoComptype, bAgencyGuarantornature, secIndCode1, secIndCode2, totAssets, totLiab, netProfit, operRev, netCashFlowsOperAct, sFaCurrent, threeYearNetProfitMean, ebitInterest, lessIntExp, totProfit, roe, yearInterest, corporateBondYearInterest, enterpriseBondYearInterest, accRecv);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<EvaluationSuccessBean>> startEvaluate(Map<String, String> params) {
+        return mMyApiService.startEvaluate(params);
     }
 
     @Override

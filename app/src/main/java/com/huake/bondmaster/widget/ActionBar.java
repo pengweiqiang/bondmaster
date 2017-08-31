@@ -24,6 +24,7 @@ public class ActionBar extends FrameLayout {
 
 	private TextView mTitleView;
 	private TextView mLeftActionButton;
+	private TextView mCloseActionButton;
 	private TextView mRightActionButton;
 	private TextView mActionBarTitle;
 
@@ -46,6 +47,7 @@ public class ActionBar extends FrameLayout {
 		init();
 		this.context = context;
 		setLeftActionButton();
+		setmCloseActionButton();
 	}
 
 	private void init() {
@@ -53,6 +55,7 @@ public class ActionBar extends FrameLayout {
 				this);
 		mTitleView = (TextView) findViewById(R.id.actionBarTitle);
 		mLeftActionButton = (TextView) findViewById(R.id.leftActionButton);
+		mCloseActionButton = (TextView) findViewById(R.id.closeActionButton);
 		mRightActionButton = (TextView)findViewById(R.id.rightActionButton);
 		mActionBarTitle = (TextView)findViewById(R.id.actionBarTitle);
 		mActionBar = findViewById(R.id.actionBarLayout);
@@ -80,6 +83,7 @@ public class ActionBar extends FrameLayout {
 		mLeftActionButton.setCompoundDrawables(null,null,null,null);
 		mLeftActionButton.setOnClickListener(listener);
 	}
+
 
 	public void setLeftActionButton(int icon,String text, OnClickListener listener) {
 		if(icon!=0){
@@ -114,6 +118,19 @@ public class ActionBar extends FrameLayout {
 		});
 	}
 
+	public void setmCloseActionButton(){
+		mCloseActionButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(context instanceof Activity){
+					Activity activity = (Activity)context;
+					activity.finish();
+					App.getInstance().removeActivity(activity);
+				}
+			}
+		});
+	}
+
 	public void setLeftActionButton(OnClickListener onClickListener){
 		mLeftActionButton.setOnClickListener(onClickListener);
 	}
@@ -128,6 +145,10 @@ public class ActionBar extends FrameLayout {
 
 	public void hideLeftAction(){
 		mLeftActionButton.setVisibility(GONE);
+	}
+
+	public void setVisibilyCloseButton(int isVisibily){
+		mRightActionButton.setVisibility(isVisibily);
 	}
 
 	

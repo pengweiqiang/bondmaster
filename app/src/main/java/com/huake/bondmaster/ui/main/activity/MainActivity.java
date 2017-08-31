@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
+import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.main.MainContract;
 import com.huake.bondmaster.model.bean.UserBean;
@@ -25,6 +26,7 @@ import com.huake.bondmaster.ui.main.fragment.MarketFragment;
 import com.huake.bondmaster.ui.main.fragment.MyFragment;
 import com.huake.bondmaster.ui.main.fragment.SceneFragment;
 import com.huake.bondmaster.ui.my.LoginActivity;
+import com.huake.bondmaster.ui.web.WebActivity;
 import com.umeng.socialize.UMShareAPI;
 
 import java.util.ArrayList;
@@ -120,6 +122,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     index = 1;
                 }else if(checkedId == tabIds[2]){
                     index = 2;
+                    String ss = Constants.HOST_URL+"/hk-soft-app/evaluate/viewIssuanceEvaluationResult?userId=hkData&trialCustId=442&dataDate=2017-08-15%2000:00:00";
+                    WebActivity.open(mContext,"",ss);
                 }else if(checkedId == tabIds[3]){
                     index = 3;
                 }

@@ -3,7 +3,6 @@ package com.huake.bondmaster.ui.evaluation;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +22,9 @@ import com.huake.bondmaster.widget.ActionBar;
 import org.jsoup.helper.StringUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -98,16 +99,20 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
                 break;
             case R.id.btn_next:
                 String companyName = mEtCompanyName.getText().toString().trim();
-                if(!StringUtil.isBlank(companyName)){
+                if(StringUtil.isBlank(companyName)){
                     showErrorMsg("请输入公司名称");
                     return;
                 }
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(Constants.SELECT_COMPANY_NATURE,selectedNature);
-                bundle.putSerializable(Constants.SELECT_ADDRESS,selectedAddress);
-                bundle.putSerializable(Constants.SELECT_COMPANY_TYPE,selectedCompType);
-                bundle.putSerializable(Constants.SELECT_COMPANY_NAME,companyName);
-                mPresenter.startNext(mContext,bundle);
+                Map<String,String> params = new HashMap<>();
+                params.put("sInfoCustname",companyName);
+                params.put("bAgencyGuarantornature",selectedNature.getId());
+                params.put("sInfoComptype",selectedCompType.getId());
+                params.put("sInfoProvince",selectedAddress.getId());
+                params.put("sInfoCountry","中国");
+                params.put("secIndCode1",parentIndustryBean.getId());
+                params.put("secIndCode2",childIndustryBean.getId());
+
+                mPresenter.startNext(mContext,params);
                 break;
         }
     }
@@ -162,6 +167,10 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
     private AreaNatureTypeBean.CompNaturesBean selectedNature;
     private AreaNatureTypeBean.CompTypesBean selectedCompType;
 
+    //选中的行业
+    private IndustryBean parentIndustryBean;
+    private IndustryBean childIndustryBean;
+
     private void selectedItem(String title,int index){
         if(title.equals(ADDRESS_TITLE)){
             selectedAddress = areaNatureTypeBean.getChinaAreas().get(index);
@@ -205,8 +214,8 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
             return;
         }
         if(requestCode == Constants.SELECT_INDUSTRY_REQUEST_CODE){//显示选择的所属行业
-            IndustryBean childIndustryBean = (IndustryBean) data.getSerializableExtra(Constants.INDUSTRY_SELECTED);
-            IndustryBean parentIndustryBean = (IndustryBean) data.getSerializableExtra(Constants.PARENT_INDUSTRY_SELECTED);
+            childIndustryBean = (IndustryBean) data.getSerializableExtra(Constants.INDUSTRY_SELECTED);
+            parentIndustryBean = (IndustryBean) data.getSerializableExtra(Constants.PARENT_INDUSTRY_SELECTED);
 
             mTvIndustry.setText(childIndustryBean.getTitle());
         }

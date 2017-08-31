@@ -2,20 +2,23 @@ package com.huake.bondmaster.ui.evaluation;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.evaluation.IndustryContract;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.presenter.evaluation.IndustryPresenter;
 import com.huake.bondmaster.widget.ActionBar;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,10 +36,26 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
     ActionBar mActionBar;
     @BindView(R.id.btn_next)
     Button mBtnNext;
-    @BindView(R.id.et_company_profit)
-    EditText mEtCompanyProfit;
-    @BindView(R.id.et_enterprise_profit)
-    EditText mEtEnterpriseProfit;
+    @BindView(R.id.et_asset_total)
+    EditText mEtAssetTotal;
+    @BindView(R.id.et_liabilities)
+    EditText mEtliabilities;
+    @BindView(R.id.et_flow_rate)
+    EditText mEtFlowRate;
+    @BindView(R.id.et_income)
+    EditText mEtIncome;
+    @BindView(R.id.et_profit_total)
+    EditText mEtProfitTotal;
+    @BindView(R.id.et_retained_profits)
+    EditText mEtRetainedProfits;
+    @BindView(R.id.ev_three_avg_profit)
+    EditText mEtThreeAvgProfit;
+    @BindView(R.id.et_ebit)
+    EditText mEtEbit;
+    @BindView(R.id.et_cash)
+    EditText mEtCash;
+
+    private Map<String,String> params ;
 
     @Override
     protected void initInject() {
@@ -58,17 +77,78 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
             }
         });
 
-
+        params = (HashMap)getIntent().getSerializableExtra(Constants.EVALUATE_PARAMS);
 
         initListener();
-
 
     }
 
     @OnClick(R.id.btn_next)
     public void Onclick(View view){
-        EvaluationDebtInfoActivity.open(mContext,new HashMap<String, String>());
+        String assetTotal = mEtAssetTotal.getText().toString();
+        if(TextUtils.isEmpty(assetTotal)){
+            mEtAssetTotal.requestFocus();
+            return;
+        }
+
+        String libilities = mEtliabilities.getText().toString();
+        if(TextUtils.isEmpty(assetTotal)){
+            mEtliabilities.requestFocus();
+            return;
+        }
+
+        String flowRate = mEtFlowRate.getText().toString();
+        if(TextUtils.isEmpty(assetTotal)){
+            mEtFlowRate.requestFocus();
+            return;
+        }
+        String income = mEtIncome.getText().toString();
+        if(TextUtils.isEmpty(assetTotal)){
+            mEtIncome.requestFocus();
+            return;
+        }
+        String profitTotal = mEtProfitTotal.getText().toString();
+        if(TextUtils.isEmpty(assetTotal)){
+            mEtProfitTotal.requestFocus();
+            return;
+        }
+        String retainedProfits = mEtRetainedProfits.getText().toString();
+        if(TextUtils.isEmpty(assetTotal)){
+            mEtRetainedProfits.requestFocus();
+            return;
+        }
+        String threeAvgProfit = mEtThreeAvgProfit.getText().toString();
+        if(TextUtils.isEmpty(assetTotal)){
+            mEtThreeAvgProfit.requestFocus();
+            return;
+        }
+        String ebit = mEtEbit.getText().toString();
+        if(TextUtils.isEmpty(assetTotal)){
+            mEtEbit.requestFocus();
+            return;
+        }
+        String cash = mEtCash.getText().toString();
+        if(TextUtils.isEmpty(assetTotal)){
+            mEtCash.requestFocus();
+            return;
+        }
+
+
+        params.put("totAssets",assetTotal);//总资产
+        params.put("totLiab",libilities);//总负债
+        params.put("sFaCurrent",flowRate);//流动比率
+        params.put("operRev",income);//营业收入
+        params.put("totProfit",profitTotal);
+        params.put("netProfit",retainedProfits);//净利润
+        params.put("threeYearNetProfitMean",threeAvgProfit);//近三年平均利润
+        params.put("ebitInterest",ebit);//EBIT利息
+        params.put("netCashFlowsOperAct",cash);//经营性现金流
+
+
+
+        EvaluationDebtInfoActivity.open(mContext,params);
     }
+
 
     private void initListener(){
 
@@ -79,9 +159,9 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
 
     }
 
-    public static void open(Context context, Bundle bundle){
+    public static void open(Context context, Map<String,String> params){
         Intent intent = new Intent(context,EvaluationInputFinanceInfoActivity.class);
-        intent.putExtras(bundle);
+        intent.putExtra(Constants.EVALUATE_PARAMS,(Serializable) params);
         context.startActivity(intent);
     }
 }

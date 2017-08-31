@@ -2,7 +2,6 @@ package com.huake.bondmaster.ui.web;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -61,6 +60,13 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
 
         mActionBar.setTitle(title);
 
+        mActionBar.setLeftActionButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressedSupport();
+            }
+        });
+
 
         WebSettings settings = mWebView.getSettings();
 //        settings.setAppCacheEnabled(true);
@@ -106,6 +112,7 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
 //                setTitle(title);
+                mActionBar.setTitle(title);
             }
 
         });
@@ -114,12 +121,29 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
         mWebView.loadUrl(webUrl);
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebView.canGoBack()) {
+    public void loadUrl(String webUrl){
+        this.webUrl = webUrl;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mWebView.loadUrl(WebActivity.this.webUrl);
+            }
+        });
+    }
+
+
+    @Override
+    public void onBackPressedSupport() {
+        if (mWebView.canGoBack()) {
             mWebView.goBack();
-            return true;
+            if(mWebView.canGoBack()){
+                mActionBar.setVisibilyCloseButton(View.VISIBLE);
+            }else{
+                mActionBar.setVisibilyCloseButton(View.GONE);
+            }
+        }else{
+            super.onBackPressedSupport();
         }
-        return super.onKeyDown(keyCode, event);
     }
 
     @Override
@@ -127,7 +151,6 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
         if (mWebView != null) {
             mWebView.destroy();
             mWebView.removeAllViews();
-            ;
             mWebView = null;
         }
         super.onDestroy();

@@ -3,6 +3,7 @@ package com.huake.bondmaster.model.http;
 
 import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
+import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.model.bean.PageBean;
@@ -14,6 +15,7 @@ import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Flowable;
 
@@ -48,6 +50,9 @@ public interface HttpHelper {
                                                          String roe, String yearInterest,
                                                          String corporateBondYearInterest,String enterpriseBondYearInterest,
                                                          String accRecv);
+
+    //开始评测
+    Flowable<BondMasterHttpResponse<EvaluationSuccessBean>> startEvaluate(Map<String,String> params);
 
 
     //所属行业

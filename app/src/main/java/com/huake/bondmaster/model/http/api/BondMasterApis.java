@@ -4,6 +4,7 @@ package com.huake.bondmaster.model.http.api;
 import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.EvaluationResultBean;
+import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.model.bean.PageBean;
@@ -15,9 +16,12 @@ import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Flowable;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -95,6 +99,12 @@ public interface BondMasterApis {
                                                          @Query("roe")String roe, @Query("yearInterest")String yearInterest,
                                                          @Query("corporateBondYearInterest")String corporateBondYearInterest, @Query("enterpriseBondYearInterest")String enterpriseBondYearInterest,
                                                          @Query("accRecv")String accRecv);
+
+
+    //开始评测
+    @FormUrlEncoded
+    @POST("hk-soft-app/evaluate/startEvaluate")
+    Flowable<BondMasterHttpResponse<EvaluationSuccessBean>> startEvaluate(@FieldMap Map<String,String> params);
 
     /**
      * 获取企业所属行业

@@ -1,7 +1,6 @@
 package com.huake.bondmaster.base.contract.evaluation;
 
 import android.content.Context;
-import android.os.Bundle;
 
 import com.huake.bondmaster.base.BasePresenter;
 import com.huake.bondmaster.base.BaseView;
@@ -9,6 +8,7 @@ import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
 import com.huake.bondmaster.model.bean.PartyBean;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author will on 2017/8/26 11:27
@@ -35,7 +35,7 @@ public interface EvaluationContract {
 
         void getCompanyNameList(String userId);
 
-        void startNext(Context context, Bundle bundle);
+        void startNext(Context context, Map<String,String> params);
     }
 
 }
