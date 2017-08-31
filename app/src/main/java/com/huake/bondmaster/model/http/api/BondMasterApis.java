@@ -127,8 +127,10 @@ public interface BondMasterApis {
      * @return
      */
     @GET("hk-soft-app/evaluate/listHkPartyTrialCustInfoByUserId")
-    Flowable<BondMasterHttpResponse<List<PartyBean>>>  getCompanyNameListByUserId(@Query("userId") String userId);
+    Flowable<BondMasterHttpResponse<PartyBean>>  getCompanyNameListByUserId(@Query("userId") String userId);
 
+    @GET("hk-soft-app/evaluate/listFuzzyHkPartyCodeInfoByName")
+    Flowable<BondMasterHttpResponse<PartyBean>> getCompanyNameListByName(@Query("partyName")String partyName);
 
     /**
      * 1.1.	场景列表

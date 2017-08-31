@@ -24,8 +24,6 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +96,11 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
     public void stateMain() {
         mRefreshLayout.finishRefresh();
         mRefreshLayout.finishLoadmore();
+    }
+
+    @Override
+    public void stateError() {
+        stateMain();
     }
 
     @Override

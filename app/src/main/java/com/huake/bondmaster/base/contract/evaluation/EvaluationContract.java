@@ -25,15 +25,16 @@ public interface EvaluationContract {
 
         void setAreaNatureType(AreaNatureTypeBean areaNatureType,String title);
 
-        void setCompanyNameList(List<PartyBean> partyBeanList);
+        void setCompanyNameList(List<PartyBean.PartyListBean> partyBeanList);
     }
 
     interface Presenter extends BasePresenter<View>{
         void searchCompanyByName(String companyName);
 
+        void getCompanyNameListByUserId(String userId);
+
         void getAreaNatureTypeList(String title);
 
-        void getCompanyNameList(String userId);
 
         void startNext(Context context, Map<String,String> params);
     }

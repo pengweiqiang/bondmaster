@@ -113,6 +113,13 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
     }
 
     @Override
+    public void stateError() {
+        super.stateError();
+        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishLoadmore();
+    }
+
+    @Override
     public void showContent(long records, long pageNum, long total, List<SearchBean> sceneBeanList) {
         stateMain();
         this.total = total;

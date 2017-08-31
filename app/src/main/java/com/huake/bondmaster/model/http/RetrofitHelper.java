@@ -74,8 +74,13 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<BondMasterHttpResponse<List<PartyBean>>> getCompanyNameListByUserId(String userId) {
+    public Flowable<BondMasterHttpResponse<PartyBean>> getCompanyNameListByUserId(String userId) {
         return mMyApiService.getCompanyNameListByUserId(userId);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<PartyBean>> getCompanyNameListByName(String partyName) {
+        return mMyApiService.getCompanyNameListByName(partyName);
     }
 
     @Override

@@ -66,7 +66,10 @@ public interface HttpHelper {
     Flowable<BondMasterHttpResponse<AreaNatureTypeBean>> getAreaNatureTypeList();
 
 
-    Flowable<BondMasterHttpResponse<List<PartyBean>>>  getCompanyNameListByUserId(String userId);
+    //评测中--输入名称进行搜索公司名称列表根据userId
+    Flowable<BondMasterHttpResponse<PartyBean>>  getCompanyNameListByUserId(String userId);
+    //评测中--输入名称进行搜索公司名称列表根据关键字
+    Flowable<BondMasterHttpResponse<PartyBean>> getCompanyNameListByName(String partyName);
 
 
     //场景列表

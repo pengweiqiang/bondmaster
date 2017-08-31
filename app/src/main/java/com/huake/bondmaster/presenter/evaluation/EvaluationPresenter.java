@@ -14,7 +14,6 @@ import com.huake.bondmaster.util.LogUtil;
 import com.huake.bondmaster.util.RxUtil;
 import com.huake.bondmaster.widget.CommonSubscriber;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -37,7 +36,38 @@ public class EvaluationPresenter extends RxPresenter<EvaluationContract.View> im
 
     @Override
     public void searchCompanyByName(String companyName) {
+        addSubscribe(dataManager.getCompanyNameListByName(companyName)
+                .compose(RxUtil.<BondMasterHttpResponse<PartyBean>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<PartyBean>(mView, true) {
+                    @Override
+                    public void dataHandler(PartyBean partyBean) {
+                        mView.stateMain();
+                        if(partyBean!=null && partyBean.getPartyList()!=null && !partyBean.getPartyList().isEmpty()) {
+                            mView.setCompanyNameList(partyBean.getPartyList());
+                        }else{
+                            mView.showErrorMsg("获取结果为空");
+                        }
+                    }
 
+                })
+        );
+    }
+
+    @Override
+    public void getCompanyNameListByUserId(String userId) {
+        addSubscribe(dataManager.getCompanyNameListByUserId(userId)
+                .compose(RxUtil.<BondMasterHttpResponse<PartyBean>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<PartyBean>(mView, true) {
+                    @Override
+                    public void dataHandler(PartyBean partyBean) {
+                        mView.stateMain();
+                        if(partyBean!=null && partyBean.getPartyList()!=null && !partyBean.getPartyList().isEmpty()) {
+                            mView.setCompanyNameList(partyBean.getPartyList());
+                        }
+                    }
+
+                })
+        );
     }
 
     @Override
@@ -59,24 +89,6 @@ public class EvaluationPresenter extends RxPresenter<EvaluationContract.View> im
         );
     }
 
-    @Override
-    public void getCompanyNameList(String userId) {
-        addSubscribe(dataManager.getCompanyNameListByUserId(userId)
-                .compose(RxUtil.<BondMasterHttpResponse<List<PartyBean>>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<List<PartyBean>>(mView, true) {
-                    @Override
-                    public void dataHandler(List<PartyBean> partyBeanList) {
-                        mView.stateMain();
-                        if(partyBeanList!=null) {
-                            mView.setCompanyNameList(partyBeanList);
-                        }else{
-                            mView.showErrorMsg("获取结果为空");
-                        }
-                    }
-
-                })
-        );
-    }
 
 
     @Override

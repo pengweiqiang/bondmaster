@@ -415,5 +415,11 @@ public class PartyBean {
         public void setRatingFlag(Object ratingFlag) {
             this.ratingFlag = ratingFlag;
         }
+
+
+        @Override
+        public String toString() {
+            return sInfoCustname;
+        }
     }
 }

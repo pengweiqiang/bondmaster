@@ -67,7 +67,7 @@
                 android:textSize="@dimen/my_user_name_size"
                 />
 
-            <EditText
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/et_company_name"
                 android:layout_toRightOf="@+id/tv_company_name"
                 android:layout_width="match_parent"

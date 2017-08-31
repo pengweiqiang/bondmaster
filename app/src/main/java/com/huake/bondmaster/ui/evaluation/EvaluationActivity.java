@@ -3,13 +3,17 @@ package com.huake.bondmaster.ui.evaluation;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.widget.AppCompatAutoCompleteTextView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.common.design.MaterialDialog;
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.evaluation.EvaluationContract;
@@ -49,7 +53,7 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
     @BindView(R.id.tv_company_type)
     TextView mTvComanyType;
     @BindView(R.id.et_company_name)
-    EditText mEtCompanyName;
+    AppCompatAutoCompleteTextView mEtCompanyName;
     @BindView(R.id.btn_next)
     Button mBtnNext;
 
@@ -58,6 +62,9 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
     private static final String ADDRESS_TITLE = "请选择所属地区";
     private static final String COMPANY_NATURE = "请选择企业性质";
     private static final String COMPANY_TYPE = "请选择企业类型";
+
+    private List<PartyBean.PartyListBean> partyBeanList = new ArrayList<>();
+    private ArrayAdapter<PartyBean.PartyListBean> partyBeanArrayAdapter;
 
     @Override
     protected void initInject() {
@@ -79,7 +86,43 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
             }
         });
 
+        initListener();
+
+        partyBeanArrayAdapter = new ArrayAdapter<PartyBean.PartyListBean>(mContext,android.R.layout.simple_list_item_1,partyBeanList);
+        mEtCompanyName.setAdapter(partyBeanArrayAdapter);
+
+        mPresenter.getCompanyNameListByUserId(App.getInstance().getUserBeanInstance().getId());
         getAreaNatureType("");
+
+
+
+    }
+
+    private void initListener(){
+        mEtCompanyName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+
+                }
+            }
+        });
+        mEtCompanyName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mPresenter.searchCompanyByName(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @OnClick({R.id.tv_industry,R.id.tv_address,R.id.tv_company_nature,R.id.tv_company_type,R.id.btn_next})
@@ -198,8 +241,11 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
     }
 
     @Override
-    public void setCompanyNameList(List<PartyBean> partyBeanList) {
-
+    public void setCompanyNameList(List<PartyBean.PartyListBean> partyBeanList) {
+        this.partyBeanList = partyBeanList;
+        partyBeanArrayAdapter = new ArrayAdapter<PartyBean.PartyListBean>(mContext,android.R.layout.simple_list_item_1,partyBeanList);
+        mEtCompanyName.setAdapter(partyBeanArrayAdapter);
+//        partyBeanArrayAdapter.notifyDataSetChanged();
     }
 
     public static void open(Context context){
