@@ -14,6 +14,7 @@ import com.huake.bondmaster.base.contract.scene.SceneDetailContract;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.SearchBean;
 import com.huake.bondmaster.presenter.scene.SceneDetailPresenter;
+import com.huake.bondmaster.ui.web.WebActivity;
 import com.huake.bondmaster.util.BigDecimalUtil;
 import com.huake.bondmaster.util.DateUtil;
 import com.huake.bondmaster.util.TextViewUtils;
@@ -104,16 +105,20 @@ public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> impl
     @OnClick({R.id.rl_bond_atlas,R.id.rl_financing_plan,R.id.rl_my_evaluate,R.id.rl_subscibe})
     public void onClickOptionItem(View view){
         switch (view.getId()){
-            case R.id.rl_bond_atlas:
+            case R.id.rl_bond_atlas://债券图谱
 
                 break;
-            case R.id.rl_financing_plan:
+            case R.id.rl_financing_plan://融资方案
 
                 break;
-            case R.id.rl_my_evaluate:
-
+            case R.id.rl_my_evaluate://我的评测
+                StringBuilder sbUrl = new StringBuilder(Constants.HOST_URL+Constants.EVALUATION_RESULT);
+                sbUrl.append("?userId=").append(sceneBean.getUserId())
+                        .append("&trialCustId=").append(sceneBean.getTrialCustId())
+                        .append("&dataDate=").append(sceneBean.getDataDate());
+                WebActivity.open(mContext,"",sbUrl.toString());
                 break;
-            case R.id.rl_subscibe:
+            case R.id.rl_subscibe://订阅管理
 
                 break;
         }

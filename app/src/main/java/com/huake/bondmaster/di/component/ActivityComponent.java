@@ -8,12 +8,15 @@ import com.huake.bondmaster.ui.evaluation.EvaluationActivity;
 import com.huake.bondmaster.ui.evaluation.EvaluationDebtInfoActivity;
 import com.huake.bondmaster.ui.evaluation.EvaluationInputFinanceInfoActivity;
 import com.huake.bondmaster.ui.evaluation.SelectIndustryActivity;
+import com.huake.bondmaster.ui.main.activity.ArticleDetailActivity;
 import com.huake.bondmaster.ui.main.activity.ArticleListActivity;
 import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.ui.main.activity.SearchTrialCustInfoActivity;
 import com.huake.bondmaster.ui.main.activity.WelcomeActivity;
 import com.huake.bondmaster.ui.my.LoginActivity;
+import com.huake.bondmaster.ui.my.PasswordManageActivity;
 import com.huake.bondmaster.ui.my.RegisterActivity;
+import com.huake.bondmaster.ui.my.UpdatePasswordActivity;
 import com.huake.bondmaster.ui.scene.SceneDetailActivity;
 import com.huake.bondmaster.ui.web.WebActivity;
 
@@ -52,5 +55,11 @@ public interface ActivityComponent {
     void inject(EvaluationDebtInfoActivity evaluationDebtInfoActivity);
 
     void inject(ArticleListActivity articleListActivity);
+
+    void inject(ArticleDetailActivity articleDetailActivity);
+
+    void inject(PasswordManageActivity passwordManageActivity);
+
+    void inject(UpdatePasswordActivity updatePasswordActivity);
 
 }

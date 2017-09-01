@@ -7,6 +7,7 @@ import com.huake.bondmaster.di.scope.FragmentScope;
 import com.huake.bondmaster.ui.main.fragment.HomeFragment;
 import com.huake.bondmaster.ui.main.fragment.MarketFragment;
 import com.huake.bondmaster.ui.main.fragment.MyFragment;
+import com.huake.bondmaster.ui.main.fragment.MyUnLoginFragment;
 import com.huake.bondmaster.ui.main.fragment.SceneFragment;
 
 import dagger.Component;
@@ -22,6 +23,8 @@ public interface FragmentComponent {
     Activity getActivity();
 
     void inject(MyFragment myFragment);
+
+    void inject(MyUnLoginFragment myUnLoginFragment);
 
     void inject(SceneFragment sceneFragment);
 

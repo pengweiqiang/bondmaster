@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
-import retrofit2.http.GET;
 
 /**
  * @author: pengweiqiang
@@ -146,5 +145,7 @@ public interface HttpHelper {
      * @return
      */
     Flowable<BondMasterHttpResponse> forgetPassword(String mobile,String code,String password);
+
+    Flowable<BondMasterHttpResponse<UserBean>> getUserInfo();
 
 }

@@ -8,10 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/textview_title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/action_bar_height"
-        />
+
 
     <LinearLayout
         android:layout_width="match_parent"

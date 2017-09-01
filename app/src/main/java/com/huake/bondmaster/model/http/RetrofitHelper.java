@@ -145,4 +145,9 @@ public class RetrofitHelper implements HttpHelper {
         return mMyApiService.forgetPassword(mobile, code, password);
     }
 
+    @Override
+    public Flowable<BondMasterHttpResponse<UserBean>> getUserInfo() {
+        return mMyApiService.getUserInfo();
+    }
+
 }

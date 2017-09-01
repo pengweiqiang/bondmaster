@@ -23,7 +23,7 @@ import com.huake.bondmaster.presenter.main.MainPresenter;
 import com.huake.bondmaster.ui.main.adapter.MainFragmentAdapter;
 import com.huake.bondmaster.ui.main.fragment.HomeFragment;
 import com.huake.bondmaster.ui.main.fragment.MarketFragment;
-import com.huake.bondmaster.ui.main.fragment.MyFragment;
+import com.huake.bondmaster.ui.main.fragment.MyReviewFragment;
 import com.huake.bondmaster.ui.main.fragment.SceneFragment;
 import com.huake.bondmaster.ui.my.LoginActivity;
 import com.huake.bondmaster.ui.web.WebActivity;
@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     HomeFragment homeFragment;
     SceneFragment sceneFragment;
     MarketFragment marketFragment;
-    MyFragment myFragment;
+    MyReviewFragment myFragment;
 
     private int showIndex = 0;//显示fragment的索引
     int[] tabIds = {R.id.home,R.id.scene,R.id.market,R.id.my};
@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initEventAndData() {
-        myFragment = new MyFragment();
+        myFragment = new MyReviewFragment();
         homeFragment = new HomeFragment();
         marketFragment = new MarketFragment();
         sceneFragment = new SceneFragment();
@@ -81,6 +81,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mainFragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager(),fragmentList);
 
         mViewPager.setAdapter(mainFragmentAdapter);
+
+        mViewPager.setOffscreenPageLimit(fragmentList.size());
 
         initListener();
     }

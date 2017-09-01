@@ -237,4 +237,9 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
         return mHttpHelper.forgetPassword(mobile, code, password);
     }
 
+    @Override
+    public Flowable<BondMasterHttpResponse<UserBean>> getUserInfo() {
+        return mHttpHelper.getUserInfo();
+    }
+
 }

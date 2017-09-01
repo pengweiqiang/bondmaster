@@ -14,6 +14,8 @@ import com.huake.bondmaster.model.bean.UserBean;
 public class LoginContract {
 
     public interface View extends BaseView{
+
+        void setLoginRsa(String rsa);
         void loginSuccess(UserBean userBean);
 
         void sendVerificationCodeSuccess();
@@ -23,9 +25,13 @@ public class LoginContract {
     public interface Presenter extends BasePresenter<View>{
         void login(String mobile,String password);
 
+        void getLoginRsa();
 
         void loginByCode(String mobile,String code);
 
         void sendVerificationCode(String mobile);
+
+        void getUserInfo();
+
     }
 }

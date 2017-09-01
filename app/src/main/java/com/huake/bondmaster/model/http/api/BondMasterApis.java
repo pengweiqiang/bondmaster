@@ -250,4 +250,7 @@ public interface BondMasterApis {
     @POST("hk-soft-app/userForgetpwdModify")
     Flowable<BondMasterHttpResponse> forgetPassword(@Field("mobile")String mobile,@Field("code")String code,@Field("password")String password);
 
+
+    @POST("hk-soft-app/getUserInfo")
+    Flowable<BondMasterHttpResponse<UserBean>> getUserInfo();
 }

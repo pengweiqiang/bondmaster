@@ -1,13 +1,11 @@
 package com.huake.bondmaster;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+
+import com.huake.bondmaster.util.RSAUtils;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.junit.Assert.*;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -19,8 +17,18 @@ public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
+//        Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.huake.bondmaster", appContext.getPackageName());
+//        assertEquals("com.huake.bondmaster", appContext.getPackageName());
+        System.out.println("123");
+        String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJ3UEiNSpawIpRjQem4l0c/D+lzWgZBN6wg8w5" +
+                "Bg3lSFXlWAYodCyUlE8lVQXRFOyPXTXMzK/yNtVPq4yR2I1fqpw3NYI4lX5RMCXafD/kiiiQMm0P" +
+                "7VElUkP4rRma9/D+e+NGAsyb5uFkMm8zspkPKdXN+eTifBA4Ynm/SdIktQIDAQAB";
+        try {
+            String ss = RSAUtils.encryptByPublicKey("123456",RSAUtils.getPublicKey(publicKey));
+            System.out.println(ss);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

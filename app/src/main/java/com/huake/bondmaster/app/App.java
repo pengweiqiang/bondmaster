@@ -59,6 +59,8 @@ public class App extends Application{
     public UserBean getUserBeanInstance() {
         if (userBean == null) {
             userBean = App.getAppComponent().preferencesHelper().getUserInstance();
+//            userBean = new UserBean();
+//            userBean.setId("43");
         }
         return userBean;
     }
@@ -99,6 +101,7 @@ public class App extends Application{
 
         //在子线程中完成其他初始化
         InitializeService.start(this);
+
     }
 
     protected void attachBaseContext(Context base) {

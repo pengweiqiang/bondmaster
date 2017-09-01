@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
@@ -26,6 +27,7 @@ public class ActionBar extends FrameLayout {
 	private TextView mLeftActionButton;
 	private TextView mCloseActionButton;
 	private TextView mRightActionButton;
+	private ImageView mRightImageView;
 	private TextView mActionBarTitle;
 
 	private View mActionBar;
@@ -58,6 +60,7 @@ public class ActionBar extends FrameLayout {
 		mCloseActionButton = (TextView) findViewById(R.id.closeActionButton);
 		mRightActionButton = (TextView)findViewById(R.id.rightActionButton);
 		mActionBarTitle = (TextView)findViewById(R.id.actionBarTitle);
+		mRightImageView = (ImageView)findViewById(R.id.rightActionImageView);
 		mActionBar = findViewById(R.id.actionBarLayout);
 
 	}
@@ -103,6 +106,14 @@ public class ActionBar extends FrameLayout {
 			mRightActionButton.setVisibility(VISIBLE);
 			mRightActionButton.setOnClickListener(onClickListener);
 		}
+	}
+
+	public void setRightImageActionButton(int drawableId,OnClickListener onClickListener){
+		mRightImageView.setVisibility(VISIBLE);
+		if(drawableId != 0){
+			mRightImageView.setImageDrawable(context.getResources().getDrawable(drawableId));
+		}
+		mRightImageView.setOnClickListener(onClickListener);
 	}
 
 	public void setLeftActionButton(){

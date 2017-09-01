@@ -71,6 +71,17 @@
 
         <activity android:name=".ui.main.activity.ArticleListActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
 
+        <activity android:name=".ui.main.activity.ArticleDetailActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+
+        <activity android:name=".ui.my.CommonSettingActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+
+        <activity android:name=".ui.my.UpdatePasswordActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+
+        <activity android:name=".ui.my.PasswordManageActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+
+        <activity android:name=".ui.my.UpdatePasswordSuccessActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+
+
         <service android:name=".component.InitializeService" />
 
         <!--Bugly升级 start-->

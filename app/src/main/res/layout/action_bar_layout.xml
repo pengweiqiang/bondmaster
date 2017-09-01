@@ -22,15 +22,15 @@
     <TextView
         android:id="@+id/closeActionButton"
         style="@style/ActionBarIconButton"
-        android:layout_toRightOf="@+id/leftActionButton"
         android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/leftActionButton"
         android:gravity="center_vertical"
         android:paddingLeft="4dip"
-        android:text="关闭"
         android:src="@mipmap/ic_white_close"
-        android:visibility="gone"
+        android:text="关闭"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/action_bar_left_size" />
+        android:textSize="@dimen/action_bar_left_size"
+        android:visibility="gone" />
 
 
     <RelativeLayout
@@ -40,11 +40,11 @@
 
         <TextView
             android:id="@+id/actionBarTitle"
-            android:layout_marginStart="130dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_marginStart="130dp"
             android:ellipsize="marquee"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -52,8 +52,8 @@
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
-            android:singleLine="true"
             android:scrollHorizontally="true"
+            android:singleLine="true"
             android:text=""
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/action_bar_title_size"></TextView>
@@ -72,6 +72,18 @@
         android:text="注册"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/action_bar_left_size"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/rightActionImageView"
+        android:layout_width="34dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:src="@mipmap/ic_share"
         android:visibility="gone" />
     <!--<TextView-->
     <!--android:id="@+id/rightActionButton_2"-->

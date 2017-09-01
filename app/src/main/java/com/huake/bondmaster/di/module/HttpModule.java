@@ -2,8 +2,10 @@ package com.huake.bondmaster.di.module;
 
 
 import com.huake.bondmaster.BuildConfig;
+import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.di.qualifier.BondMasterUrl;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.model.http.api.BondMasterApis;
 import com.huake.bondmaster.util.SystemUtil;
 
@@ -22,6 +24,7 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -79,6 +82,7 @@ public class HttpModule {
                             .cacheControl(CacheControl.FORCE_CACHE)
                             .build();
                 }
+
                 Response response = chain.proceed(request);
                 if (SystemUtil.isNetworkConnected()) {
                     int maxAge = 0;
@@ -99,19 +103,25 @@ public class HttpModule {
                 return response;
             }
         };
-//        //TODO 加入全局的请求参数
-//        Interceptor apikey = new Interceptor() {
-//            @Override
-//            public Response intercept(Chain chain) throws IOException {
-//                Request request = chain.request();
-//                request = request.newBuilder()
-//                        .addHeader("apikey",Constants.KEY_API)
-//                        .build();
-//                return chain.proceed(request);
-//            }
-//        };
+        // 加入全局的请求参数
+        Interceptor apikey = new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                UserBean userBean = App.getInstance().getUserBeanInstance();
+                Request request = chain.request();
+                if(userBean!=null) {
+                    HttpUrl url = request.url().newBuilder()
+                            .addQueryParameter("token", userBean.getToken())
+                            .build();
+
+                    request = request.newBuilder().url(url).build();
+                }
+
+                return chain.proceed(request);
+            }
+        };
 //        设置统一的请求头部参数
-//        builder.addInterceptor(apikey);
+        builder.addInterceptor(apikey);
 //        设置缓存
         builder.addNetworkInterceptor(cacheInterceptor);
         builder.addInterceptor(cacheInterceptor);

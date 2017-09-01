@@ -12,6 +12,7 @@ import com.huake.bondmaster.base.contract.main.MyContract;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.main.MyPresenter;
 import com.huake.bondmaster.ui.my.AboutUsActivity;
+import com.huake.bondmaster.ui.my.CommonSettingActivity;
 import com.huake.bondmaster.ui.my.FeedBackActivity;
 import com.huake.bondmaster.ui.my.LoginActivity;
 import com.huake.bondmaster.widget.ToggleButton;
@@ -24,7 +25,6 @@ import com.umeng.socialize.media.UMWeb;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.OnLongClick;
 
 /**
  * @author will on 2017/8/24 13:42
@@ -108,18 +108,13 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
             case R.id.rl_user_info:
                 if(App.getInstance().getUserBeanInstance()==null) {
                     LoginActivity.open(mContext, "");
+                }else{
+                    CommonSettingActivity.open(mContext);
                 }
                 break;
         }
     }
 
-    @OnLongClick(R.id.rl_user_info)
-    public boolean onLongClickOptionItem(){
-        mPresenter.logout();
-        showErrorMsg("退出登录");
-        checkLogin();
-        return false;
-    }
 
     private void shareApp(){
         UMWeb web = new UMWeb(Constants.SHARE_APP_URL);

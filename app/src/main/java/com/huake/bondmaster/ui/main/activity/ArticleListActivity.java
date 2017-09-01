@@ -16,7 +16,6 @@ import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.main.ArticleListPresenter;
 import com.huake.bondmaster.ui.main.adapter.ArticleAdapter;
 import com.huake.bondmaster.ui.my.LoginActivity;
-import com.huake.bondmaster.ui.web.WebActivity;
 import com.huake.bondmaster.widget.ActionBar;
 import com.huake.bondmaster.widget.CommonItemDecoration;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -120,7 +119,7 @@ public class ArticleListActivity extends BaseActivity<ArticleListPresenter> impl
                     ArticleBean articleBean = mList.get(position);
                     StringBuilder hotNewUrl = new StringBuilder(Constants.HOST_URL).append(Constants.ARTICLE_URL);
                     hotNewUrl.append("?id=").append(articleBean.getId()).append("&userId=").append(userBean.getId());
-                    WebActivity.open(mContext,articleBean.getTitle(),hotNewUrl.toString());
+                    ArticleDetailActivity.open(mContext,articleBean.getTitle(),hotNewUrl.toString());
                 }
             }
         });
