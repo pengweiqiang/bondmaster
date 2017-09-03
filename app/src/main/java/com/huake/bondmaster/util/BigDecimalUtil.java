@@ -36,4 +36,20 @@ public class BigDecimalUtil {
         return df.format(bigDecimal.doubleValue());
     }
 
+    public static String getsubMobileString(String mobile){
+        try{
+            if(!TextUtils.isEmpty(mobile)){
+                int length = mobile.length();
+                if(length == 11){
+                    mobile = mobile.replace(mobile.subSequence(3, 7), "****");
+                }else{
+                    mobile = mobile.substring(0,1)+"****"+mobile.substring(length-1);
+                }
+            }
+        }catch(Exception e){
+
+        }
+        return mobile;
+    }
+
 }

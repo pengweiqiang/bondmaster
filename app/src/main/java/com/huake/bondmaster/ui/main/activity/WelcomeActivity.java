@@ -26,6 +26,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
         getActivityComponent().inject(this);
     }
 
+
     @Override
     protected int getLayout() {
         return R.layout.activity_welcome;

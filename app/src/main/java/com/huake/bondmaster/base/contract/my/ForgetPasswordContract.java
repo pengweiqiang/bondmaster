@@ -10,14 +10,19 @@ import com.huake.bondmaster.base.BaseView;
  * @Version
  */
 
-public class UpdatePasswordContract {
+public class ForgetPasswordContract {
 
     public interface View extends BaseView{
+
+        void getCodeSuccess();
         void updateSuccess();
 
     }
 
     public interface Presenter extends BasePresenter<View>{
-        void updatePassword(String mobile,String code,String currentPassword,String newPassword);
+
+        void getCode(String mobile);
+
+        void forgetPassword(String mobile, String code, String password);
     }
 }

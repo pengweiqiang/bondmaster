@@ -2,6 +2,7 @@ package com.huake.bondmaster.ui.main.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +100,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ImageLoader.loadByAllCache(mContext,imageUrl,contentViewHolder.mIvCompanyLogo,R.mipmap.ic_default_item_logo);
 
 
-            contentViewHolder.mTvMessageInfo.setText(hotNewsBean.getTitle());
+            contentViewHolder.mTvMessageInfo.setText(Html.fromHtml(hotNewsBean.getTitle()));
             contentViewHolder.mTvMessageDate.setText(DateUtil.getDateString(hotNewsBean.getCreateDate(),DateUtil.FORMAT_YYYY_MM_DD_HH_MM_SS,DateUtil.FORMAT_YYYY_MM_DD));
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {

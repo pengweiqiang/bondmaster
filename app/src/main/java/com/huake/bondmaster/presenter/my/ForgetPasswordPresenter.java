@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.RxPresenter;
-import com.huake.bondmaster.base.contract.user.RegisterContract;
+import com.huake.bondmaster.base.contract.my.ForgetPasswordContract;
 import com.huake.bondmaster.model.DataManager;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 import com.huake.bondmaster.util.RSAUtils;
@@ -22,39 +22,62 @@ import javax.inject.Inject;
  * @Version
  */
 
-public class RegisterPresenter extends RxPresenter<RegisterContract.View> implements RegisterContract.Presenter {
+public class ForgetPasswordPresenter extends RxPresenter<ForgetPasswordContract.View> implements ForgetPasswordContract.Presenter {
 
     DataManager dataManager;
 
     @Inject
-    public RegisterPresenter(DataManager dataManager) {
+    public ForgetPasswordPresenter(DataManager dataManager) {
         this.dataManager = dataManager;
     }
 
 
-    @Override
-    public void register(final String mobile, final String password, final String code) {
 
-        addSubscribe(dataManager.getRegisterRsa()
+
+    @Override
+    public void getCode(String mobile) {
+        addSubscribe(dataManager.sendVerificationCode(mobile)
+                .compose(RxUtil.<BondMasterHttpResponse<Object>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<Object>(mView, true) {
+                    @Override
+                    public void dataHandler(Object object) {
+                        mView.stateMain();
+                        mView.getCodeSuccess();
+                    }
+
+                    @Override
+                    public void onNext(BondMasterHttpResponse<Object> objectBondMasterHttpResponse) {
+                        super.onNext(objectBondMasterHttpResponse);
+                        if (objectBondMasterHttpResponse != null && objectBondMasterHttpResponse.getStat() == Constants.CODE_SUCCESS) {
+                            mView.showErrorMsg(objectBondMasterHttpResponse.getDesc());
+                        }
+                    }
+                })
+        );
+    }
+
+    @Override
+    public void forgetPassword(final String mobile,final String code, final String password) {
+        addSubscribe(dataManager.getForgetPwdModifyRsa()
                 .compose(RxUtil.<BondMasterHttpResponse<String>>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<String>(mView, true) {
                     @Override
                     public void dataHandler(String rsaStr) {
                         if (TextUtils.isEmpty(rsaStr)) {
-                            mView.showErrorMsg("注册失败");
+                            mView.showErrorMsg("获取失败");
                         } else {
                             //登陆
                             try {
-                                RSAPublicKey publicKey = (RSAPublicKey)RSAUtils.getPublicKey(rsaStr);
+                                RSAPublicKey publicKey = (RSAPublicKey) RSAUtils.getPublicKey(rsaStr);
                                 //公钥加密密码后的字符串
                                 String passwordRSa = RSAUtils.encrypt(password,publicKey);
-                                addSubscribe(dataManager.registerUser(mobile, passwordRSa, code)
+                                addSubscribe(dataManager.forgetPassword(mobile, code,passwordRSa)
                                         .compose(RxUtil.<BondMasterHttpResponse<Object>>rxSchedulerHelper())
                                         .subscribeWith(new CommonSubscriber<Object>(mView, true) {
                                             @Override
                                             public void dataHandler(Object object) {
                                                 mView.stateMain();
-                                                mView.registerSuccess();
+                                                mView.updateSuccess();
                                             }
 
                                             @Override
@@ -70,29 +93,6 @@ public class RegisterPresenter extends RxPresenter<RegisterContract.View> implem
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                        }
-                    }
-                })
-        );
-
-    }
-
-    @Override
-    public void sendVerificationCode(String mobile) {
-        addSubscribe(dataManager.sendVerificationCode(mobile)
-                .compose(RxUtil.<BondMasterHttpResponse<Object>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<Object>(mView, true) {
-                    @Override
-                    public void dataHandler(Object object) {
-                        mView.stateMain();
-                        mView.sendVerificationCodeSuccess();
-                    }
-
-                    @Override
-                    public void onNext(BondMasterHttpResponse<Object> objectBondMasterHttpResponse) {
-                        super.onNext(objectBondMasterHttpResponse);
-                        if (objectBondMasterHttpResponse != null && objectBondMasterHttpResponse.getStat() == Constants.CODE_SUCCESS) {
-                            mView.showErrorMsg(objectBondMasterHttpResponse.getDesc());
                         }
                     }
                 })

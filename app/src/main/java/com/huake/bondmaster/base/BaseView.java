@@ -19,9 +19,9 @@ public interface BaseView {
 
     void stateMain();
 
-    void showLoading(String msg);
+//    void showLoading(String msg);
 
-    void cancelDialogLoading();
+//    void cancelDialogLoading();
 
     void startLoginActivity();
 

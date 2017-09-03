@@ -10,6 +10,7 @@ import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.base.SimpleActivity;
 import com.huake.bondmaster.model.DataManager;
 import com.huake.bondmaster.model.bean.UserBean;
+import com.huake.bondmaster.util.BigDecimalUtil;
 import com.huake.bondmaster.util.ToastUtil;
 import com.huake.bondmaster.widget.ActionBar;
 
@@ -41,7 +42,7 @@ public class CommonSettingActivity extends SimpleActivity {
         mActionBar.setTitle(R.string.tab_my);
 
         UserBean userBean = App.getInstance().getUserBeanInstance();
-        mTvMobile.setText(userBean.getMobile());
+        mTvMobile.setText(BigDecimalUtil.getsubMobileString(userBean.getMobile()));
     }
 
 
@@ -49,7 +50,7 @@ public class CommonSettingActivity extends SimpleActivity {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.tv_change_mobile:
-
+                ChangeMobileActivity.open(mContext);
                 break;
             case R.id.tv_password_manage:
                 UpdatePasswordActivity.open(mContext);

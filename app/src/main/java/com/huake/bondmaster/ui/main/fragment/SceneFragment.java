@@ -105,6 +105,7 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
 
     @Override
     public void stateError() {
+        super.stateError();
         stateMain();
     }
 

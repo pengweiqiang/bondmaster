@@ -6,7 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
+import com.huake.bondmaster.widget.LoadingDialog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,6 +23,8 @@ public abstract class SimpleActivity extends SupportActivity {
 
     protected Activity mContext;
     private Unbinder mUnBinder;
+
+    LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +56,20 @@ public abstract class SimpleActivity extends SupportActivity {
 
     protected void onViewCreated() {
 
+    }
+
+    public void showLoading(String msg) {
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog(this, R.style.LoadingDialog);
+        }
+        loadingDialog.show();
+        loadingDialog.setTitle(msg);
+    }
+
+    public void cancelDialogLoading() {
+        if(loadingDialog!=null && loadingDialog.isShowing()){
+            loadingDialog.cancel();
+        }
     }
 
     @Override

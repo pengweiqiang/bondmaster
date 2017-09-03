@@ -16,7 +16,7 @@ public class Constants {
 
     public static final String HOST_URL = "https://zhaidong.18link.com/";
 
-    public static final String DEFAULT_MOBILE = "13196384260";
+    public static final String DEFAULT_MOBILE = "";
 
 
 

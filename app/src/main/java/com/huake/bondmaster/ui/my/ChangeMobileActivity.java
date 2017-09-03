@@ -17,28 +17,26 @@ import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.my.LoginPresenter;
 import com.huake.bondmaster.widget.ActionBar;
 
-import org.jsoup.helper.StringUtil;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
  * @author will on 2017/8/28 10:07
  * @email pengweiqiang64@163.com
- * @description 登陆
+ * @description 换绑手机
  * @Version
  */
 
-public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
+public class ChangeMobileActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
 
     @BindView(R.id.action_bar)
     ActionBar mActionBar;
-    @BindView(R.id.et_username)
-    EditText mEtUserName;
-    @BindView(R.id.et_password)
-    EditText mEtPassword;
-    @BindView(R.id.btn_login)
-    Button mBtnLogin;
+    @BindView(R.id.et_mobile)
+    EditText mEtMobile;
+    @BindView(R.id.et_code)
+    EditText mEtCode;
+    @BindView(R.id.btn_confirm)
+    Button mBtnConfirm;
 
     String mobile = "";
 
@@ -51,7 +49,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     /**
      * EditText总个数
      */
-    private final int EDITTEXT_AMOUNT = 2;
+    private final int EDITTEXT_AMOUNT = 1;
 
     @Override
     protected void initInject() {
@@ -60,39 +58,19 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_login;
+        return R.layout.activity_change_mobile;
     }
 
     @Override
     protected void initEventAndData() {
         mobile = getIntent().getStringExtra(Constants.MOBILE);
-        mActionBar.setTitle(R.string.login);
-        mActionBar.setRightActionButton(mContext.getResources().getString(R.string.register), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RegisterActivity.open(mContext);
-            }
-        });
+        mActionBar.setTitle("换绑手机");
 
 
-        if(!StringUtil.isBlank(mobile)) {
-            mEtUserName.setText(mobile);
-        }
 
-        if(!TextUtils.isEmpty(mEtUserName.getText().toString())){
-            mEditTextHaveInputCount ++;
-        }
+
 
         initListener();
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        mobile = intent.getStringExtra(Constants.MOBILE);
-        mEtUserName.setText(mobile);
-        mEditTextHaveInputCount = 1;
-        mEtPassword.setText("");
     }
 
     private void initListener(){
@@ -105,7 +83,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                     mEditTextHaveInputCount++;
                     /** 判断个数是否到达要求*/
                     if (mEditTextHaveInputCount >= EDITTEXT_AMOUNT)
-                        mBtnLogin.setEnabled(true);
+                        mBtnConfirm.setEnabled(true);
 
                 }
             }
@@ -115,7 +93,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 /** EditText内容改变之后 内容为空时 个数减一 按钮改为不可以的背景*/
                 if (TextUtils.isEmpty(s)) {
                     mEditTextHaveInputCount--;
-                    mBtnLogin.setEnabled(false);
+                    mBtnConfirm.setEnabled(false);
                 }
             }
 
@@ -125,34 +103,27 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             }
         };
 
-        mEtUserName.addTextChangedListener(textWatcher);
-        mEtPassword.addTextChangedListener(textWatcher);
+        mEtCode.addTextChangedListener(textWatcher);
     }
 
-    @OnClick({R.id.btn_login,R.id.tv_forget_password})
+    @OnClick(R.id.btn_confirm)
     public void btnOnClick(View view){
-        String mobile = mEtUserName.getText().toString().trim();
-        switch (view.getId()){
-            case R.id.btn_login:
-                if(StringUtil.isBlank(mobile)){
-                    mEtUserName.requestFocus();
-                    showErrorMsg("请输入手机号");
-                    return;
-                }
-                String password = mEtPassword.getText().toString().trim();
-
-                if(StringUtil.isBlank(password)){
-                    mEtPassword.requestFocus();
-                    showErrorMsg("请输入密码");
-                    return;
-                }
-                showLoading("登陆中...");
-                mPresenter.login(mobile,password);
-                break;
-            case R.id.tv_forget_password:
-
-                ForgetPasswordActivity.open(mContext,mobile);
-                break;
+        if(view.getId() == R.id.btn_confirm){
+//            String mobile = mEtUserName.getText().toString().trim();
+//            if(StringUtil.isBlank(mobile)){
+//                mEtUserName.requestFocus();
+//                showErrorMsg("请输入当前密码");
+//                return;
+//            }
+//            String password = mEtPassword.getText().toString().trim();
+//
+//            if(StringUtil.isBlank(password)){
+//                mEtPassword.requestFocus();
+//                showErrorMsg("请输入新密码");
+//                return;
+//            }
+            showLoading("");
+//            mPresenter.login(mobile,password);
         }
     }
 
@@ -179,9 +150,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     }
 
-    public static void open(Context context, String mobile){
-        Intent intent = new Intent(context,LoginActivity.class);
-        intent.putExtra(Constants.MOBILE,mobile);
+    public static void open(Context context){
+        Intent intent = new Intent(context,ChangeMobileActivity.class);
         context.startActivity(intent);
     }
 

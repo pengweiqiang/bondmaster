@@ -13,9 +13,9 @@ import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.HotNewsBean;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.home.HomePresenter;
+import com.huake.bondmaster.ui.main.activity.ArticleDetailActivity;
 import com.huake.bondmaster.ui.main.adapter.HomeAdapter;
 import com.huake.bondmaster.ui.my.LoginActivity;
-import com.huake.bondmaster.ui.web.WebActivity;
 import com.huake.bondmaster.widget.CommonItemDecoration;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -101,7 +101,7 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
                     HotNewsBean hotNewsBean = hotNewsBeanList.get(position);
                     StringBuilder hotNewUrl = new StringBuilder(Constants.HOST_URL).append(Constants.ARTICLE_URL);
                     hotNewUrl.append("?id=").append(hotNewsBean.getId()).append("&userId=").append(userBean.getId());
-                    WebActivity.open(mContext,hotNewsBean.getTitle(),hotNewUrl.toString());
+                    ArticleDetailActivity.open(mContext,hotNewsBean.getTitle(),hotNewUrl.toString());
                 }
             }
         });

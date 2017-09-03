@@ -122,6 +122,16 @@ public class App extends Application{
         }
     }
 
+    public void removeActivity(Class className){
+        if(allActivities!=null){
+            for(Activity activity:allActivities){
+                if(className.getSimpleName().equals(activity.getClass().getSimpleName())){
+                    removeActivity(activity);
+                }
+            }
+        }
+    }
+
     public void exitApp() {
         if (allActivities != null) {
             synchronized (allActivities) {

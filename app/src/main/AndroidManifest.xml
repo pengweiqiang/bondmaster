@@ -55,7 +55,7 @@
 
         <activity android:name=".ui.my.FeedBackActivity" android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.my.LoginActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.my.LoginActivity" android:screenOrientation="portrait" android:launchMode="singleTask"/>
 
         <activity android:name=".ui.my.RegisterActivity" android:screenOrientation="portrait" />
 
@@ -80,6 +80,10 @@
         <activity android:name=".ui.my.PasswordManageActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
 
         <activity android:name=".ui.my.UpdatePasswordSuccessActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+
+        <activity android:name=".ui.my.ChangeMobileActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+
+        <activity android:name=".ui.my.ForgetPasswordActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
 
 
         <service android:name=".component.InitializeService" />

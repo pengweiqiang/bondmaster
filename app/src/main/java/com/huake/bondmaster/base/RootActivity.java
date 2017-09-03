@@ -47,6 +47,12 @@ public abstract class RootActivity<T extends BasePresenter> extends BaseActivity
         viewError = (LinearLayout) parent.findViewById(R.id.view_error);
         viewLoading = (FrameLayout) parent.findViewById(R.id.view_loading);
         ivLoading = (ProgressImageView) viewLoading.findViewById(R.id.iv_progress);
+        viewError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reconnectNetwork();
+            }
+        });
         viewError.setVisibility(View.GONE);
         viewLoading.setVisibility(View.GONE);
         viewMain.setVisibility(View.VISIBLE);
@@ -80,6 +86,10 @@ public abstract class RootActivity<T extends BasePresenter> extends BaseActivity
         viewMain.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    protected void reconnectNetwork() {
+        showLoading("");
+    }
 
     private void hideCurrentView() {
         switch (currentState) {

@@ -38,7 +38,6 @@
                 android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="@string/default_mobile"
                 android:paddingTop="15dp"
                 android:textSize="@dimen/my_common_text_size"
                 android:textColor="#666666"
@@ -85,6 +84,7 @@
             android:textSize="@dimen/action_bar_left_size" />
 
         <TextView
+            android:id="@+id/tv_forget_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -99,10 +99,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
 
         <LinearLayout
             android:layout_width="match_parent"

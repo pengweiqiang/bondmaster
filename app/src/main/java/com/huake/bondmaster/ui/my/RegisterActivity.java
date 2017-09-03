@@ -194,7 +194,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
 
     @Override
     public void registerSuccess() {
-
+        String mobile = mEtUserName.getText().toString().trim();
+        LoginActivity.open(mContext,mobile);
     }
 
     @Override

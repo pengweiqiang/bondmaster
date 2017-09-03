@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.huake.bondmaster.R;
+import com.huake.bondmaster.widget.LoadingDialog;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -24,6 +27,8 @@ public abstract class SimpleFragment extends SupportFragment {
     protected Context mContext;
     private Unbinder mUnBinder;
     protected boolean isInited = false;
+
+    LoadingDialog loadingDialog;
 
     @Override
     public void onAttach(Context context) {
@@ -69,6 +74,19 @@ public abstract class SimpleFragment extends SupportFragment {
     public void onDestroyView() {
         super.onDestroyView();
         mUnBinder.unbind();
+    }
+    public void showLoading(String msg) {
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog(mContext, R.style.LoadingDialog);
+        }
+        loadingDialog.show();
+        loadingDialog.setTitle(msg);
+    }
+
+    public void cancelDialogLoading() {
+        if(loadingDialog!=null && loadingDialog.isShowing()){
+            loadingDialog.cancel();
+        }
     }
 
     protected abstract int getLayoutId();

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.di.component.DaggerFragmentComponent;
 import com.huake.bondmaster.di.component.FragmentComponent;
@@ -24,8 +23,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
 
     @Inject
     protected T mPresenter;
-
-    LoadingDialog loadingDialog;
 
 
     protected FragmentComponent getFragmentComponent(){
@@ -78,21 +75,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
 
     }
 
-    @Override
-    public void showLoading(String msg) {
-        if (loadingDialog == null) {
-            loadingDialog = new LoadingDialog(mContext, R.style.LoadingDialog);
-        }
-        loadingDialog.show();
-        loadingDialog.setTitle(msg);
-    }
-
-    @Override
-    public void cancelDialogLoading() {
-        if(loadingDialog!=null && loadingDialog.isShowing()){
-            loadingDialog.cancel();
-        }
-    }
 
     @Override
     public void startLoginActivity() {
@@ -110,4 +92,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
     }
 
     protected abstract void initInject();
+
+    protected abstract void reconnectNetwork();
 }

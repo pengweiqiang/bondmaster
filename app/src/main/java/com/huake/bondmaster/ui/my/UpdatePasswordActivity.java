@@ -10,11 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
-import com.huake.bondmaster.base.contract.user.LoginContract;
+import com.huake.bondmaster.base.contract.my.UpdatePasswordContract;
 import com.huake.bondmaster.model.bean.UserBean;
-import com.huake.bondmaster.presenter.my.LoginPresenter;
+import com.huake.bondmaster.presenter.my.UpdatePasswordPresenter;
 import com.huake.bondmaster.widget.ActionBar;
 
 import org.jsoup.helper.StringUtil;
@@ -29,12 +30,12 @@ import butterknife.OnClick;
  * @Version
  */
 
-public class UpdatePasswordActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
+public class UpdatePasswordActivity extends BaseActivity<UpdatePasswordPresenter> implements UpdatePasswordContract.View {
 
     @BindView(R.id.action_bar)
     ActionBar mActionBar;
-    @BindView(R.id.et_username)
-    EditText mEtUserName;
+    @BindView(R.id.et_current_pwd)
+    EditText mEtCurrentPwd;
     @BindView(R.id.et_password)
     EditText mEtPassword;
     @BindView(R.id.btn_confirm)
@@ -70,13 +71,13 @@ public class UpdatePasswordActivity extends BaseActivity<LoginPresenter> impleme
 
 
 
-        if(!StringUtil.isBlank(mobile)) {
-            mEtUserName.setText(mobile);
-        }
-
-        if(!TextUtils.isEmpty(mEtUserName.getText().toString())){
-            mEditTextHaveInputCount ++;
-        }
+//        if(!StringUtil.isBlank(mobile)) {
+//            mEtUserName.setText(mobile);
+//        }
+//
+//        if(!TextUtils.isEmpty(mEtUserName.getText().toString())){
+//            mEditTextHaveInputCount ++;
+//        }
 
         initListener();
     }
@@ -111,16 +112,16 @@ public class UpdatePasswordActivity extends BaseActivity<LoginPresenter> impleme
             }
         };
 
-        mEtUserName.addTextChangedListener(textWatcher);
+        mEtCurrentPwd.addTextChangedListener(textWatcher);
         mEtPassword.addTextChangedListener(textWatcher);
     }
 
     @OnClick(R.id.btn_confirm)
     public void btnOnClick(View view){
         if(view.getId() == R.id.btn_confirm){
-            String mobile = mEtUserName.getText().toString().trim();
-            if(StringUtil.isBlank(mobile)){
-                mEtUserName.requestFocus();
+            String currentPwd = mEtCurrentPwd.getText().toString().trim();
+            if(StringUtil.isBlank(currentPwd)){
+                mEtCurrentPwd.requestFocus();
                 showErrorMsg("请输入当前密码");
                 return;
             }
@@ -132,21 +133,10 @@ public class UpdatePasswordActivity extends BaseActivity<LoginPresenter> impleme
                 return;
             }
             showLoading("");
-            mPresenter.login(mobile,password);
+            mPresenter.updatePassword(mobile,"",currentPwd,password);
         }
     }
 
-    @Override
-    public void setLoginRsa(String rsa) {
-
-    }
-
-    @Override
-    public void loginSuccess(UserBean userBean) {
-        cancelDialogLoading();
-//        MainActivity.open(mContext);
-        finish();
-    }
 
     @Override
     public void stateMain() {
@@ -154,10 +144,6 @@ public class UpdatePasswordActivity extends BaseActivity<LoginPresenter> impleme
         cancelDialogLoading();
     }
 
-    @Override
-    public void sendVerificationCodeSuccess() {
-
-    }
 
     public static void open(Context context){
         Intent intent = new Intent(context,UpdatePasswordActivity.class);
@@ -165,4 +151,13 @@ public class UpdatePasswordActivity extends BaseActivity<LoginPresenter> impleme
     }
 
 
+    @Override
+    public void updateSuccess() {
+        App.getInstance().removeActivity(CommonSettingActivity.class);
+        UserBean userBean = App.getInstance().getUserBeanInstance();
+        String mobile = userBean.getMobile();
+        App.getInstance().setUserInstance(null);
+        App.getAppComponent().getDataManager().setUserInstance(null);
+        LoginActivity.open(mContext,mobile);
+    }
 }

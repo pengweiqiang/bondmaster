@@ -144,7 +144,16 @@ public interface HttpHelper {
      * @param password
      * @return
      */
-    Flowable<BondMasterHttpResponse> forgetPassword(String mobile,String code,String password);
+    Flowable<BondMasterHttpResponse<Object>> forgetPassword(String mobile,String code,String password);
+
+    Flowable<BondMasterHttpResponse<String>> getForgetPwdModifyRsa();
+
+
+    Flowable<BondMasterHttpResponse<String>> getPwdModifyRsa();
+
+
+    Flowable<BondMasterHttpResponse<Object>> modifyPwd(String mobile,String code,String srcPwd,String newPwd);
+
 
     Flowable<BondMasterHttpResponse<UserBean>> getUserInfo();
 

@@ -44,6 +44,12 @@ public abstract class RootFragment<T extends BasePresenter> extends BaseFragment
         View.inflate(mContext, R.layout.view_error, parent);
         View.inflate(mContext, R.layout.view_progress, parent);
         viewError = (LinearLayout) parent.findViewById(R.id.view_error);
+        viewError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reconnectNetwork();
+            }
+        });
         viewLoading = (FrameLayout) parent.findViewById(R.id.view_loading);
         ivLoading = (ProgressImageView) viewLoading.findViewById(R.id.iv_progress);
         viewError.setVisibility(View.GONE);
@@ -77,6 +83,11 @@ public abstract class RootFragment<T extends BasePresenter> extends BaseFragment
         hideCurrentView();
         currentState = STATE_MAIN;
         viewMain.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    protected void reconnectNetwork() {
+        showLoading("");
     }
 
     private void hideCurrentView() {

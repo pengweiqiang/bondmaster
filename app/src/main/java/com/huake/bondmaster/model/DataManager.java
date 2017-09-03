@@ -233,8 +233,23 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
-    public Flowable<BondMasterHttpResponse> forgetPassword(String mobile, String code, String password) {
+    public Flowable<BondMasterHttpResponse<Object>> forgetPassword(String mobile, String code, String password) {
         return mHttpHelper.forgetPassword(mobile, code, password);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<String>> getForgetPwdModifyRsa() {
+        return mHttpHelper.getForgetPwdModifyRsa();
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<String>> getPwdModifyRsa() {
+        return mHttpHelper.getPwdModifyRsa();
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<Object>> modifyPwd(String mobile, String code, String srcPwd, String newPwd) {
+        return mHttpHelper.modifyPwd(mobile, code, srcPwd, newPwd);
     }
 
     @Override
