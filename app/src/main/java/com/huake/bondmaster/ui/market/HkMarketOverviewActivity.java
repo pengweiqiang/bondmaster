@@ -1,25 +1,18 @@
-package com.huake.bondmaster.ui.main.activity;
+package com.huake.bondmaster.ui.market;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
-import com.huake.bondmaster.base.contract.main.SearchTrialCustInfoContract;
-import com.huake.bondmaster.model.bean.SearchBean;
-import com.huake.bondmaster.presenter.home.SearchTrialCustInfoPresenter;
-import com.huake.bondmaster.ui.evaluation.EvaluationActivity;
-import com.huake.bondmaster.ui.main.adapter.SearchAdapter;
-import com.huake.bondmaster.ui.scene.SceneDetailActivity;
+import com.huake.bondmaster.base.contract.market.HkMarketOverviewContract;
+import com.huake.bondmaster.model.bean.HkMarketOverviewBean;
+import com.huake.bondmaster.presenter.market.HkMarketOverviewPresenter;
+import com.huake.bondmaster.ui.market.adapter.HkMarketOverviewAdapter;
 import com.huake.bondmaster.widget.ActionBar;
 import com.huake.bondmaster.widget.CommonItemDecoration;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -30,36 +23,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
-
-import static com.huake.bondmaster.R.id.refreshLayout;
 
 /**
  * @author will on 2017/8/29 14:15
  * @email pengweiqiang64@163.com
- * @description 首页搜索企业
+ * @description 短期融资券
  * @Version
  */
 
-public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInfoPresenter> implements SearchTrialCustInfoContract.View {
+public class HkMarketOverviewActivity extends BaseActivity<HkMarketOverviewPresenter> implements HkMarketOverviewContract.View {
 
     @BindView(R.id.action_bar)
     ActionBar mActionBar;
-    @BindView(refreshLayout)
+    @BindView(R.id.smart_refresh_layout)
     RefreshLayout mRefreshLayout;
     @BindView(R.id.view_main)
     RecyclerView mRecyclerView;
-    @BindView(R.id.et_search)
-    EditText mEtSearch;
-    @BindView(R.id.btn_start_evaluate)
-    Button mBtnEvaluate;
 
-    SearchAdapter mAdapter;
+    HkMarketOverviewAdapter mAdapter;
 
-    private List<SearchBean> mList = new ArrayList<>();
+    private List<HkMarketOverviewBean> mList = new ArrayList<>();
 
     private long pageNum = 1;
     private long total = 0;
+
+    String urlKey = "";
 
     @Override
     protected void initInject() {
@@ -68,41 +56,31 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_search_trial_custinfo;
+        return R.layout.activity_hk_market_overview;
     }
 
     @Override
     protected void initEventAndData() {
-        mActionBar.setTitle("");
+        mActionBar.setTitle("短期融资券");
+        urlKey = getIntent().getStringExtra(Constants.URL_KEY);
 
-
-        mAdapter = new SearchAdapter(mContext,mList);
+        mAdapter = new HkMarketOverviewAdapter(mContext,mList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setAdapter(mAdapter);
-        CommonItemDecoration mDecoration = new CommonItemDecoration(10, CommonItemDecoration.UNIT_DP);
+        CommonItemDecoration mDecoration = new CommonItemDecoration(1, CommonItemDecoration.UNIT_DP);
         mRecyclerView.addItemDecoration(mDecoration);
         initListener();
 
         mRefreshLayout.autoRefresh();
     }
 
-    @OnClick(R.id.btn_start_evaluate)
-    public void onClick(View view){
-        if(checkIsLogin()==null){
-            startLoginActivity();
-            return;
-        }
-        EvaluationActivity.open(mContext);
-    }
 
     private void loadData(){
-//        UserBean userBean = App.getInstance().getUserBeanInstance();
-//        String userId = "";
-//        if(userBean!=null){
-//            userId = userBean.getId();
-//        }
-        String searchKey = mEtSearch.getText().toString().trim();
-        mPresenter.getSceneList(pageNum,searchKey);
+        urlKey = urlKey.substring(urlKey.indexOf("?")+1);
+        String params[] = urlKey.split("=");
+        if(params.length>=2) {
+            mPresenter.getLists(params[1], pageNum, Constants.PAGE_SIZE);
+        }
     }
 
     @Override
@@ -119,8 +97,9 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
         mRefreshLayout.finishLoadmore();
     }
 
+
     @Override
-    public void showContent(long records, long pageNum, long total, List<SearchBean> sceneBeanList) {
+    public void showContent(long records, long pageNum, long total, List<HkMarketOverviewBean> hkMarketOverviewBeanList) {
         stateMain();
         this.total = total;
         this.pageNum = pageNum;
@@ -128,7 +107,7 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
             mList.clear();
         }
         mRefreshLayout.setLoadmoreFinished(pageNum>=total);
-        mList.addAll(sceneBeanList);
+        mList.addAll(hkMarketOverviewBeanList);
         if(mList.isEmpty()){
             showErrorMsg("查询结果为空");
         }
@@ -137,10 +116,10 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
 
     @Override
     public void initListener() {
-        mAdapter.setOnItemClickListener(new SearchAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new HkMarketOverviewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
-                SceneDetailActivity.open(mContext,mList.get(position));
+                HkMarketOverviewDetailActivity.open(mContext,mList.get(position));
             }
         });
 
@@ -158,17 +137,6 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
             }
         });
 
-        mEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {//EditorInfo.IME_ACTION_SEARCH、EditorInfo.IME_ACTION_SEND等分别对应EditText的imeOptions属性
-                    if(v.getText().toString().length() != 0) {
-                        loadDataFirst();
-                    }
-                }
-                return false;
-            }
-        });
     }
 
     private void loadDataFirst(){
@@ -176,9 +144,9 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
         loadData();
     }
 
-    public static void open(Context context,String key){
-        Intent intent = new Intent(context,SearchTrialCustInfoActivity.class);
-        intent.putExtra(Constants.SEARCH_KEY,key);
+    public static void open(Context context,String url){
+        Intent intent = new Intent(context,HkMarketOverviewActivity.class);
+        intent.putExtra(Constants.URL_KEY,url);
         context.startActivity(intent);
     }
 

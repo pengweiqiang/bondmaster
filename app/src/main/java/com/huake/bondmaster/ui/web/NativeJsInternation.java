@@ -5,6 +5,7 @@ import android.webkit.JavascriptInterface;
 
 import com.huake.bondmaster.Constants;
 import com.huake.bondmaster.ui.main.activity.MainActivity;
+import com.huake.bondmaster.ui.market.HkMarketOverviewActivity;
 import com.huake.bondmaster.util.LogUtil;
 
 /**
@@ -23,13 +24,19 @@ public class NativeJsInternation {
     }
 
     @JavascriptInterface
-    public void calculateForJS(String i) {
+    public void calculateForJS(String url) {
         if(context instanceof WebActivity) {
-            ((WebActivity) context).loadUrl(Constants.HOST_URL + i);
+            ((WebActivity) context).loadUrl(Constants.HOST_URL + url);
         }else if(context instanceof MainActivity){
-            ((MainActivity) context).loadUrl(Constants.HOST_URL + i);
+            //查看债种今日新发债
+            if(url.contains(com.huake.bondmaster.app.Constants.HK_MARKET_OVERVIEW)){
+                HkMarketOverviewActivity.open(context,url);
+            }else {
+                ((MainActivity) context).loadUrl(Constants.HOST_URL + url);
+            }
         }
-        LogUtil.i(i);
+
+        LogUtil.i(url);
     }
 
     @JavascriptInterface

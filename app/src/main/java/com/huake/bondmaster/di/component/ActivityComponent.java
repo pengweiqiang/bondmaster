@@ -13,6 +13,8 @@ import com.huake.bondmaster.ui.main.activity.ArticleListActivity;
 import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.ui.main.activity.SearchTrialCustInfoActivity;
 import com.huake.bondmaster.ui.main.activity.WelcomeActivity;
+import com.huake.bondmaster.ui.market.HkMarketOverviewActivity;
+import com.huake.bondmaster.ui.market.HkMarketOverviewDetailActivity;
 import com.huake.bondmaster.ui.my.ChangeMobileActivity;
 import com.huake.bondmaster.ui.my.ForgetPasswordActivity;
 import com.huake.bondmaster.ui.my.LoginActivity;
@@ -67,5 +69,9 @@ public interface ActivityComponent {
     void inject(ChangeMobileActivity changeMobileActivity);
 
     void inject(ForgetPasswordActivity forgetPasswordActivity);
+
+    void inject(HkMarketOverviewActivity hkMarketOverviewActivity);
+
+    void inject(HkMarketOverviewDetailActivity hkMarketOverviewDetailActivity);
 
 }

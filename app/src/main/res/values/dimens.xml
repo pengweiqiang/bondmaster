@@ -16,6 +16,7 @@
     <dimen name="action_bar_height">48dp</dimen>
     <dimen name="action_bar_title_size">19sp</dimen>
     <dimen name="action_bar_left_size">16sp</dimen>
+    <dimen name="item_title">15sp</dimen>
     <dimen name="item_company_name">16sp</dimen>
     <dimen name="item_scene_content_size">12sp</dimen>
 

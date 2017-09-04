@@ -25,6 +25,9 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final String ASSOCIATION_MAP= "hk-soft-app/associationMap";//债券图谱
 
+    //查看债种今日新发债
+    public static final String HK_MARKET_OVERVIEW = "hk-soft-app/marketOverview/findHkMarketOverviewDataPage";
+
 
     public static final String MARKET_URL = "hk-soft-app/marketOverview";//市场
 
@@ -110,6 +113,8 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final String SEARCH_KEY = "searchKey";
 
+    public static final String URL_KEY = "urlKey";
+
     public static final String INDUSTRY_SELECTED = "selectedIndustry";
 
     public static final String PARENT_INDUSTRY_SELECTED = "parentSelectedIndustry";
@@ -130,6 +135,8 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final String THREE_AVG_PROFIT = "three_avg_profit";
     public static final String EBIT = "ebit";
     public static final String CASH = "cash";
+
+    public static final String HK_MARKET_OVERVIEW_BEAN = "hkMarketOverview";
 
 
 

@@ -1,12 +1,15 @@
 package com.huake.bondmaster.model.http.api;
 
 
+import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
 import com.huake.bondmaster.model.bean.ArticleBean;
 import com.huake.bondmaster.model.bean.CommentBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.EvaluationResultBean;
 import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
+import com.huake.bondmaster.model.bean.HkMarketOverviewBean;
+import com.huake.bondmaster.model.bean.HkMarketOverviewDetailBean;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.model.bean.PageBean;
@@ -190,6 +193,26 @@ public interface BondMasterApis {
     @FormUrlEncoded
     @GET("hk-soft-app/cmsApp/insertCmsComment")
     Flowable<BondMasterHttpResponse<CommentBean>>  insertCmsComment(@FieldMap Map<String,String> params);
+
+    /**
+     * 查看债种今日新发债
+     * @param sInfoIndustrycode1
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @GET(Constants.HK_MARKET_OVERVIEW)
+    Flowable<BondMasterHttpResponse<PageBean<HkMarketOverviewBean>>> findHkMarketOverviewDataPage(@Query("sInfoIndustrycode1") String sInfoIndustrycode1, @Query("pageNum")long pageNum, @Query("pageSize")long pageSize);
+
+
+    /**
+     * 查看债券详细信息
+     * @param sInfoCompcode
+     * @param sInfoWindcode
+     * @return
+     */
+    @GET("{path}")
+    Flowable<BondMasterHttpResponse<HkMarketOverviewDetailBean>> getHkMarketOverviewDataCmpIdAndWindCode(@Query("sInfoCompcode")String sInfoCompcode, @Query("sInfoWindcode")String sInfoWindcode);
 
 
 

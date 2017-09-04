@@ -154,6 +154,7 @@ public class UpdatePasswordActivity extends BaseActivity<UpdatePasswordPresenter
     @Override
     public void updateSuccess() {
         App.getInstance().removeActivity(CommonSettingActivity.class);
+        App.getInstance().removeActivity(PasswordManageActivity.class);
         UserBean userBean = App.getInstance().getUserBeanInstance();
         String mobile = userBean.getMobile();
         App.getInstance().setUserInstance(null);

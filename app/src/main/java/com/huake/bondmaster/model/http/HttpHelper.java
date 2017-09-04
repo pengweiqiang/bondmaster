@@ -6,6 +6,8 @@ import com.huake.bondmaster.model.bean.ArticleBean;
 import com.huake.bondmaster.model.bean.CommentBean;
 import com.huake.bondmaster.model.bean.EnterpriseInfo;
 import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
+import com.huake.bondmaster.model.bean.HkMarketOverviewBean;
+import com.huake.bondmaster.model.bean.HkMarketOverviewDetailBean;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.model.bean.PageBean;
@@ -96,6 +98,17 @@ public interface HttpHelper {
     //保存评论
     Flowable<BondMasterHttpResponse<CommentBean>>  insertCmsComment(Map<String,String> params);
 
+
+    Flowable<BondMasterHttpResponse<PageBean<HkMarketOverviewBean>>> findHkMarketOverviewDataPage(String sInfoIndustrycode1,long pageNum,long pageSize);
+
+
+    /**
+     * 查看债券详细信息
+     * @param sInfoCompcode
+     * @param sInfoWindcode
+     * @return
+     */
+    Flowable<BondMasterHttpResponse<HkMarketOverviewDetailBean>> getHkMarketOverviewDataCmpIdAndWindCode(String sInfoCompcode, String sInfoWindcode);
 
 
     Flowable<BondMasterHttpResponse<String>> getRegisterRsa();

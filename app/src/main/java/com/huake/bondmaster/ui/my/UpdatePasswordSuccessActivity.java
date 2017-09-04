@@ -55,10 +55,12 @@ public class UpdatePasswordSuccessActivity extends SimpleActivity {
     @OnClick(R.id.tv_back_to_login)
     public void onclick(View view){
         LoginActivity.open(mContext,mobile);
+        finish();
     }
 
     public static void open(Context context,String mobile){
         Intent intent = new Intent(context,UpdatePasswordSuccessActivity.class);
+        intent.putExtra(Constants.MOBILE,mobile);
         context.startActivity(intent);
     }
 
@@ -85,7 +87,7 @@ public class UpdatePasswordSuccessActivity extends SimpleActivity {
                 LoginActivity.open(mContext,mobile);
                 timer.cancel();
             } else {
-                String tips = "系统将在2秒后自动跳转至登录页面";
+                String tips = "系统将在"+msg.what+"秒后自动跳转至登录页面";
                 mTvTimeTips.setText(TextViewUtils.getSpannableStringColor(tips,4,5, Color.RED));
             }
 

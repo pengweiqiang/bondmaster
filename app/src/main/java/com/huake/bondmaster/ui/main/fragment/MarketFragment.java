@@ -53,13 +53,14 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
     protected void initEventAndData() {
 
         mActionBar.setTitle("市场分析");
+        mActionBar.hideLeftAction();
 
-        mActionBar.setLeftActionButton(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mWebView.goBack();
-            }
-        });
+//        mActionBar.setLeftActionButton(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mWebView.goBack();
+//            }
+//        });
 
         WebSettings settings = mWebView.getSettings();
 //        settings.setAppCacheEnabled(true);
