@@ -156,8 +156,8 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<BondMasterHttpResponse<Object>> modifyPwd(String mobile, String code, String srcPwd, String newPwd) {
-        return mMyApiService.modifyPwd(mobile, code, srcPwd, newPwd);
+    public Flowable<BondMasterHttpResponse<Object>> modifyPwd(String srcPwd, String newPwd) {
+        return mMyApiService.modifyPwd(srcPwd, newPwd);
     }
 
     @Override

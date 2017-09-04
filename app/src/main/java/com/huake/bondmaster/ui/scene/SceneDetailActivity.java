@@ -106,7 +106,11 @@ public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> impl
     public void onClickOptionItem(View view){
         switch (view.getId()){
             case R.id.rl_bond_atlas://债券图谱
-
+                StringBuilder sbUrlMap = new StringBuilder(Constants.HOST_URL+Constants.ASSOCIATION_MAP);
+                sbUrlMap.append("?userId=").append(sceneBean.getUserId())
+                        .append("&trialCustId=").append(sceneBean.getTrialCustId())
+                        .append("&dataDate=").append(sceneBean.getDataDate());
+                WebActivity.open(mContext,"",sbUrlMap.toString());
                 break;
             case R.id.rl_financing_plan://融资方案
 

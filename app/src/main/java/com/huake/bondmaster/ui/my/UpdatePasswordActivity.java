@@ -158,6 +158,8 @@ public class UpdatePasswordActivity extends BaseActivity<UpdatePasswordPresenter
         String mobile = userBean.getMobile();
         App.getInstance().setUserInstance(null);
         App.getAppComponent().getDataManager().setUserInstance(null);
-        LoginActivity.open(mContext,mobile);
+        UpdatePasswordSuccessActivity.open(mContext,mobile);
+//        LoginActivity.open(mContext,mobile);
+        finish();
     }
 }

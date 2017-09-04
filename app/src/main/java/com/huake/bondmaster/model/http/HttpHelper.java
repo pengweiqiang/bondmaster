@@ -152,7 +152,7 @@ public interface HttpHelper {
     Flowable<BondMasterHttpResponse<String>> getPwdModifyRsa();
 
 
-    Flowable<BondMasterHttpResponse<Object>> modifyPwd(String mobile,String code,String srcPwd,String newPwd);
+    Flowable<BondMasterHttpResponse<Object>> modifyPwd(String srcPwd,String newPwd);
 
 
     Flowable<BondMasterHttpResponse<UserBean>> getUserInfo();

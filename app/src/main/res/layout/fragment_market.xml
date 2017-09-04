@@ -4,4 +4,25 @@
     android:id="@+id/view_main"
     android:layout_height="match_parent">
 
+    <com.huake.bondmaster.widget.ActionBar
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_height"/>
+
+    <FrameLayout
+        android:transitionName="shareView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.tencent.smtt.sdk.WebView
+            android:id="@+id/wv_tech_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent"
+            />
+    </FrameLayout>
+
 </LinearLayout>

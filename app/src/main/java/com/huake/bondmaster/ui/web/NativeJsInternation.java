@@ -4,6 +4,7 @@ import android.content.Context;
 import android.webkit.JavascriptInterface;
 
 import com.huake.bondmaster.Constants;
+import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.util.LogUtil;
 
 /**
@@ -23,7 +24,11 @@ public class NativeJsInternation {
 
     @JavascriptInterface
     public void calculateForJS(String i) {
-        ((WebActivity)context).loadUrl(Constants.HOST_URL+i);
+        if(context instanceof WebActivity) {
+            ((WebActivity) context).loadUrl(Constants.HOST_URL + i);
+        }else if(context instanceof MainActivity){
+            ((MainActivity) context).loadUrl(Constants.HOST_URL + i);
+        }
         LogUtil.i(i);
     }
 

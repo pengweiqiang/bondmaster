@@ -92,43 +92,43 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
         }
 
         String libilities = mEtliabilities.getText().toString();
-        if(TextUtils.isEmpty(assetTotal)){
+        if(TextUtils.isEmpty(libilities)){
             mEtliabilities.requestFocus();
             return;
         }
 
         String flowRate = mEtFlowRate.getText().toString();
-        if(TextUtils.isEmpty(assetTotal)){
+        if(TextUtils.isEmpty(flowRate)){
             mEtFlowRate.requestFocus();
             return;
         }
         String income = mEtIncome.getText().toString();
-        if(TextUtils.isEmpty(assetTotal)){
+        if(TextUtils.isEmpty(income)){
             mEtIncome.requestFocus();
             return;
         }
         String profitTotal = mEtProfitTotal.getText().toString();
-        if(TextUtils.isEmpty(assetTotal)){
+        if(TextUtils.isEmpty(profitTotal)){
             mEtProfitTotal.requestFocus();
             return;
         }
         String retainedProfits = mEtRetainedProfits.getText().toString();
-        if(TextUtils.isEmpty(assetTotal)){
+        if(TextUtils.isEmpty(retainedProfits)){
             mEtRetainedProfits.requestFocus();
             return;
         }
         String threeAvgProfit = mEtThreeAvgProfit.getText().toString();
-        if(TextUtils.isEmpty(assetTotal)){
+        if(TextUtils.isEmpty(threeAvgProfit)){
             mEtThreeAvgProfit.requestFocus();
             return;
         }
         String ebit = mEtEbit.getText().toString();
-        if(TextUtils.isEmpty(assetTotal)){
+        if(TextUtils.isEmpty(ebit)){
             mEtEbit.requestFocus();
             return;
         }
         String cash = mEtCash.getText().toString();
-        if(TextUtils.isEmpty(assetTotal)){
+        if(TextUtils.isEmpty(cash)){
             mEtCash.requestFocus();
             return;
         }

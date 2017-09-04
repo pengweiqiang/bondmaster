@@ -51,12 +51,13 @@ dependencies {
     compile rootProject.ext.dependencies["cardview-v7"]
     compile rootProject.ext.dependencies["SmartRefreshLayout"]
     compile rootProject.ext.dependencies["MaterialDialog"]
+    compile rootProject.ext.dependencies["imagepicker"]
 
     //ui
     compile rootProject.ext.dependencies["material-calendarview"]
     compile rootProject.ext.dependencies["materialsearchview"]
     compile rootProject.ext.dependencies["multiline-collapsingtoolbar"]
-    compile rootProject.ext.dependencies["PhotoView"]
+//    compile rootProject.ext.dependencies["PhotoView"]
     compile rootProject.ext.dependencies["glide-transformations"]
     compile rootProject.ext.dependencies["html-textview"]
     compile rootProject.ext.dependencies["banner"]

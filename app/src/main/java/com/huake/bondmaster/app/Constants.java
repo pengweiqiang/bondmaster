@@ -19,7 +19,16 @@ public class Constants extends com.huake.bondmaster.Constants{
     //================= RESULT ====================
     public static final int SELECT_INDUSTRY_REQUEST_CODE = 0x0001;
 
+    public static final int IMAGE_PICKER = 0x0002;
+
     public static final String ARTICLE_URL= "/hk-soft-app/cmsApp/getArticle";//专栏内容
+
+    public static final String ASSOCIATION_MAP= "hk-soft-app/associationMap";//债券图谱
+
+
+    public static final String MARKET_URL = "hk-soft-app/marketOverview";//市场
+
+    public static final String ABOUT_US = "hk-soft-app/aboutus";//关于我们
 
     //评测结果
     public static final String EVALUATION_RESULT = "/hk-soft-app/evaluate/viewIssuanceEvaluationResult";

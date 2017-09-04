@@ -53,7 +53,7 @@ public class CommonSettingActivity extends SimpleActivity {
                 ChangeMobileActivity.open(mContext);
                 break;
             case R.id.tv_password_manage:
-                UpdatePasswordActivity.open(mContext);
+                PasswordManageActivity.open(mContext);
                 break;
             case R.id.btn_logout:
                 logout();

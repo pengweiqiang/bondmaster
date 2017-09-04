@@ -50,6 +50,8 @@ public class ForgetPasswordActivity extends BaseActivity<ForgetPasswordPresenter
     @BindView(R.id.btn_confirm)
     Button mBtnConfirm;
 
+    private boolean isSendCode = false;
+
     String mobile = "";
 
     TextWatcher textWatcher;
@@ -73,7 +75,7 @@ public class ForgetPasswordActivity extends BaseActivity<ForgetPasswordPresenter
     @Override
     protected void initEventAndData() {
         mobile = getIntent().getStringExtra(Constants.MOBILE);
-        mActionBar.setTitle("忘记登录密码");
+        mActionBar.setTitle("忘记密码");
         dataManager = App.getAppComponent().getDataManager();
         if(!TextUtils.isEmpty(mobile)){
             mEtMobile.setText(mobile);
@@ -116,9 +118,15 @@ public class ForgetPasswordActivity extends BaseActivity<ForgetPasswordPresenter
     }
 
     @OnClick({R.id.btn_confirm,R.id.btn_get_code})
-    public void btnOnClick(View view){
+    public void btnOnClick(View view){//15235409249
+        String mobile = mEtMobile.getText().toString().trim();
         switch (view.getId()){
             case R.id.btn_confirm:
+                if(!isSendCode){
+                    mEtMobile.requestFocus();
+                    ToastUtil.shortShow("请先获取验证码");
+                    return;
+                }
                 if(TextUtils.isEmpty(mobile)){
                     mEtMobile.requestFocus();
                     ToastUtil.shortShow("手机号不能为空");
@@ -171,6 +179,7 @@ public class ForgetPasswordActivity extends BaseActivity<ForgetPasswordPresenter
     @Override
     public void getCodeSuccess() {
         regainCode();
+        isSendCode = true;
     }
 
 

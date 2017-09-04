@@ -248,8 +248,8 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
-    public Flowable<BondMasterHttpResponse<Object>> modifyPwd(String mobile, String code, String srcPwd, String newPwd) {
-        return mHttpHelper.modifyPwd(mobile, code, srcPwd, newPwd);
+    public Flowable<BondMasterHttpResponse<Object>> modifyPwd( String srcPwd, String newPwd) {
+        return mHttpHelper.modifyPwd(srcPwd, newPwd);
     }
 
     @Override

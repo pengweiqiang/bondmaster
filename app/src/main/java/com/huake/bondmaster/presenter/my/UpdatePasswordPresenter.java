@@ -35,7 +35,7 @@ public class UpdatePasswordPresenter extends RxPresenter<UpdatePasswordContract.
 
     @Override
     public void updatePassword(final String mobile,final String code,final String currentPassword,final String newPassword) {
-        addSubscribe(dataManager.getRegisterRsa()
+        addSubscribe(dataManager.getPwdModifyRsa()
                 .compose(RxUtil.<BondMasterHttpResponse<String>>rxSchedulerHelper())
                 .subscribeWith(new CommonSubscriber<String>(mView, true) {
                     @Override
@@ -51,7 +51,7 @@ public class UpdatePasswordPresenter extends RxPresenter<UpdatePasswordContract.
 
                                 String newPwdStr = RSAUtils.encrypt(newPassword,publicKey);
 
-                                addSubscribe(dataManager.modifyPwd(mobile, code, currentPwdStr, newPwdStr)
+                                addSubscribe(dataManager.modifyPwd(currentPwdStr, newPwdStr)
                                         .compose(RxUtil.<BondMasterHttpResponse<Object>>rxSchedulerHelper())
                                         .subscribeWith(new CommonSubscriber<Object>(mView, true) {
                                             @Override

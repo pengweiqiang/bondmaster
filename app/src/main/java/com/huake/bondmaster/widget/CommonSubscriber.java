@@ -93,9 +93,9 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<BondMasterH
             mView.showErrorMsg(e.toString());
         } else if (e instanceof HttpException) {
             LogUtil.i(((HttpException)e).code()+" code");
-            if(isShowErrorState){
-                mView.stateError();
-            }
+//            if(isShowErrorState){
+//                mView.stateError();
+//            }
             mView.showErrorMsg("数据加载失败");
         }else if (e instanceof ConnectException) {
             if(isShowErrorState){
@@ -104,9 +104,9 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<BondMasterH
             mView.showErrorMsg("请检查网络是否正常");
         } else if (e instanceof SocketTimeoutException) {
             mView.showErrorMsg("连接超时，检查网络是否正常");
-            if(isShowErrorState){
-                mView.stateError();
-            }
+//            if(isShowErrorState){
+//                mView.stateError();
+//            }
         } else {
             mView.showErrorMsg("未知错误");
             LogUtil.d(e.toString());

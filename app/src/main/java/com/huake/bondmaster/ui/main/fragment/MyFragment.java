@@ -11,10 +11,10 @@ import com.huake.bondmaster.base.RootFragment;
 import com.huake.bondmaster.base.contract.main.MyContract;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.main.MyPresenter;
-import com.huake.bondmaster.ui.my.AboutUsActivity;
 import com.huake.bondmaster.ui.my.CommonSettingActivity;
 import com.huake.bondmaster.ui.my.FeedBackActivity;
 import com.huake.bondmaster.ui.my.LoginActivity;
+import com.huake.bondmaster.ui.web.WebActivity;
 import com.huake.bondmaster.widget.ToggleButton;
 import com.tencent.bugly.beta.Beta;
 import com.umeng.socialize.ShareAction;
@@ -100,7 +100,8 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
                 shareApp();
                 break;
             case R.id.rl_about_us:
-                AboutUsActivity.open(mContext);
+                WebActivity.open(mContext,"关于我们",Constants.HOST_URL+Constants.ABOUT_US);
+//                AboutUsActivity.open(mContext);
                 break;
             case R.id.rl_check_upgrade:
                 Beta.checkUpgrade(true,false);

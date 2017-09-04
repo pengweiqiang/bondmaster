@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
@@ -143,7 +144,11 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
                 break;
             case R.id.btn_next:
                 String companyName = mEtCompanyName.getText().toString().trim();
-                if(partyListBean==null){
+//                if(partyListBean==null){
+//                    showErrorMsg("请选择公司名称");
+//                    return;
+//                }
+                if(TextUtils.isEmpty(companyName)){
                     showErrorMsg("请选择公司名称");
                     return;
                 }

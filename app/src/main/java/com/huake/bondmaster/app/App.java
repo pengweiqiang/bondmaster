@@ -127,6 +127,7 @@ public class App extends Application{
             for(Activity activity:allActivities){
                 if(className.getSimpleName().equals(activity.getClass().getSimpleName())){
                     removeActivity(activity);
+                    break;
                 }
             }
         }

@@ -266,14 +266,12 @@ public interface BondMasterApis {
 
     /**
      * 修改密码
-     * @param mobile
-     * @param code
      * @param srcPwd
      * @param newPwd
      * @return
      */
     @POST("hk-soft-app/userPwdModify")
-    Flowable<BondMasterHttpResponse<Object>> modifyPwd(@Query("mobile")String mobile,@Query("code")String code,@Query("srcPwd")String srcPwd,@Query("newPwd")String newPwd);
+    Flowable<BondMasterHttpResponse<Object>> modifyPwd(@Query("srcPwd")String srcPwd,@Query("newPwd")String newPwd);
 
 
     @POST("hk-soft-app/getUserInfo")
