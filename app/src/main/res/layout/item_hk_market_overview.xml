@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:textColor="#999999"
             android:text="发行时间：2017-09-04"
-            android:textSize="@dimen/my_common_text_size"
+            android:textSize="@dimen/item_date_size"
             />
 
     </LinearLayout>

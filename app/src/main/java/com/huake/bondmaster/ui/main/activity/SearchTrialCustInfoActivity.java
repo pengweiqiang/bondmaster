@@ -47,7 +47,7 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
     ActionBar mActionBar;
     @BindView(refreshLayout)
     RefreshLayout mRefreshLayout;
-    @BindView(R.id.view_main)
+    @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
     @BindView(R.id.et_search)
     EditText mEtSearch;
@@ -117,6 +117,12 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
         super.stateError();
         mRefreshLayout.finishRefresh();
         mRefreshLayout.finishLoadmore();
+    }
+
+    @Override
+    protected void reconnectNetwork() {
+        super.reconnectNetwork();
+        loadDataFirst();
     }
 
     @Override

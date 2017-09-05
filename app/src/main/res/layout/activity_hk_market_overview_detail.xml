@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="发行概览"
+                    android:text="发行信息"
                     android:textColor="#999999"
                     android:textSize="@dimen/my_common_text_size" />
             </LinearLayout>
@@ -203,36 +203,36 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="10dp"
-                android:background="@color/colorBackground" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:background="@color/colorBackground" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="15dp">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="15dp">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="债项评级："
-                    android:paddingLeft="10dp"
-                    android:textColor="#333333"
-                    android:textSize="@dimen/item_title" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="债项评级："-->
+                    <!--android:paddingLeft="10dp"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="@dimen/item_title" />-->
 
-                <TextView
-                    android:id="@+id/tv_bond_level"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text=""
-                    android:textColor="#999999"
-                    android:textSize="@dimen/item_company_name" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_bond_level"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text=""-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="@dimen/item_company_name" />-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
             <View
                 android:layout_width="match_parent"

@@ -18,6 +18,7 @@
     <dimen name="action_bar_left_size">16sp</dimen>
     <dimen name="item_title">15sp</dimen>
     <dimen name="item_company_name">16sp</dimen>
+    <dimen name="item_date_size">13sp</dimen>
     <dimen name="item_scene_content_size">12sp</dimen>
 
     <dimen name="search_text_size">14sp</dimen>

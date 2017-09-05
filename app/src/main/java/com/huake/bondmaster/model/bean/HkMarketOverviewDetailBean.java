@@ -45,7 +45,7 @@ public class HkMarketOverviewDetailBean {
     private double bInfoCouponrate;
     private String bInfoCarrydate;
     private String bInfoMaturitydate;
-    private int bIssueAmountact;
+    private double bIssueAmountact;
     private String sInfoIndustrycode1;
     private String codeValue1;
     private String sInfoIndustrycode2;
@@ -60,7 +60,7 @@ public class HkMarketOverviewDetailBean {
     private String provinceId;
     private String issueCreditrating;
     private String issueRatingNum;
-    private int bInfoTermYear;
+    private double bInfoTermYear;
     private String sInfoName;
 
     public int getSInfoCompcode() {
@@ -127,11 +127,11 @@ public class HkMarketOverviewDetailBean {
         this.bInfoMaturitydate = bInfoMaturitydate;
     }
 
-    public int getBIssueAmountact() {
+    public double getBIssueAmountact() {
         return bIssueAmountact;
     }
 
-    public void setBIssueAmountact(int bIssueAmountact) {
+    public void setBIssueAmountact(double bIssueAmountact) {
         this.bIssueAmountact = bIssueAmountact;
     }
 
@@ -247,11 +247,11 @@ public class HkMarketOverviewDetailBean {
         this.issueRatingNum = issueRatingNum;
     }
 
-    public int getBInfoTermYear() {
+    public double getBInfoTermYear() {
         return bInfoTermYear;
     }
 
-    public void setBInfoTermYear(int bInfoTermYear) {
+    public void setBInfoTermYear(double bInfoTermYear) {
         this.bInfoTermYear = bInfoTermYear;
     }
 

@@ -32,6 +32,7 @@ public class HkMarketOverviewDetailPresenter extends RxPresenter<HkMarketOvervie
                 .subscribeWith(new CommonSubscriber<HkMarketOverviewDetailBean>(mView, true) {
                     @Override
                     public void dataHandler(HkMarketOverviewDetailBean hkMarketOverviewDetailBean) {
+                        mView.stateMain();
                         if(hkMarketOverviewDetailBean!=null) {
                             mView.showContent(hkMarketOverviewDetailBean);
                         }else{
@@ -39,6 +40,11 @@ public class HkMarketOverviewDetailPresenter extends RxPresenter<HkMarketOvervie
                         }
                     }
 
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        mView.stateMain();
+                    }
                 })
         );
 

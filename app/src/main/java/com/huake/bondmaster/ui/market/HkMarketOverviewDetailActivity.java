@@ -37,8 +37,8 @@ public class HkMarketOverviewDetailActivity extends BaseActivity<HkMarketOvervie
     TextView mTvNature;
     @BindView(R.id.tv_subject_level)
     TextView mTvSubjectLevel;
-    @BindView(R.id.tv_bond_level)
-    TextView mTvBondLevel;
+//    @BindView(R.id.tv_bond_level)
+//    TextView mTvBondLevel;
     @BindView(R.id.tv_scale)
     TextView mTvScale;
     @BindView(R.id.tv_rate)
@@ -73,14 +73,30 @@ public class HkMarketOverviewDetailActivity extends BaseActivity<HkMarketOvervie
         mTvAddress.setText(hkMarketOverviewDetailBean.getSInfoProvince());
         mTvIndustry.setText(hkMarketOverviewDetailBean.getSecCodeValue1());
         mTvNature.setText(hkMarketOverviewDetailBean.getNatureCodeValue());
-        mTvSubjectLevel.setText("");
-        mTvBondLevel.setText("");
+        mTvSubjectLevel.setText(hkMarketOverviewDetailBean.getIssueCreditrating());
+//        mTvBondLevel.setText("");
 
-        mTvScale.setText("");
+        double bIssueAmoutact = hkMarketOverviewDetailBean.getBIssueAmountact();
+        if(bIssueAmoutact == 0d){
+            mTvScale.setText("未知");
+        }else{
+            mTvScale.setText(bIssueAmoutact+"亿元");
+        }
 
-        mTvRate.setText(hkMarketOverviewDetailBean.getBInfoCouponrate()+"%");
-        mTvDeadLine.setText(hkMarketOverviewDetailBean.getBInfoMaturitydate());
+        double rate = hkMarketOverviewDetailBean.getBInfoCouponrate();
+        if(rate == 0d){
+            mTvRate.setText("未知");
+        }else{
+            mTvRate.setText(rate+"%");
+        }
 
+        mTvDeadLine.setText(hkMarketOverviewDetailBean.getBInfoTermYear()+"年");
+
+    }
+
+    @Override
+    public void stateMain() {
+        super.stateMain();
     }
 
     @Override

@@ -123,6 +123,13 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
     }
 
     @Override
+    public void stateMain() {
+        super.stateMain();
+        mSmartRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishLoadmore();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         mHomeAdapter.onStart();

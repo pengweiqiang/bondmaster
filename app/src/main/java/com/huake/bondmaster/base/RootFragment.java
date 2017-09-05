@@ -59,7 +59,8 @@ public abstract class RootFragment<T extends BasePresenter> extends BaseFragment
 
     @Override
     public void stateError() {
-        if (currentState == STATE_ERROR)
+        cancelDialogLoading();
+        if (viewError.getVisibility() ==View.VISIBLE)
             return;
         hideCurrentView();
         currentState = STATE_ERROR;
@@ -68,7 +69,7 @@ public abstract class RootFragment<T extends BasePresenter> extends BaseFragment
 
     @Override
     public void stateLoading() {
-        if (currentState == STATE_LOADING)
+        if (viewLoading.getVisibility() == View.VISIBLE)
             return;
         hideCurrentView();
         currentState = STATE_LOADING;
@@ -78,7 +79,8 @@ public abstract class RootFragment<T extends BasePresenter> extends BaseFragment
 
     @Override
     public void stateMain() {
-        if (currentState == STATE_MAIN)
+        cancelDialogLoading();
+        if (viewMain.getVisibility() == View.VISIBLE)
             return;
         hideCurrentView();
         currentState = STATE_MAIN;
@@ -91,17 +93,12 @@ public abstract class RootFragment<T extends BasePresenter> extends BaseFragment
     }
 
     private void hideCurrentView() {
-        switch (currentState) {
-            case STATE_MAIN:
-                viewMain.setVisibility(View.GONE);
-                break;
-            case STATE_LOADING:
-                ivLoading.stop();
-                viewLoading.setVisibility(View.GONE);
-                break;
-            case STATE_ERROR:
-                viewError.setVisibility(View.GONE);
-                break;
+        if(viewMain.getVisibility() == View.VISIBLE){
+            viewMain.setVisibility(View.GONE);
+        }else if(viewError.getVisibility() == View.VISIBLE){
+            viewError.setVisibility(View.GONE);
+        }else if(viewLoading.getVisibility() == View.VISIBLE){
+            viewLoading.setVisibility(View.GONE);
         }
     }
 }

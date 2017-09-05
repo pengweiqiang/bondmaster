@@ -62,7 +62,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="6dp"
                             android:gravity="center_vertical"
-                            android:text="发债成功概率：70%"
+                            android:text="发债成功概率："
                             android:textColor="@color/colorWhite"
                             android:textSize="@dimen/my_common_text_size" />
 
@@ -71,7 +71,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_success_probability"
-                            android:text="评测次数：5"
+                            android:text="评测次数："
                             android:gravity="center_vertical"
                             android:textColor="@color/colorWhite"
                             android:textSize="12sp" />
@@ -89,7 +89,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="6dp"
-                            android:text="主体级别预估：AA~"
+                            android:text="主体级别预估："
                             android:textColor="@color/colorWhite"
                             android:textSize="@dimen/my_common_text_size" />
 
@@ -98,7 +98,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_bInfoCreditrating"
-                            android:text="上次评测时间：2017-08-08"
+                            android:text="上次评测时间："
                             android:textColor="@color/colorWhite"
                             android:textSize="12sp" />
 

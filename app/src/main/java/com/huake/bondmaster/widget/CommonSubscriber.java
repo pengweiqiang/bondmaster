@@ -87,15 +87,16 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<BondMasterH
         if (mView == null) {
             return;
         }
+        e.printStackTrace();
         if (mErrorMsg != null && !TextUtils.isEmpty(mErrorMsg)) {
             mView.showErrorMsg(mErrorMsg);
         } else if (e instanceof ApiException) {
             mView.showErrorMsg(e.toString());
         } else if (e instanceof HttpException) {
             LogUtil.i(((HttpException)e).code()+" code");
-//            if(isShowErrorState){
-//                mView.stateError();
-//            }
+            if(isShowErrorState){
+                mView.stateError();
+            }
             mView.showErrorMsg("数据加载失败");
         }else if (e instanceof ConnectException) {
             if(isShowErrorState){

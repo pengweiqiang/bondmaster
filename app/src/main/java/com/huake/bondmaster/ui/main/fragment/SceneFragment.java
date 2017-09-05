@@ -29,8 +29,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.huake.bondmaster.R.id.refreshLayout;
-
 /**
  * @author will on 2017/8/24 13:42
  * @email pengweiqiang64@163.com
@@ -42,9 +40,9 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
 
     @BindView(R.id.tv_title)
     TextView mTvTitle;
-    @BindView(refreshLayout)
+    @BindView(R.id.refreshLayout)
     RefreshLayout mRefreshLayout;
-    @BindView(R.id.view_main)
+    @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
     @BindView(R.id.tv_evaluated_company)
     TextView mTvEvaluatedCompany;
@@ -107,6 +105,12 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
     public void stateError() {
         super.stateError();
         stateMain();
+    }
+
+    @Override
+    protected void reconnectNetwork() {
+        super.reconnectNetwork();
+        loadDataFirst();
     }
 
     @Override

@@ -34,8 +34,8 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
                 .subscribeWith(new CommonSubscriber<HomePageBean>(mView, true) {
                     @Override
                     public void dataHandler(HomePageBean homePageBean) {
+                        mView.stateMain();
                         if(homePageBean!=null) {
-
                             mView.showContent(homePageBean);
 
                             dataManager.setHomePageCache(new Gson().toJson(homePageBean));
@@ -44,6 +44,11 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
                         }
                     }
 
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        mView.stateMain();
+                    }
                 })
         );
     }

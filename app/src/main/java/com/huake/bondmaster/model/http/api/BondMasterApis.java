@@ -211,7 +211,7 @@ public interface BondMasterApis {
      * @param sInfoWindcode
      * @return
      */
-    @GET("{path}")
+    @GET("hk-soft-app/marketOverview/getHkMarketOverviewDataCmpIdAndWindCode")
     Flowable<BondMasterHttpResponse<HkMarketOverviewDetailBean>> getHkMarketOverviewDataCmpIdAndWindCode(@Query("sInfoCompcode")String sInfoCompcode, @Query("sInfoWindcode")String sInfoWindcode);
 
 

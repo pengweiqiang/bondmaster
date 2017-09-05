@@ -123,7 +123,7 @@ public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> impl
                 WebActivity.open(mContext,"",sbUrl.toString());
                 break;
             case R.id.rl_subscibe://订阅管理
-
+                SubscribeManageActivity.open(mContext);
                 break;
         }
     }

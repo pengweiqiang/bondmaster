@@ -21,6 +21,7 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final int IMAGE_PICKER = 0x0002;
 
+    //=================URL=========================
     public static final String ARTICLE_URL= "/hk-soft-app/cmsApp/getArticle";//专栏内容
 
     public static final String ASSOCIATION_MAP= "hk-soft-app/associationMap";//债券图谱

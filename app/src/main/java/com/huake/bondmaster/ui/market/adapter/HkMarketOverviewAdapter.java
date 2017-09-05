@@ -52,10 +52,22 @@ public class HkMarketOverviewAdapter extends RecyclerView.Adapter<RecyclerView.V
         ContentViewHolder contentViewHolder = (ContentViewHolder)holder;
         HkMarketOverviewBean hkMarketOverviewBean = mList.get(position);
 
-        contentViewHolder.mTvRate.setText(hkMarketOverviewBean.getBInfoCouponrate()+"%");
+        double rate = hkMarketOverviewBean.getBInfoCouponrate();
+        if(rate == 0d){
+            contentViewHolder.mTvRate.setText("未知");
+        }else{
+            contentViewHolder.mTvRate.setText(rate+"%");
+        }
+
+
         contentViewHolder.mTvCompanyName.setText(hkMarketOverviewBean.getSInfoCompname());
-        contentViewHolder.mTvScale.setText(hkMarketOverviewBean.getBIssueAmountact()+"");
-        contentViewHolder.mTvDataDate.setText(hkMarketOverviewBean.getBIssueFirstissue());
+        double bissumeAnoutact = hkMarketOverviewBean.getBIssueAmountact();
+        if(bissumeAnoutact==0d){
+            contentViewHolder.mTvScale.setText("未知");
+        }else {
+            contentViewHolder.mTvScale.setText(bissumeAnoutact + "亿元");
+        }
+        contentViewHolder.mTvDataDate.setText("发行时间："+hkMarketOverviewBean.getBIssueFirstissue());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

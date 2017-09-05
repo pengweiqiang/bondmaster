@@ -44,7 +44,7 @@ public class HkMarketOverviewBean implements Parcelable{
     private int sInfoWindcode;
     private String bInfoFullname;
     private String bIssueFirstissue;
-    private String bInfoCouponrate;
+    private double bInfoCouponrate;
     private String bInfoCarrydate;
     private String bInfoMaturitydate;
     private double bIssueAmountact;
@@ -104,11 +104,11 @@ public class HkMarketOverviewBean implements Parcelable{
         this.bIssueFirstissue = bIssueFirstissue;
     }
 
-    public String getBInfoCouponrate() {
+    public double getBInfoCouponrate() {
         return bInfoCouponrate;
     }
 
-    public void setBInfoCouponrate(String bInfoCouponrate) {
+    public void setBInfoCouponrate(double bInfoCouponrate) {
         this.bInfoCouponrate = bInfoCouponrate;
     }
 
@@ -268,7 +268,7 @@ public class HkMarketOverviewBean implements Parcelable{
         dest.writeInt(this.sInfoWindcode);
         dest.writeString(this.bInfoFullname);
         dest.writeString(this.bIssueFirstissue);
-        dest.writeString(this.bInfoCouponrate);
+        dest.writeDouble(this.bInfoCouponrate);
         dest.writeString(this.bInfoCarrydate);
         dest.writeString(this.bInfoMaturitydate);
         dest.writeDouble(this.bIssueAmountact);
@@ -298,7 +298,7 @@ public class HkMarketOverviewBean implements Parcelable{
         this.sInfoWindcode = in.readInt();
         this.bInfoFullname = in.readString();
         this.bIssueFirstissue = in.readString();
-        this.bInfoCouponrate = in.readString();
+        this.bInfoCouponrate = in.readDouble();
         this.bInfoCarrydate = in.readString();
         this.bInfoMaturitydate = in.readString();
         this.bIssueAmountact = in.readDouble();
