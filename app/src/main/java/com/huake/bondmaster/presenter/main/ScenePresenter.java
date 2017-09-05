@@ -47,9 +47,10 @@ public class ScenePresenter extends RxPresenter<SceneContract.View> implements S
 
         addSubscribe(mDataManager.getScenceList(userId,pageNum, com.huake.bondmaster.app.Constants.PAGE_SIZE,sInfoCustname,secIndCode,bAgencyGuarantornature,bInfoCreditrating)
                 .compose(RxUtil.<BondMasterHttpResponse<PageBean<SceneBean>>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<PageBean<SceneBean>>(mView, true) {
+                .subscribeWith(new CommonSubscriber<PageBean<SceneBean>>(mView, pageNum<=1?true:false) {
                     @Override
                     public void dataHandler(PageBean<SceneBean> pageBean) {
+                        mView.stateMain();
                         if(pageBean!=null) {
                             mView.showContent(pageBean.getRecords(),pageBean.getPageNum()==0?1:pageBean.getPageNum(),pageBean.getTotal(),pageBean.getRows());
                         }else{

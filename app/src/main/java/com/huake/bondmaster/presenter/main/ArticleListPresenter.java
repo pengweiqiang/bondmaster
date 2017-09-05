@@ -32,7 +32,7 @@ public class ArticleListPresenter extends RxPresenter<ArticleListContract.View> 
     public void getArticleList(String userId, long pageNum, long pageSize, String mCategoryId) {
         addSubscribe(mDataManager.getArticleList(userId,pageNum, com.huake.bondmaster.app.Constants.PAGE_SIZE,mCategoryId)
                 .compose(RxUtil.<BondMasterHttpResponse<PageBean<ArticleBean>>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<PageBean<ArticleBean>>(mView, true) {
+                .subscribeWith(new CommonSubscriber<PageBean<ArticleBean>>(mView, pageNum<=1?true:false) {
                     @Override
                     public void dataHandler(PageBean<ArticleBean> pageBean) {
                         if(pageBean!=null) {

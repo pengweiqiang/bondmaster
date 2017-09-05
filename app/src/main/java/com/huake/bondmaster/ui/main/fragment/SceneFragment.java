@@ -97,6 +97,7 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
 
     @Override
     public void stateMain() {
+        super.stateMain();
         mRefreshLayout.finishRefresh();
         mRefreshLayout.finishLoadmore();
     }

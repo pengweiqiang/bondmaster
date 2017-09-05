@@ -32,7 +32,7 @@ public class SearchTrialCustInfoPresenter extends RxPresenter<SearchTrialCustInf
 
         addSubscribe(mDataManager.searchSceneList(pageNum, com.huake.bondmaster.app.Constants.PAGE_SIZE,sInfoCustname)
                 .compose(RxUtil.<BondMasterHttpResponse<PageBean<SearchBean>>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<PageBean<SearchBean>>(mView, true) {
+                .subscribeWith(new CommonSubscriber<PageBean<SearchBean>>(mView, pageNum<=1?true:false) {
                     @Override
                     public void dataHandler(PageBean<SearchBean> pageBean) {
                         if(pageBean!=null) {

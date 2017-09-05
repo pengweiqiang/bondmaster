@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.Constants;
-import com.huake.bondmaster.base.BaseActivity;
+import com.huake.bondmaster.base.RootActivity;
 import com.huake.bondmaster.base.contract.main.SearchTrialCustInfoContract;
 import com.huake.bondmaster.model.bean.SearchBean;
 import com.huake.bondmaster.presenter.home.SearchTrialCustInfoPresenter;
@@ -41,7 +41,7 @@ import static com.huake.bondmaster.R.id.refreshLayout;
  * @Version
  */
 
-public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInfoPresenter> implements SearchTrialCustInfoContract.View {
+public class SearchTrialCustInfoActivity extends RootActivity<SearchTrialCustInfoPresenter> implements SearchTrialCustInfoContract.View {
 
     @BindView(R.id.action_bar)
     ActionBar mActionBar;
@@ -73,6 +73,7 @@ public class SearchTrialCustInfoActivity extends BaseActivity<SearchTrialCustInf
 
     @Override
     protected void initEventAndData() {
+        super.initEventAndData();
         mActionBar.setTitle("");
 
 

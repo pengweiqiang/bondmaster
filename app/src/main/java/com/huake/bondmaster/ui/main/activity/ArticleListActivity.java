@@ -9,7 +9,7 @@ import android.view.View;
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
-import com.huake.bondmaster.base.BaseActivity;
+import com.huake.bondmaster.base.RootActivity;
 import com.huake.bondmaster.base.contract.main.ArticleListContract;
 import com.huake.bondmaster.model.bean.ArticleBean;
 import com.huake.bondmaster.model.bean.UserBean;
@@ -27,8 +27,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.huake.bondmaster.R.id.refreshLayout;
-
 /**
  * @author will on 2017/8/31 21:22
  * @email pengweiqiang64@163.com
@@ -36,11 +34,11 @@ import static com.huake.bondmaster.R.id.refreshLayout;
  * @Version
  */
 
-public class ArticleListActivity extends BaseActivity<ArticleListPresenter> implements ArticleListContract.View {
+public class ArticleListActivity extends RootActivity<ArticleListPresenter> implements ArticleListContract.View {
 
     @BindView(R.id.action_bar)
     ActionBar mActionBar;
-    @BindView(refreshLayout)
+    @BindView(R.id.view_main)
     RefreshLayout mRefreshLayout;
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
@@ -64,6 +62,7 @@ public class ArticleListActivity extends BaseActivity<ArticleListPresenter> impl
 
     @Override
     protected void initEventAndData() {
+        super.initEventAndData();
         mActionBar.setTitle("时讯专栏");
         articleAdapter = new ArticleAdapter(mContext,mList);
 
@@ -79,13 +78,23 @@ public class ArticleListActivity extends BaseActivity<ArticleListPresenter> impl
 
     @Override
     public void stateMain() {
+        super.stateMain();
         mRefreshLayout.finishRefresh();
         mRefreshLayout.finishLoadmore();
     }
 
     @Override
     public void stateError() {
-        stateMain();
+        super.stateError();
+        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishLoadmore();
+    }
+
+    @Override
+    protected void reconnectNetwork() {
+        super.reconnectNetwork();
+        pageNum = 1;
+        loadData();
     }
 
     @Override
