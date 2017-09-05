@@ -116,14 +116,14 @@ public class EvaluationDebtInfoActivity extends BaseActivity<StartEvaluatePresen
 
     @Override
     public void evaluateSuccess(EvaluationSuccessBean evaluationSuccessBean) {
-        App.getInstance().removeActivity(EvaluationActivity.class);
-        App.getInstance().removeActivity(EvaluationInputFinanceInfoActivity.class);
         //评测成功需要跳转
         StringBuilder sbUrl = new StringBuilder(Constants.HOST_URL+Constants.EVALUATION_RESULT);
         sbUrl.append("?userId=").append(evaluationSuccessBean.getUserId())
                 .append("&trialCustId=").append(evaluationSuccessBean.getTrialCustId())
                 .append("&dataDate=").append(evaluationSuccessBean.getDataDate());
         WebActivity.open(mContext,"",sbUrl.toString());
+        App.getInstance().removeActivity(EvaluationActivity.class);
+        App.getInstance().removeActivity(EvaluationInputFinanceInfoActivity.class);
         finish();
     }
 }

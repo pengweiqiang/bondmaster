@@ -54,6 +54,10 @@ public class UpdatePasswordSuccessActivity extends SimpleActivity {
 
     @OnClick(R.id.tv_back_to_login)
     public void onclick(View view){
+        startLoginActivity();
+    }
+
+    private void startLoginActivity(){
         LoginActivity.open(mContext,mobile);
         finish();
     }
@@ -84,7 +88,7 @@ public class UpdatePasswordSuccessActivity extends SimpleActivity {
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             if (msg.what == 0) {
-                LoginActivity.open(mContext,mobile);
+                startLoginActivity();
                 timer.cancel();
             } else {
                 String tips = "系统将在"+msg.what+"秒后自动跳转至登录页面";

@@ -19,6 +19,7 @@
             android:id="@+id/iv_article_logo"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:visibility="gone"
             android:src="@mipmap/ic_default_item_logo" />
 
         <TextView
@@ -26,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="来自新华网"
+            android:text="来自华科"
             android:textColor="#bbbbbb"
             android:textSize="@dimen/my_common_text_size" />
     </LinearLayout>

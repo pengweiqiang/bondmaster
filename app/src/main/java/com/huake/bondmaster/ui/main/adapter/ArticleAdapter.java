@@ -59,7 +59,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         ImageLoader.loadByAllCache(mContext, Constants.HOST_URL+articleBean.getImage(),contentViewHolder.mIvImage,R.mipmap.ic_default_item_logo);
 
-        contentViewHolder.mTvAuthor.setText(articleBean.getAuthor());
+//        contentViewHolder.mTvAuthor.setText(articleBean.getAuthor());
         contentViewHolder.mTvReadedCount.setText(String.valueOf(articleBean.getHits()));
         contentViewHolder.mTvTitle.setText(Html.fromHtml(articleBean.getTitle()));
         contentViewHolder.mTvDate.setText(articleBean.getCreateDate());

@@ -176,7 +176,7 @@ public class HkMarketOverviewDetailBean {
     }
 
     public String getSecCodeValue1() {
-        return secCodeValue1;
+        return secCodeValue1==null?"未知":secCodeValue1;
     }
 
     public void setSecCodeValue1(String secCodeValue1) {
@@ -208,7 +208,7 @@ public class HkMarketOverviewDetailBean {
     }
 
     public String getNatureCodeValue() {
-        return natureCodeValue;
+        return natureCodeValue==null?"未知":natureCodeValue;
     }
 
     public void setNatureCodeValue(String natureCodeValue) {
@@ -232,7 +232,7 @@ public class HkMarketOverviewDetailBean {
     }
 
     public String getIssueCreditrating() {
-        return issueCreditrating;
+        return issueCreditrating==null?"未知":issueCreditrating;
     }
 
     public void setIssueCreditrating(String issueCreditrating) {

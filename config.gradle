@@ -6,8 +6,8 @@ ext {
             applicationId     : "com.huake.bondmaster",
             minSdkVersion     : 19,
             targetSdkVersion  : 25,
-            versionCode       : 5,
-            versionName       : "1.0.5"
+            versionCode       : 6,
+            versionName       : "1.0.6"
     ]
 
     def dependVersion = [

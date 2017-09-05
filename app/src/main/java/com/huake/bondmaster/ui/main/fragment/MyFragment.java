@@ -90,6 +90,16 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
 
     }
 
+    @Override
+    public void stateError() {
+
+    }
+
+    @Override
+    public void stateMain() {
+
+    }
+
     @OnClick({R.id.rl_feed_back,R.id.rl_share_app,R.id.rl_about_us,R.id.rl_check_upgrade,R.id.rl_user_info})
     public void onClickOptionItem(View view){
         switch (view.getId()){
