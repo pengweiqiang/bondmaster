@@ -9,6 +9,7 @@ import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.RootFragment;
 import com.huake.bondmaster.base.contract.main.MarketContract;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.main.MarketPresenter;
 import com.huake.bondmaster.ui.web.NativeJsInternation;
 import com.huake.bondmaster.widget.ActionBar;
@@ -105,12 +106,20 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
+                mActionBar.setTitle(title);
 //                setTitle(title);
             }
 
         });
 
-
+        UserBean userBean = App.getInstance().getUserBeanInstance();
+        if(userBean!=null) {
+            if (webUrl.contains("?")) {
+                webUrl = webUrl+"&token="+userBean.getToken();
+            }else{
+                webUrl = webUrl+"?token="+userBean.getToken();
+            }
+        }
         mWebView.loadUrl(webUrl);
     }
 

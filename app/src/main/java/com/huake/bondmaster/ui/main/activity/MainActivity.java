@@ -126,6 +126,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     }
                     index = 1;
                 }else if(checkedId == tabIds[2]){
+                    if(userBean == null){
+                        LoginActivity.open(mContext,"");
+                        return;
+                    }
                     index = 2;
 //                    String market = Constants.HOST_URL+Constants.MARKET_URL;
 //                    WebActivity.open(mContext,"",market);

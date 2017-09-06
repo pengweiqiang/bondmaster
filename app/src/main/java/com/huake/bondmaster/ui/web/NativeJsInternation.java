@@ -4,6 +4,7 @@ import android.content.Context;
 import android.webkit.JavascriptInterface;
 
 import com.huake.bondmaster.Constants;
+import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.ui.market.HkMarketOverviewActivity;
 import com.huake.bondmaster.util.LogUtil;
@@ -25,6 +26,15 @@ public class NativeJsInternation {
 
     @JavascriptInterface
     public void calculateForJS(String url) {
+        String token = "";
+        if(App.getInstance().getUserBeanInstance()!=null){
+            token = App.getInstance().getUserBeanInstance().getToken();
+            if(url.contains("?")){
+                url = url + "&token="+token;
+            }else{
+                url = url + "?token="+token;
+            }
+        }
         if(context instanceof WebActivity) {
             ((WebActivity) context).loadUrl(Constants.HOST_URL + url);
         }else if(context instanceof MainActivity){

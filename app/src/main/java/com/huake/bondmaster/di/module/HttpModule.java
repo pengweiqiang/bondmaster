@@ -114,7 +114,7 @@ public class HttpModule {
                             .addQueryParameter("token", userBean.getToken())
                             .build();
 
-                    request = request.newBuilder().url(url).build();
+                    request = request.newBuilder().addHeader("token",userBean.getToken()).url(url).build();
                 }
 
                 return chain.proceed(request);

@@ -11,6 +11,7 @@ import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.web.WebContract;
+import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.web.WebPresenter;
 import com.huake.bondmaster.util.LogUtil;
 import com.huake.bondmaster.widget.ActionBar;
@@ -62,6 +63,14 @@ public class ArticleDetailActivity extends BaseActivity<WebPresenter> implements
     protected void initEventAndData() {
         webUrl = getIntent().getStringExtra(Constants.WEB_URL);
         title = getIntent().getStringExtra(Constants.TITLE);
+        UserBean userBean = App.getInstance().getUserBeanInstance();
+        if(userBean!=null) {
+            if (webUrl.contains("?")) {
+                webUrl = webUrl+"&token="+userBean.getToken();
+            }else{
+                webUrl = webUrl+"?token="+userBean.getToken();
+            }
+        }
         LogUtil.i(webUrl);
 
         mActionBar.setTitle(title);
