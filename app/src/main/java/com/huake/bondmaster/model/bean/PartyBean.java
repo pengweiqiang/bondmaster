@@ -431,7 +431,7 @@ public class PartyBean {
 
         @Override
         public String toString() {
-            return TextUtils.isEmpty(getSInfoCustname())?getPartyName():getSInfoCustname();
+            return TextUtils.isEmpty(getPartyName())?getSInfoCustname():getPartyName();
         }
     }
 }

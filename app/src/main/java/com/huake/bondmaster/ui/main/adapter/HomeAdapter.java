@@ -6,7 +6,6 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +16,6 @@ import com.huake.bondmaster.component.ImageLoader;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.HotNewsBean;
 import com.huake.bondmaster.ui.main.activity.ArticleListActivity;
-import com.huake.bondmaster.ui.main.activity.SearchTrialCustInfoActivity;
 import com.huake.bondmaster.util.DateUtil;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
@@ -112,12 +110,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 }
             });
         }else if(holder instanceof HeaderViewHolder){
-            ((HeaderViewHolder) holder).mEtSearchView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SearchTrialCustInfoActivity.open(mContext,"");
-                }
-            });
+//            ((HeaderViewHolder) holder).mEtSearchView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    SearchTrialCustInfoActivity.open(mContext,"");
+//                }
+//            });
 
             ((HeaderViewHolder) holder).mIvMoreArticle.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -218,8 +216,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //    InfiniteViewPager mParentViewPager;
     MZBannerView mzParentBannerView;
     public class HeaderViewHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.tv_search)
-        EditText mEtSearchView;
+//        @BindView(R.id.tv_search)
+//        EditText mEtSearchView;
         @BindView(R.id.iv_more_article)
         ImageView mIvMoreArticle;
 //        @BindView(R.id.banner)

@@ -1,8 +1,10 @@
 package com.huake.bondmaster.widget;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 
 /**
  * @author will on 2017/8/31 18:06
@@ -23,6 +25,14 @@ public class MyAutoCompleteTextView extends AppCompatAutoCompleteTextView {
 
     public MyAutoCompleteTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    @Override
+    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
+        super.onFocusChanged(focused, direction, previouslyFocusedRect);
+        if (focused && getAdapter() != null) {
+            performFiltering(getText(), KeyEvent.KEYCODE_UNKNOWN);
+        }
     }
 
     @Override

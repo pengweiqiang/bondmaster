@@ -119,6 +119,7 @@ public class App extends Application{
     public void removeActivity(Activity act) {
         if (allActivities != null) {
             allActivities.remove(act);
+            act.finish();
         }
     }
 

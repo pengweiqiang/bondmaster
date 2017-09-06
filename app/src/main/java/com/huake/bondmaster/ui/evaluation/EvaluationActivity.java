@@ -3,13 +3,11 @@ package com.huake.bondmaster.ui.evaluation;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -23,7 +21,9 @@ import com.huake.bondmaster.model.bean.AreaNatureTypeBean;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.model.bean.PartyBean;
 import com.huake.bondmaster.presenter.evaluation.EvaluationPresenter;
+import com.huake.bondmaster.ui.main.adapter.AutoCompleteAdapter;
 import com.huake.bondmaster.widget.ActionBar;
+import com.huake.bondmaster.widget.MyAutoCompleteTextView;
 
 import org.jsoup.helper.StringUtil;
 
@@ -55,7 +55,7 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
     @BindView(R.id.tv_company_type)
     TextView mTvComanyType;
     @BindView(R.id.et_company_name)
-    AppCompatAutoCompleteTextView mEtCompanyName;
+    MyAutoCompleteTextView mEtCompanyName;
     @BindView(R.id.btn_next)
     Button mBtnNext;
 
@@ -66,7 +66,10 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
     private static final String COMPANY_TYPE = "请选择企业类型";
 
     private List<PartyBean.PartyListBean> partyBeanList = new ArrayList<>();
-    private ArrayAdapter<PartyBean.PartyListBean> partyBeanArrayAdapter;
+//    private ArrayAdapter<PartyBean.PartyListBean> partyBeanArrayAdapter;
+    AutoCompleteAdapter<PartyBean.PartyListBean> autoCompleteAdapter;
+
+    private List<PartyBean.PartyListBean> partyListBeanListByUserId = new ArrayList<>();
 
     @Override
     protected void initInject() {
@@ -90,8 +93,9 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
 
         initListener();
 
-        partyBeanArrayAdapter = new ArrayAdapter<PartyBean.PartyListBean>(mContext,android.R.layout.simple_list_item_1,partyBeanList);
-        mEtCompanyName.setAdapter(partyBeanArrayAdapter);
+        autoCompleteAdapter = new AutoCompleteAdapter<>(mContext,android.R.layout.simple_list_item_1,partyBeanList);
+//        partyBeanArrayAdapter = new ArrayAdapter<PartyBean.PartyListBean>(mContext,android.R.layout.simple_list_item_1,partyBeanList);
+        mEtCompanyName.setAdapter(autoCompleteAdapter);
 
 
         mPresenter.getCompanyNameListByUserId(App.getInstance().getUserBeanInstance().getId());
@@ -100,6 +104,14 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
     }
     private PartyBean.PartyListBean partyListBean;
     private void initListener(){
+        mEtCompanyName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    mEtCompanyName.showDropDown();
+                }
+            }
+        });
         mEtCompanyName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -117,7 +129,12 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mPresenter.searchCompanyByName(s.toString());
+                if(TextUtils.isEmpty(s.toString())){
+                    setCompanyNameList(partyListBeanListByUserId,true);
+                    partyListBean = null;
+                }else {
+                    mPresenter.searchCompanyByName(s.toString());
+                }
             }
 
             @Override
@@ -144,14 +161,14 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
                 break;
             case R.id.btn_next:
                 String companyName = mEtCompanyName.getText().toString().trim();
-//                if(partyListBean==null){
-//                    showErrorMsg("请选择公司名称");
-//                    return;
-//                }
-                if(TextUtils.isEmpty(companyName)){
+                if(partyListBean==null){
                     showErrorMsg("请选择公司名称");
                     return;
                 }
+//                if(TextUtils.isEmpty(companyName)){
+//                    showErrorMsg("请选择公司名称");
+//                    return;
+//                }
                 if(childIndustryBean==null){
                     showErrorMsg("请选择行业");
                     return;
@@ -263,11 +280,14 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
     }
 
     @Override
-    public void setCompanyNameList(List<PartyBean.PartyListBean> partyBeanList) {
+    public void setCompanyNameList(List<PartyBean.PartyListBean> partyBeanList,boolean isUserId) {
+        if(isUserId){
+            this.partyListBeanListByUserId = partyBeanList;
+        }
         this.partyBeanList = partyBeanList;
-        partyBeanArrayAdapter.clear();
-        partyBeanArrayAdapter.addAll(partyBeanList);
-//        partyBeanArrayAdapter.notifyDataSetChanged();
+//        autoCompleteAdapter.setListObjects(partyBeanList);
+        autoCompleteAdapter = new AutoCompleteAdapter<>(mContext,android.R.layout.simple_list_item_1,partyBeanList);
+        mEtCompanyName.setAdapter(autoCompleteAdapter);
     }
 
     public static void open(Context context){

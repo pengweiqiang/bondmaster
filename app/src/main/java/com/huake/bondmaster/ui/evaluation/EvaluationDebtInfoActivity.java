@@ -97,7 +97,7 @@ public class EvaluationDebtInfoActivity extends BaseActivity<StartEvaluatePresen
         params.put("enterpriseBondYearInterest",enterpriseProfit);
         params.put("yearInterest",yearInterest);//一年利息
 
-        showLoading("");
+        showLoading("评测中...");
         LogUtil.i(new Gson().toJson(params).toString());
         mPresenter.startEvaluate(params);
     }

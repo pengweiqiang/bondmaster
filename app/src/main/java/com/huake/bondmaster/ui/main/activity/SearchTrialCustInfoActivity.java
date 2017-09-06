@@ -18,7 +18,7 @@ import com.huake.bondmaster.model.bean.SearchBean;
 import com.huake.bondmaster.presenter.home.SearchTrialCustInfoPresenter;
 import com.huake.bondmaster.ui.evaluation.EvaluationActivity;
 import com.huake.bondmaster.ui.main.adapter.SearchAdapter;
-import com.huake.bondmaster.ui.scene.SceneDetailActivity;
+import com.huake.bondmaster.ui.web.WebActivity;
 import com.huake.bondmaster.widget.ActionBar;
 import com.huake.bondmaster.widget.ClearEditText;
 import com.huake.bondmaster.widget.CommonItemDecoration;
@@ -147,7 +147,13 @@ public class SearchTrialCustInfoActivity extends RootActivity<SearchTrialCustInf
         mAdapter.setOnItemClickListener(new SearchAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
-                SceneDetailActivity.open(mContext,mList.get(position));
+                SearchBean sceneBean = mList.get(position);
+                StringBuilder sbUrl = new StringBuilder(Constants.HOST_URL+Constants.EVALUATION_RESULT);
+                sbUrl.append("?userId=").append(sceneBean.getUserId())
+                        .append("&trialCustId=").append(sceneBean.getTrialCustId())
+                        .append("&dataDate=").append(sceneBean.getDataDate());
+                WebActivity.open(mContext,"",sbUrl.toString());
+//                SceneDetailActivity.open(mContext,mList.get(position));
             }
         });
 

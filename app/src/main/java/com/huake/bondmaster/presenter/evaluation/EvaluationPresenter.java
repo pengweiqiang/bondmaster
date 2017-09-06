@@ -45,10 +45,10 @@ public class EvaluationPresenter extends RxPresenter<EvaluationContract.View> im
                     public void dataHandler(PartyBean partyBean) {
                         mView.stateMain();
                         if(partyBean!=null && partyBean.getPartyList()!=null && !partyBean.getPartyList().isEmpty()) {
-                            mView.setCompanyNameList(partyBean.getPartyList());
+                            mView.setCompanyNameList(partyBean.getPartyList(),false);
                         }else{
                             List<PartyBean.PartyListBean> partyListBeanList = new ArrayList<PartyBean.PartyListBean>();
-                            mView.setCompanyNameList(partyListBeanList);
+                            mView.setCompanyNameList(partyListBeanList,false);
                         }
                     }
 
@@ -65,10 +65,10 @@ public class EvaluationPresenter extends RxPresenter<EvaluationContract.View> im
                     public void dataHandler(PartyBean partyBean) {
                         mView.stateMain();
                         if(partyBean!=null && partyBean.getPartyList()!=null && !partyBean.getPartyList().isEmpty()) {
-                            mView.setCompanyNameList(partyBean.getPartyList());
+                            mView.setCompanyNameList(partyBean.getPartyList(),true);
                         }else{
                             List<PartyBean.PartyListBean> partyListBeanList = new ArrayList<PartyBean.PartyListBean>();
-                            mView.setCompanyNameList(partyListBeanList);
+                            mView.setCompanyNameList(partyListBeanList,true);
                         }
                     }
 

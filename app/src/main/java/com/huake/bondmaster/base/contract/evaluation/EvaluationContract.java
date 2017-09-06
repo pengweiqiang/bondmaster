@@ -25,7 +25,7 @@ public interface EvaluationContract {
 
         void setAreaNatureType(AreaNatureTypeBean areaNatureType,String title);
 
-        void setCompanyNameList(List<PartyBean.PartyListBean> partyBeanList);
+        void setCompanyNameList(List<PartyBean.PartyListBean> partyBeanList,boolean isUserId);
     }
 
     interface Presenter extends BasePresenter<View>{

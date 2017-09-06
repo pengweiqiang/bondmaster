@@ -79,7 +79,7 @@ public class HkMarketOverviewActivity extends BaseActivity<HkMarketOverviewPrese
         urlKey = urlKey.substring(urlKey.indexOf("?")+1);
         String params[] = urlKey.split("=");
         if(params.length>=2) {
-            mPresenter.getLists(params[1], pageNum, Constants.PAGE_SIZE);
+            mPresenter.getLists(params[1].split("&")[0], pageNum, Constants.PAGE_SIZE);
         }
     }
 
