@@ -26,6 +26,12 @@ public class ClearEditText extends EditText implements
      * 控件是否有焦点
      */
     private boolean hasFoucs;
+
+    OnDeleteClickListener onDeleteClickListener;
+
+    public void setOnDeleteClickListener(OnDeleteClickListener onDeleteClickListener){
+        this.onDeleteClickListener = onDeleteClickListener;
+    }
  
     public ClearEditText(Context context) {
     	this(context, null); 
@@ -75,6 +81,9 @@ public class ClearEditText extends EditText implements
 				
 				if (touchable) {
 					this.setText("");
+                    if(onDeleteClickListener!=null){
+                        onDeleteClickListener.clearText();
+                    }
 				}
 			}
 		}
@@ -149,6 +158,9 @@ public class ClearEditText extends EditText implements
     	translateAnimation.setDuration(1000);
     	return translateAnimation;
     }
- 
+
+    public interface OnDeleteClickListener{
+        public void clearText();
+    }
  
 }

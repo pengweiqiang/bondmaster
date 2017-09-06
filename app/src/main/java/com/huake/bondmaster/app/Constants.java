@@ -35,7 +35,8 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final String ABOUT_US = "hk-soft-app/aboutus";//关于我们
 
     //评测结果
-    public static final String EVALUATION_RESULT = "/hk-soft-app/evaluate/viewIssuanceEvaluationResult";
+
+    public static final String EVALUATION_RESULT = "/hk-soft-app/scene/viewIssuanceEvaluationResult";
 
     //================= TYPE ====================
 

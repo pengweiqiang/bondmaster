@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
@@ -19,6 +18,7 @@ import com.huake.bondmaster.presenter.main.ScenePresenter;
 import com.huake.bondmaster.ui.main.adapter.SceneAdapter;
 import com.huake.bondmaster.ui.scene.SceneDetailActivity;
 import com.huake.bondmaster.util.TextViewUtils;
+import com.huake.bondmaster.widget.ClearEditText;
 import com.huake.bondmaster.widget.CommonItemDecoration;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -47,7 +47,7 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
     @BindView(R.id.tv_evaluated_company)
     TextView mTvEvaluatedCompany;
     @BindView(R.id.et_search)
-    EditText mEtSearch;
+    ClearEditText mEtSearch;
 
 
     SceneAdapter mAdapter;
@@ -156,6 +156,12 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
                     }
                 }
                 return false;
+            }
+        });
+        mEtSearch.setOnDeleteClickListener(new ClearEditText.OnDeleteClickListener() {
+            @Override
+            public void clearText() {
+                loadDataFirst();
             }
         });
     }

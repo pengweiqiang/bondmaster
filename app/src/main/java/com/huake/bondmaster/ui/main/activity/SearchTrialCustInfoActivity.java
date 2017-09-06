@@ -8,7 +8,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
@@ -21,6 +20,7 @@ import com.huake.bondmaster.ui.evaluation.EvaluationActivity;
 import com.huake.bondmaster.ui.main.adapter.SearchAdapter;
 import com.huake.bondmaster.ui.scene.SceneDetailActivity;
 import com.huake.bondmaster.widget.ActionBar;
+import com.huake.bondmaster.widget.ClearEditText;
 import com.huake.bondmaster.widget.CommonItemDecoration;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -50,7 +50,7 @@ public class SearchTrialCustInfoActivity extends RootActivity<SearchTrialCustInf
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
     @BindView(R.id.et_search)
-    EditText mEtSearch;
+    ClearEditText mEtSearch;
     @BindView(R.id.btn_start_evaluate)
     Button mBtnEvaluate;
 
@@ -174,6 +174,13 @@ public class SearchTrialCustInfoActivity extends RootActivity<SearchTrialCustInf
                     }
                 }
                 return false;
+            }
+        });
+
+        mEtSearch.setOnDeleteClickListener(new ClearEditText.OnDeleteClickListener() {
+            @Override
+            public void clearText() {
+                loadDataFirst();
             }
         });
     }

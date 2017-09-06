@@ -23,7 +23,7 @@ public class EnterpriseInfo {
     private String dataDate;
     private String bInfoCreditrating;
     private String successProbability;
-    private int EvaluateCount;
+    private int evaluateCount;
     private String sInfoCustname;
     private String userId;
 
@@ -60,11 +60,11 @@ public class EnterpriseInfo {
     }
 
     public int getEvaluateCount() {
-        return EvaluateCount;
+        return evaluateCount;
     }
 
     public void setEvaluateCount(int EvaluateCount) {
-        this.EvaluateCount = EvaluateCount;
+        this.evaluateCount = evaluateCount;
     }
 
     public String getSInfoCustname() {

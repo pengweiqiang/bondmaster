@@ -165,6 +165,7 @@ public interface BondMasterApis {
     @GET("hk-soft-app/scene/getEvaluateEnterpriseInfo")
     Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(@Query("userId")String userId,@Query("dataDate")String dataDate,@Query("trialCustId")String trialCustId);
 
+
     /**
      * 评测结果
      * @param userId 用户Id
