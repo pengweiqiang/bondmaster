@@ -269,4 +269,9 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
         return mHttpHelper.getUserInfo();
     }
 
+    @Override
+    public Flowable<BondMasterHttpResponse<Object>> saveFeedBack(String content, String contactEmail, String images) {
+        return mHttpHelper.saveFeedBack(content, contactEmail, images);
+    }
+
 }

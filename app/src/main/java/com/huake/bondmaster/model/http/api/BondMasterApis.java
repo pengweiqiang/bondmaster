@@ -300,4 +300,7 @@ public interface BondMasterApis {
 
     @POST("hk-soft-app/getUserInfo")
     Flowable<BondMasterHttpResponse<UserBean>> getUserInfo();
+
+    @POST("hk-soft-app/feedback/save")
+    Flowable<BondMasterHttpResponse<Object>> saveFeedBack(@Query("content")String content,@Query("contactEmail")String contactEmail,@Query("images")String images);
 }

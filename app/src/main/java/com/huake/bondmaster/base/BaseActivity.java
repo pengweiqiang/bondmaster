@@ -83,12 +83,19 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
 
     @Override
     public void startLoginActivity() {
-        UserBean userBean = App.getInstance().getUserBeanInstance();
         String mobile = "";
-        if(userBean!=null) {
-            mobile = userBean.getMobile();
+        try {
+            UserBean userBean = App.getInstance().getUserBeanInstance();
+            if(userBean!=null) {
+                mobile = userBean.getMobile();
+            }
+            App.getAppComponent().getDataManager().setUserInstance(null);
+            App.getInstance().setUserInstance(null);
+        }catch (Exception e){
+
+        }finally {
+            LoginActivity.open(mContext, mobile);
         }
-        LoginActivity.open(mContext, mobile);
     }
 
     @Override

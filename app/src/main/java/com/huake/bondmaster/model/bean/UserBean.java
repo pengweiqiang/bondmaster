@@ -28,7 +28,7 @@ public class UserBean {
      */
 
     private String password;
-    private Object email;
+    private String email;
     private String emailStatus;
     private String mobile;
     private String mobileStatus;
@@ -78,11 +78,11 @@ public class UserBean {
         this.password = password;
     }
 
-    public Object getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Object email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

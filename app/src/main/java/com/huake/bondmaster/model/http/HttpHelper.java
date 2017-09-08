@@ -170,4 +170,6 @@ public interface HttpHelper {
 
     Flowable<BondMasterHttpResponse<UserBean>> getUserInfo();
 
+    Flowable<BondMasterHttpResponse<Object>> saveFeedBack(String content,String contactEmail,String images);
+
 }

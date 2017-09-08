@@ -7,14 +7,13 @@ import android.widget.TextView;
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
-import com.huake.bondmaster.base.RootFragment;
-import com.huake.bondmaster.base.contract.main.MyContract;
+import com.huake.bondmaster.base.SimpleFragment;
 import com.huake.bondmaster.model.bean.UserBean;
-import com.huake.bondmaster.presenter.main.MyPresenter;
 import com.huake.bondmaster.ui.my.CommonSettingActivity;
 import com.huake.bondmaster.ui.my.FeedBackActivity;
 import com.huake.bondmaster.ui.my.LoginActivity;
 import com.huake.bondmaster.ui.web.WebActivity;
+import com.huake.bondmaster.util.ToastUtil;
 import com.huake.bondmaster.widget.ToggleButton;
 import com.tencent.bugly.beta.Beta;
 import com.umeng.socialize.ShareAction;
@@ -33,7 +32,7 @@ import butterknife.OnClick;
  * @Version
  */
 
-public class MyFragment extends RootFragment<MyPresenter> implements MyContract.View {
+public class MyFragment extends SimpleFragment {
 
     @BindView(R.id.toggle_message_notify)
     ToggleButton mToggleMessageNofity;
@@ -51,19 +50,20 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
 
     UserBean userBean;
 
-    @Override
-    protected void initInject() {
-        getFragmentComponent().inject(this);
-    }
+//    @Override
+//    protected void initInject() {
+//        getFragmentComponent().inject(this);
+//    }
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_my;
     }
 
+
     @Override
     protected void initEventAndData() {
-        super.initEventAndData();
+
     }
 
     @Override
@@ -85,20 +85,20 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
         }
     }
 
-    @Override
-    public void showContent() {
-
-    }
-
-    @Override
-    public void stateError() {
-
-    }
-
-    @Override
-    public void stateMain() {
-
-    }
+//    @Override
+//    public void showContent() {
+//
+//    }
+//
+//    @Override
+//    public void stateError() {
+//
+//    }
+//
+//    @Override
+//    public void stateMain() {
+//
+//    }
 
     @OnClick({R.id.rl_feed_back,R.id.rl_share_app,R.id.rl_about_us,R.id.rl_check_upgrade,R.id.rl_user_info})
     public void onClickOptionItem(View view){
@@ -168,7 +168,7 @@ public class MyFragment extends RootFragment<MyPresenter> implements MyContract.
          */
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            showErrorMsg("失败"+t.getMessage());
+            ToastUtil.shortShow("失败"+t.getMessage());
             cancelDialogLoading();
         }
 

@@ -12,9 +12,15 @@ import com.huake.bondmaster.base.contract.main.MarketContract;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.main.MarketPresenter;
 import com.huake.bondmaster.ui.web.NativeJsInternation;
+import com.huake.bondmaster.util.LogUtil;
 import com.huake.bondmaster.widget.ActionBar;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
+import com.tencent.smtt.export.external.interfaces.WebResourceError;
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
@@ -37,6 +43,8 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
     TextView tvProgress;
     @BindView(R.id.action_bar)
     ActionBar mActionBar;
+    @BindView(R.id.smart_refresh_layout)
+    SmartRefreshLayout smartRefreshLayout;
 
     private String webUrl = Constants.HOST_URL+Constants.MARKET_URL;
 
@@ -55,6 +63,7 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
 
         mActionBar.setTitle("市场分析");
         mActionBar.hideLeftAction();
+        initListener();
 
 //        mActionBar.setLeftActionButton(new View.OnClickListener() {
 //            @Override
@@ -77,6 +86,7 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                LogUtil.i("MarketFragment"+url);
                 view.loadUrl(url);
                 return true;
             }
@@ -87,6 +97,17 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
                 sslErrorHandler.proceed();//接受信任所有网站的证书
             }
 
+            @Override
+            public void onReceivedError(WebView webView, int i, String s, String s1) {
+                LogUtil.i("onReceivedError "+i+"\n"+s+"   \n"+s1);
+                super.onReceivedError(webView, i, s, s1);
+            }
+
+            @Override
+            public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
+                LogUtil.i("onReceivedError "+webResourceRequest.getMethod()+"\n"+webResourceError.getErrorCode()+"   \n"+webResourceError.getDescription());
+                super.onReceivedError(webView, webResourceRequest, webResourceError);
+            }
         });
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -95,6 +116,7 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
                 if (tvProgress == null)
                     return;
                 if (newProgress >= 100) {
+                    loadFinish();
                     tvProgress.setVisibility(View.GONE);
                 } else {
                     tvProgress.setVisibility(View.VISIBLE);
@@ -106,21 +128,43 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                mActionBar.setTitle(title);
+//                mActionBar.setTitle(title);
 //                setTitle(title);
             }
 
         });
-
-        UserBean userBean = App.getInstance().getUserBeanInstance();
-        if(userBean!=null) {
-            if (webUrl.contains("?")) {
-                webUrl = webUrl+"&token="+userBean.getToken();
-            }else{
-                webUrl = webUrl+"?token="+userBean.getToken();
-            }
-        }
+        loadUrlAddToken();
         mWebView.loadUrl(webUrl);
+    }
+
+    private void initListener(){
+        smartRefreshLayout.setEnableLoadmore(false);
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                loadUrlAddToken();
+                mWebView.loadUrl(webUrl);
+            }
+        });
+    }
+    private void loadFinish(){
+        smartRefreshLayout.finishRefresh();
+    }
+
+    public void loadUrlAddToken(){
+        UserBean userBean = App.getInstance().getUserBeanInstance();
+        if(userBean==null){
+            startLoginActivity();
+            return;
+        }
+        if (webUrl.contains("?")) {
+            if(webUrl.contains("token=")){
+                webUrl = webUrl.replaceAll(webUrl.substring(webUrl.indexOf("token=")),"token="+userBean.getToken());
+            }
+        }else{
+            webUrl = webUrl+"?token="+userBean.getToken();
+        }
     }
 
     public void loadUrl(final String webUrl){

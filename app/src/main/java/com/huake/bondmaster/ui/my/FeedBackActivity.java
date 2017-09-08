@@ -4,15 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
-import com.huake.bondmaster.base.SimpleActivity;
+import com.huake.bondmaster.base.BaseActivity;
+import com.huake.bondmaster.base.contract.my.FeedBackContract;
 import com.huake.bondmaster.model.bean.UserBean;
+import com.huake.bondmaster.presenter.my.FeedBackPresenter;
 import com.huake.bondmaster.ui.my.adapter.ImagePickerAdapter;
-import com.huake.bondmaster.util.BigDecimalUtil;
 import com.huake.bondmaster.widget.ActionBar;
 import com.huake.bondmaster.widget.GlideImageLoader;
 import com.huake.bondmaster.widget.SelectDialog;
@@ -26,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author will on 2017/8/27 11:06
@@ -34,7 +40,7 @@ import butterknife.BindView;
  * @Version
  */
 
-public class FeedBackActivity extends SimpleActivity implements ImagePickerAdapter.OnRecyclerViewItemClickListener{
+public class FeedBackActivity extends BaseActivity<FeedBackPresenter> implements ImagePickerAdapter.OnRecyclerViewItemClickListener,FeedBackContract.View{
 
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
@@ -48,8 +54,17 @@ public class FeedBackActivity extends SimpleActivity implements ImagePickerAdapt
     ActionBar mActionBar;
     @BindView(R.id.tv_user_name)
     TextView mTvUserName;
-    @BindView(R.id.tv_mobile)
-    TextView mTvMobile;
+//    @BindView(R.id.tv_mobile)
+//    TextView mTvMobile;
+    @BindView(R.id.et_feed_back_content)
+    EditText mEtContent;
+    @BindView(R.id.et_email)
+    EditText mEtEmail;
+    @BindView(R.id.tv_content_count)
+    TextView mEtContentCount;
+
+    UserBean userBean;
+
 
     @Override
     protected int getLayout() {
@@ -60,15 +75,41 @@ public class FeedBackActivity extends SimpleActivity implements ImagePickerAdapt
     protected void initEventAndData() {
         mActionBar.setTitle(R.string.feed_back);
 
-        UserBean userBean = App.getInstance().getUserBeanInstance();
+        userBean = App.getInstance().getUserBeanInstance();
         if(userBean!=null){
             mTvUserName.setText(userBean.getUsername());
-            mTvMobile.setText(BigDecimalUtil.getsubMobileString(userBean.getMobile()));
+//            mTvMobile.setText(BigDecimalUtil.getsubMobileString(userBean.getMobile()));
+            mEtEmail.setText(userBean.getEmail());
         }
         initImagePicker();
         initWidget();
+
+        initListener();
     }
 
+    private void initListener(){
+        mEtContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(TextUtils.isEmpty(s)){
+                    mEtContentCount.setText("0/200");
+                }else{
+                    mEtContentCount.setText(s.length()+"/200");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
     private void initWidget() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         selImageList = new ArrayList<>();
@@ -94,6 +135,21 @@ public class FeedBackActivity extends SimpleActivity implements ImagePickerAdapt
             dialog.show();
         }
         return dialog;
+    }
+    @OnClick(R.id.btn_confirm)
+    public void onclick(View view){
+        String content =mEtContent.getText().toString().trim();
+        if(TextUtils.isEmpty(content)){
+            mEtContent.requestFocus();
+            return;
+        }
+        String email = mEtEmail.getText().toString().trim();
+        if(TextUtils.isEmpty(email)){
+            mEtEmail.requestFocus();
+            return;
+        }
+        showLoading("");
+        mPresenter.saveFeedBack(content,email,"");
     }
 
     @Override
@@ -198,6 +254,16 @@ public class FeedBackActivity extends SimpleActivity implements ImagePickerAdapt
         imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
         imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
         imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
+    }
+
+    @Override
+    protected void initInject() {
+        getActivityComponent().inject(this);
+    }
+
+    @Override
+    public void saveSuccess() {
+        mEtContent.setText("");
     }
 
 }

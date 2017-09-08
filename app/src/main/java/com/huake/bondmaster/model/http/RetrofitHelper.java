@@ -177,4 +177,9 @@ public class RetrofitHelper implements HttpHelper {
         return mMyApiService.getUserInfo();
     }
 
+    @Override
+    public Flowable<BondMasterHttpResponse<Object>> saveFeedBack(String content, String contactEmail, String images) {
+        return mMyApiService.saveFeedBack(content, contactEmail, images);
+    }
+
 }

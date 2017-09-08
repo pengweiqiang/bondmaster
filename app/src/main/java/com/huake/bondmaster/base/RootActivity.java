@@ -28,6 +28,7 @@ public abstract class RootActivity<T extends BasePresenter> extends BaseActivity
     private ViewGroup viewMain;
     private int currentState = STATE_MAIN;
 
+
     LoadingDialog loadingDialog;
 
     @Override
