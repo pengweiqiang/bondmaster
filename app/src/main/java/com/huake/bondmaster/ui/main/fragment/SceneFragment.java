@@ -96,6 +96,13 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if(isVisibleToUser && mList.isEmpty()){
+            mRefreshLayout.autoRefresh();
+        }
+    }
+
+    @Override
     public void stateMain() {
         super.stateMain();
         mRefreshLayout.finishRefresh();

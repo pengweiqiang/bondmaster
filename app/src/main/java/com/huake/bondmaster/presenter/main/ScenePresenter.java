@@ -63,6 +63,12 @@ public class ScenePresenter extends RxPresenter<SceneContract.View> implements S
                         super.onError(e);
                         mView.stateError();
                     }
+
+                    @Override
+                    public void onError(String msg) {
+                        super.onError(msg);
+                        mView.stateError();
+                    }
                 })
         );
     }

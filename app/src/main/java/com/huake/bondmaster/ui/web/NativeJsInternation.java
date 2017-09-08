@@ -9,6 +9,8 @@ import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.ui.market.HkMarketOverviewActivity;
 import com.huake.bondmaster.util.LogUtil;
 
+import org.json.JSONObject;
+
 /**
  * @author will on 2017/8/31 10:32
  * @email pengweiqiang64@163.com
@@ -47,6 +49,20 @@ public class NativeJsInternation {
         }
 
         LogUtil.i(url);
+    }
+
+    @JavascriptInterface
+    public void getBody(String body){
+        try{
+            JSONObject bodyJson = new JSONObject(body);
+            String stat = bodyJson.getString("stat");
+            if(stat.equals(com.huake.bondmaster.app.Constants.CODE_INVALID_TOKEN)){
+                ((MainActivity)context).refreshMarketFragment();
+            }
+        }catch (Exception e){
+
+        }
+        LogUtil.i(body);
     }
 
     @JavascriptInterface

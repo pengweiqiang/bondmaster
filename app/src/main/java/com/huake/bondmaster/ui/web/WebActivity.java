@@ -158,8 +158,8 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
     @Override
     protected void onDestroy() {
         if (mWebView != null) {
-            mWebView.destroy();
             mWebView.removeAllViews();
+            mWebView.destroy();
             mWebView = null;
         }
         super.onDestroy();

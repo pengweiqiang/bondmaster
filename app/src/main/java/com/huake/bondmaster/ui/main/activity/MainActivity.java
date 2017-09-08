@@ -91,6 +91,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         }
     }
 
+    public void refreshMarketFragment(){
+        if(marketFragment!=null){
+            marketFragment.refreshUrl();
+        }
+    }
+
 
     public static void open(Context context){
         Intent intent = new Intent(context,MainActivity.class);

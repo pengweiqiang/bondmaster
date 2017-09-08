@@ -65,13 +65,6 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
         mActionBar.hideLeftAction();
         initListener();
 
-//        mActionBar.setLeftActionButton(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mWebView.goBack();
-//            }
-//        });
-
         WebSettings settings = mWebView.getSettings();
 //        settings.setAppCacheEnabled(true);
 //        settings.setDomStorageEnabled(true);
@@ -95,6 +88,12 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
             public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
 //                super.onReceivedSslError(webView, sslErrorHandler, sslError);
                 sslErrorHandler.proceed();//接受信任所有网站的证书
+            }
+
+            @Override
+            public void onPageFinished(WebView webView, String s) {
+                super.onPageFinished(webView, s);
+                mWebView.loadUrl("javascript:window.native.getBody(document.getElementsByTagName('pre')[0].innerHTML);");
             }
 
             @Override
@@ -169,22 +168,41 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
 
     public void loadUrl(final String webUrl){
         this.webUrl = webUrl;
-        mActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mWebView.loadUrl(webUrl);
-            }
-        });
+        if(mActivity!=null && mWebView != null) {
+            mActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mWebView.loadUrl(webUrl);
+                }
+            });
+        }
     }
 
+    public void refreshUrl(){
+        if(smartRefreshLayout!=null && mActivity!=null) {
+            mActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    smartRefreshLayout.autoRefresh();
+                }
+            });
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if(isVisibleToUser){
+            smartRefreshLayout.autoRefresh();
+        }
+    }
 
 
 
     @Override
     public void onDestroy() {
         if (mWebView != null) {
-            mWebView.destroy();
             mWebView.removeAllViews();
+            mWebView.destroy();
             mWebView = null;
         }
         super.onDestroy();

@@ -11,7 +11,6 @@ import com.huake.bondmaster.di.module.FragmentModule;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.ui.my.LoginActivity;
 import com.huake.bondmaster.util.ToastUtil;
-import com.huake.bondmaster.widget.LoadingDialog;
 
 import javax.inject.Inject;
 
@@ -78,12 +77,19 @@ public abstract class BaseFragment<T extends BasePresenter> extends SimpleFragme
 
     @Override
     public void startLoginActivity() {
-        UserBean userBean = App.getInstance().getUserBeanInstance();
         String mobile = "";
-        if(userBean!=null) {
-            mobile = userBean.getMobile();
+        try {
+            UserBean userBean = App.getInstance().getUserBeanInstance();
+            if(userBean!=null) {
+                mobile = userBean.getMobile();
+            }
+            App.getAppComponent().getDataManager().setUserInstance(null);
+            App.getInstance().setUserInstance(null);
+        }catch (Exception e){
+
+        }finally {
+            LoginActivity.open(mContext, mobile);
         }
-        LoginActivity.open(mContext, mobile);
     }
 
     @Override

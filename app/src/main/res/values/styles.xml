@@ -35,6 +35,7 @@
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@mipmap/splash_bg</item>
         <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 

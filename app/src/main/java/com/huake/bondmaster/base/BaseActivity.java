@@ -64,6 +64,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends SimpleActivi
                     AppCompatDelegate.MODE_NIGHT_NO);
         }
         recreate();
+
     }
 
     @Override

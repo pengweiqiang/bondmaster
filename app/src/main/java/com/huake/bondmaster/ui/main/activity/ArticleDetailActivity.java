@@ -171,8 +171,8 @@ public class ArticleDetailActivity extends BaseActivity<WebPresenter> implements
     @Override
     protected void onDestroy() {
         if (mWebView != null) {
-            mWebView.destroy();
             mWebView.removeAllViews();
+            mWebView.destroy();
             mWebView = null;
         }
         super.onDestroy();
