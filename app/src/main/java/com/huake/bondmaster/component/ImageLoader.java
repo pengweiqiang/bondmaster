@@ -22,9 +22,15 @@ public class ImageLoader {
     }
 
     public static void loadByAllCache(Context context, String url, ImageView iv,int drawableId) {    //使用Glide加载圆形ImageView(如头像)时，不要使用占位图
-        Glide.with(context).load(url).crossFade().placeholder(context.getResources().getDrawable(drawableId))
-                .error((context.getResources().getDrawable(drawableId)))
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv);
+        if(context instanceof Activity){
+            Activity activity = (Activity)context;
+            if(activity!=null && !activity.isDestroyed()){
+                Glide.with(context).load(url).crossFade().placeholder(context.getResources().getDrawable(drawableId))
+                        .error((context.getResources().getDrawable(drawableId)))
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv);
+            }
+        }
+
     }
 
     public static void loadByCache(Context mContext,String url,ImageView iv){

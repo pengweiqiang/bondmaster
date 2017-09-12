@@ -38,6 +38,8 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final String EVALUATION_RESULT = "/hk-soft-app/scene/viewIssuanceEvaluationResult";
 
+    public static final String EVALUATION_RESULT2 = "/hk-soft-app/evaluate/viewIssuanceEvaluationResult";
+
     //================= TYPE ====================
 
     public static final int TYPE_ZHIHU = 101;

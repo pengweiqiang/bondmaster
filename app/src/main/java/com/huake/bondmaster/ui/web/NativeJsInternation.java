@@ -56,7 +56,7 @@ public class NativeJsInternation {
         try{
             JSONObject bodyJson = new JSONObject(body);
             String stat = bodyJson.getString("stat");
-            if(stat.equals(com.huake.bondmaster.app.Constants.CODE_INVALID_TOKEN)){
+            if(stat.equals(com.huake.bondmaster.app.Constants.CODE_INVALID_TOKEN+"")){
                 ((MainActivity)context).refreshMarketFragment();
             }
         }catch (Exception e){

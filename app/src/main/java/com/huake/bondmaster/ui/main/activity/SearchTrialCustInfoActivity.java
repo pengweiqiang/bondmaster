@@ -148,7 +148,7 @@ public class SearchTrialCustInfoActivity extends RootActivity<SearchTrialCustInf
             @Override
             public void onItemClick(int position, View view) {
                 SearchBean sceneBean = mList.get(position);
-                StringBuilder sbUrl = new StringBuilder(Constants.HOST_URL+Constants.EVALUATION_RESULT);
+                StringBuilder sbUrl = new StringBuilder(Constants.HOST_URL+Constants.EVALUATION_RESULT2);
                 sbUrl.append("?userId=").append(sceneBean.getUserId())
                         .append("&trialCustId=").append(sceneBean.getTrialCustId())
                         .append("&dataDate=").append(sceneBean.getDataDate());

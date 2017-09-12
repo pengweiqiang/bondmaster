@@ -58,6 +58,7 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
         return R.layout.fragment_market;
     }
 
+
     @Override
     protected void initEventAndData() {
 
@@ -66,10 +67,10 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
         initListener();
 
         WebSettings settings = mWebView.getSettings();
-//        settings.setAppCacheEnabled(true);
-//        settings.setDomStorageEnabled(true);
-//        settings.setDatabaseEnabled(true);
-//        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        settings.setAppCacheEnabled(true);
+        settings.setDomStorageEnabled(true);
+        settings.setDatabaseEnabled(true);
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         settings.setJavaScriptEnabled(true);
         settings.setLoadWithOverviewMode(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
@@ -98,13 +99,13 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
 
             @Override
             public void onReceivedError(WebView webView, int i, String s, String s1) {
-                LogUtil.i("onReceivedError "+i+"\n"+s+"   \n"+s1);
+//                LogUtil.i("onReceivedError "+i+"\n"+s+"   \n"+s1);
                 super.onReceivedError(webView, i, s, s1);
             }
 
             @Override
             public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
-                LogUtil.i("onReceivedError "+webResourceRequest.getMethod()+"\n"+webResourceError.getErrorCode()+"   \n"+webResourceError.getDescription());
+//                LogUtil.i("onReceivedError "+webResourceRequest.getMethod()+"\n"+webResourceError.getErrorCode()+"   \n"+webResourceError.getDescription());
                 super.onReceivedError(webView, webResourceRequest, webResourceError);
             }
         });
@@ -149,12 +150,14 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
     }
     private void loadFinish(){
         smartRefreshLayout.finishRefresh();
+        if(mWebView.getVisibility() == View.GONE){
+            mWebView.setVisibility(View.VISIBLE);
+        }
     }
 
     public void loadUrlAddToken(){
         UserBean userBean = App.getInstance().getUserBeanInstance();
         if(userBean==null){
-            startLoginActivity();
             return;
         }
         if (webUrl.contains("?")) {
@@ -179,11 +182,11 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
     }
 
     public void refreshUrl(){
-        if(smartRefreshLayout!=null && mActivity!=null) {
+        if(mActivity!=null) {
             mActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    smartRefreshLayout.autoRefresh();
+                    mWebView.setVisibility(View.GONE);
                 }
             });
         }
@@ -191,12 +194,11 @@ public class MarketFragment extends RootFragment<MarketPresenter> implements Mar
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        if(isVisibleToUser){
-            smartRefreshLayout.autoRefresh();
+        if(isVisibleToUser && mWebView.getVisibility() == View.GONE){
+            loadUrlAddToken();
+            mWebView.loadUrl(webUrl);
         }
     }
-
-
 
     @Override
     public void onDestroy() {
