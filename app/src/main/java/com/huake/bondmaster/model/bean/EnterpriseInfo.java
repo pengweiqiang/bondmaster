@@ -1,5 +1,7 @@
 package com.huake.bondmaster.model.bean;
 
+import android.text.TextUtils;
+
 /**
  * @author will on 2017/8/29 11:25
  * @email pengweiqiang64@163.com
@@ -52,7 +54,7 @@ public class EnterpriseInfo {
     }
 
     public String getSuccessProbability() {
-        return successProbability;
+        return TextUtils.isEmpty(successProbability)?"0":successProbability;
     }
 
     public void setSuccessProbability(String successProbability) {

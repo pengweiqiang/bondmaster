@@ -61,9 +61,6 @@ public class SceneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         contentViewHolder.mTvBInfoCreditrating.setText(sceneBean.getbInfoCreditrating());
         contentViewHolder.mTvCompanyName.setText(sceneBean.getsInfoCustname());
         String successProbalility = BigDecimalUtil.formartDoubleStr(sceneBean.getSuccessProbability(),2);
-        if(successProbalility.equals("")){
-            successProbalility = "";
-        }
         contentViewHolder.mTvSuccessProbability.setText(successProbalility+"%");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

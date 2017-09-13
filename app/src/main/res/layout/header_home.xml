@@ -86,8 +86,9 @@
         app:open_mz_mode="false"
         app:indicatorAlign="center"
         app:canLoop="true"
+        app:indicatorMargin="5dp"
         app:middle_page_cover="true"
-        app:indicatorPaddingLeft="5dp"
+        app:indicatorPaddingLeft="30dp"
         />
 
     <android.support.v4.widget.Space

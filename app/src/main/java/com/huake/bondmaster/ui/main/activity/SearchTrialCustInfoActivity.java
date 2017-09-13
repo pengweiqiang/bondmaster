@@ -74,7 +74,7 @@ public class SearchTrialCustInfoActivity extends RootActivity<SearchTrialCustInf
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        mActionBar.setTitle("");
+        mActionBar.setTitle("评测列表");
 
 
         mAdapter = new SearchAdapter(mContext,mList);

@@ -2,47 +2,51 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
     android:background="@color/colorWhite"
-    android:paddingRight="6dp"
-    android:paddingLeft="8dp"
+    android:gravity="center_vertical"
     android:paddingBottom="6dp"
-    android:paddingTop="6dp"
-    >
+    android:paddingLeft="8dp"
+    android:paddingRight="6dp"
+    android:paddingTop="6dp">
 
     <ImageView
         android:id="@+id/iv_company_logo"
         android:layout_width="70dp"
         android:layout_height="55dp"
-        android:scaleType="centerCrop"
         android:layout_centerVertical="true"
+        android:scaleType="centerCrop"
         android:src="@color/colorBackground" />
-    
-    <TextView
-        android:id="@+id/tv_message_info"
-        android:layout_toRightOf="@+id/iv_company_logo"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="6dp"
-        android:textColor="#666666"
-        android:textSize="13sp"
-        android:maxLines="3"
-        android:ellipsize="end"
-        android:text="8月8号，全国首单旅游类负全国首单旅游类负少的我玩任务少的我玩任务全国首单旅游类负少的我玩任务全国首单旅游类负少的我玩任务全国首单旅游类负少的我玩任务"
-        />
+        android:layout_toRightOf="@+id/iv_company_logo"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_message_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#b2b2b2"
-        android:text="2017-08-25"
-        android:textSize="12sp"
-        android:layout_marginTop="3dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        />
+        <TextView
+            android:id="@+id/tv_message_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="8月8号，全国首单旅游类负全国首单旅游类负少的我玩任务少的我玩任务全国首单旅游类负少的我玩任务全国首单旅游类负少的我玩任务全国首单旅游类负少的我玩任务"
+            android:textColor="#666666"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_message_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginTop="3dp"
+            android:text="2017-08-25"
+            android:textColor="#b2b2b2"
+            android:textSize="12sp" />
+    </LinearLayout>
 
 
 </RelativeLayout>

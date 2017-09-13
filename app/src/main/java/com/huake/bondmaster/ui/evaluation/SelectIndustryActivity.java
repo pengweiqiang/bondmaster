@@ -11,6 +11,7 @@ import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.evaluation.IndustryContract;
+import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.presenter.evaluation.IndustryPresenter;
 import com.huake.bondmaster.ui.evaluation.adapter.IndustryAdapter;
@@ -103,6 +104,11 @@ public class SelectIndustryActivity extends BaseActivity<IndustryPresenter> impl
         if(industryBeanList!=null) {
             rightIndustryAdapter.setData(industryBeanList.get(0),industryBeanList.get(0).getSubList());
         }
+    }
+
+    @Override
+    public void evaluateSuccess(EvaluationSuccessBean evaluationSuccessBean) {
+
     }
 
     public static void open(Context context){

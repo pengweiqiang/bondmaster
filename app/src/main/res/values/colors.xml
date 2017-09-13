@@ -38,7 +38,7 @@
     <color name="banner_unselected">#727573</color>
 
 
-    <color name="colorInitFloatBackground">#074584</color>
-    <color name="colorCollapsedFloatBackground">#074584</color>
+    <color name="colorInitFloatBackground">@android:color/transparent</color>
+    <color name="colorCollapsedFloatBackground">@android:color/transparent</color>
 
 </resources>

@@ -7,12 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.evaluation.IndustryContract;
+import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.presenter.evaluation.IndustryPresenter;
+import com.huake.bondmaster.ui.web.WebActivity;
+import com.huake.bondmaster.util.LogUtil;
 import com.huake.bondmaster.widget.ActionBar;
 
 import java.io.Serializable;
@@ -54,6 +59,12 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
     EditText mEtEbit;
     @BindView(R.id.et_cash)
     EditText mEtCash;
+    @BindView(R.id.et_company_profit)
+    EditText mEtCompanyProfit;
+    @BindView(R.id.et_enterprise_profit)
+    EditText mEtEnterpriseProfit;
+    @BindView(R.id.et_interest)
+    EditText mEtInterest;
 
     private Map<String,String> params ;
 
@@ -133,6 +144,25 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
             return;
         }
 
+        //债务信息
+
+        String companyProfit = mEtCompanyProfit.getText().toString().trim();
+        if(TextUtils.isEmpty(companyProfit)){
+            mEtCompanyProfit.requestFocus();
+            return;
+        }
+        String enterpriseProfit = mEtEnterpriseProfit.getText().toString().trim();
+        if(TextUtils.isEmpty(enterpriseProfit)){
+            mEtEnterpriseProfit.requestFocus();
+            return;
+        }
+
+        String yearInterest = mEtInterest.getText().toString();
+        if(TextUtils.isEmpty(yearInterest)){
+            mEtInterest.requestFocus();
+            return;
+        }
+
 
         params.put("totAssets",assetTotal);//总资产
         params.put("totLiab",libilities);//总负债
@@ -145,8 +175,17 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
         params.put("netCashFlowsOperAct",cash);//经营性现金流
 
 
+        params.put("userId", App.getInstance().getUserBeanInstance().getId());
+        params.put("corporateBondYearInterest",companyProfit);
+        params.put("enterpriseBondYearInterest",enterpriseProfit);
+        params.put("yearInterest",yearInterest);//一年利息
 
-        EvaluationDebtInfoActivity.open(mContext,params);
+
+
+//        EvaluationDebtInfoActivity.open(mContext,params);
+        showLoading("评测中...");
+        LogUtil.i(new Gson().toJson(params).toString());
+        mPresenter.startEvaluate(params);
     }
 
 
@@ -163,5 +202,17 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
         Intent intent = new Intent(context,EvaluationInputFinanceInfoActivity.class);
         intent.putExtra(Constants.EVALUATE_PARAMS,(Serializable) params);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void evaluateSuccess(EvaluationSuccessBean evaluationSuccessBean) {
+        //评测成功需要跳转
+        StringBuilder sbUrl = new StringBuilder(Constants.HOST_URL+Constants.EVALUATION_RESULT);
+        sbUrl.append("?userId=").append(evaluationSuccessBean.getUserId())
+                .append("&trialCustId=").append(evaluationSuccessBean.getTrialCustId())
+                .append("&dataDate=").append(evaluationSuccessBean.getDataDate());
+        WebActivity.open(mContext,"",sbUrl.toString());
+        App.getInstance().removeActivity(EvaluationActivity.class);
+        finish();
     }
 }

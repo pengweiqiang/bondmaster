@@ -6,8 +6,8 @@ ext {
             applicationId     : "com.huake.bondmaster",
             minSdkVersion     : 19,
             targetSdkVersion  : 25,
-            versionCode       : 13,
-            versionName       : "1.0.13"
+            versionCode       : 14,
+            versionName       : "1.0.14"
     ]
 
     def dependVersion = [
@@ -36,7 +36,6 @@ ext {
             "glide-transformations"     : "jp.wasabeef:glide-transformations:1.2.1",
             "html-textview"             : "org.sufficientlysecure:html-textview:3.1",
             "SmartRefreshLayout"        : "com.scwang.smartrefresh:SmartRefreshLayout:1.0.3",
-            "banner"                    : "com.github.pinguo-zhouwei:MZBannerView:v2.0.0",
             "MaterialDialog"            :"com.android.design:MaterialDialog:1.0.2",
             "imagepicker"               :"com.lzy.widget:imagepicker:0.5.0",
 

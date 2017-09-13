@@ -60,7 +60,7 @@ dependencies {
 //    compile rootProject.ext.dependencies["PhotoView"]
     compile rootProject.ext.dependencies["glide-transformations"]
     compile rootProject.ext.dependencies["html-textview"]
-    compile rootProject.ext.dependencies["banner"]
+    compile project(':mzbanner')
     //rx
     compile rootProject.ext.dependencies["rxjava"]
     compile rootProject.ext.dependencies["rxandroid"]

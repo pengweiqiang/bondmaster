@@ -3,12 +3,14 @@ package com.huake.bondmaster.presenter.evaluation;
 import com.huake.bondmaster.base.RxPresenter;
 import com.huake.bondmaster.base.contract.evaluation.IndustryContract;
 import com.huake.bondmaster.model.DataManager;
+import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
 import com.huake.bondmaster.model.bean.IndustryBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 import com.huake.bondmaster.util.RxUtil;
 import com.huake.bondmaster.widget.CommonSubscriber;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -47,5 +49,21 @@ public class IndustryPresenter extends RxPresenter<IndustryContract.View> implem
                 })
         );
 
+    }
+
+    @Override
+    public void startEvaluate(Map<String, String> params) {
+
+        addSubscribe(dataManager.startEvaluate(params)
+                .compose(RxUtil.<BondMasterHttpResponse<EvaluationSuccessBean>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<EvaluationSuccessBean>(mView, true) {
+                    @Override
+                    public void dataHandler(EvaluationSuccessBean evaluationSuccessBean) {
+                        mView.stateMain();
+                        mView.evaluateSuccess(evaluationSuccessBean);
+                    }
+
+                })
+        );
     }
 }

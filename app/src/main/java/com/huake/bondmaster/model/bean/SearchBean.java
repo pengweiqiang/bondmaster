@@ -1,5 +1,7 @@
 package com.huake.bondmaster.model.bean;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 
 /**
@@ -96,7 +98,7 @@ public class SearchBean implements Serializable{
     }
 
     public String getSuccessProbability() {
-        return successProbability;
+        return TextUtils.isEmpty(successProbability)?"0":successProbability;
     }
 
     public void setSuccessProbability(String successProbability) {

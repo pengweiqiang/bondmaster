@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:background="@color/colorPrimaryDark"
             android:scaleType="fitXY"
             android:src="@mipmap/home_banner" />
 
@@ -39,9 +38,9 @@
                 android:drawableLeft="@mipmap/ic_search"
                 android:drawablePadding="8dp"
                 android:focusable="false"
-                android:hint="请输入关键词"
+                android:hint="请输入要评测的企业名称"
                 android:maxLines="1"
-                android:padding="8dp"
+                android:padding="10dp"
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/colorText"

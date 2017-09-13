@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
 import com.huake.bondmaster.app.Constants;
+import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.component.ImageLoader;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.HotNewsBean;
@@ -120,6 +121,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ((HeaderViewHolder) holder).mIvMoreArticle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(App.getInstance().getUserBeanInstance() == null){
+                        if(mContext instanceof BaseActivity){
+                            ((BaseActivity)mContext).startLoginActivity();
+                            return;
+                        }
+                    }
                     ArticleListActivity.open(mContext);
                 }
             });
@@ -164,8 +171,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         });
 
 //        itemBannerViewHolder.mzBannerView.setDuration(3000);
-        itemBannerViewHolder.mzBannerView.setIndicatorVisible(false);
+        itemBannerViewHolder.mzBannerView.setIndicatorVisible(true);
         itemBannerViewHolder.mzBannerView.setDelayedTime(6000);
+        itemBannerViewHolder.mzBannerView.setIndicatorRes(R.drawable.circle,R.drawable.circle_blue);
 
         itemBannerViewHolder.mzBannerView.start();
 
@@ -219,7 +227,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //        @BindView(R.id.tv_search)
 //        EditText mEtSearchView;
         @BindView(R.id.iv_more_article)
-        ImageView mIvMoreArticle;
+        TextView mIvMoreArticle;
 //        @BindView(R.id.banner)
 //        View mBannerView;
 //        @BindView(R.id.viewpager)

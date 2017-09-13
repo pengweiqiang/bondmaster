@@ -20,10 +20,10 @@ public class BigDecimalUtil {
      * @return
      */
     public static String formartDoubleStr(String str,int decimalsCount){
-        if(TextUtils.isEmpty(str)){
-            return "";
+        if(TextUtils.isEmpty(str)||"0".equals(str)){
+            return "0";
         }
-        StringBuilder decimalFormatStr = new StringBuilder("#");
+        StringBuilder decimalFormatStr = new StringBuilder("0");
         for(int i = 0 ;i<decimalsCount;i++){
             if(i==0){
                 decimalFormatStr.append(".0");
