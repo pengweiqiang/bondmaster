@@ -74,29 +74,20 @@ public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> impl
 
     private void initView(String sInfoCustNameData,String bInfoCreditrating,String successProbalilityData,String dataData,String count){
         mActionBar.setTitle(sInfoCustNameData);
-        String bInfoCreditratingFirst = "主体级别预估：";
-        String bInfoCreditratingStr = bInfoCreditratingFirst+bInfoCreditrating;
-        SpannableString bInfoCreditratingSpan = TextViewUtils.getSpannableStringSize(bInfoCreditratingStr,bInfoCreditratingFirst.length(),bInfoCreditratingFirst.length()+bInfoCreditrating.length(),18);
-        mTvBinfoCreditrating.setText(bInfoCreditratingSpan);
+        mTvBinfoCreditrating.setText(bInfoCreditrating);
 
         String successProbability = BigDecimalUtil.formartDoubleStr(successProbalilityData,2)+"%";
-        String successProbabilityFirst = "发债成功概率：";
-        String successProbabilityStr = successProbabilityFirst+successProbability;
-        SpannableString successProbabilitySpan = TextViewUtils.getSpannableStringSize(successProbabilityStr,successProbabilityFirst.length(),successProbabilityFirst.length()+successProbability.length(),18);
+        SpannableString successProbabilitySpan = TextViewUtils.getSpannableStringSize(successProbability,successProbability.length()-1,successProbability.length(),17);
         mTvSuccessProbability.setText(successProbabilitySpan);
 
 
 
         String dataDate = DateUtil.getDateString(dataData,DateUtil.FORMAT_YYYY_MM_DD_HH_MM_SS,DateUtil.FORMAT_YYYY_MM_DD);
-        String dataDateFirst = "数据日期：";
-        String dataDateStr = dataDateFirst+dataDate;
-        SpannableString dataDateSpann = TextViewUtils.getSpannableStringSize(dataDateStr,dataDateFirst.length(),dataDateFirst.length()+dataDate.length(),15);
-        mTvEvaluateDate.setText(dataDateSpann);
+        mTvEvaluateDate.setText(dataDate);
 
 
-        String countFirst = "评测次数：";
-        String countStr = countFirst+count;
-        SpannableString countSpann = TextViewUtils.getSpannableStringSize(countStr,countFirst.length(),countFirst.length()+count.length(),15);
+        String countStr = count+"次";
+        SpannableString countSpann = TextViewUtils.getSpannableStringSize(countStr,countStr.length()-1,countStr.length(),14);
         mTvEvaluateCount.setText(countSpann);
 
 

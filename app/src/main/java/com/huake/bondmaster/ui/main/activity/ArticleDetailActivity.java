@@ -191,11 +191,11 @@ public class ArticleDetailActivity extends BaseActivity<WebPresenter> implements
     }
 
     private void shareApp(){
-        UMWeb web = new UMWeb(Constants.SHARE_APP_URL);
+        UMWeb web = new UMWeb(webUrl);
         web.setTitle("债券App");//标题
         UMImage umImage = new UMImage(mContext,R.mipmap.ic_launcher);
         web.setThumb(umImage);  //缩略图
-        web.setDescription("债券App");//描述
+        web.setDescription(title);//描述
         new ShareAction(mContext)
                 .withMedia(web)
 //                .withText("债懂App")
@@ -211,7 +211,7 @@ public class ArticleDetailActivity extends BaseActivity<WebPresenter> implements
          */
         @Override
         public void onStart(SHARE_MEDIA platform) {
-            showLoading("分享中...");
+//            showLoading("分享中...");
         }
 
         /**

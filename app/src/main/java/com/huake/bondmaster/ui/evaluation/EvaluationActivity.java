@@ -161,14 +161,18 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
                 break;
             case R.id.btn_next:
                 String companyName = mEtCompanyName.getText().toString().trim();
-                if(partyListBean==null){
+//                if(partyListBean==null){
+//                    String msg = "请选择公司名称";
+//                    if(!TextUtils.isEmpty(companyName)){
+//                        msg = "请输入完整的公司名称";
+//                    }
+//                    showErrorMsg(msg);
+//                    return;
+//                }
+                if(TextUtils.isEmpty(companyName)){
                     showErrorMsg("请选择公司名称");
                     return;
                 }
-//                if(TextUtils.isEmpty(companyName)){
-//                    showErrorMsg("请选择公司名称");
-//                    return;
-//                }
                 if(childIndustryBean==null){
                     showErrorMsg("请选择行业");
                     return;

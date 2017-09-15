@@ -13,6 +13,7 @@ import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.component.ImageLoader;
 import com.huake.bondmaster.model.bean.ArticleBean;
+import com.huake.bondmaster.util.DateUtil;
 
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //        contentViewHolder.mTvAuthor.setText(articleBean.getAuthor());
         contentViewHolder.mTvReadedCount.setText(String.valueOf(articleBean.getHits()));
         contentViewHolder.mTvTitle.setText(Html.fromHtml(articleBean.getTitle()));
-        contentViewHolder.mTvDate.setText(articleBean.getCreateDate());
+        contentViewHolder.mTvDate.setText(DateUtil.getDateString(articleBean.getCreateDate(),DateUtil.FORMAT_YYYY_MM_DD_HH_MM_SS,DateUtil.FORMAT_YYYY_MM_DD));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

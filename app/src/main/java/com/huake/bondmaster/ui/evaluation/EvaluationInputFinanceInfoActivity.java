@@ -45,8 +45,8 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
     EditText mEtAssetTotal;
     @BindView(R.id.et_liabilities)
     EditText mEtliabilities;
-    @BindView(R.id.et_flow_rate)
-    EditText mEtFlowRate;
+    @BindView(R.id.et_roe)
+    EditText mEtRoe;
     @BindView(R.id.et_income)
     EditText mEtIncome;
     @BindView(R.id.et_profit_total)
@@ -63,8 +63,8 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
     EditText mEtCompanyProfit;
     @BindView(R.id.et_enterprise_profit)
     EditText mEtEnterpriseProfit;
-    @BindView(R.id.et_interest)
-    EditText mEtInterest;
+//    @BindView(R.id.et_interest)
+//    EditText mEtInterest;
 
     private Map<String,String> params ;
 
@@ -108,9 +108,9 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
             return;
         }
 
-        String flowRate = mEtFlowRate.getText().toString();
-        if(TextUtils.isEmpty(flowRate)){
-            mEtFlowRate.requestFocus();
+        String roe = mEtRoe.getText().toString();
+        if(TextUtils.isEmpty(roe)){
+            mEtRoe.requestFocus();
             return;
         }
         String income = mEtIncome.getText().toString();
@@ -157,16 +157,16 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
             return;
         }
 
-        String yearInterest = mEtInterest.getText().toString();
-        if(TextUtils.isEmpty(yearInterest)){
-            mEtInterest.requestFocus();
-            return;
-        }
+//        String yearInterest = mEtInterest.getText().toString();
+//        if(TextUtils.isEmpty(yearInterest)){
+//            mEtInterest.requestFocus();
+//            return;
+//        }
 
 
         params.put("totAssets",assetTotal);//总资产
         params.put("totLiab",libilities);//总负债
-        params.put("sFaCurrent",flowRate);//流动比率
+        params.put("roe",roe);//净资产收益率
         params.put("operRev",income);//营业收入
         params.put("totProfit",profitTotal);
         params.put("netProfit",retainedProfits);//净利润
@@ -178,7 +178,7 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
         params.put("userId", App.getInstance().getUserBeanInstance().getId());
         params.put("corporateBondYearInterest",companyProfit);
         params.put("enterpriseBondYearInterest",enterpriseProfit);
-        params.put("yearInterest",yearInterest);//一年利息
+//        params.put("yearInterest",yearInterest);//一年利息
 
 
 

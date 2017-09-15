@@ -28,7 +28,7 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="collapsed_header_height">55dp</dimen>
-    <dimen name="init_float_offset_y">140dp</dimen>
+    <dimen name="init_float_offset_y">125dp</dimen>
     <dimen name="collapsed_float_offset_y">8dp</dimen>
     <dimen name="init_float_margin">20dp</dimen>
     <dimen name="collapsed_float_margin">8dp</dimen>

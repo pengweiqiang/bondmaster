@@ -83,9 +83,11 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
     private void loadData(){
         UserBean userBean = App.getInstance().getUserBeanInstance();
         String userId = "";
-        if(userBean!=null){
-            userId = userBean.getId();
+        if(userBean==null){
+            mRefreshLayout.finishRefresh();
+            return;
         }
+        userId = userBean.getId();
         String searchKey = mEtSearch.getText().toString().trim();
         mPresenter.getSceneList(userId,pageNum,searchKey,"","","");
     }

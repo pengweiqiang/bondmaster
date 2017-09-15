@@ -132,7 +132,7 @@ public class MyFragment extends SimpleFragment {
         web.setTitle("债券App");//标题
         UMImage umImage = new UMImage(mContext,R.mipmap.ic_launcher);
         web.setThumb(umImage);  //缩略图
-        web.setDescription("债券App");//描述
+        web.setDescription("债券，让企业更\"懂\"债");//描述
         new ShareAction(mActivity)
                 .withMedia(web)
 //                .withText("债懂App")
@@ -148,7 +148,7 @@ public class MyFragment extends SimpleFragment {
          */
         @Override
         public void onStart(SHARE_MEDIA platform) {
-            showLoading("分享中...");
+//            showLoading("分享中...");
         }
 
         /**

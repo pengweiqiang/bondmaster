@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/colorBackground"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <com.huake.bondmaster.widget.ActionBar
@@ -12,34 +12,28 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_bar_height" />
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:paddingTop="15dp"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/action_bar_bg_color"
-                android:paddingBottom="15dp"
-                android:paddingTop="15dp">
 
                 <ImageView
                     android:id="@+id/iv_company_logo"
-                    android:layout_width="78dp"
-                    android:layout_height="78dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="25dp"
-                    android:background="@drawable/circle"
-                    android:padding="20dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center_horizontal"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/default_head" />
+                    android:src="@mipmap/ic_head_company_blue" />
 
 
                 <LinearLayout
@@ -47,84 +41,157 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_company_logo"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:orientation="horizontal">
 
                     <RelativeLayout
                         android:layout_width="0dp"
-                        android:gravity="center_horizontal"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:gravity="center">
 
                         <TextView
                             android:id="@+id/tv_success_probability"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="6dp"
-                            android:gravity="center_vertical"
-                            android:text="发债成功概率："
-                            android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/my_common_text_size" />
+                            android:layout_centerHorizontal="true"
+                            android:text="70%"
+                            android:textColor="#ff9600"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_evaluat_count"
+                            android:id="@+id/tv_success_probability_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_success_probability"
-                            android:text="评测次数："
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginTop="5dp"
                             android:gravity="center_vertical"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="12sp" />
+                            android:drawableLeft="@mipmap/ic_success_yellow"
+                            android:drawablePadding="5dp"
+                            android:text="发债成功概率"
+                            android:textColor="@color/tab_home_text_color"
+                            android:textSize="@dimen/my_common_text_size" />
+
 
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="0dp"
-                        android:gravity="center_horizontal"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
+
 
                         <TextView
                             android:id="@+id/tv_bInfoCreditrating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="70%"
+                            android:textColor="#ff9600"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_bInfoCreditrating_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_bInfoCreditrating"
                             android:layout_marginBottom="6dp"
-                            android:text="主体级别预估："
-                            android:textColor="@color/colorWhite"
+                            android:layout_marginTop="5dp"
+                            android:drawableLeft="@mipmap/ic_star_yellow"
+                            android:drawablePadding="5dp"
+                            android:text="主体级别预估"
+                            android:gravity="center_vertical"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/tab_home_text_color"
                             android:textSize="@dimen/my_common_text_size" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/tv_evaluat_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="7"
+                            android:textColor="#ff9600"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+
+                            />
+                        <TextView
+                            android:id="@+id/tv_evaluat_count_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_evaluat_count"
+                            android:drawableLeft="@mipmap/ic_count"
+                            android:drawablePadding="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_vertical"
+                            android:text="评测次数"
+                            android:textColor="@color/tab_home_text_color"
+                            android:textSize="@dimen/my_common_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
 
                         <TextView
                             android:id="@+id/tv_evaluat_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_bInfoCreditrating"
-                            android:text="上次评测时间："
-                            android:textColor="@color/colorWhite"
-                            android:textSize="12sp" />
+                            android:layout_centerHorizontal="true"
+                            android:text="2017-09-15"
+                            android:textColor="#ff9600"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+
+                            />
+                        <TextView
+                            android:id="@+id/tv_evaluat_date_title"
+                            android:layout_below="@+id/tv_evaluat_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@mipmap/ic_time_yellow"
+                            android:drawablePadding="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="上次评测时间"
+                            android:gravity="center_vertical"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/tab_home_text_color"
+                            android:textSize="@dimen/my_common_text_size" />
 
                     </RelativeLayout>
 
                 </LinearLayout>
 
-            </RelativeLayout>
 
-            <android.support.v4.widget.Space
+
+            <View
                 android:layout_width="match_parent"
+                android:background="@color/colorBackground"
                 android:layout_height="10dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="常用信息"
-                android:textColor="#999999"
-                android:textSize="14sp" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -132,12 +199,43 @@
                 android:background="@color/colorWhite"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="17dp"
+                    android:paddingTop="5dp">
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="13dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/tab_home_text_selectd_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="常用信息"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/my_function_margin_left"
+                    android:background="@color/colorBackground" />
+
                 <RelativeLayout
                     android:id="@+id/rl_my_evaluate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:background="@drawable/set_up_style"
+                    android:gravity="center_vertical"
                     android:padding="@dimen/my_function_margin_left">
 
                     <ImageView
@@ -177,8 +275,8 @@
                     android:id="@+id/rl_bond_atlas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:background="@drawable/set_up_style"
+                    android:gravity="center_vertical"
                     android:padding="@dimen/my_function_margin_left">
 
                     <ImageView
@@ -218,8 +316,8 @@
                     android:id="@+id/rl_financing_plan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:background="@drawable/set_up_style"
+                    android:gravity="center_vertical"
                     android:padding="@dimen/my_function_margin_left">
 
                     <ImageView
@@ -259,8 +357,8 @@
                     android:id="@+id/rl_subscibe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:background="@drawable/set_up_style"
+                    android:gravity="center_vertical"
                     android:padding="@dimen/my_function_margin_left">
 
                     <ImageView
