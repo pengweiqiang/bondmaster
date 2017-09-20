@@ -14,6 +14,7 @@ import com.huake.bondmaster.model.bean.PageBean;
 import com.huake.bondmaster.model.bean.PartyBean;
 import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.model.bean.SubscribeBean;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.http.api.BondMasterApis;
@@ -48,8 +49,8 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<BondMasterHttpResponse<HomePageBean>> homePage(String scale) {
-        return mMyApiService.homePage(scale);
+    public Flowable<BondMasterHttpResponse<HomePageBean>> homePage(String scale, long pageNum,long pageSize) {
+        return mMyApiService.homePage(scale,pageNum,pageSize);
     }
 
     @Override
@@ -95,6 +96,11 @@ public class RetrofitHelper implements HttpHelper {
     @Override
     public Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(String userId, String dataDate, String trialCustId) {
         return mMyApiService.getEnterpriseInfo(userId, dataDate, trialCustId);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<List<SubscribeBean>>> getSubscribeList(String userId) {
+        return mMyApiService.getSubscribeList(userId);
     }
 
     @Override

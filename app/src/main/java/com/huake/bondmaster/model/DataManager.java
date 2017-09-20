@@ -14,6 +14,7 @@ import com.huake.bondmaster.model.bean.PageBean;
 import com.huake.bondmaster.model.bean.PartyBean;
 import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.model.bean.SubscribeBean;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.db.DBHelper;
@@ -140,8 +141,8 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
-    public Flowable<BondMasterHttpResponse<HomePageBean>> homePage(String scale) {
-        return mHttpHelper.homePage(scale);
+    public Flowable<BondMasterHttpResponse<HomePageBean>> homePage(String scale,long pageNum,long pageSize) {
+        return mHttpHelper.homePage(scale,pageNum,pageSize);
     }
 
     @Override
@@ -187,6 +188,11 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     @Override
     public Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(String userId, String dataDate, String trialCustId) {
         return mHttpHelper.getEnterpriseInfo(userId, dataDate, trialCustId);
+    }
+
+    @Override
+    public Flowable<BondMasterHttpResponse<List<SubscribeBean>>> getSubscribeList(String userId) {
+        return mHttpHelper.getSubscribeList(userId);
     }
 
     @Override

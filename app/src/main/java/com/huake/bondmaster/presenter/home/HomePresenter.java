@@ -28,10 +28,10 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
     }
 
     @Override
-    public void getHomePage() {
-        addSubscribe(dataManager.homePage(Constants.PARAM_SCALE)
+    public void getHomePage(long pageNum) {
+        addSubscribe(dataManager.homePage(Constants.PARAM_SCALE,pageNum,Constants.PAGE_SIZE)
                 .compose(RxUtil.<BondMasterHttpResponse<HomePageBean>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<HomePageBean>(mView, true) {
+                .subscribeWith(new CommonSubscriber<HomePageBean>(mView, pageNum<=1?true:false) {
                     @Override
                     public void dataHandler(HomePageBean homePageBean) {
                         mView.stateMain();

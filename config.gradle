@@ -4,10 +4,10 @@ ext {
             compileSdkVersion : 25,
             buildToolsVersion : '25.0.2',
             applicationId     : "com.huake.bondmaster",
-            minSdkVersion     : 19,
+            minSdkVersion     : 16,
             targetSdkVersion  : 25,
-            versionCode       : 17,
-            versionName       : "1.0.17"
+            versionCode       : 25,
+            versionName       : "1.0.21"
     ]
 
     def dependVersion = [
@@ -73,6 +73,8 @@ ext {
             "blockcanary-android"       : "com.github.moduth:blockcanary-android:${dependVersion.blockcanary}",
             "blockcanary-no-op"         : "com.github.moduth:blockcanary-no-op:${dependVersion.blockcanary}",
             "leakcanary-android"        : "com.squareup.leakcanary:leakcanary-android:${dependVersion.leakcanary}",
-            "leakcanary-android-no-op"  : "com.squareup.leakcanary:leakcanary-android-no-op:${dependVersion.leakcanary}"
+            "leakcanary-android-no-op"  : "com.squareup.leakcanary:leakcanary-android-no-op:${dependVersion.leakcanary}",
+
+            "pdf"                       : "com.github.barteksc:android-pdf-viewer:2.7.0-beta"
     ]
 }

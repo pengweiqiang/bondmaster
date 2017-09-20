@@ -5,8 +5,10 @@ import android.webkit.JavascriptInterface;
 
 import com.huake.bondmaster.Constants;
 import com.huake.bondmaster.app.App;
+import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.ui.main.activity.MainActivity;
 import com.huake.bondmaster.ui.market.HkMarketOverviewActivity;
+import com.huake.bondmaster.ui.scene.FinaningPlanReportActivity;
 import com.huake.bondmaster.util.LogUtil;
 
 import org.json.JSONObject;
@@ -37,6 +39,11 @@ public class NativeJsInternation {
                 url = url + "?token="+token;
             }
         }
+        if(url.contains(com.huake.bondmaster.app.Constants.FINANCING_PLAN_REPORT)){
+            //融资方案
+            FinaningPlanReportActivity.open(context,Constants.HOST_URL + url);
+            return;
+        }
         if(context instanceof WebActivity) {
             ((WebActivity) context).loadUrl(Constants.HOST_URL + url);
         }else if(context instanceof MainActivity){
@@ -46,6 +53,8 @@ public class NativeJsInternation {
             }else {
                 ((MainActivity) context).loadUrl(Constants.HOST_URL + url);
             }
+        }else if(context instanceof BaseActivity){
+            ((WebActivity) context).loadUrl(Constants.HOST_URL + url);
         }
 
         LogUtil.i(url);

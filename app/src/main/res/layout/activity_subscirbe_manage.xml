@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
     android:orientation="vertical"
     >
 
@@ -11,22 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_bar_height"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <ViewStub
+        android:id="@+id/empty_subscribe"
+        android:layout_below="@+id/action_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/empty_data_subscribe"
+        android:inflatedId="@+id/act_layout_viewstub_new"
+        android:layout="@layout/empty_subscribe"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#999999"
-        android:textSize="@dimen/my_common_text_size"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:text="对不起，暂时还没有数据"
-        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/view_main"
+        android:layout_below="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:overScrollMode="never" />
 
 </RelativeLayout>

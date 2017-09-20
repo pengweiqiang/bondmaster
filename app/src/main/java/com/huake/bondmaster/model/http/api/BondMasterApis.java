@@ -16,6 +16,7 @@ import com.huake.bondmaster.model.bean.PageBean;
 import com.huake.bondmaster.model.bean.PartyBean;
 import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.model.bean.SubscribeBean;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
@@ -51,7 +52,7 @@ public interface BondMasterApis {
      * @return
      */
     @GET("hk-soft-app/cmsApp/homePage")
-    Flowable<BondMasterHttpResponse<HomePageBean>> homePage(@Query("scale") String scale);
+    Flowable<BondMasterHttpResponse<HomePageBean>> homePage(@Query("scale") String scale,@Query("pageNum") long pageNum,@Query("pageSize")long pageSize);
 
 
     /**
@@ -177,6 +178,13 @@ public interface BondMasterApis {
     Flowable<BondMasterHttpResponse<EvaluationResultBean>> getViewIssuanceEvaluationResult(@Query("userId")String userId, @Query("trialCustId")String trialCustId, @Query("dataDate")String dataDate);
 
 
+    /**
+     * 订阅管理列表
+     * @param userId
+     * @return
+     */
+    @GET("hk-soft-app/scene/subscribeList")
+    Flowable<BondMasterHttpResponse<List<SubscribeBean>>> getSubscribeList(@Query("userId")String userId);
 
 
 

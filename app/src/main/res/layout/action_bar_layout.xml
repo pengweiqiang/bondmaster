@@ -75,6 +75,17 @@
         android:visibility="gone" />
 
     <ImageView
+        android:id="@+id/rightSaveImageView"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/rightActionImageView"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:src="@mipmap/ic_save"
+        android:visibility="gone" />
+    <ImageView
         android:id="@+id/rightActionImageView"
         android:layout_width="30dp"
         android:layout_height="match_parent"

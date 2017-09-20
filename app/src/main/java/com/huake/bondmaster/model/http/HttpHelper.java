@@ -14,6 +14,7 @@ import com.huake.bondmaster.model.bean.PageBean;
 import com.huake.bondmaster.model.bean.PartyBean;
 import com.huake.bondmaster.model.bean.SceneBean;
 import com.huake.bondmaster.model.bean.SearchBean;
+import com.huake.bondmaster.model.bean.SubscribeBean;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.model.bean.VersionBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
@@ -36,7 +37,7 @@ public interface HttpHelper {
 
 
     //首页接口
-    Flowable<BondMasterHttpResponse<HomePageBean>> homePage(String scale);
+    Flowable<BondMasterHttpResponse<HomePageBean>> homePage(String scale, long pageNum,long pageSize);
 
     Flowable<BondMasterHttpResponse<PageBean<SearchBean>>> searchSceneList(long pageNum,long pageSize,String sInfoCustname);
 
@@ -85,6 +86,7 @@ public interface HttpHelper {
     //企业信息
     Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(String userId,String dataDate,String trialCustId);
 
+    Flowable<BondMasterHttpResponse<List<SubscribeBean>>> getSubscribeList(String userId);
 
     //时讯专栏列表
     Flowable<BondMasterHttpResponse<PageBean<ArticleBean>>> getArticleList(String userId,long pageNum, long pageSize, String categoryId);

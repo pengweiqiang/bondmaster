@@ -1,10 +1,8 @@
 package com.huake.bondmaster.ui.main.fragment;
 
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
 
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.App;
@@ -16,14 +14,12 @@ import com.huake.bondmaster.model.bean.HotNewsBean;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.home.HomePresenter;
 import com.huake.bondmaster.ui.main.activity.ArticleDetailActivity;
-import com.huake.bondmaster.ui.main.activity.SearchTrialCustInfoActivity;
 import com.huake.bondmaster.ui.main.adapter.HomeAdapter;
 import com.huake.bondmaster.ui.my.LoginActivity;
-import com.huake.bondmaster.util.LogUtil;
 import com.huake.bondmaster.widget.CommonItemDecoration;
-import com.huake.bondmaster.widget.HeaderScrollingBehavior;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
@@ -45,10 +41,10 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
     SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
-    @BindView(R.id.et_search)
-    EditText mEtSearch;
-    @BindView(R.id.coordinatorLayout)
-    CoordinatorLayout coordinatorLayout;
+//    @BindView(R.id.et_search)
+//    EditText mEtSearch;
+//    @BindView(R.id.coordinatorLayout)
+//    CoordinatorLayout coordinatorLayout;
 
     private HomePageBean homePageBean;
 
@@ -56,7 +52,9 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
 
     private HomeAdapter mHomeAdapter;
 
-    HeaderScrollingBehavior behavior;
+//    HeaderScrollingBehavior behavior;
+
+    long pageNum = 1;
 
     @Override
     protected void initInject() {
@@ -77,22 +75,22 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
 
         initListener();
 
-        mSmartRefreshLayout.setEnableLoadmore(false);
+//        mSmartRefreshLayout.setEnableLoadmore(false);
         mPresenter.getHomePageCache();
 
         mSmartRefreshLayout.autoRefresh();
 
-        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) mRecyclerView.getLayoutParams();
-        behavior = (HeaderScrollingBehavior)params.getBehavior();
-
-        behavior.setOnChangeExpandedListener(new HeaderScrollingBehavior.OnChangeExpandedListener() {
-            @Override
-            public void isChanged(boolean isExpaned) {
-                mSmartRefreshLayout.setEnableRefresh(!isExpaned);
-            }
-        });
-        boolean isExpand = behavior.isExpanded();
-        LogUtil.i("----------"+isExpand);
+//        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) mRecyclerView.getLayoutParams();
+//        behavior = (HeaderScrollingBehavior)params.getBehavior();
+//
+//        behavior.setOnChangeExpandedListener(new HeaderScrollingBehavior.OnChangeExpandedListener() {
+//            @Override
+//            public void isChanged(boolean isExpaned) {
+//                mSmartRefreshLayout.setEnableRefresh(!isExpaned);
+//            }
+//        });
+//        boolean isExpand = behavior.isExpanded();
+//        LogUtil.i("----------"+isExpand);
 
     }
 
@@ -104,22 +102,26 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
 
     @Override
     public void showContent(HomePageBean homePageBean) {
-        this.homePageBean = homePageBean;
-        hotNewsBeanList = homePageBean.getHotNews();
+        if(pageNum == 1) {
+            this.homePageBean = homePageBean;
+            hotNewsBeanList = homePageBean.getHotNews();
+        }else{
+            hotNewsBeanList.addAll(homePageBean.getHotNews());
+        }
         mSmartRefreshLayout.finishRefresh(800);
-        mHomeAdapter.setData(homePageBean);
+        mHomeAdapter.setData(homePageBean,hotNewsBeanList);
     }
 
     @Override
     public void initListener() {
-        mEtSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean isExpand = behavior.isExpanded();
-                LogUtil.i("----------"+isExpand);
-                SearchTrialCustInfoActivity.open(mContext,"");
-            }
-        });
+//        mEtSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                boolean isExpand = behavior.isExpanded();
+////                LogUtil.i("----------"+isExpand);
+//                SearchTrialCustInfoActivity.open(mContext,"");
+//            }
+//        });
         mHomeAdapter.setOnItemClickListener(new HomeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
@@ -141,7 +143,15 @@ public class HomeFragment extends RootFragment<HomePresenter> implements HomeCon
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                mPresenter.getHomePage();
+                pageNum = 1;
+                mPresenter.getHomePage(pageNum);
+            }
+        });
+        mSmartRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                pageNum ++;
+                mPresenter.getHomePage(pageNum);
             }
         });
 

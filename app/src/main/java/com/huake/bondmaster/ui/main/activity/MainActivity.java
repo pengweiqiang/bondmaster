@@ -65,6 +65,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initEventAndData() {
+        requestPermission();
         myFragment = new MyReviewFragment();
         homeFragment = new HomeFragment();
         marketFragment = new MarketFragment();
@@ -152,6 +153,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void onResume() {
         super.onResume();
         mTabIndicators.check(tabIds[showIndex]);
+    }
+
+    public void setCurrentItem(int position){
+        showIndex = position;
+        mTabIndicators.check(tabIds[position]);
+        mViewPager.setCurrentItem(showIndex,false);
     }
 
     private boolean isExit = false;

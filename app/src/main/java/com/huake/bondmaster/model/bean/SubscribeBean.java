@@ -8,4 +8,32 @@ package com.huake.bondmaster.model.bean;
  */
 
 public class SubscribeBean {
+    private String sInfoCustname;
+    private String successProbability;
+    private String bInfoCreditrating;
+
+
+    public String getsInfoCustname() {
+        return sInfoCustname;
+    }
+
+    public void setsInfoCustname(String sInfoCustname) {
+        this.sInfoCustname = sInfoCustname;
+    }
+
+    public String getSuccessProbability() {
+        return successProbability;
+    }
+
+    public void setSuccessProbability(String successProbability) {
+        this.successProbability = successProbability;
+    }
+
+    public String getbInfoCreditrating() {
+        return bInfoCreditrating;
+    }
+
+    public void setbInfoCreditrating(String bInfoCreditrating) {
+        this.bInfoCreditrating = bInfoCreditrating;
+    }
 }

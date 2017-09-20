@@ -1,12 +1,14 @@
 package com.huake.bondmaster.presenter.subscribe;
 
 import com.huake.bondmaster.base.RxPresenter;
-import com.huake.bondmaster.base.contract.scene.SceneDetailContract;
+import com.huake.bondmaster.base.contract.subscribe.SubscribeContract;
 import com.huake.bondmaster.model.DataManager;
-import com.huake.bondmaster.model.bean.EnterpriseInfo;
+import com.huake.bondmaster.model.bean.SubscribeBean;
 import com.huake.bondmaster.model.http.response.BondMasterHttpResponse;
 import com.huake.bondmaster.util.RxUtil;
 import com.huake.bondmaster.widget.CommonSubscriber;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -17,7 +19,7 @@ import javax.inject.Inject;
  * @Version
  */
 
-public class SubscribePresenter extends RxPresenter<SceneDetailContract.View> implements SceneDetailContract.Presenter {
+public class SubscribePresenter extends RxPresenter<SubscribeContract.View> implements SubscribeContract.Presenter {
     private DataManager dataManager;
 
     @Inject
@@ -25,19 +27,22 @@ public class SubscribePresenter extends RxPresenter<SceneDetailContract.View> im
         this.dataManager = dataManager;
     }
 
+
     @Override
-    public void getEnterpriseInfo(String userId, String dataDate,String trialCustId) {
-        addSubscribe(dataManager.getEnterpriseInfo(userId, dataDate, trialCustId)
-                .compose(RxUtil.<BondMasterHttpResponse<EnterpriseInfo>>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<EnterpriseInfo>(mView, true) {
+    public void getSubscirbeList(String userId) {
+        addSubscribe(dataManager.getSubscribeList(userId)
+                .compose(RxUtil.<BondMasterHttpResponse<List<SubscribeBean>>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<List<SubscribeBean>>(mView, true) {
                     @Override
-                    public void dataHandler(EnterpriseInfo enterpriseInfo) {
+                    public void dataHandler(List<SubscribeBean> subscribeBeanList) {
                         mView.stateMain();
-                        if(enterpriseInfo!=null) {
-                            mView.showContent(enterpriseInfo);
-                        }else{
-                            mView.showErrorMsg("获取结果为空");
-                        }
+                        mView.showContent(subscribeBeanList);
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        super.onError(msg);
+                        mView.stateError();
                     }
 
                 })

@@ -34,11 +34,16 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     public static final String ABOUT_US = "hk-soft-app/aboutus";//关于我们
 
+    public static final String REGISTER_PROTOCOL = "/hk-soft-app/registerProtocol";//用户协议
+
     //评测结果
 
     public static final String EVALUATION_RESULT = "/hk-soft-app/scene/viewIssuanceEvaluationResult";
 
     public static final String EVALUATION_RESULT2 = "/hk-soft-app/evaluate/viewIssuanceEvaluationResult";
+
+    //融资报告
+    public static final String FINANCING_PLAN_REPORT = "hk-soft-app/scene/getFinancingPlanReportData";
 
     //================= TYPE ====================
 
@@ -85,6 +90,11 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final String PATH_CACHE = PATH_DATA + "/NetCache";
 
     public static final String PATH_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "bondmaster" + File.separator + "Bondmaster";
+
+
+    public static final String PDF = "bondMaster/pdf";
+    public static final String IMAGE = "bondMaster/screenhoot";
+    public static final String END_PDF = ".pdf";
 
     //================= PREFERENCE ====================
 

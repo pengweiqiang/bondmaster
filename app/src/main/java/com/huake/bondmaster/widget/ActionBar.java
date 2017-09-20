@@ -29,6 +29,7 @@ public class ActionBar extends FrameLayout {
 	private TextView mRightActionButton;
 	private ImageView mRightImageView;
 	private TextView mActionBarTitle;
+	private ImageView mRightImageViewSave;
 
 	private View mActionBar;
 
@@ -61,6 +62,7 @@ public class ActionBar extends FrameLayout {
 		mRightActionButton = (TextView)findViewById(R.id.rightActionButton);
 		mActionBarTitle = (TextView)findViewById(R.id.actionBarTitle);
 		mRightImageView = (ImageView)findViewById(R.id.rightActionImageView);
+		mRightImageViewSave = (ImageView)findViewById(R.id.rightSaveImageView);
 		mActionBar = findViewById(R.id.actionBarLayout);
 
 	}
@@ -118,6 +120,26 @@ public class ActionBar extends FrameLayout {
 			mRightImageView.setImageDrawable(context.getResources().getDrawable(drawableId));
 		}
 		mRightImageView.setOnClickListener(onClickListener);
+	}
+	public void hideRightImageActionSaveButton(){
+		if(mRightImageViewSave.getVisibility() == VISIBLE) {
+			mRightImageViewSave.setVisibility(GONE);
+		}
+		if(mRightActionButton.getVisibility() == VISIBLE){
+			mRightActionButton.setVisibility(GONE);
+		}
+	}
+
+	public int getRightImageSaveButton(){
+		return mRightImageViewSave.getVisibility();
+	}
+
+	public void setRightImageSaveActionButton(int drawableId,OnClickListener onClickListener){
+		mRightImageViewSave.setVisibility(VISIBLE);
+		if(drawableId != 0){
+			mRightImageViewSave.setImageDrawable(context.getResources().getDrawable(drawableId));
+		}
+		mRightImageViewSave.setOnClickListener(onClickListener);
 	}
 
 	public void setLeftActionButton(){

@@ -13,9 +13,11 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.huake.bondmaster.R;
+import com.huake.bondmaster.app.Constants;
 import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.user.RegisterContract;
 import com.huake.bondmaster.presenter.my.RegisterPresenter;
+import com.huake.bondmaster.ui.web.WebActivity;
 import com.huake.bondmaster.util.CheckInputUtil;
 import com.huake.bondmaster.widget.ActionBar;
 
@@ -81,6 +83,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         initListener();
     }
 
+
     private void setRegisterButtonStatus(){
         if(mAppCompatCheckBox.isChecked() && mEditTextHaveInputCount >= EDITTEXT_AMOUNT){
             mBtnRegister.setEnabled(true);
@@ -129,7 +132,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         mEtCode.addTextChangedListener(textWatcher);
     }
 
-    @OnClick({R.id.btn_register,R.id.btn_get_code})
+    @OnClick({R.id.btn_register,R.id.btn_get_code,R.id.tv_agreement})
     public void btnOnClick(View view){
         switch (view.getId()){
             case R.id.btn_register:
@@ -137,6 +140,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
                 break;
             case R.id.btn_get_code:
                 getCode();
+                break;
+            case R.id.tv_agreement:
+                WebActivity.open(mContext,"用户协议", Constants.HOST_URL+Constants.REGISTER_PROTOCOL);
                 break;
         }
 

@@ -117,6 +117,7 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position<partyBeanList.size()-1) {
                     partyListBean = partyBeanList.get(position);
+                    mEtCompanyName.dismissDropDown();
                 }
 
             }
@@ -292,6 +293,10 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
 //        autoCompleteAdapter.setListObjects(partyBeanList);
         autoCompleteAdapter = new AutoCompleteAdapter<>(mContext,android.R.layout.simple_list_item_1,partyBeanList);
         mEtCompanyName.setAdapter(autoCompleteAdapter);
+        if(partyBeanList.size() == 1 && partyBeanList.get(0).getPartyName().equals(mEtCompanyName.getText().toString().trim())){
+            return;
+        }
+        mEtCompanyName.showDropDown();
     }
 
     public static void open(Context context){

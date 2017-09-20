@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huake.bondmaster.R;
-import com.huake.bondmaster.model.bean.SceneBean;
+import com.huake.bondmaster.model.bean.SubscribeBean;
 import com.huake.bondmaster.util.BigDecimalUtil;
 
 import java.util.List;
@@ -25,16 +25,21 @@ import butterknife.ButterKnife;
  */
 
 public class SubscribeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private List<SceneBean> mList;
+    private List<SubscribeBean> mList;
     private Context mContext;
     private LayoutInflater inflater;
 
     private OnItemClickListener onItemClickListener;
 
-    public SubscribeAdapter(Context mContext, List<SceneBean> mList){
+    public SubscribeAdapter(Context mContext, List<SubscribeBean> mList){
         this.mContext = mContext;
         this.mList = mList;
         inflater = LayoutInflater.from(mContext);
+    }
+
+    public void setData(List<SubscribeBean> mList){
+        this.mList = mList;
+        notifyDataSetChanged();
     }
 
 //    public enum ITEM_TYPE{
@@ -45,7 +50,7 @@ public class SubscribeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new ContentViewHolder(inflater.inflate(R.layout.item_recycle_view_scene,parent,false));
+        return new ContentViewHolder(inflater.inflate(R.layout.item_recycle_view_subscribe,parent,false));
     }
 
     @Override
@@ -56,11 +61,11 @@ public class SubscribeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 //        ImageLoader.load(mContext,mList.get(position).getbAgencyGuarantornatureName().get(0),((ContentViewHolder)holder).image);
         ContentViewHolder contentViewHolder = (ContentViewHolder)holder;
-        SceneBean sceneBean = mList.get(position);
+        SubscribeBean subscribeBean = mList.get(position);
 
-        contentViewHolder.mTvBInfoCreditrating.setText(sceneBean.getbInfoCreditrating());
-        contentViewHolder.mTvCompanyName.setText(sceneBean.getsInfoCustname());
-        String successProbalility = BigDecimalUtil.formartDoubleStr(sceneBean.getSuccessProbability(),2);
+        contentViewHolder.mTvBInfoCreditrating.setText(subscribeBean.getbInfoCreditrating());
+        contentViewHolder.mTvCompanyName.setText(subscribeBean.getsInfoCustname());
+        String successProbalility = BigDecimalUtil.formartDoubleStr(subscribeBean.getSuccessProbability(),2);
         contentViewHolder.mTvSuccessProbability.setText(successProbalility+"%");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

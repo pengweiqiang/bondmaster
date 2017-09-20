@@ -91,6 +91,8 @@
 
         <activity android:name=".ui.scene.SubscribeManageActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
 
+        <activity android:name=".ui.scene.FinaningPlanReportActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+
 
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"

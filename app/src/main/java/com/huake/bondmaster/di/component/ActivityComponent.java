@@ -23,6 +23,7 @@ import com.huake.bondmaster.ui.my.PasswordManageActivity;
 import com.huake.bondmaster.ui.my.RegisterActivity;
 import com.huake.bondmaster.ui.my.UpdatePasswordActivity;
 import com.huake.bondmaster.ui.scene.SceneDetailActivity;
+import com.huake.bondmaster.ui.scene.SubscribeManageActivity;
 import com.huake.bondmaster.ui.web.WebActivity;
 
 import dagger.Component;
@@ -76,5 +77,7 @@ public interface ActivityComponent {
     void inject(HkMarketOverviewDetailActivity hkMarketOverviewDetailActivity);
 
     void inject(FeedBackActivity feedBackActivity);
+
+    void inject(SubscribeManageActivity subscribeManageActivity);
 
 }

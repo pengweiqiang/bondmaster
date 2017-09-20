@@ -2,6 +2,9 @@ package com.huake.bondmaster.ui.web;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Environment;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -14,6 +17,7 @@ import com.huake.bondmaster.base.contract.web.WebContract;
 import com.huake.bondmaster.model.bean.UserBean;
 import com.huake.bondmaster.presenter.web.WebPresenter;
 import com.huake.bondmaster.util.LogUtil;
+import com.huake.bondmaster.util.ToastUtil;
 import com.huake.bondmaster.widget.ActionBar;
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
@@ -21,6 +25,16 @@ import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import butterknife.BindView;
 
@@ -55,6 +69,7 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
 
     @Override
     protected void initEventAndData() {
+        requestPermission();
         webUrl = getIntent().getStringExtra(Constants.WEB_URL);
         title = getIntent().getStringExtra(Constants.TITLE);
         UserBean userBean = App.getInstance().getUserBeanInstance();
@@ -67,15 +82,8 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
         }
         LogUtil.i(webUrl);
 
-        mActionBar.setTitle(title);
 
-        mActionBar.setLeftActionButton(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressedSupport();
-            }
-        });
-
+        initActionbar();
 
         WebSettings settings = mWebView.getSettings();
 //        settings.setAppCacheEnabled(true);
@@ -130,11 +138,100 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
         mWebView.loadUrl(webUrl);
     }
 
+    private void initActionbar(){
+        mActionBar.setTitle(title);
+        mActionBar.setLeftActionButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressedSupport();
+            }
+        });
+
+        if(webUrl.contains(Constants.ASSOCIATION_MAP)){
+            mActionBar.setRightImageSaveActionButton(R.mipmap.ic_save, new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bitmap bitmap = captureScreenWindow();
+                    long time = System.currentTimeMillis();
+                    String  fileName = saveBitmapForSdCard("img" + time, bitmap);
+                    if(!TextUtils.isEmpty(fileName)) {
+                        ToastUtil.show("已保存在" + fileName);
+                    }
+                }
+            });
+            mActionBar.setRightImageActionButton(R.mipmap.ic_share, new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    shareApp();
+                }
+            });
+        }else{
+            mActionBar.hideRightImageActionSaveButton();
+        }
+    }
+
+    /**
+     * 截取全屏
+     *
+     * @return
+     */
+    public Bitmap captureScreenWindow() {
+        getWindow().getDecorView().setDrawingCacheEnabled(true);
+        Bitmap bmp = getWindow().getDecorView().getDrawingCache();
+        return bmp;
+    }
+
+    /**
+     * 保存到内存卡
+     *
+     * @param bitName
+     * @param mBitmap
+     */
+    public String saveBitmapForSdCard(String bitName, Bitmap mBitmap) {
+        if (verifyStoragePermissions()) {
+            //创建file对象
+            File f = new File(Environment.getExternalStorageDirectory(),Constants.IMAGE);
+            try {
+                if (!f.mkdirs()) {
+                    f.createNewFile();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            f = new File(f.getAbsolutePath(),bitName+".png");
+            FileOutputStream fOut = null;
+            try {
+                fOut = new FileOutputStream(f);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            if(mBitmap!=null) {
+                LogUtil.i(" -----------" + fOut);
+                //原封不动的保存在内存卡上
+                mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+
+                try {
+                    fOut.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    fOut.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return f.getAbsolutePath();
+        }
+        return null;
+    }
+
     public void loadUrl(String webUrl){
         this.webUrl = webUrl;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                initActionbar();
                 mWebView.loadUrl(WebActivity.this.webUrl);
             }
         });
@@ -144,6 +241,7 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
     @Override
     public void onBackPressedSupport() {
         if (mWebView.canGoBack()) {
+            mActionBar.hideRightImageActionSaveButton();
             mWebView.goBack();
 //            if(mWebView.canGoBack()){
 //                mActionBar.setVisibilyCloseButton(View.VISIBLE);
@@ -176,4 +274,61 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
         intent.putExtra(Constants.TITLE, title);
         context.startActivity(intent);
     }
+
+
+    private void shareApp(){
+        UMWeb web = new UMWeb(webUrl);
+        web.setTitle("债券App");//标题
+        UMImage umImage = new UMImage(mContext,R.mipmap.ic_launcher);
+        web.setThumb(umImage);  //缩略图
+        web.setDescription(title);//描述
+        new ShareAction(mContext)
+                .withMedia(web)
+//                .withText("债懂App")
+                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QQ,SHARE_MEDIA.SINA,SHARE_MEDIA.SMS)
+                .setCallback(shareListener)
+                .open();
+    }
+
+    private UMShareListener shareListener = new UMShareListener() {
+        /**
+         * @descrption 分享开始的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+//            showLoading("分享中...");
+        }
+
+        /**
+         * @descrption 分享成功的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+//            showErrorMsg("分享成功");
+            cancelDialogLoading();
+        }
+
+        /**
+         * @descrption 分享失败的回调
+         * @param platform 平台类型
+         * @param t 错误原因
+         */
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            showErrorMsg("失败"+t.getMessage());
+            cancelDialogLoading();
+        }
+
+        /**
+         * @descrption 分享取消的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+//            showErrorMsg("取消分享");
+            cancelDialogLoading();
+        }
+    };
 }

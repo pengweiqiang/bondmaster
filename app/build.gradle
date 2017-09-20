@@ -91,4 +91,6 @@ dependencies {
     releaseCompile rootProject.ext.dependencies["blockcanary-no-op"]
     debugCompile rootProject.ext.dependencies["leakcanary-android"]
     releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
+
+    compile rootProject.ext.dependencies["pdf"]
 }

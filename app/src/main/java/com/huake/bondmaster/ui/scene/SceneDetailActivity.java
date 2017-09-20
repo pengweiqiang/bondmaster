@@ -104,7 +104,12 @@ public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> impl
                 WebActivity.open(mContext,"",sbUrlMap.toString());
                 break;
             case R.id.rl_financing_plan://融资方案
-
+                StringBuilder sbUrlPlan = new StringBuilder(Constants.HOST_URL+Constants.FINANCING_PLAN_REPORT);
+                sbUrlPlan.append("?userId=").append(sceneBean.getUserId())
+                        .append("&trialCustId=").append(sceneBean.getTrialCustId())
+                        .append("&dataDate=").append(sceneBean.getDataDate());
+//                WebActivity.open(mContext,"",sbUrlPlan.toString());
+                FinaningPlanReportActivity.open(mContext,sbUrlPlan.toString());
                 break;
             case R.id.rl_my_evaluate://我的评测
                 StringBuilder sbUrl = new StringBuilder(Constants.HOST_URL+Constants.EVALUATION_RESULT);

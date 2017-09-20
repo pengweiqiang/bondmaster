@@ -16,7 +16,11 @@ import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.component.ImageLoader;
 import com.huake.bondmaster.model.bean.HomePageBean;
 import com.huake.bondmaster.model.bean.HotNewsBean;
+import com.huake.bondmaster.ui.evaluation.EvaluationActivity;
 import com.huake.bondmaster.ui.main.activity.ArticleListActivity;
+import com.huake.bondmaster.ui.main.activity.MainActivity;
+import com.huake.bondmaster.ui.main.activity.SearchTrialCustInfoActivity;
+import com.huake.bondmaster.ui.scene.SubscribeManageActivity;
 import com.huake.bondmaster.util.DateUtil;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
@@ -54,10 +58,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         bannerHeight = (int) (width * 1.0 / 375 * 100);
     }
 
-    public void setData(HomePageBean homePageBean){
+    public void setData(HomePageBean homePageBean,List<HotNewsBean> mList){
         this.homePageBean = homePageBean;
         this.imgsBeanList = homePageBean.getImgs();
-        this.mList = homePageBean.getHotNews();
+        this.mList = mList;
 
         notifyDataSetChanged();
     }
@@ -117,8 +121,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //                    SearchTrialCustInfoActivity.open(mContext,"");
 //                }
 //            });
-
-            ((HeaderViewHolder) holder).mIvMoreArticle.setOnClickListener(new View.OnClickListener() {
+            HeaderViewHolder headerViewHolder = (HeaderViewHolder)holder;
+            headerViewHolder.mIvMoreArticle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(App.getInstance().getUserBeanInstance() == null){
@@ -130,8 +134,11 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     ArticleListActivity.open(mContext);
                 }
             });
-
-            showBannerView((HeaderViewHolder) holder,position);
+            headerViewHolder.mViewBondMessage.setOnClickListener(headerViewHolder);
+            headerViewHolder.mViewEnterprise.setOnClickListener(headerViewHolder);
+            headerViewHolder.mViewEvaluate.setOnClickListener(headerViewHolder);
+            headerViewHolder.mViewSubscirbeManage.setOnClickListener(headerViewHolder);
+            showBannerView(headerViewHolder,position);
         }
 
 
@@ -223,7 +230,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 //    InfiniteViewPager mParentViewPager;
     MZBannerView mzParentBannerView;
-    public class HeaderViewHolder extends RecyclerView.ViewHolder{
+    public class HeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 //        @BindView(R.id.tv_search)
 //        EditText mEtSearchView;
         @BindView(R.id.iv_more_article)
@@ -236,6 +243,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //        CirclePageIndicator circlePageIndicator;
         @BindView(R.id.banner)
         MZBannerView mzBannerView;
+        @BindView(R.id.tv_capacity_evaluate)
+        View mViewEvaluate;
+        @BindView(R.id.tv_customized_service)
+        View mViewEnterprise;
+        @BindView(R.id.tv_bond_message)
+        View mViewBondMessage;
+        @BindView(R.id.tv_hierarchy_calculate)
+        View mViewSubscirbeManage;
 
 
         public HeaderViewHolder(View itemView){
@@ -243,6 +258,36 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ButterKnife.bind(this,itemView);
 //            mParentViewPager = infiniteViewPager;
             mzParentBannerView = mzBannerView;
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.tv_capacity_evaluate:
+                    if(((BaseActivity)mContext).checkIsLogin()==null){
+                    ((BaseActivity)mContext).startLoginActivity();
+                        return;
+                    }
+                    EvaluationActivity.open(mContext);
+                    break;
+                case R.id.tv_customized_service:
+                    SearchTrialCustInfoActivity.open(mContext,"");
+                    break;
+                case R.id.tv_bond_message:
+                    if(((BaseActivity)mContext).checkIsLogin()==null){
+                        ((BaseActivity)mContext).startLoginActivity();
+                        return;
+                    }
+                    ((MainActivity)mContext).setCurrentItem(2);
+                    break;
+                case R.id.tv_hierarchy_calculate:
+                    if(((BaseActivity)mContext).checkIsLogin()==null){
+                        ((BaseActivity)mContext).startLoginActivity();
+                        return;
+                    }
+                    SubscribeManageActivity.open(mContext);
+                    break;
+            }
         }
     }
 
