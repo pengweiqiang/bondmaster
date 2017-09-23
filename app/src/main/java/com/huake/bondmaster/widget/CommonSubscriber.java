@@ -97,7 +97,7 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<BondMasterH
             if(isShowErrorState){
                 mView.stateError();
             }
-            mView.showErrorMsg("数据加载失败");
+            mView.showErrorMsg("服务器异常，稍后重试");
         }else if (e instanceof ConnectException) {
             if(isShowErrorState){
                 mView.stateError();
