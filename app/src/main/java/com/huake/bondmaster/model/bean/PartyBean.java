@@ -422,7 +422,7 @@ public class PartyBean {
         }
 
         public String getPartyName() {
-            return partyName;
+            return partyName==null?"":partyName;
         }
 
         public void setPartyName(String partyName) {

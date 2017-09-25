@@ -293,7 +293,7 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
 //        autoCompleteAdapter.setListObjects(partyBeanList);
         autoCompleteAdapter = new AutoCompleteAdapter<>(mContext,android.R.layout.simple_list_item_1,partyBeanList);
         mEtCompanyName.setAdapter(autoCompleteAdapter);
-        if(partyBeanList.size() == 1 && partyBeanList.get(0).getPartyName().equals(mEtCompanyName.getText().toString().trim())){
+        if(partyBeanList!=null && partyBeanList.size() == 1 && partyBeanList.get(0).getPartyName().equals(mEtCompanyName.getText().toString().trim())){
             return;
         }
         mEtCompanyName.showDropDown();
