@@ -51,7 +51,7 @@ public class SubscribeManageActivity extends RootActivity<SubscribePresenter> im
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        mActionBar.setTitle("订阅管理");
+        mActionBar.setTitle("关注管理");
 
         subscribeAdapter = new SubscribeAdapter(mContext,subscribeBeanList);
 

@@ -83,7 +83,7 @@ public class Constants extends com.huake.bondmaster.Constants{
 
     //================= PATH ====================
 
-    public static final String SHARE_APP_URL = "http://www.baidu.com";
+    public static final String SHARE_APP_URL = "http://fir.im/rz3v";
 
     public static final String PATH_DATA = App.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
 

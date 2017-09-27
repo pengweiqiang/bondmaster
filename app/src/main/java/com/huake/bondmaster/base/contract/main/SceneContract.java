@@ -22,6 +22,8 @@ public interface SceneContract {
         void initListener();
 
         void showCompanyCount(String count);
+
+        void showEmptyMsg(String msg);
     }
 
     interface  Presenter extends BasePresenter<View>{

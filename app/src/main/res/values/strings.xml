@@ -16,8 +16,8 @@
 
     <string name="my_evaluate">我的评测</string>
     <string name="my_bond_altas">债券图谱</string>
-    <string name="my_finacing_plan">融资方案</string>
-    <string name="my_subscribe">订阅管理</string>
+    <string name="my_finacing_plan">融资报告</string>
+    <string name="my_subscribe">关注管理</string>
 
     <string name="capacity_evaluate">智能评测</string>
     <string name="customized_service">企业信息</string>

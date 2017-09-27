@@ -99,6 +99,7 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
         if(isVisibleToUser && mList.isEmpty()){
             mRefreshLayout.autoRefresh();
         }
@@ -199,11 +200,18 @@ public class SceneFragment extends RootFragment<ScenePresenter> implements Scene
         }
         mRefreshLayout.setLoadmoreFinished(pageNum>=total);
         mList.addAll(sceneBeanList);
-        if(mList.isEmpty() && isAdded() && getUserVisibleHint()){
+        if(mList.isEmpty() && isAdded() && getUserVisibleHint()&& isVisible()){
             showErrorMsg("查询结果为空");
         }
         mAdapter.notifyDataSetChanged();
         showCompanyCount(records+"");
+    }
+
+    @Override
+    public void showEmptyMsg(String msg){
+        if(isAdded() && getUserVisibleHint()){
+            showErrorMsg(msg);
+        }
     }
 
 

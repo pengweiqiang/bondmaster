@@ -129,14 +129,15 @@ public class MyFragment extends SimpleFragment {
 
     private void shareApp(){
         UMWeb web = new UMWeb(Constants.SHARE_APP_URL);
-        web.setTitle("债券App");//标题
+        web.setTitle("债懂App");//标题
         UMImage umImage = new UMImage(mContext,R.mipmap.ic_launcher);
         web.setThumb(umImage);  //缩略图
-        web.setDescription("债券，让企业更\"懂\"债");//描述
+        web.setDescription("债懂，让企业更\"懂\"债");//描述
         new ShareAction(mActivity)
                 .withMedia(web)
 //                .withText("债懂App")
-                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QQ,SHARE_MEDIA.SINA,SHARE_MEDIA.SMS)
+                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.SMS)
+                //SHARE_MEDIA.SINA,
                 .setCallback(shareListener)
                 .open();
     }

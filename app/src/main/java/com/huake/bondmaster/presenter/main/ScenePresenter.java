@@ -53,8 +53,8 @@ public class ScenePresenter extends RxPresenter<SceneContract.View> implements S
                         mView.stateMain();
                         if(pageBean!=null) {
                             mView.showContent(pageBean.getRecords(),pageBean.getPageNum()==0?1:pageBean.getPageNum(),pageBean.getTotal(),pageBean.getRows());
-                        }else{
-                            mView.showErrorMsg("获取结果为空");
+                        } else{
+                            mView.showEmptyMsg("获取结果为空");
                         }
                     }
 

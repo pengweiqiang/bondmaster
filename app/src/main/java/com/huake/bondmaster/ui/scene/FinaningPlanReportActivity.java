@@ -2,7 +2,8 @@ package com.huake.bondmaster.ui.scene;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 
 import com.github.barteksc.pdfviewer.PDFView;
@@ -43,6 +44,14 @@ public class FinaningPlanReportActivity extends SimpleActivity {
 
     String filePath = "";
 
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            showLoading(msg.what+"%");
+        }
+    };
+
 
     @Override
     protected int getLayout() {
@@ -52,7 +61,7 @@ public class FinaningPlanReportActivity extends SimpleActivity {
     @Override
     protected void initEventAndData() {
         requestPermission();
-        mActionBar.setTitle("融资方案");
+        mActionBar.setTitle("融资报告");
         mActionBar.setRightImageActionButton(R.mipmap.ic_share, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +111,10 @@ public class FinaningPlanReportActivity extends SimpleActivity {
 
                     @Override
                     public void onDownloading(int progress) {
-                        Log.i("DownloadUtil", progress + "");
+//                        Log.i("DownloadUtil", progress + "");
+                        if(progress>0 && progress<100) {
+                            handler.sendEmptyMessage(progress);
+                        }
                     }
 
                     @Override
@@ -124,7 +136,8 @@ public class FinaningPlanReportActivity extends SimpleActivity {
         new ShareAction(mContext)
                 .withMedia(web)
 //                .withText("债懂App")
-                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QQ,SHARE_MEDIA.SINA,SHARE_MEDIA.SMS)
+                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.SMS)
+                //,SHARE_MEDIA.SINA .QQ
                 .setCallback(shareListener)
                 .open();
     }
@@ -169,4 +182,10 @@ public class FinaningPlanReportActivity extends SimpleActivity {
             cancelDialogLoading();
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
 }

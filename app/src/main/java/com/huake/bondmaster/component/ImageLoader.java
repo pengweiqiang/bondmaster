@@ -25,7 +25,7 @@ public class ImageLoader {
         if(context instanceof Activity){
             Activity activity = (Activity)context;
             if(activity!=null && !activity.isDestroyed()){
-                Glide.with(context).load(url).crossFade().placeholder(context.getResources().getDrawable(drawableId))
+                Glide.with(context).load(url).crossFade().centerCrop().placeholder(context.getResources().getDrawable(drawableId))
                         .error((context.getResources().getDrawable(drawableId)))
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv);
             }

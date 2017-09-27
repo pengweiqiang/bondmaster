@@ -24,6 +24,8 @@ import com.huake.bondmaster.widget.ActionBar;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.huake.bondmaster.R.id.scene;
+
 /**
  * @author will on 2017/8/26 11:22
  * @email pengweiqiang64@163.com

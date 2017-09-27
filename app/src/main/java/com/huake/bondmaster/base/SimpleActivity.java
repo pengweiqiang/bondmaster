@@ -91,7 +91,9 @@ public abstract class SimpleActivity extends SupportActivity {
         if (loadingDialog == null) {
             loadingDialog = new LoadingDialog(this, R.style.LoadingDialog);
         }
-        loadingDialog.show();
+        if(!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
         loadingDialog.setTitle(msg);
     }
 

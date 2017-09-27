@@ -39,6 +39,7 @@ public class NativeJsInternation {
                 url = url + "?token="+token;
             }
         }
+        LogUtil.i(url);
         if(url.contains(com.huake.bondmaster.app.Constants.FINANCING_PLAN_REPORT)){
             //融资方案
             FinaningPlanReportActivity.open(context,Constants.HOST_URL + url);
@@ -57,7 +58,6 @@ public class NativeJsInternation {
             ((WebActivity) context).loadUrl(Constants.HOST_URL + url);
         }
 
-        LogUtil.i(url);
     }
 
     @JavascriptInterface
