@@ -19,6 +19,8 @@ public interface SearchTrialCustInfoContract {
         void showContent(long records, long pageNum, long total, List<SearchBean> sceneBeanList);
 
         void initListener();
+
+        void finishRefresh();
     }
 
     interface  Presenter extends BasePresenter<View>{

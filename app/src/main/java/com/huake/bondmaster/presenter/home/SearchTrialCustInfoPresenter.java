@@ -42,6 +42,11 @@ public class SearchTrialCustInfoPresenter extends RxPresenter<SearchTrialCustInf
                         }
                     }
 
+                    @Override
+                    public void onError(String msg) {
+                        super.onError(msg);
+                        mView.finishRefresh();
+                    }
                 })
         );
 

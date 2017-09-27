@@ -9,7 +9,9 @@ import android.view.View;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.huake.bondmaster.R;
 import com.huake.bondmaster.app.Constants;
-import com.huake.bondmaster.base.SimpleActivity;
+import com.huake.bondmaster.base.BaseActivity;
+import com.huake.bondmaster.base.contract.scene.FinaningPlanReportContract;
+import com.huake.bondmaster.presenter.scene.FinaningPlanReportPresenter;
 import com.huake.bondmaster.util.DownloadUtil;
 import com.huake.bondmaster.util.ToastUtil;
 import com.huake.bondmaster.widget.ActionBar;
@@ -31,7 +33,7 @@ import butterknife.BindView;
  * @Version
  */
 
-public class FinaningPlanReportActivity extends SimpleActivity {
+public class FinaningPlanReportActivity extends BaseActivity<FinaningPlanReportPresenter> implements FinaningPlanReportContract.View {
 
     @BindView(R.id.pdfView)
     PDFView mPdfView;
@@ -80,9 +82,11 @@ public class FinaningPlanReportActivity extends SimpleActivity {
         });
         pdfUrl = getIntent().getStringExtra(Constants.URL_KEY);
 
+//        showLoading("");
+//        mPresenter.getReportPdfUrl(pdfUrl);
         fileName = MD5.hexdigest(pdfUrl);
-
         initData();
+
     }
 
     public static void open(Context context, String url){
@@ -136,7 +140,7 @@ public class FinaningPlanReportActivity extends SimpleActivity {
         new ShareAction(mContext)
                 .withMedia(web)
 //                .withText("债懂App")
-                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.SMS)
+                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE/*,SHARE_MEDIA.SMS*/)
                 //,SHARE_MEDIA.SINA .QQ
                 .setCallback(shareListener)
                 .open();
@@ -187,5 +191,18 @@ public class FinaningPlanReportActivity extends SimpleActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    protected void initInject() {
+        getActivityComponent().inject(this);
+    }
+
+    @Override
+    public void showContent(String pdfUrl) {
+        this.pdfUrl = pdfUrl;
+        fileName = MD5.hexdigest(pdfUrl);
+
+        initData();
     }
 }

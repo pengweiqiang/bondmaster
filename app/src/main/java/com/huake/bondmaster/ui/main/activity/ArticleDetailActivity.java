@@ -199,7 +199,7 @@ public class ArticleDetailActivity extends BaseActivity<WebPresenter> implements
         new ShareAction(mContext)
                 .withMedia(web)
 //                .withText("债懂App")
-                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.SMS)
+                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE/*,SHARE_MEDIA.SMS*/)
                 //,SHARE_MEDIA.SINA
                 .setCallback(shareListener)
                 .open();

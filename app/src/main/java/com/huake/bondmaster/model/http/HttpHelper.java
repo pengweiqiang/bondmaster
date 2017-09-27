@@ -91,7 +91,8 @@ public interface HttpHelper {
     //时讯专栏列表
     Flowable<BondMasterHttpResponse<PageBean<ArticleBean>>> getArticleList(String userId,long pageNum, long pageSize, String categoryId);
 
-
+    //融资报告
+    Flowable<BondMasterHttpResponse<String>> getFinancingPlanReportData(String userId,String trialCustId,String dataDate);
 
     //获取评论列表
     Flowable<BondMasterHttpResponse<CommentBean>>  getCmsCommentList(String id,String userId,long pageNum,long pageSize);

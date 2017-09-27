@@ -87,6 +87,14 @@ public class SearchTrialCustInfoActivity extends RootActivity<SearchTrialCustInf
         mRefreshLayout.autoRefresh();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(mList == null || mList.isEmpty()) {
+            mRefreshLayout.autoRefresh();
+        }
+    }
+
     @OnClick(R.id.btn_start_evaluate)
     public void onClick(View view){
         if(checkIsLogin()==null){
@@ -189,6 +197,12 @@ public class SearchTrialCustInfoActivity extends RootActivity<SearchTrialCustInf
                 loadDataFirst();
             }
         });
+    }
+
+    @Override
+    public void finishRefresh() {
+        if(mRefreshLayout!=null)
+            mRefreshLayout.finishRefresh();
     }
 
     private void loadDataFirst(){

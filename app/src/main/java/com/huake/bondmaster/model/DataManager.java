@@ -201,6 +201,11 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
+    public Flowable<BondMasterHttpResponse<String>> getFinancingPlanReportData(String userId, String trialCustId, String dataDate) {
+        return mHttpHelper.getFinancingPlanReportData(userId, trialCustId, dataDate);
+    }
+
+    @Override
     public Flowable<BondMasterHttpResponse<CommentBean>> getCmsCommentList(String id, String userId, long pageNum, long pageSize) {
         return mHttpHelper.getCmsCommentList(id, userId, pageNum, pageSize);
     }

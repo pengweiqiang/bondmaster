@@ -1,5 +1,7 @@
 package com.huake.bondmaster.presenter.scene;
 
+import android.text.TextUtils;
+
 import com.huake.bondmaster.base.RxPresenter;
 import com.huake.bondmaster.base.contract.scene.SceneDetailContract;
 import com.huake.bondmaster.model.DataManager;
@@ -37,6 +39,26 @@ public class SceneDetailPresenter extends RxPresenter<SceneDetailContract.View> 
                             mView.showContent(enterpriseInfo);
                         }else{
                             mView.showErrorMsg("获取结果为空");
+                        }
+                    }
+
+                })
+        );
+    }
+
+    @Override
+    public void getReportPdf(String userId,String tId,String dataDate) {
+        addSubscribe(dataManager.getFinancingPlanReportData(userId,tId,dataDate)
+                .compose(RxUtil.<BondMasterHttpResponse<String>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<String>(mView, true) {
+                    @Override
+                    public void dataHandler(String pdfUrl) {
+                        mView.stateMain();
+                        if(TextUtils.isEmpty(pdfUrl)) {
+                            mView.showErrorMsg("获取结果为空");
+
+                        }else{
+                            mView.getPdfUrl(pdfUrl);
                         }
                     }
 

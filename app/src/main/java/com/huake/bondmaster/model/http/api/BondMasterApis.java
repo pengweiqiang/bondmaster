@@ -187,6 +187,16 @@ public interface BondMasterApis {
     Flowable<BondMasterHttpResponse<List<SubscribeBean>>> getSubscribeList(@Query("userId")String userId);
 
 
+    /**
+     * 融资报告
+     * @param userId
+     * @param trialCustId
+     * @param dataDate
+     * @return
+     */
+    @GET("hk-soft-app/scene/getFinancingPlanReportData")
+    Flowable<BondMasterHttpResponse<String>> getFinancingPlanReportData(@Query("userId")String userId, @Query("trialCustId")String trialCustId, @Query("dataDate")String dataDate);
+
 
     //时讯专栏
     @GET("hk-soft-app/cmsApp/queryArticleList")

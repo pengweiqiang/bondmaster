@@ -281,11 +281,11 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
         web.setTitle("债懂App");//标题
         UMImage umImage = new UMImage(mContext,R.mipmap.ic_launcher);
         web.setThumb(umImage);  //缩略图
-        web.setDescription(title);//描述
+        web.setDescription(TextUtils.isEmpty(title)?"债懂，让企业更\"懂\"债":title);//描述
         new ShareAction(mContext)
                 .withMedia(web)
 //                .withText("债懂App")
-                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.SMS)
+                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE/*,SHARE_MEDIA.SMS*/)
                 //SHARE_MEDIA.SINA,
                 .setCallback(shareListener)
                 .open();

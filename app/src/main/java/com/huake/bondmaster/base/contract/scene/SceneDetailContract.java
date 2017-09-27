@@ -15,10 +15,14 @@ public interface SceneDetailContract {
 
     interface View extends BaseView{
         void showContent(EnterpriseInfo enterpriseInfo);
+
+        void getPdfUrl(String pdfUrl);
     }
 
     interface Presenter extends BasePresenter<View>{
         void getEnterpriseInfo(String userId, String dataDate,String trialCustId);
+
+        void getReportPdf(String userId,String tId,String dataDate);
     }
 
 }

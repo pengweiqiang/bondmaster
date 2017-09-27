@@ -109,6 +109,11 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
+    public Flowable<BondMasterHttpResponse<String>> getFinancingPlanReportData(String userId, String trialCustId, String dataDate) {
+        return mMyApiService.getFinancingPlanReportData(userId, trialCustId, dataDate);
+    }
+
+    @Override
     public Flowable<BondMasterHttpResponse<CommentBean>> getCmsCommentList(String id, String userId, long pageNum, long pageSize) {
         return mMyApiService.getCmsCommentList(id, userId, pageNum, pageSize);
     }

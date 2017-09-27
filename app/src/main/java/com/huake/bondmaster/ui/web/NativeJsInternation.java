@@ -40,7 +40,7 @@ public class NativeJsInternation {
             }
         }
         LogUtil.i(url);
-        if(url.contains(com.huake.bondmaster.app.Constants.FINANCING_PLAN_REPORT)){
+        if(url.contains(com.huake.bondmaster.app.Constants.END_PDF)){
             //融资方案
             FinaningPlanReportActivity.open(context,Constants.HOST_URL + url);
             return;

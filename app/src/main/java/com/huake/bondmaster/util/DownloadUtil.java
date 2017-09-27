@@ -110,10 +110,11 @@ public class DownloadUtil {
                 FileOutputStream fos = null;
                 // 储存下载文件的目录
                 String savePath = isExistDir(saveDir);
+                File file = null;
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
-                    File file = new File(savePath, fileName);
+                    file = new File(savePath, fileName);
                     fos = new FileOutputStream(file);
                     long sum = 0;
                     while ((len = is.read(buf)) != -1) {
@@ -129,6 +130,7 @@ public class DownloadUtil {
                 } catch (Exception e) {
                     e.printStackTrace();
                     listener.onDownloadFailed();
+                    deleteFile(file);
                 } finally {
                     try {
                         if (is != null)
@@ -159,6 +161,13 @@ public class DownloadUtil {
         }
         String savePath = downloadFile.getAbsolutePath();
         return savePath;
+    }
+
+    private boolean deleteFile(File file) {
+        if(file!=null && file.exists()){
+            return file.delete();
+        }
+        return false;
     }
 
     public String getFilePath(String fileName){

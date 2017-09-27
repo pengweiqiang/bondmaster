@@ -24,8 +24,6 @@ import com.huake.bondmaster.widget.ActionBar;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.huake.bondmaster.R.id.scene;
-
 /**
  * @author will on 2017/8/26 11:22
  * @email pengweiqiang64@163.com
@@ -106,12 +104,14 @@ public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> impl
                 WebActivity.open(mContext,"",sbUrlMap.toString());
                 break;
             case R.id.rl_financing_plan://融资方案
-                StringBuilder sbUrlPlan = new StringBuilder(Constants.HOST_URL+Constants.FINANCING_PLAN_REPORT);
-                sbUrlPlan.append("?userId=").append(sceneBean.getUserId())
-                        .append("&trialCustId=").append(sceneBean.getTrialCustId())
-                        .append("&dataDate=").append(sceneBean.getDataDate());
+//                StringBuilder sbUrlPlan = new StringBuilder(Constants.FINANCING_PLAN_REPORT);
+//                sbUrlPlan.append("?userId=").append(sceneBean.getUserId())
+//                        .append("&trialCustId=").append(sceneBean.getTrialCustId())
+//                        .append("&dataDate=").append(sceneBean.getDataDate());
 //                WebActivity.open(mContext,"",sbUrlPlan.toString());
-                FinaningPlanReportActivity.open(mContext,sbUrlPlan.toString());
+//                FinaningPlanReportActivity.open(mContext,sbUrlPlan.toString());
+                showLoading("");
+                mPresenter.getReportPdf(sceneBean.getUserId(),sceneBean.getTrialCustId(),sceneBean.getDataDate());
                 break;
             case R.id.rl_my_evaluate://我的评测
                 StringBuilder sbUrl = new StringBuilder(Constants.HOST_URL+Constants.EVALUATION_RESULT);
@@ -126,6 +126,8 @@ public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> impl
         }
     }
 
+
+
     public static void open(Context context, SearchBean sceneBean){
         Intent intent = new Intent(context,SceneDetailActivity.class);
         intent.putExtra(com.huake.bondmaster.app.Constants.SCENE_BEAN,sceneBean);
@@ -136,5 +138,10 @@ public class SceneDetailActivity extends BaseActivity<SceneDetailPresenter> impl
     @Override
     public void showContent(EnterpriseInfo enterpriseInfo) {
         initView(enterpriseInfo.getSInfoCustname(),enterpriseInfo.getBInfoCreditrating(),enterpriseInfo.getSuccessProbability(),enterpriseInfo.getDataDate(),enterpriseInfo.getEvaluateCount()+"");
+    }
+
+    @Override
+    public void getPdfUrl(String pdfUrl) {
+        FinaningPlanReportActivity.open(mContext,Constants.HOST_URL+pdfUrl);
     }
 }
