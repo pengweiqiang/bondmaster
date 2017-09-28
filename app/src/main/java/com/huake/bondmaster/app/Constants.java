@@ -153,6 +153,9 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final String HK_MARKET_OVERVIEW_BEAN = "hkMarketOverview";
 
 
+    public static String APP_DESC = "债懂，让企业更懂债";
+
+
 
 
 
