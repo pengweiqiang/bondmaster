@@ -86,6 +86,8 @@ public interface HttpHelper {
     //企业信息
     Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(String userId,String dataDate,String trialCustId);
 
+    Flowable<BondMasterHttpResponse<PartyBean.PartyListBean>> getEnterpriseInfoByName(String companyName);
+
     Flowable<BondMasterHttpResponse<List<SubscribeBean>>> getSubscribeList(String userId);
 
     //时讯专栏列表

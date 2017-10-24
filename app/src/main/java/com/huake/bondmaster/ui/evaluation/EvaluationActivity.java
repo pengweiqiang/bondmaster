@@ -115,8 +115,12 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
         mEtCompanyName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position<partyBeanList.size()-1) {
+                if(position<partyBeanList.size()) {
                     partyListBean = partyBeanList.get(position);
+                    String companyName = mEtCompanyName.getText().toString().trim();
+                    if(!StringUtil.isBlank(companyName)) {
+                        mPresenter.getEnterpriseInfo(companyName);
+                    }
                     mEtCompanyName.dismissDropDown();
                 }
 
@@ -130,6 +134,7 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setEnterpriseInfo(null);
                 if(TextUtils.isEmpty(s.toString())){
                     setCompanyNameList(partyListBeanListByUserId,true);
                     partyListBean = null;
@@ -199,7 +204,7 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
                 params.put("secIndCode1",parentIndustryBean.getId());
                 params.put("secIndCode2",childIndustryBean.getId());
 
-                mPresenter.startNext(mContext,params);
+                mPresenter.startNext(mContext,params,partyListBeanSystem);
                 break;
         }
     }
@@ -297,6 +302,52 @@ public class EvaluationActivity extends BaseActivity<EvaluationPresenter> implem
             return;
         }
         mEtCompanyName.showDropDown();
+    }
+
+    private PartyBean.PartyListBean partyListBeanSystem;//后台返回的公司信息
+    @Override
+    public void setEnterpriseInfo(PartyBean.PartyListBean partyListBean) {
+        this.partyListBeanSystem = partyListBean;
+        if(partyListBean!=null){
+            //TODO 获取选中信息的id
+            selectedAddress = new AreaNatureTypeBean.ChinaAreasBean();
+            selectedAddress.setTitle(partyListBean.getSInfoProvince());
+            selectedAddress.setId(partyListBean.getSInfoProvince());
+            mTvAddress.setText(partyListBean.getSInfoProvince());
+
+            selectedNature = new AreaNatureTypeBean.CompNaturesBean();
+            selectedNature.setId(partyListBean.getBAgencyGuarantornature());
+            selectedNature.setTitle(partyListBean.getbAgencyGuarantornatureName());
+            mTvCompanyNature.setText(partyListBean.getbAgencyGuarantornatureName());
+
+            selectedCompType = new AreaNatureTypeBean.CompTypesBean();
+            selectedCompType.setTitle(partyListBean.getSInfoComptype());
+            selectedCompType.setId(partyListBean.getSInfoComptype());
+            mTvComanyType.setText(partyListBean.getSInfoComptype());
+
+
+            parentIndustryBean = new IndustryBean();
+            parentIndustryBean.setId(partyListBean.getSecIndCode1());
+
+            childIndustryBean = new IndustryBean();
+            childIndustryBean.setId(partyListBean.getSecIndCode2());
+            childIndustryBean.setTitle(partyListBean.getSecIndCode2Name());
+
+            mTvIndustry.setText(partyListBean.getSecIndCode2Name());
+
+        }else{
+            selectedAddress = null;
+            mTvAddress.setText("");
+            selectedNature = null;
+            mTvCompanyNature.setText("");
+
+            selectedCompType = null;
+            mTvComanyType.setText("");
+
+            parentIndustryBean = null;
+            childIndustryBean = null;
+            mTvIndustry.setText("");
+        }
     }
 
     public static void open(Context context){

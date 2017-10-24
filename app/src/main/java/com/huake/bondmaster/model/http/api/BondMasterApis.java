@@ -166,6 +166,13 @@ public interface BondMasterApis {
     @GET("hk-soft-app/scene/getEvaluateEnterpriseInfo")
     Flowable<BondMasterHttpResponse<EnterpriseInfo>> getEnterpriseInfo(@Query("userId")String userId,@Query("dataDate")String dataDate,@Query("trialCustId")String trialCustId);
 
+    /**
+     * 通过公司名称获取公司信息
+     * @param companyName
+     * @return
+     */
+    @GET("hk-soft-app/evaluate/getHkPartyTrialCustInfoByName")
+    Flowable<BondMasterHttpResponse<PartyBean.PartyListBean>> getEnterpriseInfoByName(@Query("sInfoCustname")String companyName);
 
     /**
      * 评测结果

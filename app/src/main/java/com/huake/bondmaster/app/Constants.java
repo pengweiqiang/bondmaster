@@ -139,6 +139,7 @@ public class Constants extends com.huake.bondmaster.Constants{
     public static final String SELECT_COMPANY_NAME = "companyName";
 
     public static final String EVALUATE_PARAMS = "evaluateParams";
+    public static final String ENTERPRISE_INFO = "enterpriseInfo";
 
     public static final String TOTAL_ASSETS = "totalAssets";
     public static final String LIABILITIES = "liabilities";

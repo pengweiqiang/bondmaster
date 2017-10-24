@@ -15,6 +15,7 @@ import com.huake.bondmaster.base.BaseActivity;
 import com.huake.bondmaster.base.contract.evaluation.IndustryContract;
 import com.huake.bondmaster.model.bean.EvaluationSuccessBean;
 import com.huake.bondmaster.model.bean.IndustryBean;
+import com.huake.bondmaster.model.bean.PartyBean;
 import com.huake.bondmaster.presenter.evaluation.IndustryPresenter;
 import com.huake.bondmaster.ui.web.WebActivity;
 import com.huake.bondmaster.util.LogUtil;
@@ -68,6 +69,8 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
 
     private Map<String,String> params ;
 
+    private PartyBean.PartyListBean partyListBean;
+
     @Override
     protected void initInject() {
         getActivityComponent().inject(EvaluationInputFinanceInfoActivity.this);
@@ -89,9 +92,28 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
         });
 
         params = (HashMap)getIntent().getSerializableExtra(Constants.EVALUATE_PARAMS);
+        partyListBean = (PartyBean.PartyListBean) getIntent().getSerializableExtra(Constants.ENTERPRISE_INFO);
 
+        initView();
         initListener();
 
+    }
+
+    private  void initView(){
+        if(partyListBean!=null){
+            //TODO
+            mEtAssetTotal.setText(partyListBean.getTotAssets());
+            mEtliabilities.setText(partyListBean.getTotLiab());
+            mEtRoe.setText(partyListBean.getRoe());
+            mEtIncome.setText(partyListBean.getOperRev());
+            mEtProfitTotal.setText(partyListBean.getTotProfit());
+            mEtRetainedProfits.setText(partyListBean.getNetProfit());
+            mEtThreeAvgProfit.setText(partyListBean.getThreeYearNetProfitMean());
+            mEtEbit.setText(partyListBean.getEbitInterest());
+            mEtCash.setText(partyListBean.getNetCashFlowsOperAct());
+            mEtCompanyProfit.setText(partyListBean.getCorporateBondYearInterest());
+            mEtEnterpriseProfit.setText(partyListBean.getEnterpriseBondYearInterest());
+        }
     }
 
     @OnClick(R.id.btn_next)
@@ -198,9 +220,10 @@ public class EvaluationInputFinanceInfoActivity extends BaseActivity<IndustryPre
 
     }
 
-    public static void open(Context context, Map<String,String> params){
+    public static void open(Context context, Map<String,String> params, PartyBean.PartyListBean partyListBean){
         Intent intent = new Intent(context,EvaluationInputFinanceInfoActivity.class);
         intent.putExtra(Constants.EVALUATE_PARAMS,(Serializable) params);
+        intent.putExtra(Constants.ENTERPRISE_INFO,partyListBean);
         context.startActivity(intent);
     }
 

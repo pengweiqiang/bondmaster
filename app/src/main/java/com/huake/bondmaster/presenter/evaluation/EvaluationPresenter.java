@@ -98,8 +98,23 @@ public class EvaluationPresenter extends RxPresenter<EvaluationContract.View> im
 
 
     @Override
-    public void startNext(Context context, Map<String,String> params) {
+    public void startNext(Context context, Map<String,String> params, PartyBean.PartyListBean partyListBean) {
         LogUtil.i(new Gson().toJson(params).toString());
-        EvaluationInputFinanceInfoActivity.open(context,params);
+        EvaluationInputFinanceInfoActivity.open(context,params,partyListBean);
+    }
+
+    @Override
+    public void getEnterpriseInfo(String companyName) {
+        addSubscribe(dataManager.getEnterpriseInfoByName(companyName)
+                .compose(RxUtil.<BondMasterHttpResponse<PartyBean.PartyListBean>>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<PartyBean.PartyListBean>(mView, true) {
+                    @Override
+                    public void dataHandler(PartyBean.PartyListBean partyListBean) {
+                        mView.stateMain();
+                        mView.setEnterpriseInfo(partyListBean);
+                    }
+
+                })
+        );
     }
 }

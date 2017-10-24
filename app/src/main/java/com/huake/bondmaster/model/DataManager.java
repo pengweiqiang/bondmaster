@@ -191,6 +191,11 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper {
     }
 
     @Override
+    public Flowable<BondMasterHttpResponse<PartyBean.PartyListBean>> getEnterpriseInfoByName(String companyName) {
+        return mHttpHelper.getEnterpriseInfoByName(companyName);
+    }
+
+    @Override
     public Flowable<BondMasterHttpResponse<List<SubscribeBean>>> getSubscribeList(String userId) {
         return mHttpHelper.getSubscribeList(userId);
     }

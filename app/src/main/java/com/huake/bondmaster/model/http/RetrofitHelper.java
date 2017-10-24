@@ -99,6 +99,11 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
+    public Flowable<BondMasterHttpResponse<PartyBean.PartyListBean>> getEnterpriseInfoByName(String companyName) {
+        return mMyApiService.getEnterpriseInfoByName(companyName);
+    }
+
+    @Override
     public Flowable<BondMasterHttpResponse<List<SubscribeBean>>> getSubscribeList(String userId) {
         return mMyApiService.getSubscribeList(userId);
     }

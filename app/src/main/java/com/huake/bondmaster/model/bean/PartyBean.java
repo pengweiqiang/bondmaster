@@ -2,6 +2,7 @@ package com.huake.bondmaster.model.bean;
 
 import android.text.TextUtils;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -65,7 +66,7 @@ public class PartyBean {
         this.partyList = partyList;
     }
 
-    public static class PartyListBean {
+    public static class PartyListBean implements Serializable{
         private int id;
         private String dataDate;
         private String userId;
@@ -74,22 +75,14 @@ public class PartyBean {
         private String sInfoCountry;
         private String sInfoProvince;
         private String sInfoComptype;
-        private Object bAgencyGuarantornature;
+        private String bAgencyGuarantornature;
+        private String bAgencyGuarantornatureName;//企业性质名称
         private Object ifFinacingPlatform;
-        private Object secIndCode1;
-        private Object secIndCode2;
-        private Object totAssets;
-        private Object totLiab;
-        private Object netProfit;
-        private Object operRev;
-        private Object netCashFlowsOperAct;
+        private String secIndCode1;
+        private String secIndCode2;
+        private String secIndCode2Name;//所属行业名称
         private Object sFaCurrent;
-        private Object ebitInterest;
         private Object lessIntExp;
-        private Object threeYearNetProfitMean;
-        private Object totProfit;
-        private Object roe;
-        private Object yearInterest;
         private Object cpBalance;
         private Object accRecv;
         private Object medNoteBalance;
@@ -100,11 +93,22 @@ public class PartyBean {
         private Object bondDefaultRecordsCurrent;
         private Object issueCreditrating;
         private Object bondCreditrating;
-        private Object corporateBondYearInterest;
-        private Object enterpriseBondYearInterest;
         private Object negativeAuditTwoYears;
         private Object ifStandardSteelEnterprise;
         private Object ratingFlag;
+
+        private String totAssets;
+        private String totLiab;
+        private String netProfit;
+        private String operRev;
+        private String netCashFlowsOperAct;
+        private String roe;
+        private String threeYearNetProfitMean;
+        private String ebitInterest;
+        private String totProfit;
+        private String yearInterest;
+        private String corporateBondYearInterest;
+        private String enterpriseBondYearInterest;
 
 
         private String partyName;
@@ -173,11 +177,11 @@ public class PartyBean {
             this.sInfoComptype = sInfoComptype;
         }
 
-        public Object getBAgencyGuarantornature() {
+        public String getBAgencyGuarantornature() {
             return bAgencyGuarantornature;
         }
 
-        public void setBAgencyGuarantornature(Object bAgencyGuarantornature) {
+        public void setBAgencyGuarantornature(String bAgencyGuarantornature) {
             this.bAgencyGuarantornature = bAgencyGuarantornature;
         }
 
@@ -189,59 +193,59 @@ public class PartyBean {
             this.ifFinacingPlatform = ifFinacingPlatform;
         }
 
-        public Object getSecIndCode1() {
+        public String getSecIndCode1() {
             return secIndCode1;
         }
 
-        public void setSecIndCode1(Object secIndCode1) {
+        public void setSecIndCode1(String secIndCode1) {
             this.secIndCode1 = secIndCode1;
         }
 
-        public Object getSecIndCode2() {
+        public String getSecIndCode2() {
             return secIndCode2;
         }
 
-        public void setSecIndCode2(Object secIndCode2) {
+        public void setSecIndCode2(String secIndCode2) {
             this.secIndCode2 = secIndCode2;
         }
 
-        public Object getTotAssets() {
-            return totAssets;
+        public String getTotAssets() {
+            return TextUtils.isEmpty(totAssets)?"0":totAssets;
         }
 
-        public void setTotAssets(Object totAssets) {
+        public void setTotAssets(String totAssets) {
             this.totAssets = totAssets;
         }
 
-        public Object getTotLiab() {
-            return totLiab;
+        public String getTotLiab() {
+            return TextUtils.isEmpty(totLiab)?"0":totLiab;
         }
 
-        public void setTotLiab(Object totLiab) {
+        public void setTotLiab(String totLiab) {
             this.totLiab = totLiab;
         }
 
-        public Object getNetProfit() {
-            return netProfit;
+        public String getNetProfit() {
+            return TextUtils.isEmpty(netProfit)?"0":netProfit;
         }
 
-        public void setNetProfit(Object netProfit) {
+        public void setNetProfit(String netProfit) {
             this.netProfit = netProfit;
         }
 
-        public Object getOperRev() {
-            return operRev;
+        public String getOperRev() {
+            return TextUtils.isEmpty(operRev)?"0":operRev;
         }
 
-        public void setOperRev(Object operRev) {
+        public void setOperRev(String operRev) {
             this.operRev = operRev;
         }
 
-        public Object getNetCashFlowsOperAct() {
-            return netCashFlowsOperAct;
+        public String getNetCashFlowsOperAct() {
+            return TextUtils.isEmpty(netCashFlowsOperAct)?"0":netCashFlowsOperAct;
         }
 
-        public void setNetCashFlowsOperAct(Object netCashFlowsOperAct) {
+        public void setNetCashFlowsOperAct(String netCashFlowsOperAct) {
             this.netCashFlowsOperAct = netCashFlowsOperAct;
         }
 
@@ -253,11 +257,11 @@ public class PartyBean {
             this.sFaCurrent = sFaCurrent;
         }
 
-        public Object getEbitInterest() {
-            return ebitInterest;
+        public String getEbitInterest() {
+            return TextUtils.isEmpty(ebitInterest)?"0":ebitInterest;
         }
 
-        public void setEbitInterest(Object ebitInterest) {
+        public void setEbitInterest(String ebitInterest) {
             this.ebitInterest = ebitInterest;
         }
 
@@ -269,35 +273,35 @@ public class PartyBean {
             this.lessIntExp = lessIntExp;
         }
 
-        public Object getThreeYearNetProfitMean() {
-            return threeYearNetProfitMean;
+        public String getThreeYearNetProfitMean() {
+            return TextUtils.isEmpty(threeYearNetProfitMean)?"0":threeYearNetProfitMean;
         }
 
-        public void setThreeYearNetProfitMean(Object threeYearNetProfitMean) {
+        public void setThreeYearNetProfitMean(String threeYearNetProfitMean) {
             this.threeYearNetProfitMean = threeYearNetProfitMean;
         }
 
-        public Object getTotProfit() {
-            return totProfit;
+        public String getTotProfit() {
+            return TextUtils.isEmpty(totProfit)?"0":totProfit;
         }
 
-        public void setTotProfit(Object totProfit) {
+        public void setTotProfit(String totProfit) {
             this.totProfit = totProfit;
         }
 
-        public Object getRoe() {
-            return roe;
+        public String getRoe() {
+            return TextUtils.isEmpty(roe)?"0":roe;
         }
 
-        public void setRoe(Object roe) {
+        public void setRoe(String roe) {
             this.roe = roe;
         }
 
-        public Object getYearInterest() {
+        public String getYearInterest() {
             return yearInterest;
         }
 
-        public void setYearInterest(Object yearInterest) {
+        public void setYearInterest(String yearInterest) {
             this.yearInterest = yearInterest;
         }
 
@@ -381,19 +385,19 @@ public class PartyBean {
             this.bondCreditrating = bondCreditrating;
         }
 
-        public Object getCorporateBondYearInterest() {
-            return corporateBondYearInterest;
+        public String getCorporateBondYearInterest() {
+            return TextUtils.isEmpty(corporateBondYearInterest)?"0":corporateBondYearInterest;
         }
 
-        public void setCorporateBondYearInterest(Object corporateBondYearInterest) {
+        public void setCorporateBondYearInterest(String corporateBondYearInterest) {
             this.corporateBondYearInterest = corporateBondYearInterest;
         }
 
-        public Object getEnterpriseBondYearInterest() {
-            return enterpriseBondYearInterest;
+        public String getEnterpriseBondYearInterest() {
+            return TextUtils.isEmpty(enterpriseBondYearInterest)?"0":enterpriseBondYearInterest;
         }
 
-        public void setEnterpriseBondYearInterest(Object enterpriseBondYearInterest) {
+        public void setEnterpriseBondYearInterest(String enterpriseBondYearInterest) {
             this.enterpriseBondYearInterest = enterpriseBondYearInterest;
         }
 
@@ -427,6 +431,22 @@ public class PartyBean {
 
         public void setPartyName(String partyName) {
             this.partyName = partyName;
+        }
+
+        public String getbAgencyGuarantornatureName() {
+            return bAgencyGuarantornatureName;
+        }
+
+        public void setbAgencyGuarantornatureName(String bAgencyGuarantornatureName) {
+            this.bAgencyGuarantornatureName = bAgencyGuarantornatureName;
+        }
+
+        public String getSecIndCode2Name() {
+            return secIndCode2Name;
+        }
+
+        public void setSecIndCode2Name(String secIndCode2Name) {
+            this.secIndCode2Name = secIndCode2Name;
         }
 
         @Override
